@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.madrone.attendance.entity.User;
 
-@Service
+@Service("userService")
 public interface UserService {
 
 	User findByUserName(String userName);
