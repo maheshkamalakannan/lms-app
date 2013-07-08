@@ -5,20 +5,22 @@
 <hibernate-mapping>
     <class name="com.madrone.attendance.entity.User"
            table="user">
-        <id name="id" type="long">
-            <column name="id" />
+           
+        <id name="userName" type="string">
+            <column name="username" />
             <generator class="assigned" />
         </id>
+        
         <property name="firstName" type="string">
-            <column name="first_name" not-null="true" />
+            <column name="firstname" not-null="true" />
         </property>
  
         <property name="lastName" type="string">
-            <column name="last_name" not-null="true" />
+            <column name="lastname" />
         </property>
         
-        <property name="userName" type="string">
-            <column name="user_name" not-null="true" />
+        <property name="password" type="string">
+            <column name="password" not-null="true" />
         </property>
     </class>
 </hibernate-mapping>

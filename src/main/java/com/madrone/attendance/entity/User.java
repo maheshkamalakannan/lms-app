@@ -2,18 +2,22 @@ package com.madrone.attendance.entity;
 
 public class User {
 	
-	private long id;
 	private String firstName;
 	private String lastName;
 	private String userName;
 	private String password;
 	
-	public long getId() {
-		return id;
+	public User() {
 	}
-	public void setId(long id) {
-		this.id = id;
-	}
+	
+	public User(String userName, String firstName, String lastName, 
+			String password) {
+        this.userName = userName;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.password = password;
+    }
+	
 	public String getFirstName() {
 		return firstName;
 	}
@@ -45,7 +49,7 @@ public class User {
 		if(ob instanceof User) {
 			User u = (User) ob;
 			
-			if(id == u.id && (userName != null && 
+			if((userName != null && 
 					userName.equals(u.userName)) && (firstName != null && 
 					firstName.equals(u.firstName)) && (lastName != null &&
 					lastName.equals(u.lastName))) {
