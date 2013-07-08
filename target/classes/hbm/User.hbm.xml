@@ -16,5 +16,9 @@
         <property name="lastName" type="string">
             <column name="last_name" not-null="true" />
         </property>
+        
+        <property name="userName" type="string">
+            <column name="user_name" not-null="true" />
+        </property>
     </class>
 </hibernate-mapping>

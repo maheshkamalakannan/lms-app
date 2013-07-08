@@ -7,6 +7,11 @@
 	<packaging>jar</packaging>
 	<version>1.0-SNAPSHOT</version>
 	<name>attendance-app</name>
+	<url>http://maven.apache.org</url>
+	
+	<properties>
+        <org.springframework.version>3.2.3.RELEASE</org.springframework.version>
+    </properties>
 	  
 	<dependencies>
 		<!-- Refer: http://search.maven.org/ -->
@@ -21,9 +26,34 @@
 		
 		<!-- Spring framework -->
 		<dependency>
-		    <groupId>org.springframework</groupId>
-    		<artifactId>spring-context</artifactId>
-    		<version>3.2.3.RELEASE</version>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>${org.springframework.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${org.springframework.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${org.springframework.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>${org.springframework.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${org.springframework.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>${org.springframework.version}</version>
         </dependency>
         
         <!-- Hibernate framework -->
