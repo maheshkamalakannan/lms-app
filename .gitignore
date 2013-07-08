@@ -7,3 +7,5 @@
 build.properties
 
 *.class
+
+target/*
