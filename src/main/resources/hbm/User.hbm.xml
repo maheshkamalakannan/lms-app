@@ -7,20 +7,40 @@
            table="user">
            
         <id name="userName" type="string">
-            <column name="username" />
+            <column name="userName" />
             <generator class="assigned" />
         </id>
         
         <property name="firstName" type="string">
-            <column name="firstname" not-null="true" />
+            <column name="firstName" not-null="true" />
         </property>
  
         <property name="lastName" type="string">
-            <column name="lastname" />
+            <column name="lastName" />
         </property>
         
         <property name="password" type="string">
             <column name="password" not-null="true" />
         </property>
+        
+        <property name="createdDate" type="date">
+            <column name="createdDate" not-null="true" />
+        </property>
+        
+        <property name="modifiedDate" type="date">
+            <column name="modifiedDate" not-null="true" />
+        </property>
+        
+        <component name="loginInfo" class="com.madrone.attendance.entity.User$LoginInfo">
+			<property name="lastLoginDate" type="date">
+				<column name="lastLoginDate" />
+			</property>
+			<property name="failedLoginAttempts" type="int">
+				<column name="failedLoginAttempts" not-null="true" />
+			</property>
+			<property name="lockout" type="boolean">
+				<column name="lockout" not-null="true" />
+			</property>
+		</component>
     </class>
 </hibernate-mapping>

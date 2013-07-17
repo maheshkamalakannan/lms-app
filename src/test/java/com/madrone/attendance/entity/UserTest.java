@@ -8,15 +8,8 @@ public class UserTest {
 	@Test
 	public void testEquality() {
 		
-		User u1 = new User();
-		u1.setFirstName("peter");
-		u1.setLastName("england");
-		u1.setUserName("peter.e@madronesoft.com");
-		
-		User u2 = new User();
-		u2.setFirstName("peter");
-		u2.setLastName("england");
-		u2.setUserName("peter.e@madronesoft.com");
+		User u1 = new User("peter.e@madronesoft.com", "peter", "england", "x");
+		User u2 = new User("peter.e@madronesoft.com", "peter", "england", "x");
 		
 		Assert.assertEquals(u1, u2);
 		Assert.assertEquals(u2, u1);
@@ -25,13 +18,18 @@ public class UserTest {
 	@Test
 	public void testToString() {
 		
-		User u = new User();
-		u.setFirstName("peter");
-		u.setLastName("england");
-		u.setUserName("peter.e@madronesoft.com");
+		User u = new User("peter.e@madronesoft.com", "peter", "england", "x");
 		
-		Assert.assertEquals("User [Username: peter.e@madronesoft.com, " +
-				"FirstName: peter, LastName: england]", 
-				u.toString());
+		StringBuilder expected = new StringBuilder("User {")
+		.append("userName=peter.e@madronesoft.com, ")
+		.append("firstName=peter, lastName=england, ")
+		.append("createdDate=" + u.getCreatedDate() + ", ")
+		.append("modifiedDate=" + u.getModifiedDate() + ", ")
+		.append("lastLoginDate=" + u.getLoginInfo().getLastLoginDate() + ", ")
+		.append("failedLoginAttempts=" + 
+					u.getLoginInfo().getFailedLoginAttempts() + ", ")
+		.append("isLockout="+ u.getLoginInfo().isLockout()+ "}");
+		
+		Assert.assertEquals(expected.toString(), u.toString());
 	}
 }

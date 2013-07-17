@@ -1,7 +1,12 @@
 CREATE  TABLE 'attendancedb'.'user' (
-  'username' VARCHAR(45) NOT NULL ,
-  'firstname' VARCHAR(45) NOT NULL ,
-  'lastname' VARCHAR(45) NULL ,
+  'userName' VARCHAR(45) NOT NULL ,
+  'firstName' VARCHAR(45) NOT NULL ,
+  'lastName' VARCHAR(45) NULL ,
   'password' VARCHAR(45) NOT NULL ,
-  PRIMARY KEY ('username') );
+  'createdDate' DATETIME NOT NULL ,
+  'modifiedDate' DATETIME NOT NULL ,
+  'lastLoginDate' DATETIME NULL ,
+  'failedLoginAttempts' INT NULL ,
+  'lockout' BIT NOT NULL ,
+  PRIMARY KEY ('userName') );
 ------------------------------------------------------------
