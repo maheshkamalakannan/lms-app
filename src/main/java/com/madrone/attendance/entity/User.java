@@ -120,7 +120,7 @@ public class User implements Serializable {
 				);
 	}
 	
-	static class LoginInfo implements Serializable {
+	public static class LoginInfo implements Serializable {
 		
 		private static final long serialVersionUID = -6561428185019534275L;
 		private Date lastLoginDate;

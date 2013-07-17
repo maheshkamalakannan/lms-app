@@ -34,6 +34,8 @@ public class UserServiceTest {
         User user = createUser();
         User found = userService.findByUserName(user.getUserName());
         Assert.assertEquals(user, found);
+        Assert.assertNotNull(user.getLoginInfo());
+        Assert.assertTrue(user.getLoginInfo().getFailedLoginAttempts() == 0);
     }
 
     @Test
