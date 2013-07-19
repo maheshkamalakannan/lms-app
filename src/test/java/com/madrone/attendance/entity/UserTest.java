@@ -21,6 +21,7 @@ public class UserTest {
 		User u = new User("peter.e@madronesoft.com", "peter", "england", "x");
 		
 		StringBuilder expected = new StringBuilder("User {")
+		.append("id=0, ")
 		.append("userName=peter.e@madronesoft.com, ")
 		.append("firstName=peter, lastName=england, ")
 		.append("createdDate=" + u.getCreatedDate() + ", ")

@@ -1,4 +1,5 @@
 CREATE  TABLE 'attendancedb'.'user' (
+  'id' BIGINT NOT NULL AUTO_INCREMENT ,	
   'userName' VARCHAR(45) NOT NULL ,
   'firstName' VARCHAR(45) NOT NULL ,
   'lastName' VARCHAR(45) NULL ,
@@ -8,5 +9,15 @@ CREATE  TABLE 'attendancedb'.'user' (
   'lastLoginDate' DATETIME NULL ,
   'failedLoginAttempts' INT NULL ,
   'lockout' BIT NOT NULL ,
-  PRIMARY KEY ('userName') );
+  PRIMARY KEY ('id') ,
+  UNIQUE INDEX 'userName_UNIQUE' ('userName' ASC) );
 ------------------------------------------------------------
+
+CREATE  TABLE 'attendancedb'.'leave' (
+  'id' BIGINT NOT NULL AUTO_INCREMENT ,
+  'name' VARCHAR(5) NOT NULL ,
+  'description' VARCHAR(45) NOT NULL ,
+  'days' INT NOT NULL ,
+  PRIMARY KEY ('id') ,
+  UNIQUE INDEX 'name_UNIQUE' ('name' ASC) );
+ ------------------------------------------------------------

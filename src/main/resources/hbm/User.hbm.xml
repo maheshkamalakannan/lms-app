@@ -3,44 +3,53 @@
         "http://hibernate.sourceforge.net/hibernate-mapping.dtd">
  
 <hibernate-mapping>
+
     <class name="com.madrone.attendance.entity.User"
-           table="user">
-           
-        <id name="userName" type="string">
-            <column name="userName" />
-            <generator class="assigned" />
-        </id>
-        
+           table="user">  
+                    
+        <id name="id" type="long">
+            <column name="id" />
+            <generator class="sequence" />
+        </id>    
+            
+        <property name="userName" type="string">
+            <column name="userName" not-null="true" />
+        </property>
+                
         <property name="firstName" type="string">
             <column name="firstName" not-null="true" />
         </property>
- 
+         
         <property name="lastName" type="string">
             <column name="lastName" />
         </property>
-        
+                
         <property name="password" type="string">
             <column name="password" not-null="true" />
         </property>
-        
+                
         <property name="createdDate" type="date">
             <column name="createdDate" not-null="true" />
         </property>
-        
+                
         <property name="modifiedDate" type="date">
             <column name="modifiedDate" not-null="true" />
         </property>
-        
+                
         <component name="loginInfo" class="com.madrone.attendance.entity.User$LoginInfo">
 			<property name="lastLoginDate" type="date">
 				<column name="lastLoginDate" />
 			</property>
+			
 			<property name="failedLoginAttempts" type="int">
 				<column name="failedLoginAttempts" not-null="true" />
 			</property>
+			
 			<property name="lockout" type="boolean">
 				<column name="lockout" not-null="true" />
 			</property>
 		</component>
-    </class>
+		
+    </class>    
+      
 </hibernate-mapping>

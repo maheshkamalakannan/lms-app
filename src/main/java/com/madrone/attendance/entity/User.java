@@ -6,6 +6,7 @@ import java.util.Date;
 public class User implements Serializable {
 	
 	private static final long serialVersionUID = 5177316647031047346L;
+	private long id;
 	private String firstName;
 	private String lastName;
 	private String userName;
@@ -28,6 +29,12 @@ public class User implements Serializable {
         this.loginInfo = new LoginInfo(0, false);
     }
 	
+	public long getId() {
+		return id;
+	}
+	private void setId(long id) {
+		this.id = id;
+	}
 	public String getFirstName() {
 		return firstName;
 	}
@@ -39,8 +46,7 @@ public class User implements Serializable {
 	}
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
-	}
-	
+	}	
 	public String getUserName() {
 		return userName;
 	}
@@ -77,7 +83,7 @@ public class User implements Serializable {
 		if(ob instanceof User) {
 			User u = (User) ob;
 			
-			if((userName != null && 
+			if((id == u.id) && (userName != null && 
 					userName.equals(u.userName)) && (firstName != null && 
 					firstName.equals(u.firstName)) && (lastName != null &&
 					lastName.equals(u.lastName))) {
@@ -98,6 +104,7 @@ public class User implements Serializable {
 	public String toString() {	
 				
 		StringBuilder pattern = new StringBuilder("User {")
+		.append("id=%d, ")
 		.append("userName=%s, ")
 		.append("firstName=%s, ")
 		.append("lastName=%s, ")
@@ -109,6 +116,7 @@ public class User implements Serializable {
 		.append("}");
 		
 		return String.format(pattern.toString(), 
+				id,
 				userName, 
 				firstName, 
 				lastName,
