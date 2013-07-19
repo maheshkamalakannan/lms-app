@@ -84,10 +84,17 @@
 			<version>1.2</version>
 		</dependency>
 		
+		<!-- Logging using logback -->
+		<!--  Reasons to use logback over log4j: http://logback.qos.ch/reasonsToSwitch.html -->
 		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<version>1.5.6</version>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-core</artifactId>
+			<version>1.0.13</version>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>1.0.13</version>
 		</dependency>
 		
 	</dependencies>

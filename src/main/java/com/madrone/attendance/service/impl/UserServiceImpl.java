@@ -2,6 +2,8 @@ package com.madrone.attendance.service.impl;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,6 +15,9 @@ import com.madrone.attendance.service.UserService;
 @Service("userService")
 @Transactional(readOnly = true)
 public class UserServiceImpl implements UserService {
+	
+	private static final Logger logger = 
+			LoggerFactory.getLogger(UserServiceImpl.class);
 
 	@Autowired
 	UserDao userDao;
@@ -26,6 +31,7 @@ public class UserServiceImpl implements UserService {
     @Transactional(readOnly = false)
     public void saveUser(User user) {
         userDao.saveUser(user);
+        logger.info("Successfully saved " + user.toString());
     }
  
     @Override
