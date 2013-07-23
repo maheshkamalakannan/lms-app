@@ -1,17 +1,15 @@
 package com.madrone.attendance.service;
 
-import java.util.List;
-
 import com.madrone.attendance.entity.User;
 
 public interface UserService {
 
-	User findByUserName(String userName);
+	User findById(Long id);
 	
 	void saveUser(User user);
 	
 	void deleteUser(String userName);
 
-	List<User> findUsers(String firstName);
+	User findByUserName(String userName);
 
 }

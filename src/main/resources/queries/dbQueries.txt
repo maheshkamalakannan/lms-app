@@ -1,23 +1,35 @@
-CREATE  TABLE 'attendancedb'.'user' (
-  'id' BIGINT NOT NULL AUTO_INCREMENT ,	
-  'userName' VARCHAR(45) NOT NULL ,
-  'firstName' VARCHAR(45) NOT NULL ,
-  'lastName' VARCHAR(45) NULL ,
-  'password' VARCHAR(45) NOT NULL ,
-  'createdDate' DATETIME NOT NULL ,
-  'modifiedDate' DATETIME NOT NULL ,
-  'lastLoginDate' DATETIME NULL ,
-  'failedLoginAttempts' INT NULL ,
-  'lockout' BIT NOT NULL ,
-  PRIMARY KEY ('id') ,
-  UNIQUE INDEX 'userName_UNIQUE' ('userName' ASC) );
-------------------------------------------------------------
-
-CREATE  TABLE 'attendancedb'.'leave' (
-  'id' BIGINT NOT NULL AUTO_INCREMENT ,
-  'name' VARCHAR(5) NOT NULL ,
-  'description' VARCHAR(45) NOT NULL ,
-  'days' INT NOT NULL ,
-  PRIMARY KEY ('id') ,
-  UNIQUE INDEX 'name_UNIQUE' ('name' ASC) );
- ------------------------------------------------------------
+CREATE TABLE user_
+(
+  id bigint NOT NULL,
+  user_name varchar(45) NOT NULL,
+  password varchar(45) NOT NULL,
+  created_date timestamp without time zone NOT NULL,
+  modified_date timestamp without time zone NOT NULL,
+  last_login_date timestamp without time zone,
+  failed_login_attempts smallint,
+  lockout bit(1) NOT NULL,
+  CONSTRAINT user_pkey PRIMARY KEY (id ),
+  CONSTRAINT "user_userName_key" UNIQUE ("user_name" )
+);
+---------------------------------------------
+CREATE TABLE leave_
+(
+  id serial NOT NULL,
+  leave_name varchar(45) NOT NULL,
+  description varchar(45) NOT NULL,
+  days smallint,
+  CONSTRAINT leave_pkey PRIMARY KEY (id ),
+  CONSTRAINT leave_name_key UNIQUE (leave_name )
+);
+--------------------------------------------
+CREATE TABLE employee_
+(
+  id serial NOT NULL,
+  first_name varchar(45) NOT NULL,
+  last_Name varchar(45) NOT NULL,
+  primary_email varchar(45) NOT NULL,
+  secondary_email varchar(45),
+  CONSTRAINT employee_pkey PRIMARY KEY (id ),
+  CONSTRAINT employee_primaryEmailAddress_key UNIQUE ("primary_email")
+);
+----------------------------------------------

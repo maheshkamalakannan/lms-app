@@ -1,6 +1,6 @@
 package com.madrone.attendance.service;
 
-import java.util.List;
+import java.util.Calendar;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.madrone.attendance.entity.Employee;
 import com.madrone.attendance.entity.User;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -34,16 +35,14 @@ public class UserServiceTest {
         User user = createUser();
         User found = userService.findByUserName(user.getUserName());
         Assert.assertEquals(user, found);
-        Assert.assertNotNull(user.getLoginInfo());
-        Assert.assertTrue(user.getLoginInfo().getFailedLoginAttempts() == 0);
+        Assert.assertTrue(user.getFailedLoginAttempts() == 0);
     }
 
     @Test
     public void testSearchUser() throws Exception {
         User u = createUser();
-        List<User> users = userService.findUsers(u.getFirstName());
-        Assert.assertEquals(1, users.size());
-        Assert.assertEquals(userName, users.iterator().next().getUserName());
+        u = userService.findByUserName(u.getUserName());
+        Assert.assertEquals(userName, u.getUserName());
     }
 
     @Test
@@ -57,24 +56,32 @@ public class UserServiceTest {
 
     @Test
     public void testUpdateUser() throws Exception {
+    	int today = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
+    	
         createUser();
         User u1 = userService.findByUserName(userName);
         Assert.assertNotNull(u1);
-        Assert.assertEquals("firstName", u1.getFirstName());
-        Assert.assertEquals("lastName", u1.getLastName());
+        Assert.assertEquals(userName, u1.getUserName());
+        Calendar todayDate = u1.getModifiedDate();
+        Assert.assertTrue(today == todayDate.get(Calendar.DAY_OF_MONTH));
 
-        u1.setFirstName("newFirstName");
-        u1.setLastName("newLastName");
+        Calendar tommDate = (Calendar) todayDate.clone();
+        tommDate.add(Calendar.DAY_OF_MONTH, 1); 
+        int tomm = tommDate.get(Calendar.DAY_OF_MONTH);
+        u1.setModifiedDate(tommDate);
         userService.saveUser(u1);
 
         User found = userService.findByUserName(userName);
         Assert.assertNotNull(found);
-        Assert.assertEquals("newFirstName", found.getFirstName());
-        Assert.assertEquals("newLastName", found.getLastName());
+        Assert.assertEquals(userName, u1.getUserName());
+        tommDate = u1.getModifiedDate();
+        Assert.assertTrue(tomm == tommDate.get(Calendar.DAY_OF_MONTH));
     }
     
     private User createUser() {
-        User user = new User(userName, "firstName", "lastName", "password");
+    	Employee e = new Employee("tom", "jerry", userName, null);
+        User user = new User(userName, "password");
+        user.setEmployee(e);
         userService.saveUser(user);
         return user;
     }

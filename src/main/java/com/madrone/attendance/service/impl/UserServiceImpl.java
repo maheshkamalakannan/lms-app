@@ -1,14 +1,14 @@
 package com.madrone.attendance.service.impl;
 
-import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.madrone.attendance.dao.EmployeeDao;
 import com.madrone.attendance.dao.UserDao;
+import com.madrone.attendance.entity.Employee;
 import com.madrone.attendance.entity.User;
 import com.madrone.attendance.service.UserService;
 
@@ -21,29 +21,44 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	UserDao userDao;
-	
+	@Autowired
+	EmployeeDao empDao;
+		
 	@Override
-    public User findByUserName(String userName) {
-        return userDao.findById(userName);
+    public User findById(Long id) {
+		return userDao.findById(id);	
     }
  
     @Override
     @Transactional(readOnly = false)
     public void saveUser(User user) {
-        userDao.saveUser(user);
-        logger.info("Successfully saved " + user.toString());
+    	if(user != null) {
+    		Employee e = empDao.findByEmailAddress(user.getUserName());
+
+    		// Temporary code. Shall be removed after binding the HR module 
+    		// with the LMS module. 
+    		// if Employee does not exist, create employee on the fly
+    		if(e == null) {
+    			empDao.saveEmployee(user.getEmployee());
+    		}
+
+    		user.setEmployee(e);
+    		userDao.saveUser(user);
+    		logger.info("Successfully saved " + user.toString());
+    	} 
+    	throw new IllegalArgumentException("User object passed is null");
     }
  
     @Override
     @Transactional(readOnly = false)
     public void deleteUser(String userName) {
-        User user = userDao.findById(userName);
+        User user = userDao.findByUserName(userName);
         userDao.delete(user);
     }
  
     @Override
-    public List<User> findUsers(String firstName) {
-        return userDao.findUsers(firstName);
+    public User findByUserName(String userName) {
+    	return userDao.findByUserName(userName);	
     }
 	
 }

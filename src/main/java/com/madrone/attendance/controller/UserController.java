@@ -38,7 +38,7 @@ public class UserController {
 
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     public String searchUser(Model model, User user) {
-        List<User> users = userService.findUsers(user.getFirstName());
+        List<User> users = null; // TODO; userService.findUsers(user.getUserName());
         model.addAttribute("users", users);
         return "index";
     }
