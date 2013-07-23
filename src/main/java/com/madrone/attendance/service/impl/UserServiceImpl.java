@@ -42,11 +42,11 @@ public class UserServiceImpl implements UserService {
     			empDao.saveEmployee(user.getEmployee());
     		}
 
-    		user.setEmployee(e);
     		userDao.saveUser(user);
     		logger.info("Successfully saved " + user.toString());
-    	} 
-    	throw new IllegalArgumentException("User object passed is null");
+    	} else { 
+    		throw new IllegalArgumentException("User object passed is null");
+    	}	
     }
  
     @Override

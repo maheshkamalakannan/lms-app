@@ -7,9 +7,9 @@ CREATE TABLE user_
   modified_date timestamp without time zone NOT NULL,
   last_login_date timestamp without time zone,
   failed_login_attempts smallint,
-  lockout bit(1) NOT NULL,
+  lockout boolean,
   CONSTRAINT user_pkey PRIMARY KEY (id ),
-  CONSTRAINT "user_userName_key" UNIQUE ("user_name" )
+  CONSTRAINT "user_userName_key" UNIQUE (user_name )
 );
 ---------------------------------------------
 CREATE TABLE leave_

@@ -9,3 +9,5 @@ build.properties
 *.class
 
 target/*
+
+*.log

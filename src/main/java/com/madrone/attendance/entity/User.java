@@ -112,7 +112,7 @@ public class User implements Serializable {
 		this.failedLoginAttempts = failedLoginAttempts;
 	}
 	
-	@Column(name = "lockout", nullable = false)
+	@Column(name = "lockout")
 	public boolean isLockout() {
 		return lockout;
 	}
