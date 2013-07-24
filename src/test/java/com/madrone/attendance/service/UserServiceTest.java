@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.madrone.attendance.entity.DesignationEnum;
 import com.madrone.attendance.entity.Employee;
 import com.madrone.attendance.entity.User;
 
@@ -86,7 +87,10 @@ public class UserServiceTest {
     }
     
     private User createUser() {
-    	Employee e = new Employee(employeeId, "tom", "jerry", userName, null);
+    	Employee e = new Employee(employeeId, "tom", "jerry", userName, null, 
+    			Calendar.getInstance(), DesignationEnum.SSE, 
+    			"#25 Chitrakulam north st", "Mylapore", "Chennai", 
+    			"TN", 600004);
         User user = new User(userName, "password");
         user.setEmployee(e);
         userService.saveUser(user);
