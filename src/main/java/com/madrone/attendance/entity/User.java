@@ -4,18 +4,21 @@ import java.io.Serializable;
 import java.util.Calendar;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Parameter;
-
 @Entity
+@SequenceGenerator(
+		name="SEQ_STORE",
+		sequenceName="user__id_seq"
+)
 @Table(name = "user_", uniqueConstraints = {
 		@UniqueConstraint(columnNames = "user_name")})
 public class User implements Serializable {
@@ -44,10 +47,8 @@ public class User implements Serializable {
 		this.lockout = false;
     }
 	
-	@GenericGenerator(name = "generator", strategy = "foreign", 
-			parameters = @Parameter(name = "property", value = "employee"))
 	@Id
-	@GeneratedValue(generator = "generator")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="SEQ_STORE")
 	@Column(name = "id", unique = true, nullable = false)
 	public long getId() {
 		return id;
@@ -122,7 +123,7 @@ public class User implements Serializable {
 	}
 	
 	@OneToOne
-	@PrimaryKeyJoinColumn
+	@JoinColumn(name = "employee_id")
 	public Employee getEmployee() {
 		return employee;
 	}
@@ -172,4 +173,5 @@ public class User implements Serializable {
 				lockout
 				);
 	}
+
 }

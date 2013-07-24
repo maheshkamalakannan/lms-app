@@ -2,7 +2,7 @@ package com.madrone.attendance.dao;
 
 import com.madrone.attendance.entity.Employee;
 
-public interface EmployeeDao extends AbstractDao<Employee, Long>{
+public interface EmployeeDao extends AbstractDao<Employee, String>{
 
 	Employee findByEmailAddress(String primaryEmailAddress);
 	

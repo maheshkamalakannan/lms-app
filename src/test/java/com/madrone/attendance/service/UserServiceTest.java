@@ -20,14 +20,21 @@ public class UserServiceTest {
 	
 	@Autowired
     private UserService userService;
+	
+	@Autowired
+	private EmployeeService employeeService;
 
-    private final String userName = "tomj";
+	private final String employeeId = "100";
+    private final String userName = "tom@jerry.com";
 
     @After
     public void tearDown() throws Exception {
     	if(userService.findByUserName(userName) != null) {
     		userService.deleteUser(userName);
-    	}	
+    	}
+    	if(employeeService.findById(employeeId) != null) {
+    		employeeService.deleteEmployee(employeeId);
+    	}
     }
 
     @Test
@@ -79,7 +86,7 @@ public class UserServiceTest {
     }
     
     private User createUser() {
-    	Employee e = new Employee("tom", "jerry", userName, null);
+    	Employee e = new Employee(employeeId, "tom", "jerry", userName, null);
         User user = new User(userName, "password");
         user.setEmployee(e);
         userService.saveUser(user);

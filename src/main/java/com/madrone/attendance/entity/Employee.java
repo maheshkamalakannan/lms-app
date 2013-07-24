@@ -4,27 +4,18 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.SequenceGenerator;
-
-import static javax.persistence.GenerationType.SEQUENCE;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@SequenceGenerator(
-	    name="SEQ_STORE",
-	    sequenceName="employee__id_seq"
-	)
 @Table(name = "employee_", uniqueConstraints = {
-		@UniqueConstraint(columnNames = "id"),
 		@UniqueConstraint(columnNames = "primary_email")})
 public class Employee implements Serializable {
 
 	private static final long serialVersionUID = -8774050095045228244L;
 	
-	private long id;
+	private String id;
 	private String firstName;
 	private String lastName;
 	private String primaryEmail;
@@ -33,8 +24,9 @@ public class Employee implements Serializable {
 	public Employee() {
 	}
 	
-	public Employee(String firstName, String lastName, 
+	public Employee(String id, String firstName, String lastName, 
 			String primaryEmail, String secondaryEmail) {
+		this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.primaryEmail = primaryEmail;
@@ -42,14 +34,12 @@ public class Employee implements Serializable {
     }
 
 	@Id
-	@GeneratedValue(strategy = SEQUENCE, generator="SEQ_STORE")
-	@Column(name = "id", unique = true, nullable = false)
-	public long getId() {
+	@Column(name = "id", nullable = false)
+	public String getId() {
 		return id;
 	}
 
-	@SuppressWarnings("unused")
-	private void setId(long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	

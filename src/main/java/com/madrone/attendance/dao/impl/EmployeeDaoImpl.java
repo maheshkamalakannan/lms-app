@@ -9,7 +9,7 @@ import com.madrone.attendance.dao.EmployeeDao;
 import com.madrone.attendance.entity.Employee;
 
 @Repository("employeeDao")
-public class EmployeeDaoImpl extends AbstractDaoImpl<Employee, Long> 
+public class EmployeeDaoImpl extends AbstractDaoImpl<Employee, String> 
 							implements EmployeeDao {
 
 	public EmployeeDaoImpl() {
@@ -32,5 +32,5 @@ public class EmployeeDaoImpl extends AbstractDaoImpl<Employee, Long>
 	@Override
 	public void saveEmployee(Employee employee) {
 		saveOrUpdate(employee);
-	}	
+	}
 }
