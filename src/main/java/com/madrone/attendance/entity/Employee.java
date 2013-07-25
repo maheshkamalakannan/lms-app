@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -28,6 +30,7 @@ public class Employee implements Serializable {
 	private Calendar dateOfJoin;
 	private DesignationEnum designation;
 	@Embedded private Address address;
+	private Department dept;
 		
 	public Employee() {
 	}
@@ -119,6 +122,16 @@ public class Employee implements Serializable {
 
 	public void setAddress(Address address) {
 		this.address = address;
+	}
+	
+	@ManyToOne
+    @JoinColumn(name="dept_id")
+	public Department getDept() {
+		return dept;
+	}
+
+	public void setDept(Department dept) {
+		this.dept = dept;
 	}
 	
 	@Override

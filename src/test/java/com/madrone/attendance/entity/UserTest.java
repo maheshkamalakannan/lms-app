@@ -1,6 +1,6 @@
 package com.madrone.attendance.entity;
 
-import org.junit.Assert;
+import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class UserTest {
@@ -11,8 +11,8 @@ public class UserTest {
 		User u1 = new User("peter.e@madronesoft.com", "x");
 		User u2 = new User("peter.e@madronesoft.com", "x");
 		
-		Assert.assertEquals(u1, u2);
-		Assert.assertEquals(u2, u1);
+		assertEquals(u1, u2);
+		assertEquals(u2, u1);
 	}
 	
 	@Test
@@ -30,6 +30,6 @@ public class UserTest {
 					u.getFailedLoginAttempts() + ", ")
 		.append("isLockout="+ u.isLockout()+ "}");
 		
-		Assert.assertEquals(expected.toString(), u.toString());
+		assertEquals(expected.toString(), u.toString());
 	}
 }

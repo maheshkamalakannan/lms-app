@@ -1,3 +1,32 @@
+CREATE TABLE department_
+(
+  id character varying(20) NOT NULL,
+  description character varying(45) NOT NULL,
+  CONSTRAINT department_pkey PRIMARY KEY (id )
+);
+----------------------------------------------
+CREATE TABLE employee_
+(
+  id character varying(10) NOT NULL,
+  first_name character varying(45) NOT NULL,
+  last_name character varying(45) NOT NULL,
+  primary_email character varying(45) NOT NULL,
+  secondary_email character varying(45),
+  date_of_join timestamp without time zone NOT NULL,
+  designation character varying(45) NOT NULL,
+  address_line1 character varying(60) NOT NULL,
+  address_line2 character varying(60),
+  city character varying(30) NOT NULL,
+  state character varying(30) NOT NULL,
+  zipcode integer NOT NULL,
+  dept_id character varying(20) NOT NULL,
+  CONSTRAINT employee_pkey PRIMARY KEY (id ),
+  CONSTRAINT employee_primary_email_key UNIQUE (primary_email ),
+  CONSTRAINT employee_department_id_fkey FOREIGN KEY (dept_id)
+      REFERENCES department_ (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+);
+----------------------------------------------
 CREATE TABLE user_
 (
   id serial NOT NULL,
@@ -27,21 +56,3 @@ CREATE TABLE leave_
   CONSTRAINT leave_name_key UNIQUE (leave_name )
 );
 --------------------------------------------
-CREATE TABLE employee_
-(
-  id character varying(10) NOT NULL,
-  first_name character varying(45) NOT NULL,
-  last_name character varying(45) NOT NULL,
-  primary_email character varying(45) NOT NULL,
-  secondary_email character varying(45),
-  date_of_join timestamp without time zone NOT NULL,
-  designation character varying(45) NOT NULL,
-  address_line1 character varying(60) NOT NULL,
-  address_line2 character varying(60),
-  city character varying(30) NOT NULL,
-  state character varying(30) NOT NULL,
-  zipcode integer NOT NULL,
-  CONSTRAINT employee_pkey PRIMARY KEY (id ),
-  CONSTRAINT employee_primary_email_key UNIQUE (primary_email )
-);
-----------------------------------------------

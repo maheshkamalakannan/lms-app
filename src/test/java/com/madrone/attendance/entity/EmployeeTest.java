@@ -2,7 +2,7 @@ package com.madrone.attendance.entity;
 
 import java.util.Calendar;
 
-import org.junit.Assert;
+import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class EmployeeTest {
@@ -19,8 +19,8 @@ public class EmployeeTest {
     			"#25 Chitrakulam north st", "Mylapore", "Chennai", 
     			"TN", 600004);
 		
-		Assert.assertEquals(e1, e2);
-		Assert.assertEquals(e2, e1);
+		assertEquals(e1, e2);
+		assertEquals(e2, e1);
 	}
 	
 	@Test
@@ -47,6 +47,6 @@ public class EmployeeTest {
 			.append("zipcode=600004")
 		.append("}}");
 		
-		Assert.assertEquals(expected.toString(), e.toString());
+		assertEquals(expected.toString(), e.toString());
 	}
 }
