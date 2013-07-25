@@ -31,6 +31,7 @@ public class Employee implements Serializable {
 	private DesignationEnum designation;
 	@Embedded private Address address;
 	private Department dept;
+	private Role role;
 		
 	public Employee() {
 	}
@@ -132,6 +133,16 @@ public class Employee implements Serializable {
 
 	public void setDept(Department dept) {
 		this.dept = dept;
+	}
+	
+	@ManyToOne
+    @JoinColumn(name="role_id")
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
 	}
 	
 	@Override

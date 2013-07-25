@@ -13,7 +13,7 @@ import com.madrone.attendance.service.DepartmentService;
 public class DepartmentServiceImpl implements DepartmentService {
 
 	@Autowired
-	DepartmentDao departmentDao;
+	private DepartmentDao departmentDao;
 	
 	@Override
 	public Department findById(String id) {

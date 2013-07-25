@@ -13,7 +13,7 @@ import com.madrone.attendance.service.EmployeeService;
 public class EmployeeServiceImpl implements EmployeeService {
 
 	@Autowired
-	EmployeeDao empDao;
+	private EmployeeDao empDao;
 	
 	@Override
 	public Employee findById(String id) {

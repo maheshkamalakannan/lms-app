@@ -23,6 +23,7 @@ public class EmployeeServiceTest {
 	@Autowired
 	private DepartmentService departmentService;
 
+	private final String ROLE_R1 = "r1";
 	private final String DEPT_D1 = "d1";
 	private final String EMP_100 = "100";
 	private final String USER_NAME = "tom@jerry.com";
@@ -71,6 +72,7 @@ public class EmployeeServiceTest {
     }
     
     private Employee createEmployee() {
-    	return ServiceTestUtil.createEmployee(EMP_100, DEPT_D1, USER_NAME);
+    	return ServiceTestUtil.createEmployee(EMP_100, DEPT_D1, 
+    			ROLE_R1, USER_NAME);
     }
 }

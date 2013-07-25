@@ -11,9 +11,11 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.madrone.attendance.entity.Department;
 import com.madrone.attendance.entity.DesignationEnum;
 import com.madrone.attendance.entity.Employee;
+import com.madrone.attendance.entity.Role;
 import com.madrone.attendance.entity.User;
 import com.madrone.attendance.service.DepartmentService;
 import com.madrone.attendance.service.EmployeeService;
+import com.madrone.attendance.service.RoleService;
 import com.madrone.attendance.service.UserService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -29,6 +31,7 @@ public class ServiceTestUtil {
 	private static UserService userService;
 	private static EmployeeService employeeService;
 	private static DepartmentService departmentService;
+	private static RoleService roleService;
 	
 	@Autowired
 	public void setUserService(UserService userService) {
@@ -45,15 +48,20 @@ public class ServiceTestUtil {
 		ServiceTestUtil.departmentService = departmentService;
 	}
 	
+	@Autowired
+	public void setRoleService(RoleService roleService) {
+		ServiceTestUtil.roleService = roleService;
+	}
+	
 	private ServiceTestUtil() {
 	}
 
-	public static User createUser(String empId, String deptId, 
+	public static User createUser(String empId, String deptId, String roleId, 
 			String primaryEmail) {
 		User u = userService.findByUserName(primaryEmail);
 		if(u == null) {
 
-			Employee e = createEmployee(empId, deptId, primaryEmail);
+			Employee e = createEmployee(empId, deptId, roleId, primaryEmail);
 
 			u = new User(primaryEmail, "password");
 			u.setEmployee(e);
@@ -63,16 +71,20 @@ public class ServiceTestUtil {
 	}
 
 	public static Employee createEmployee(String empId, String deptId, 
-			String primaryEmail) {
+			String roleId, String primaryEmail) {
 
 		Employee e = employeeService.findById(empId);
 		if(e == null) {
-			Department d = createDepartment(deptId, null);
 			e = new Employee(empId, "tom", "jerry", primaryEmail, null, 
 					Calendar.getInstance(), DesignationEnum.SSE, 
 					"#25 Chitrakulam north st", "Mylapore", "Chennai", 
 					"TN", 600004);
+			Department d = createDepartment(deptId, null);
 			e.setDept(d);
+			
+			Role r = createRole(roleId, null);
+			e.setRole(r);
+			
 			employeeService.saveEmployee(e);
 		}
 		return e;
@@ -85,6 +97,15 @@ public class ServiceTestUtil {
 			departmentService.saveDepartment(d);
 		}
 		return d;
+	}
+	
+	public static Role createRole(String roleId, String desc) {
+		Role r = roleService.findById(roleId);
+		if(r == null) {
+			r = new Role(roleId, desc != null ? desc : "test");
+			roleService.saveRole(r);
+		}
+		return r;
 	}
 
 }

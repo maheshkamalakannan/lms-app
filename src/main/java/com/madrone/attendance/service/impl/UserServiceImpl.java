@@ -20,9 +20,9 @@ public class UserServiceImpl implements UserService {
 			LoggerFactory.getLogger(UserServiceImpl.class);
 
 	@Autowired
-	UserDao userDao;
+	private UserDao userDao;
 	@Autowired
-	EmployeeDao empDao;
+	private EmployeeDao empDao;
 		
 	@Override
     public User findById(Long id) {
