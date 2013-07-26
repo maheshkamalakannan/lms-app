@@ -29,7 +29,7 @@ public class RoleServiceImpl implements RoleService {
 	@Override
 	@Transactional(readOnly = false)
 	public void deleteRole(String id) {
-		Role r = findById(id);
+		Role r = roleDao.findById(id);
 		roleDao.delete(r);
 	}
 

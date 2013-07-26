@@ -46,7 +46,7 @@ public class EmployeeServiceTest {
     }
 
     @Test
-    public void testDeleteUser() throws Exception {
+    public void testDeleteEmployee() throws Exception {
     	createEmployee();
         assertNotNull(employeeService.findById(EMP_100));
         employeeService.deleteEmployee(EMP_100);
@@ -54,7 +54,7 @@ public class EmployeeServiceTest {
     }
 
     @Test
-    public void testUpdateUser() throws Exception {
+    public void testUpdateEmployee() throws Exception {
     	
     	Employee e = createEmployee();
         assertNotNull(e.getDept());

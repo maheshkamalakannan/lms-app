@@ -27,8 +27,9 @@ public class DepartmentServiceImpl implements DepartmentService {
 	}
 
 	@Override
+	@Transactional(readOnly = false)
 	public void deleteDepartment(String id) {
-		Department d = findById(id);
+		Department d = departmentDao.findById(id);
 		departmentDao.delete(d);
 	}
 

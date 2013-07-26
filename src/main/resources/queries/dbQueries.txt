@@ -1,7 +1,8 @@
-DROP TABLE  user_;
-DROP TABLE  employee_;
+DROP TABLE employeeleave_;
+DROP TABLE user_;
+DROP TABLE employee_;
 DROP TABLE department_;
-DROP TABLE  role_;
+DROP TABLE role_;
 DROP TABLE leave_;
 
 ----------------------------------------------
@@ -67,11 +68,25 @@ CREATE TABLE user_
 ---------------------------------------------
 CREATE TABLE leave_
 (
-  id serial NOT NULL,
-  leave_name varchar(45) NOT NULL,
+  id character varying(20) NOT NULL,
   description varchar(45) NOT NULL,
   days smallint,
-  CONSTRAINT leave_pkey PRIMARY KEY (id ),
-  CONSTRAINT leave_name_key UNIQUE (leave_name )
+  CONSTRAINT leave_pkey PRIMARY KEY (id )
+);
+--------------------------------------------
+CREATE TABLE employeeleave_
+(
+  id serial NOT NULL,
+  employee_id character varying(10) NOT NULL,
+  leave_id character varying(20) NOT NULL,
+  from_date timestamp without time zone NOT NULL,
+  to_date timestamp without time zone NOT NULL,
+  CONSTRAINT employeeleave_pkey PRIMARY KEY (id ),
+  CONSTRAINT employeeleave_employee_id_fkey FOREIGN KEY (employee_id)
+      REFERENCES employee_ (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT employeeleave_leave_id_fkey FOREIGN KEY (leave_id)
+      REFERENCES leave_ (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
 );
 --------------------------------------------

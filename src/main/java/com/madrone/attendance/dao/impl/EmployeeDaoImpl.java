@@ -2,6 +2,7 @@ package com.madrone.attendance.dao.impl;
 
 import java.util.List;
 
+import org.hibernate.Hibernate;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
@@ -14,6 +15,17 @@ public class EmployeeDaoImpl extends AbstractDaoImpl<Employee, String>
 
 	public EmployeeDaoImpl() {
 		super(Employee.class);
+	}
+	
+	@Override
+	public Employee findByIdWithLeaves(String id) {
+		Employee e = findById(id);
+		
+		if(e != null) {
+			Hibernate.initialize(e.getEmployeeLeaves());			
+		}
+		
+		return e;
 	}
 
 	@Override
@@ -28,9 +40,21 @@ public class EmployeeDaoImpl extends AbstractDaoImpl<Employee, String>
 		
 		return employees.isEmpty() ? null : employees.get(0);
 	}
+	
+	@Override
+	public Employee findByEmailAddressWithLeaves(String primaryEmail) {
+		Employee e = findByEmailAddress(primaryEmail);
+		
+		if(e != null) {
+			Hibernate.initialize(e.getEmployeeLeaves());			
+		}
+		
+		return e;
+	}
+	
 
 	@Override
 	public void saveEmployee(Employee employee) {
 		saveOrUpdate(employee);
-	}
+	}	
 }

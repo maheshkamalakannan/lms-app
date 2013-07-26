@@ -11,10 +11,14 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.madrone.attendance.entity.Department;
 import com.madrone.attendance.entity.DesignationEnum;
 import com.madrone.attendance.entity.Employee;
+import com.madrone.attendance.entity.EmployeeLeave;
+import com.madrone.attendance.entity.Leave;
 import com.madrone.attendance.entity.Role;
 import com.madrone.attendance.entity.User;
 import com.madrone.attendance.service.DepartmentService;
+import com.madrone.attendance.service.EmployeeLeaveService;
 import com.madrone.attendance.service.EmployeeService;
+import com.madrone.attendance.service.LeaveService;
 import com.madrone.attendance.service.RoleService;
 import com.madrone.attendance.service.UserService;
 
@@ -32,6 +36,8 @@ public class ServiceTestUtil {
 	private static EmployeeService employeeService;
 	private static DepartmentService departmentService;
 	private static RoleService roleService;
+	private static LeaveService leaveService;
+	private static EmployeeLeaveService employeeLeaveService;
 	
 	@Autowired
 	public void setUserService(UserService userService) {
@@ -51,6 +57,17 @@ public class ServiceTestUtil {
 	@Autowired
 	public void setRoleService(RoleService roleService) {
 		ServiceTestUtil.roleService = roleService;
+	}
+	
+	@Autowired
+	public void setLeaveService(LeaveService leaveService) {
+		ServiceTestUtil.leaveService = leaveService;
+	}
+	
+	@Autowired
+	public void setemployeeLeaveService(
+			EmployeeLeaveService employeeLeaveService) {
+		ServiceTestUtil.employeeLeaveService = employeeLeaveService;
 	}
 	
 	private ServiceTestUtil() {
@@ -106,6 +123,30 @@ public class ServiceTestUtil {
 			roleService.saveRole(r);
 		}
 		return r;
+	}
+
+	public static Leave createLeave(String leaveId, String desc, int days) {	Leave l = leaveService.findById(leaveId);
+		if(l == null) {
+			l = new Leave(leaveId, desc != null ? desc : "test", days);
+			leaveService.saveLeave(l);
+		}
+		return l;
+	}
+
+	public static EmployeeLeave createEmployeeLeave(String empId, String deptId, 
+			String roleId, String primaryEmail, String leaveId) {
+		
+		Employee e = createEmployee(empId, deptId, roleId, primaryEmail);
+		Leave l = createLeave(leaveId, "test", 10);
+		Calendar fromDate = Calendar.getInstance();
+		fromDate.add(Calendar.DAY_OF_MONTH, 5);
+		Calendar toDate = Calendar.getInstance();
+		toDate.add(Calendar.DAY_OF_MONTH, 7);
+				
+		EmployeeLeave el = new EmployeeLeave(e, l, fromDate, toDate);
+		employeeLeaveService.saveEmployeeLeave(el);
+		
+		return el;
 	}
 
 }

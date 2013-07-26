@@ -30,6 +30,7 @@
 				<value>com.madrone.attendance.entity.Leave</value>
 				<value>com.madrone.attendance.entity.Department</value>
 				<value>com.madrone.attendance.entity.Role</value>
+				<value>com.madrone.attendance.entity.EmployeeLeave</value>
 			</list>
     	</property>
         <property name="hibernateProperties">

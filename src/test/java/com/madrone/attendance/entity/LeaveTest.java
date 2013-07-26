@@ -21,8 +21,7 @@ public class LeaveTest {
 		Leave l = new Leave("CL", "Casual Leave", 10);
 		
 		StringBuilder expected = new StringBuilder("Leave {")
-		.append("id=0, ")
-		.append("name=CL, ")
+		.append("id=CL, ")
 		.append("description=Casual Leave, ")
 		.append("days=10}");
 		

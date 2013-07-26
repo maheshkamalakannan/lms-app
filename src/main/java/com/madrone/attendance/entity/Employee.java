@@ -2,7 +2,9 @@ package com.madrone.attendance.entity;
 
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.Embedded;
@@ -12,6 +14,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -32,6 +35,7 @@ public class Employee implements Serializable {
 	@Embedded private Address address;
 	private Department dept;
 	private Role role;
+	private Set<EmployeeLeave> employeeLeaves;
 		
 	public Employee() {
 	}
@@ -126,7 +130,7 @@ public class Employee implements Serializable {
 	}
 	
 	@ManyToOne
-    @JoinColumn(name="dept_id")
+    @JoinColumn(name="dept_id")  // TODO: Should I add insertable and updatable false
 	public Department getDept() {
 		return dept;
 	}
@@ -145,6 +149,15 @@ public class Employee implements Serializable {
 		this.role = role;
 	}
 	
+	@OneToMany(mappedBy="employee", cascade = CascadeType.ALL)
+	public Set<EmployeeLeave> getEmployeeLeaves() {
+		return employeeLeaves;
+	}
+
+	public void setEmployeeLeaves(Set<EmployeeLeave> employeeLeaves) {
+		this.employeeLeaves = employeeLeaves;
+	}
+
 	@Override
 	public boolean equals(Object ob) {
 		if(ob instanceof Employee) {

@@ -19,6 +19,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public Employee findById(String id) {
 		return empDao.findById(id);
 	}
+	
+	@Override
+	public Employee findByIdWithLeaves(String id) {
+		return empDao.findByIdWithLeaves(id);
+	}
 
 	@Override
 	@Transactional(readOnly = false)
@@ -29,7 +34,17 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	@Transactional(readOnly = false)
 	public void deleteEmployee(String id) {
-		Employee e = findById(id);
+		Employee e = empDao.findById(id);
 		empDao.delete(e);		
+	}
+
+	@Override
+	public Employee findByEmailAddress(String primaryEmail) {
+		return empDao.findByEmailAddress(primaryEmail);
+	}
+
+	@Override
+	public Employee findByEmailAddressWithLeaves(String primaryEmail) {
+		return empDao.findByEmailAddressWithLeaves(primaryEmail);
 	}
 }

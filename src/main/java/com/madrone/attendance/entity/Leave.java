@@ -2,46 +2,53 @@ package com.madrone.attendance.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "leave_")
 public class Leave implements Serializable {
 
 	private static final long serialVersionUID = 610166417069777773L;
 	
-	private long id;
-	private String name;
+	private String id;
 	private String description;
 	private int days;
 	
 	public Leave() {
 	}
 	
-	public Leave(String name, String description, int days) {
-        this.name = name;
+	public Leave(String id, String description, int days) {
+		this.id = id;
         this.description = description;
         this.days = days;
     }
 	
-	public long getId() {
+	@Id
+	@Column(name = "id", nullable = false)
+	public String getId() {
 		return id;
 	}
-	@SuppressWarnings("unused")
-	private void setId(long id) {
+	
+	public void setId(String id) {
 		this.id = id;
 	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
+	
+	@Column(name = "description")
 	public String getDescription() {
 		return description;
 	}
+	
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	
 	public int getDays() {
 		return days;
 	}
+	
 	public void setDays(int days) {
 		this.days = days;
 	}
@@ -51,7 +58,7 @@ public class Leave implements Serializable {
 		if(ob instanceof Leave) {
 			Leave l = (Leave) ob;
 			
-			if(id == l.id && (name != null && name.equals(l.name))) {
+			if(id != null && id.equals(l.id)) {
 				return true;
 			}		
 		}
@@ -60,19 +67,18 @@ public class Leave implements Serializable {
 	
 	@Override
 	public int hashCode() {
-		return 31 * (name != null ? name.hashCode() : 1);
+		return 31 * (id != null ? id.hashCode() : 1);
 	}
 	
 	@Override
 	public String toString() {	
 				
 		StringBuilder pattern = new StringBuilder("Leave {")
-		.append("id=%d, ")
-		.append("name=%s, ")
+		.append("id=%s, ")
 		.append("description=%s, ")
 		.append("days=%d")
 		.append("}");
 		
-		return String.format(pattern.toString(), id, name, description, days);
+		return String.format(pattern.toString(), id, description, days);
 	}
 }
