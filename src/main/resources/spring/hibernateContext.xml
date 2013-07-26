@@ -25,12 +25,12 @@
         <property name="dataSource" ref="dataSource"/>
         <property name="annotatedClasses">
 			<list>
-				<value>com.madrone.attendance.entity.User</value>
-				<value>com.madrone.attendance.entity.Employee</value>
-				<value>com.madrone.attendance.entity.Leave</value>
-				<value>com.madrone.attendance.entity.Department</value>
-				<value>com.madrone.attendance.entity.Role</value>
-				<value>com.madrone.attendance.entity.EmployeeLeave</value>
+				<value>com.madrone.lms.entity.User</value>
+				<value>com.madrone.lms.entity.Employee</value>
+				<value>com.madrone.lms.entity.Leave</value>
+				<value>com.madrone.lms.entity.Department</value>
+				<value>com.madrone.lms.entity.Role</value>
+				<value>com.madrone.lms.entity.EmployeeLeave</value>
 			</list>
     	</property>
         <property name="hibernateProperties">
