@@ -1,5 +1,6 @@
 package com.madrone.lms.service;
 
+import org.hibernate.LazyInitializationException;
 import org.junit.After;
 import static org.junit.Assert.*;
 import org.junit.Test;
@@ -10,6 +11,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.madrone.lms.entity.Department;
 import com.madrone.lms.entity.Employee;
+import com.madrone.lms.entity.EmployeeLeave;
 import com.madrone.lms.service.util.ServiceTestUtil;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -26,6 +28,7 @@ public class EmployeeServiceTest {
 	private final String ROLE_R1 = "r1";
 	private final String DEPT_D1 = "d1";
 	private final String EMP_100 = "100";
+	private final String LEAVE_CL = "CL";
 	private final String USER_NAME = "tom@jerry.com";
 
     @After
@@ -37,7 +40,53 @@ public class EmployeeServiceTest {
     		departmentService.deleteDepartment(DEPT_D1);
     	}
     }
+    
+    @Test
+    public void testFindById() {
+    	Employee e = createEmployee();
+    	Employee f = employeeService.findById(EMP_100);
+        assertEquals(e, f);        
+        
+        try {
+        	f.getEmployeeLeaves().size();
+        	fail("Should not reach here...");
+        } catch(LazyInitializationException ex) {        	
+        }
+    }    
 
+    @Test
+    public void testFindByIdWithLeaves() {
+    	Employee e = createEmployee();
+    	createEmployeeLeave();   
+    	Employee f = employeeService.findByIdWithLeaves(EMP_100);
+        assertEquals(e, f);
+        assertNotNull(f.getEmployeeLeaves());
+        assertTrue(f.getEmployeeLeaves().size() == 1);
+    }
+    
+    @Test
+    public void testFindByEmailAddress() {
+    	Employee e = createEmployee();
+    	Employee f = employeeService.findByEmailAddress(USER_NAME);
+        assertEquals(e, f);
+        
+        try {
+        	f.getEmployeeLeaves().size();
+        	fail("Should not reach here...");
+        } catch(LazyInitializationException ex) {        	
+        }
+    }
+    
+    @Test
+    public void testFindByEmailAddressWithLeaves() {
+    	Employee e = createEmployee();
+    	createEmployeeLeave();
+    	Employee f = employeeService.findByEmailAddressWithLeaves(USER_NAME);
+        assertEquals(e, f);
+        assertNotNull(f.getEmployeeLeaves());
+        assertTrue(f.getEmployeeLeaves().size() == 1);
+    }
+    
     @Test
     public void testSaveEmployee() throws Exception {
         Employee e = createEmployee();
@@ -74,5 +123,10 @@ public class EmployeeServiceTest {
     private Employee createEmployee() {
     	return ServiceTestUtil.createEmployee(EMP_100, DEPT_D1, 
     			ROLE_R1, USER_NAME);
+    }
+    
+    private EmployeeLeave createEmployeeLeave() {
+    	return ServiceTestUtil.createEmployeeLeave(EMP_100, DEPT_D1, 
+    			ROLE_R1, USER_NAME, LEAVE_CL);
     }
 }
