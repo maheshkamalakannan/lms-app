@@ -104,18 +104,18 @@ public class EmployeeServiceTest {
     public void testUpdateEmployee() throws Exception {
     	
     	Employee e = createEmployee();
-        assertNotNull(e.getDept());
-        assertEquals(DEPT_D1, e.getDept().getId());
+        assertNotNull(e.getDepartment());
+        assertEquals(DEPT_D1, e.getDepartment().getId());
 
         Department d2 = new Department("d2", "department 2");
         departmentService.saveDepartment(d2);
         
-        e.setDept(d2);
+        e.setDepartment(d2);
         employeeService.saveEmployee(e);
         
         e = employeeService.findById(EMP_100);
-        assertNotNull(e.getDept());
-        assertEquals(d2.getId(), e.getDept().getId());
+        assertNotNull(e.getDepartment());
+        assertEquals(d2.getId(), e.getDepartment().getId());
     }
     
     private Employee createEmployee() {

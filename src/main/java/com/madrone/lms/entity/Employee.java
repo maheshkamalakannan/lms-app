@@ -34,7 +34,7 @@ public class Employee implements Serializable {
 	private Calendar dateOfJoin;
 	private DesignationEnum designation;
 	@Embedded private Address address;
-	private Department dept;
+	private Department department;
 	private Role role;
 	private Set<EmployeeLeave> employeeLeaves = new HashSet<EmployeeLeave>();
 		
@@ -132,12 +132,12 @@ public class Employee implements Serializable {
 	
 	@ManyToOne
     @JoinColumn(name="dept_id")  // TODO: Should I add insertable and updatable false? Need to write tests for this.
-	public Department getDept() {
-		return dept;
+	public Department getDepartment() {
+		return department;
 	}
 
-	public void setDept(Department dept) {
-		this.dept = dept;
+	public void setDepartment(Department department) {
+		this.department = department;
 	}
 	
 	@ManyToOne

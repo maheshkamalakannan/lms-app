@@ -47,7 +47,7 @@ public class Department implements Serializable {
 		this.description = description;
 	}
 	
-	@OneToMany(mappedBy="dept")
+	@OneToMany(mappedBy="department")
 	public Set<Employee> getEmployees() {
 		return employees;
 	}

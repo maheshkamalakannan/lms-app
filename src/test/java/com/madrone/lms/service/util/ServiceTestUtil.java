@@ -98,7 +98,7 @@ public class ServiceTestUtil {
 					"#25 Chitrakulam north st", "Mylapore", "Chennai", 
 					"TN", 600004);
 			Department d = createDepartment(deptId, null);
-			e.setDept(d);
+			e.setDepartment(d);
 			
 			Role r = createRole(roleId, null);
 			e.setRole(r);
