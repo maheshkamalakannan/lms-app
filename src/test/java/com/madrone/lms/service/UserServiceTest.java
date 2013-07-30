@@ -21,12 +21,6 @@ public class UserServiceTest {
 	@Autowired
     private UserService userService;
 	
-	@Autowired
-	private EmployeeService employeeService;
-	
-	@Autowired
-	private DepartmentService departmentService;
-
 	private final String ROLE_R1 = "r1";
 	private final String DEPT_D1 = "d1";
 	private final String EMP_100 = "100";
@@ -34,15 +28,9 @@ public class UserServiceTest {
 
     @After
     public void tearDown() throws Exception {
-    	if(userService.findByUserName(USER_NAME) != null) {
-    		userService.deleteUser(USER_NAME);
-    	}
-    	if(employeeService.findById(EMP_100) != null) {
-    		employeeService.deleteEmployee(EMP_100);
-    	}
-    	if(departmentService.findById(DEPT_D1) != null) {
-    		departmentService.deleteDepartment(DEPT_D1);
-    	}
+    	ServiceTestUtil.deleteUser(USER_NAME);
+    	ServiceTestUtil.deleteEmployee(EMP_100);
+    	ServiceTestUtil.deleteDepartment(DEPT_D1);
     }
 
     @Test

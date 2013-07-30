@@ -2,6 +2,7 @@ package com.madrone.lms.entity;
 
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -35,7 +36,7 @@ public class Employee implements Serializable {
 	@Embedded private Address address;
 	private Department dept;
 	private Role role;
-	private Set<EmployeeLeave> employeeLeaves;
+	private Set<EmployeeLeave> employeeLeaves = new HashSet<EmployeeLeave>();
 		
 	public Employee() {
 	}
@@ -130,7 +131,7 @@ public class Employee implements Serializable {
 	}
 	
 	@ManyToOne
-    @JoinColumn(name="dept_id")  // TODO: Should I add insertable and updatable false
+    @JoinColumn(name="dept_id")  // TODO: Should I add insertable and updatable false? Need to write tests for this.
 	public Department getDept() {
 		return dept;
 	}

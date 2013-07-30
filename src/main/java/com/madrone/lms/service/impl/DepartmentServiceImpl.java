@@ -8,7 +8,7 @@ import com.madrone.lms.dao.DepartmentDao;
 import com.madrone.lms.entity.Department;
 import com.madrone.lms.service.DepartmentService;
 
-@Service("departmenttService")
+@Service("departmentService")
 @Transactional(readOnly = true)
 public class DepartmentServiceImpl implements DepartmentService {
 
@@ -18,6 +18,11 @@ public class DepartmentServiceImpl implements DepartmentService {
 	@Override
 	public Department findById(String id) {
 		return departmentDao.findById(id);
+	}
+
+	@Override
+	public Department findByIdWithEmployees(String id) {
+		return departmentDao.findByIdWithEmployees(id);
 	}
 
 	@Override

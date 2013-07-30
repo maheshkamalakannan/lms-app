@@ -6,4 +6,6 @@ public interface DepartmentDao extends AbstractDao<Department, String> {
 
 	void saveDepartment(Department d);
 
+	Department findByIdWithEmployees(String id);
+
 }

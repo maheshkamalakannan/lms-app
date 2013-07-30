@@ -1,6 +1,7 @@
 package com.madrone.lms.service.util;
 
 import java.util.Calendar;
+import java.util.Set;
 
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -125,7 +126,8 @@ public class ServiceTestUtil {
 		return r;
 	}
 
-	public static Leave createLeave(String leaveId, String desc, int days) {	Leave l = leaveService.findById(leaveId);
+	public static Leave createLeave(String leaveId, String desc, int days) {	
+		Leave l = leaveService.findById(leaveId);
 		if(l == null) {
 			l = new Leave(leaveId, desc != null ? desc : "test", days);
 			leaveService.saveLeave(l);
@@ -147,6 +149,58 @@ public class ServiceTestUtil {
 		employeeLeaveService.saveEmployeeLeave(el);
 		
 		return el;
+	}
+
+	public static void deleteUser(String userName) {
+		
+		User user = userService.findByUserName(userName);
+		if(user != null) {
+			userService.deleteUser(userName);			
+		}
+	}
+	
+	public static void deleteEmployee(Employee e) {
+		if(e != null) {
+			// delete dependent entities first
+			// the below line deletes empLeaves as well, since it is cascaded
+			// to employee
+			e = employeeService.findById(e.getId()); 
+			User u = userService.findByUserName(e.getPrimaryEmail());
+			if(u != null) {
+				userService.deleteUser(u.getUserName());
+			}
+			employeeService.deleteEmployee(e.getId());	
+		}
+	}
+
+	public static void deleteEmployee(String employeeId) {
+		
+		Employee e = employeeService.findById(employeeId);
+		deleteEmployee(e);
+	}
+
+	public static void deleteDepartment(String deptId) {
+		Department d = departmentService.findByIdWithEmployees(deptId);
+		if(d != null) {
+			// delete dependent entities first
+			Set<Employee> employees = d.getEmployees();
+			for(Employee e : employees) {
+				deleteEmployee(e);
+			}
+			departmentService.deleteDepartment(d.getId());
+		}		
+	}
+	
+	public static void deleteRole(String roleId) {
+		Role r = roleService.findByIdWithEmployees(roleId);
+		if(r != null) {
+			// delete dependent entities first
+			Set<Employee> employees = r.getEmployees();
+			for(Employee e : employees) {
+				deleteEmployee(e);
+			}
+			roleService.deleteRole(r.getId());
+		}		
 	}
 
 }

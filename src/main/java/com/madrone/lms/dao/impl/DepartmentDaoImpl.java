@@ -1,5 +1,6 @@
 package com.madrone.lms.dao.impl;
 
+import org.hibernate.Hibernate;
 import org.springframework.stereotype.Repository;
 
 import com.madrone.lms.dao.DepartmentDao;
@@ -16,6 +17,16 @@ public class DepartmentDaoImpl extends AbstractDaoImpl<Department, String>
 	@Override
 	public void saveDepartment(Department d) {
 		saveOrUpdate(d);		
+	}
+
+	@Override
+	public Department findByIdWithEmployees(String id) {
+		Department d = findById(id);
+		
+		if(d != null) {
+			Hibernate.initialize(d.getEmployees());			
+		}		
+		return d;
 	}
 
 }

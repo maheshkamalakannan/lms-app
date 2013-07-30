@@ -33,12 +33,8 @@ public class EmployeeServiceTest {
 
     @After
     public void tearDown() throws Exception {
-    	if(employeeService.findById(EMP_100) != null) {
-    		employeeService.deleteEmployee(EMP_100);
-    	}
-    	if(departmentService.findById(DEPT_D1) != null) {
-    		departmentService.deleteDepartment(DEPT_D1);
-    	}
+    	ServiceTestUtil.deleteEmployee(EMP_100);
+    	ServiceTestUtil.deleteDepartment(DEPT_D1);
     }
     
     @Test
@@ -98,6 +94,8 @@ public class EmployeeServiceTest {
     public void testDeleteEmployee() throws Exception {
     	createEmployee();
         assertNotNull(employeeService.findById(EMP_100));
+        // Automatically deletes EmployeeLeaves associated to this Employee, 
+        // since they are cascaded
         employeeService.deleteEmployee(EMP_100);
         assertNull(employeeService.findById(EMP_100));
     }

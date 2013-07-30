@@ -52,9 +52,8 @@ public class EmployeeDaoImpl extends AbstractDaoImpl<Employee, String>
 		return e;
 	}
 	
-
 	@Override
 	public void saveEmployee(Employee employee) {
 		saveOrUpdate(employee);
-	}	
+	}
 }

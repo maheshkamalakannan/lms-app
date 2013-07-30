@@ -6,8 +6,9 @@ public interface RoleService {
 
 	Role findById(String id);
 
+	Role findByIdWithEmployees(String id);
+	
 	void saveRole(Role d);
 
 	void deleteRole(String id);
-
 }

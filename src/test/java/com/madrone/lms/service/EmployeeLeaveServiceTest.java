@@ -34,9 +34,7 @@ public class EmployeeLeaveServiceTest {
 	
     @After
     public void tearDown() throws Exception {
-    	if(employeeService.findById(EMP_100) != null) {
-    		employeeService.deleteEmployee(EMP_100);
-    	}	
+    	ServiceTestUtil.deleteEmployee(EMP_100);	
     }
 
     @Test
@@ -50,10 +48,12 @@ public class EmployeeLeaveServiceTest {
 
     @Test
     public void testDeleteEmployeeLeave() throws Exception {
-    	createEmployeeLeave();
+    	EmployeeLeave el = createEmployeeLeave();
+        assertNotNull(employeeLeaveService.findById(el.getId()));
+        employeeLeaveService.deleteEmployeeLeave(el.getId());
+        
+        assertNull(employeeLeaveService.findById(el.getId()));
         assertNotNull(employeeService.findById(EMP_100));
-        employeeService.deleteEmployee(EMP_100);
-        assertNull(employeeService.findById(EMP_100));
     }
     
     private EmployeeLeave createEmployeeLeave() {

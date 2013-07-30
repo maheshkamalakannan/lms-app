@@ -1,10 +1,13 @@
 package com.madrone.lms.entity;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -15,6 +18,7 @@ public class Role implements Serializable {
 	
 	private String id;
 	private String description;
+	private Set<Employee> employees = new HashSet<Employee>();
 	
 	public Role() {		
 	}
@@ -43,6 +47,15 @@ public class Role implements Serializable {
 		this.description = description;
 	}
 		
+	@OneToMany(mappedBy="role")
+	public Set<Employee> getEmployees() {
+		return employees;
+	}
+
+	public void setEmployees(Set<Employee> employees) {
+		this.employees = employees;
+	}
+
 	@Override
 	public boolean equals(Object ob) {
 		if(ob instanceof Role) {

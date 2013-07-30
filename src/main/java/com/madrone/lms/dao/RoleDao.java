@@ -6,4 +6,6 @@ public interface RoleDao extends AbstractDao<Role, String> {
 
 	void saveRole(Role d);
 
+	Role findByIdWithEmployees(String id);
+
 }

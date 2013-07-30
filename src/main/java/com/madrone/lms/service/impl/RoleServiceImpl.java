@@ -21,6 +21,11 @@ public class RoleServiceImpl implements RoleService {
 	}
 
 	@Override
+	public Role findByIdWithEmployees(String id) {
+		return roleDao.findByIdWithEmployees(id);
+	}
+
+	@Override
 	@Transactional(readOnly = false)
 	public void saveRole(Role d) {
 		roleDao.saveRole(d);

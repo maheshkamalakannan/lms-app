@@ -15,5 +15,4 @@ public interface EmployeeService {
 	Employee findByEmailAddress(String primaryEmail);
 	
 	Employee findByEmailAddressWithLeaves(String primaryEmail);
-
 }
