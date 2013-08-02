@@ -1,53 +1,42 @@
 <%@ include file="common/include_tags.jsp" %>
 <html ng-app>
 <head>
-	<script type="text/javascript">
-	
-		$(function() {
-			$("#signin").click(function(event) {
-	        	$("#LoginForm").attr("action", "/lms-app/authenticate")
-				$("#LoginForm").submit();
-			});
-	
-		});
-	</script>
 </head>
 
 <body>
-	<form:form modelAttribute="LoginForm" name="loginForm" method="post"  action="/lms-app/authenticate" ng-controller="loginController" >
-	<div class="content">
+	<form modelAttribute="LoginForm" name="loginForm" method="post"  action="/lms-app/authenticate" ng-controller="loginController" novalidate >
+	<div class="content" ng-controller="constantsController">
 		<div class="background logo_desc">
 		</div>
 		<div class="left_block logo_desc">
 			<div class="content">
 			   <img src="<%=request.getContextPath()%>/jsandcss/images/employees.jpg" style="width:480px; height:515px;" alt="Milford Sound in New Zealand"/>
-			   <!--<img src="employees.jpg" style="max-width:100%;" alt="Milford Sound in New Zealand">-->
 			</div>
 		</div>
 		<div class="background loginform">
 		  <div class="shadow">
-            <div id="anotherDiv" ng-class="{true: 'error'}[submitted && loginForm.email.$invalid,submitted && loginForm.password.$invalid ]">
-			         <h2 style="margin-left:73px;">Sign In</h2>
-					 <div id="anotherDiv1">
-						  <form:input path="userName" type="email" 
-								 name="email" 
+            <div id="loginform" ng-class="{true: 'error'}[submitted && loginForm.email.$invalid,submitted && loginForm.password.$invalid ]">
+			         <h2 style="margin-left:73px;">{{signin}}</h2>
+					 <div id="loginelements">
+						  <input type="email" 
+								 name="userName" 
 								 placeholder="Email Address" 
 								 ng-model="email" 
-								 /><br>
+								 required/><br>
 								 <div>
-								   <span class="error" style="width: 80%;" ng-show="submitted && loginForm.email.$error.required">Email address is required.</span>
-								   <span class="error" style="width: 80%;" ng-show="submitted && loginForm.email.$error.email">Invalid Email address.</span>
+								   <span class="error" style="width: 80%;" ng-show="submitted && loginForm.userName.$error.required">{{emailrequired}}</span>
+								   <span class="error" style="width: 80%;" ng-show="submitted && loginForm.userName.$error.email">{{invalidemail}}</span>
 								 </div>
-                          <form:password path="password" 
+                          <input  type="password" 
 								  name="password" 
 								  style="margin-left: 2px;" 
 								  placeholder="Password"
 								  ng-model="password" 
-								  /><br>
+								  required/><br>
 							      <div>
-							        <span class="error" style="width: 80%;" ng-show="submitted && loginForm.password.$error.required">Password is required.</span>
+							        <span class="error" style="width: 80%;" ng-show="submitted && loginForm.password.$error.required">{{passwordrequired}}</span>
 							      </div>
-					   <div id="anotherDiv2">
+					   <div id="submit">
 						  <input type="submit" name="submit" value="Login" ng-click="[submitted=true,loginSubmit(loginForm,$event)]"/>
 					   </div>
 					</div>       								   
@@ -56,7 +45,7 @@
       </div>
 	</div>
 		
- </form:form>
+ </form>
 
 </body>
 </html>

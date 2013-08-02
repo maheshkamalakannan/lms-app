@@ -13,6 +13,13 @@ function loginController($scope) {
   };
 }
 
+function constantsController($scope){
+	$scope.emailrequired     = "Email address is required.";
+	$scope.invalidemail      = "Invalid Email address.";
+	$scope.passwordrequired  = "Password is required.";
+    $scope.signin            = "Sign In";
+}
+
 function welcomeController($scope, $http) {
 	$scope.oldpassword = false;
 	$scope.newpassword = false;
