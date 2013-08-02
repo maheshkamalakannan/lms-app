@@ -32,9 +32,39 @@
       
     <definition extends="base.definition" name="employee">  
         <put-attribute name="title" value="LMS-Employee's Menu"></put-attribute>  
-        <put-attribute name="body" value="/WEB-INF/jsp/applyleave.jsp"></put-attribute> 
-        <put-attribute name="menu" value="/WEB-INF/jsp/layout/adminmenu.jsp"></put-attribute>
+        <put-attribute name="body" value="/WEB-INF/jsp/employee/employeeHome.jsp"></put-attribute> 
+        <put-attribute name="menu" value="/WEB-INF/jsp/employee/employeemenu.jsp"></put-attribute>
+    </definition>
+    
+    <definition extends="base.definition" name="employeeHomeScreen">  
+        <put-attribute name="title" value="LMS-Employee-Menu"></put-attribute>  
+        <put-attribute name="body" value="/WEB-INF/jsp/employee/employeeHome.jsp"></put-attribute> 
+        <put-attribute name="menu" value="/WEB-INF/jsp/employee/employeemenu.jsp"></put-attribute>
+    </definition>
+    
+    <definition extends="base.definition" name="applyLeaveScreen">  
+        <put-attribute name="title" value="LMS-Employee-Apply Leave"></put-attribute>  
+        <put-attribute name="body" value="/WEB-INF/jsp/employee/applyleave.jsp"></put-attribute> 
+        <put-attribute name="menu" value="/WEB-INF/jsp/employee/employeemenu.jsp"></put-attribute>
+    </definition>
+    
+    <definition extends="base.definition" name="cancelLeaveScreen">  
+        <put-attribute name="title" value="LMS-Employee-Cancel Leave"></put-attribute>  
+        <put-attribute name="body" value="/WEB-INF/jsp/employee/cancelLeave.jsp"></put-attribute> 
+        <put-attribute name="menu" value="/WEB-INF/jsp/employee/employeemenu.jsp"></put-attribute>
+    </definition>
+    
+    <definition extends="base.definition" name="leaveSummaryScreen">  
+        <put-attribute name="title" value="LMS-Employee-LeaveSummary"></put-attribute>  
+        <put-attribute name="body" value="/WEB-INF/jsp/employee/leaveSummary.jsp"></put-attribute> 
+        <put-attribute name="menu" value="/WEB-INF/jsp/employee/employeemenu.jsp"></put-attribute>
     </definition>  
+    
+    <definition extends="base.definition" name="changePasswordScreen">  
+        <put-attribute name="title" value="LMS-Employee-Change Password"></put-attribute>  
+        <put-attribute name="body" value="/WEB-INF/jsp/employee/changePassword.jsp"></put-attribute> 
+        <put-attribute name="menu" value="/WEB-INF/jsp/employee/employeemenu.jsp"></put-attribute>
+    </definition>
     
     <definition extends="base.definition" name="manager">  
         <put-attribute name="title" value="LMS-Managers Menu"></put-attribute>  
@@ -60,6 +90,5 @@
         <put-attribute name="menu" value="/WEB-INF/jsp/layout/adminmenu.jsp"></put-attribute>
     </definition>
     
-       
-   
+    
 </tiles-definitions> 

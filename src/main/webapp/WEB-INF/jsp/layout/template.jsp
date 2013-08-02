@@ -9,25 +9,27 @@
 		</title>
 	</head>
 	<body>
-		<table border="1" cellpadding="2" cellspacing="2" align="left">
-		    <tr>
-		        <td colspan="2" align="center">
-		            <tiles:insertAttribute name="header"></tiles:insertAttribute>
-		        </td>
-		    </tr>
-		    <tr>
-		        <td>
-		            <tiles:insertAttribute name="menu"></tiles:insertAttribute>
-		        </td>
-		        <td>
-		            <tiles:insertAttribute name="body"></tiles:insertAttribute>
-		        </td>
-		    </tr>
-		    <tr>
-		        <td colspan="2"  align="center">
-		            <tiles:insertAttribute name="footer"></tiles:insertAttribute>
-		        </td>
-		    </tr>
-		</table>
+	    <tiles:insertAttribute name="header"></tiles:insertAttribute>
+	    
+	    <div class="background logo_desc">
+		</div>
+		<div class="left_block logo_desc" style="width:290px;">
+		  <div class="content">
+            <tiles:insertAttribute name="menu"></tiles:insertAttribute>
+          </div>
+		</div>
+		
+		<div class="background loginform" style="margin-left: 290px;">
+		  <div class="content">
+               <tiles:insertAttribute name="body"></tiles:insertAttribute>
+          </div>
+        </div>
+        
+        <div class="bottom_block footer footerbackground">
+		  <div class="hr"></div>
+			<div class="content">
+               <tiles:insertAttribute name="footer"></tiles:insertAttribute>
+            </div>
+        </div>
 	</body>  
 </html>

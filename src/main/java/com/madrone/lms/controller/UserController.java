@@ -16,7 +16,36 @@ public class UserController {
 	@Autowired
     private UserService userService;
 	
-    
+	 @RequestMapping(value = "/employeeHome", method = RequestMethod.GET)
+	    public String employeeHome(Model model,UserForm Userform) {
+	    	model.addAttribute("UserForm", new UserForm());
+	        return "employeeHomeScreen";
+	 }
+	
+	 @RequestMapping(value = "/applyLeave", method = RequestMethod.GET)
+	    public String applyLeave(Model model,UserForm Userform) {
+	    	model.addAttribute("UserForm", new UserForm());
+	        return "applyLeaveScreen";
+	 }
+	 
+	 @RequestMapping(value = "/cancelLeave", method = RequestMethod.GET)
+	    public String cancelLeave(Model model,UserForm Userform) {
+	    	model.addAttribute("UserForm", new UserForm());
+	        return "cancelLeaveScreen";
+	 }
+	 
+	 @RequestMapping(value = "/leaveSummary", method = RequestMethod.GET)
+	    public String leaveSummary(Model model,UserForm Userform) {
+	    	model.addAttribute("UserForm", new UserForm());
+	        return "leaveSummaryScreen";
+	 }
+	 
+	 @RequestMapping(value = "/changePassword", method = RequestMethod.GET)
+	    public String changePassword(Model model,UserForm Userform) {
+	    	model.addAttribute("UserForm", new UserForm());
+	        return "changePasswordScreen";
+	 }
+	 
     @RequestMapping(value = "/showAddUser", method = RequestMethod.GET)
     public String showAddUserForm(Model model,UserForm Userform) {
     	model.addAttribute("UserForm", new UserForm());
@@ -34,5 +63,9 @@ public class UserController {
     	model.addAttribute("UserForm", new UserForm());
         return "showModifyUserScreen";
     }
+    
+    
+    
+   
 	
 }
