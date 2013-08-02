@@ -11,12 +11,25 @@
                            http://www.springframework.org/schema/context/spring-context.xsd">
 
     <context:component-scan base-package="com.madrone.lms"/>
+    
+    <mvc:resources mapping="/jsandcss/**" location="/jsandcss/"/>
 
     <mvc:annotation-driven />
 
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/jsp/" />
-        <property name="suffix" value=".jsp" />
-    </bean>
+    <bean class="org.springframework.web.servlet.view.UrlBasedViewResolver" id="viewResolver">  
+	    <property name="viewClass">  
+	    <value>  
+	        org.springframework.web.servlet.view.tiles3.TilesView  
+	    </value>  
+	     </property>  
+	</bean>
+    
+     <bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+	    <property name="definitions">
+	        <list>
+	            <value>classpath:/spring/tiles-def.xml</value>
+	        </list>
+	    </property>
+	</bean>
 
 </beans>

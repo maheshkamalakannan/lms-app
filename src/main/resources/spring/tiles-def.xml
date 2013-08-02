@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>  
+    <definition name="base.definition" template="/WEB-INF/jsp/layout/template.jsp">  
+        <put-attribute name="title" value=""></put-attribute>  
+        <put-attribute name="header" value="/WEB-INF/jsp//layout/header.jsp"></put-attribute>  
+        <put-attribute name="menu" value=""></put-attribute>  
+        <put-attribute name="body" value=""></put-attribute>  
+        <put-attribute name="footer" value="/WEB-INF/jsp/layout/footer.jsp"></put-attribute>  
+    </definition>  
+    
+    <definition name="login.definition" template="/WEB-INF/jsp/layout/logintemplate.jsp">  
+        <put-attribute name="title" value="SignIn"></put-attribute>  
+        <put-attribute name="header" value="/WEB-INF/jsp//layout/header.jsp"></put-attribute>  
+        <put-attribute name="body" value="/WEB-INF/jsp/login.jsp"></put-attribute>  
+        <put-attribute name="footer" value="/WEB-INF/jsp/layout/footer.jsp"></put-attribute>  
+    </definition>  
+    
+   
+    <definition extends="login.definition" name="login" />  
+    <definition extends="login.definition" name="/" />
+    
+   
+    <definition extends="base.definition" name="admin">  
+        <put-attribute name="title" value="LMS-Admin's Menu"></put-attribute>  
+        <put-attribute name="body" value="/WEB-INF/jsp/adduser.jsp"></put-attribute> 
+        <put-attribute name="menu" value="/WEB-INF/jsp/layout/adminmenu.jsp"></put-attribute>
+    </definition>  
+      
+    <definition extends="base.definition" name="employee">  
+        <put-attribute name="title" value="LMS-Employee's Menu"></put-attribute>  
+        <put-attribute name="body" value="/WEB-INF/jsp/applyleave.jsp"></put-attribute> 
+        <put-attribute name="menu" value="/WEB-INF/jsp/layout/adminmenu.jsp"></put-attribute>
+    </definition>  
+    
+    <definition extends="base.definition" name="manager">  
+        <put-attribute name="title" value="LMS-Managers Menu"></put-attribute>  
+        <put-attribute name="body" value="/WEB-INF/jsp/applyleave.jsp"></put-attribute> 
+        <put-attribute name="menu" value="/WEB-INF/jsp/layout/mangermenu.jsp"></put-attribute>
+    </definition>
+    
+    <definition extends="base.definition" name="showAddUserScreen">  
+        <put-attribute name="title" value="Admin Menu"></put-attribute>  
+        <put-attribute name="body" value="/WEB-INF/jsp/adduser.jsp"></put-attribute> 
+        <put-attribute name="menu" value="/WEB-INF/jsp/layout/adminmenu.jsp"></put-attribute>
+    </definition>
+    
+     <definition extends="base.definition" name="showDeleteUserScreen">  
+        <put-attribute name="title" value="Admin Menu"></put-attribute>  
+        <put-attribute name="body" value="/WEB-INF/jsp/deleteuser.jsp"></put-attribute> 
+        <put-attribute name="menu" value="/WEB-INF/jsp/layout/adminmenu.jsp"></put-attribute>
+    </definition>
+    
+     <definition extends="base.definition" name="showModifyUserScreen">  
+        <put-attribute name="title" value="Admin Menu"></put-attribute>  
+        <put-attribute name="body" value="/WEB-INF/jsp/modifyuser.jsp"></put-attribute> 
+        <put-attribute name="menu" value="/WEB-INF/jsp/layout/adminmenu.jsp"></put-attribute>
+    </definition>
+    
+       
+   
+</tiles-definitions> 
