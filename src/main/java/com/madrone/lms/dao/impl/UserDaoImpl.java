@@ -1,7 +1,9 @@
 package com.madrone.lms.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
@@ -23,8 +25,9 @@ public class UserDaoImpl extends AbstractDaoImpl<User, Long>
 
 	@Override
 	public User findByUserName(String userName) {
-		List<User> users = findByCriteria(
-				Restrictions.eq("userName", userName));
+		 List<Criterion> criterionList = new ArrayList<Criterion>();
+         criterionList.add(Restrictions.eq("userName", userName));
+         List<User> users = findByCriteria(criterionList);
 				
 		if(users.size() > 1) {
 			new AssertionError("Duplicate user records with same " +
@@ -32,5 +35,15 @@ public class UserDaoImpl extends AbstractDaoImpl<User, Long>
 		}
 		
 		return users.isEmpty() ? null : users.get(0) ;
-	}	
+	}
+
+	@Override
+    public boolean authenticateUser(String userName, String password) {
+            List<Criterion> criterionList = new ArrayList<Criterion>();
+            criterionList.add(Restrictions.eq("userName", userName));
+            criterionList.add(Restrictions.eq("password", password));
+            
+            List<User> users = findByCriteria(criterionList);
+            return (users == null || users.size()==0) ? false:true;
+    }
 }
