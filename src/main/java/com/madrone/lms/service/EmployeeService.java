@@ -15,4 +15,6 @@ public interface EmployeeService {
 	Employee findByEmailAddress(String primaryEmail);
 	
 	Employee findByEmailAddressWithLeaves(String primaryEmail);
+
+	String findMenuOption(String userName);
 }

@@ -1,8 +1,10 @@
 package com.madrone.lms.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Hibernate;
+import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
@@ -30,8 +32,9 @@ public class EmployeeDaoImpl extends AbstractDaoImpl<Employee, String>
 
 	@Override
 	public Employee findByEmailAddress(String primaryEmail) {
-		List<Employee> employees = findByCriteria(
-				Restrictions.eq("primaryEmail", primaryEmail));
+		List<Criterion> criterionList = new ArrayList<Criterion>();
+		criterionList.add(Restrictions.eq("primaryEmail", primaryEmail));
+		List<Employee> employees = findByCriteria(criterionList);
 				
 		if(employees.size() > 1) {
 			new AssertionError("Duplicate employee records with same " +
@@ -56,4 +59,13 @@ public class EmployeeDaoImpl extends AbstractDaoImpl<Employee, String>
 	public void saveEmployee(Employee employee) {
 		saveOrUpdate(employee);
 	}
+
+	@Override
+    public String findRole(String userName) {
+            List<Criterion> criterionList = new ArrayList<Criterion>();
+            criterionList.add(Restrictions.eq("primaryEmail", userName));
+            List<Employee> employees = findByCriteria(criterionList);
+            
+            return employees.isEmpty() ? "":employees.get(0).getRole().getId();
+    }
 }

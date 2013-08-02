@@ -39,12 +39,14 @@ public abstract class AbstractDaoImpl <E, I extends Serializable>
     }
  
     @SuppressWarnings("unchecked")
-	@Override
-    public List<E> findByCriteria(Criterion criterion) {
-        Criteria criteria = getCurrentSession().createCriteria(entityClass);
-        criteria.add(criterion);
-        return criteria.list();
-    }
+    @Override
+    public List<E> findByCriteria(List<Criterion> criterions) {
+	    Criteria criteria = getCurrentSession().createCriteria(entityClass);
+	    for(Criterion c : criterions) {
+	            criteria.add(c);
+	    }
+    return criteria.list();
+}
     
     private Session getCurrentSession() {
         return sessionFactory.getCurrentSession();

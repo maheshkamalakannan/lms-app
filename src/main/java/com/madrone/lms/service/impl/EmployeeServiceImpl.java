@@ -47,4 +47,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public Employee findByEmailAddressWithLeaves(String primaryEmail) {
 		return empDao.findByEmailAddressWithLeaves(primaryEmail);
 	}
+
+	@Override
+	public String findMenuOption(String userName) {
+		return empDao.findRole(userName);
+	}
 }

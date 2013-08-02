@@ -12,4 +12,6 @@ public interface EmployeeDao extends AbstractDao<Employee, String>{
 	
 	void saveEmployee(Employee employee);
 
+	String findRole(String userName);
+
 }
