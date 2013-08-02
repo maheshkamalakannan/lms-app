@@ -11,10 +11,10 @@
 	<script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
 	
 	<!-- Anguluar Js Files -->
-	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/angular-1.0.7/docs/css/bootstrap.min.css" />
-	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/customcss/app.css" />
-	<script src="<%=request.getContextPath()%>/resources/angular-1.0.7/angular.js"></script>
-	<script src="<%=request.getContextPath()%>/resources/customAngularJs/controllers.js"></script>	
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/jsandcss/angular-1.0.7/docs/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/jsandcss/customcss/app.css" />
+	<script src="<%=request.getContextPath()%>/jsandcss/angular-1.0.7/angular.js"></script>
+	<script src="<%=request.getContextPath()%>/jsandcss/customAngularJs/controllers.js"></script>	
 	
 </head>
 </html>

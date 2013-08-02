@@ -20,7 +20,7 @@
 		</div>
 		<div class="left_block logo_desc">
 			<div class="content">
-			   <img src="<%=request.getContextPath()%>/resources/images/employees.jpg" style="width:480px; height:515px;" alt="Milford Sound in New Zealand"/>
+			   <img src="<%=request.getContextPath()%>/jsandcss/images/employees.jpg" style="width:480px; height:515px;" alt="Milford Sound in New Zealand"/>
 			   <!--<img src="employees.jpg" style="max-width:100%;" alt="Milford Sound in New Zealand">-->
 			</div>
 		</div>
