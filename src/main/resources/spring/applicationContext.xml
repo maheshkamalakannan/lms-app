@@ -31,5 +31,14 @@
 	        </list>
 	    </property>
 	</bean>
+	
+	<!--  Validators -->
+	<bean class="com.madrone.lms.validator.LoginValidator" />
+	
+	<!-- Register the ResourceBundle-->
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename" value="message" />
+	</bean>
 
 </beans>

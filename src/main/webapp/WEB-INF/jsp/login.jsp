@@ -4,7 +4,8 @@
 </head>
 
 <body>
-	<form modelAttribute="LoginForm" name="loginForm" method="post"  action="/lms-app/authenticate" ng-controller="loginController" novalidate >
+
+	<form:form modelAttribute="LoginForm" name="loginForm" method="post"  action="/lms-app/authenticate" ng-controller="loginController" novalidate="novalidate" >
 	<div class="content" ng-controller="constantsController">
 		<div class="background logo_desc">
 		</div>
@@ -35,6 +36,7 @@
 								  required/><br>
 							      <div>
 							        <span class="error" style="width: 80%;" ng-show="submitted && loginForm.password.$error.required">{{passwordrequired}}</span>
+							        <form:errors style="width: 80%;" path="password" cssClass="error" />
 							      </div>
 					   <div id="submit">
 						  <input type="submit" name="submit" value="Login" ng-click="[submitted=true,loginSubmit(loginForm,$event)]"/>
@@ -45,7 +47,7 @@
       </div>
 	</div>
 		
- </form>
+ </form:form>
 
 </body>
 </html>
