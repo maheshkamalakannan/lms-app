@@ -80,7 +80,6 @@ html, body {
 }
 
 .bottom_block {
-	position: absolute;
 	width: 100%;
 	display: block;
 	bottom: 0; 
@@ -120,7 +119,6 @@ html, body {
 .logo_desc {
 	height: auto;
 	width: 509px;
-	padding-bottom: 47px;
 }
 
 .background.loginform {
@@ -137,7 +135,6 @@ html, body {
 .loginform {
 	width: auto;
 	height: auto;
-	padding-bottom: 65px;
 }
 
 .footer {
@@ -192,6 +189,10 @@ h1 {
     /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
     border-radius: 12px;
 }
+
+form {
+    margin: 0 0 0px;
+}
 #loginform{
     margin: 1em;
 }
@@ -234,12 +235,12 @@ input[type="button"], input[type="submit"], input[type="reset"] {
     background: none repeat scroll 0 0 #F1F1F1;
     border: 1px solid #E5E5E5;
     -webkit-border-radius: 1px solid #E5E5E5;
-    border-radius: 12px 12px 12px 12px;
-    box-shadow: 10px 10px 5px #888888;
+    border-radius: 5px 5px 5px 5px;
+    box-shadow: 7px 7px 7px #888888;
     height: 478px;
     margin-bottom: 15px;
     margin-left: 10px;
-    margin-top: 14px;
+    margin-top: 10px;
     width: 250px;
 }
 
@@ -326,14 +327,13 @@ li:hover .sub-level .sub-level {
 
 #rightdata{
 	background: none repeat scroll 0 0 #F1F1F1;
+	border-radius: 5px 5px 5px 5px;
     border: 1px solid #E5E5E5;
-    border-radius: 12px 12px 12px 12px;
-    -webkit-border-radius: 12px 12px 12px 12px;
-    box-shadow: 10px 10px 5px #888888;
-    height: 480px;
+    box-shadow: 7px 7px 7px #888888;
+    height: 477px;
     margin-bottom: 27px;
     margin-left: 10px;
-    margin-top: 2px;
+    margin-top: 4px;
     width: 80em;
 }
 .changepassword{
@@ -343,4 +343,25 @@ li:hover .sub-level .sub-level {
 	 margin: 2em 0em 0em 65em;
 	 list-style: none outside none;
 	 color: #7D6C5D; 
+}
+#rightcontent{
+	margin: 15px;
+}
+
+a, label{
+	color: #666666;
+}
+a:link{color: #EF7822;};
+a:visited {color: #EF7822;}
+a:hover {color: #EF7822; cursor:pointer}
+a:focus {color: #333333;}
+a:active {color: #009900;}
+
+.signout{
+	text-align: right;
+	color: #666666;
+	margin-top: -17px;
+}
+.changepasswordele{
+	margin: 5em 1em 2em 26em;
 }

@@ -18,7 +18,26 @@ function constantsController($scope){
 	$scope.invalidemail      = "Invalid Email address.";
 	$scope.passwordrequired  = "Password is required.";
     $scope.signin            = "Sign In";
+    $scope.oldpasswordrequired           = "Old Password is required.";
+    $scope.newpasswordrequired           = "New Password is required.";
+    $scope.confirmationpasswordrequired  = "Confirmation Password is required.";
 }
+function changePasswordController($scope){
+	
+	$scope.reset = function(){
+	};
+	
+	$scope.savepassword = function(form,event){
+		if(form.$valid){
+		   form.submit();
+		}
+		else{
+		 event.preventDefault();
+		}
+	};
+}
+
+
 
 function welcomeController($scope, $http) {
 	$scope.oldpassword = false;
