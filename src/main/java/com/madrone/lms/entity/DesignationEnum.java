@@ -6,7 +6,9 @@ public enum DesignationEnum {
 	SSE("Senior Software Engineer"),
 	TL("Team Leader"),
 	STL("Senior Team Leader"),
-	PM("Project Manager");
+	AD("Administrator"),
+	PM("Project Manager"),
+	QA("Quality Assurance");
 	
 	private final String description;
 
