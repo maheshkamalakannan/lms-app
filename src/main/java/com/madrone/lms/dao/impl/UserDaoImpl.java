@@ -30,7 +30,7 @@ public class UserDaoImpl extends AbstractDaoImpl<User, Long>
          List<User> users = findByCriteria(criterionList);
 				
 		if(users.size() > 1) {
-			new AssertionError("Duplicate user records with same " +
+			throw new AssertionError("Duplicate user records with same " +
 					"userName.");
 		}
 		

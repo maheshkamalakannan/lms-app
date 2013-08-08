@@ -37,7 +37,7 @@ public class EmployeeDaoImpl extends AbstractDaoImpl<Employee, String>
 		List<Employee> employees = findByCriteria(criterionList);
 				
 		if(employees.size() > 1) {
-			new AssertionError("Duplicate employee records with same " +
+			throw new AssertionError("Duplicate employee records with same " +
 					"primary email address.");
 		}
 		
