@@ -200,8 +200,11 @@ form {
     margin: 2em 1em 2em 6em;
 }
 #submit{
-    margin: 0.5em 1em 2em 0.1em;
-    
+    margin: 0.5em 1em 2em 0.1em;  
+}
+
+#leavesubmit{
+	margin: 2em 1em 2em 30.1em
 }
 input[type="button"], input[type="submit"], input[type="reset"] { 
     background-image: linear-gradient(#F1F1F1, #F1F1F1 25%, #CCCCCC);
@@ -280,10 +283,6 @@ ul.top-level li {
 	width:100%;
 }
  
-#navigation a:hover{
-    text-decoration:underline;
-}
- 
 #navigation li:hover {
     background: #f90;
     position: relative;
@@ -344,18 +343,80 @@ li:hover .sub-level .sub-level {
 	 list-style: none outside none;
 	 color: #7D6C5D; 
 }
+
 #rightcontent{
 	margin: 15px;
 }
 
+#leftcontent{
+	color: #666666;
+	margin-left:30px;
+	margin-right:630px;
+}
+#grid{
+	color: #666666;
+    margin-left: 510px;
+    margin-top: -120px;
+}
+
+select {
+    background-color: #FFFFFF;
+    width: 190px;
+}
+
 a, label{
 	color: #666666;
+	font-weight: bold;
 }
 a:link{color: #EF7822;};
 a:visited {color: #EF7822;}
 a:hover {color: #EF7822; cursor:pointer}
-a:focus {color: #333333;}
-a:active {color: #009900;}
+a:focus {color: #EF7822;}
+a:active {color: #EF7822;}
+
+table[Attributes Style] {
+    width: 100%;
+}
+
+.cf {
+    border-collapse: collapse;
+}
+
+tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+
+.r7 {
+    font-size: 100%;
+}
+
+.r7 td.r8, .r7 td.r9 {
+    padding: 6px;
+}
+
+.rc {
+    font-weight: bold;
+    color: #666666;
+}
+
+.bottomleftContent{
+	margin: 40px 35px 35px;
+}
+
+.bottomrightContent{
+	margin-left: 550px;
+    margin-top: -265px;
+}
+
+label{
+	font-weight: bold;
+}
+
+textarea {
+    resize: none;
+}
 
 .signout{
 	text-align: right;
@@ -364,4 +425,10 @@ a:active {color: #009900;}
 }
 .changepasswordele{
 	margin: 5em 1em 2em 26em;
+}
+
+.gridStyle {
+    border: 1px solid rgb(212,212,212);
+    width: 400px; 
+    height: 90px;
 }

@@ -1,7 +1,7 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 "http://www.w3.org/TR/html4/loose.dtd">
-<html ng-app>  
+<html ng-app="mainController">  
 	<head>  
 	    <title>
 	   	 <tiles:insertAttribute name="title" ignore="true"/>
@@ -21,7 +21,6 @@
         </div>
         
         <div class="bottom_block footer footerbackground">
-		  <div class="hr"></div>
 			<div class="content">
                <tiles:insertAttribute name="footer"></tiles:insertAttribute>
             </div>

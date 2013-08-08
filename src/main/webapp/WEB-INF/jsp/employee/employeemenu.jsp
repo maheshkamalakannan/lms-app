@@ -1,5 +1,3 @@
-<%@ include file="../common/include_tags.jsp" %>
-
  <div id="leftdata">
 	<div id="navigation">
 	    <ul class="top-level">
