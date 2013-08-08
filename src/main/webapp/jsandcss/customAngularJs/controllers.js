@@ -22,6 +22,7 @@ function constantsController($scope){
     $scope.newpasswordrequired           = "New Password is required.";
     $scope.newpasswordminlength          = "Password must be 7 characters";
     $scope.confirmationpasswordrequired  = "Confirm Password is required.";
+    $scope.passwordmismatch              = "Password Mismatched.";
     
     
     $scope.changepasswordtabs            = "Home > Settings > Change Password";

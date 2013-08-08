@@ -33,7 +33,7 @@
 				     <input  type="password" name="confirmNewPasswod" placeholder="Confirm Password" style="margin-left: 2px; width: 35%;" ng-model="passwordconfirm" ng-change="clearerror()" required/><br>
 				       <div>
 				         <span class="error" style="width: 35%;" ng-show="submitted && changepassword.confirmNewPasswod.$error.required">{{confirmationpasswordrequired}}</span>
-				         <span class="error" ng-model="showerror" ng-show="showerror">Password mismatched</span>
+				         <span class="error" ng-model="showerror" ng-show="showerror">{{passwordmismatch}}</span>
 				       </div>
 						      
 					  <div id="submit">
