@@ -20,25 +20,63 @@ function constantsController($scope){
     $scope.signin            = "Sign In";
     $scope.oldpasswordrequired           = "Old Password is required.";
     $scope.newpasswordrequired           = "New Password is required.";
-    $scope.confirmationpasswordrequired  = "Confirmation Password is required.";
+    $scope.newpasswordminlength          = "Password must be 7 characters";
+    $scope.confirmationpasswordrequired  = "Confirm Password is required.";
+    
+    
+    $scope.changepasswordtabs            = "Home > Settings > Change Password";
+    $scope.hometabs                      = "Home > Leaves > Apply Leaves";
 }
 function changePasswordController($scope){
-	
-	$scope.reset = function(){
-	};
-	
+	$scope.showerror=false;
 	$scope.savepassword = function(form,event){
 		if(form.$valid){
-		   form.submit();
+			if($scope.passwordconfirm !=  $scope.passwordnew){
+				$scope.showerror=true;
+				event.preventDefault();
+			}
+			else{
+		       form.submit();
+			}
 		}
 		else{
 		 event.preventDefault();
 		}
 	};
+	
+	$scope.clearerror = function(){
+		$scope.showerror=false;
+	};
+	
+	$scope.reset = function(){
+		$scope.passwordcurrent = '';
+		$scope.passwordnew = '';
+		$scope.passwordconfirm = '';
+		$('.error').css("display","none");
+	};
 }
 
+var mycontroller = angular.module('mainController', ['ngGrid','$strap.directives']);
 
+mycontroller.controller('gridCtrl', function($scope) {
+	$scope.gridData = [{Type: "CL", Total: 10, Consumed: 5, Balance: 2},
+	                   {Type: "EL", Total: 10, Consumed: 5, Balance: 2}];
+    
+    $scope.gridOptions = { 
+    		data: 'gridData',
+    		multiSelect: false};
+});
 
+mycontroller.controller('MainCtrl', function($scope, $window, $location) {
+  $scope.datepicker = {date: new Date("2012-09-01T00:00:00.000Z")};
+});
+
+function applyLeaveController($scope){
+	 $scope.leaves = [
+                     {LeaveCode : 'CL', LeaveName : 'Casual Leave' },       
+                     {LeaveCode : 'EL', LeaveName : 'Earned Leave' }];
+	 $scope.leavetype = 'CL';
+}
 function welcomeController($scope, $http) {
 	$scope.oldpassword = false;
 	$scope.newpassword = false;
