@@ -1,10 +1,12 @@
 package com.madrone.lms.controller;
 
+import java.util.Locale;
 import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -25,6 +27,9 @@ public class ChangePasswordController {
 	@Autowired
 	private UserService userService;
 
+	@Autowired
+	private MessageSource messageSource;
+
 	// This function is used in ChangePassword.jsp file
 	@RequestMapping(value = "/submitChangePassword", method = RequestMethod.POST)
 	public String submitChangePassword(
@@ -42,8 +47,12 @@ public class ChangePasswordController {
 			User user = userService
 					.findByUserName(changePassword.getUserName());
 			user.setPassword(changePassword.getNewPassword());
-			userService.saveUser(user);
+			//userService.saveUser(user);
+			model.addAttribute("SucessMessage", messageSource.getMessage(
+					"lms.password.save.success", new Object[] { "" },
+					Locale.getDefault()));
 		}
+
 		model.addAttribute("userName", changePassword.getUserName());
 		model.addAttribute("empName", changePassword.getEmpName());
 		return LMSConstants.CHANGE_PASSWORD_SCR;
