@@ -1,35 +1,35 @@
 package com.madrone.lms.form;
 
-public class UserForm {
+public class CancelLeaveForm {
 	
 	private String userName;
-	private String password;
+	private String empName;
+	
 	public String getUserName() {
 		return userName;
 	}
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	public String getPassword() {
-		return password;
+	public String getEmpName() {
+		return empName;
 	}
-	public void setPassword(String password) {
-		this.password = password;
+	public void setEmpName(String empName) {
+		this.empName = empName;
 	}
 	@Override
 	public String toString() {
-		return "UserForm [userName=" + userName + ", password=" + password
+		return "CancelLeaveForm [userName=" + userName + ", empName=" + empName
 				+ "]";
 	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result
-				+ ((password == null) ? 0 : password.hashCode());
+		result = prime * result + ((empName == null) ? 0 : empName.hashCode());
 		result = prime * result
 				+ ((userName == null) ? 0 : userName.hashCode());
 		return result;
 	}
-	
+
 }
