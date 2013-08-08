@@ -10,15 +10,13 @@
    			    <h5>${empName}</h5>
 			    <a href="/lms-app">Sign Out</a>
 	        </div>
-	       
-	        <c:if test="${successmessage != null}">
-  				<div id="status_message">${successmessage}</div>
-			</c:if> 
-    		
+	         <c:if test="${SucessMessage != null}">
+  				       <div class="success">${SucessMessage}</div>
+			  </c:if>  
     		 <div class="changepasswordele"> 
 					<input  type="hidden" name="userName" id="userName" value = "${userName}"/>
 					<input  type="hidden" name="empName" id="empName" value = "${empName}"/>
-					         
+					       
 					<input  type="password" name="oldPassword" placeholder="Current Password" style="margin-left: 2px; width: 35%;" ng-model="passwordcurrent" required/><br>
 				      <div>
 				        <span class="error" style="width: 35%;" ng-show="submitted && changepassword.oldPassword.$error.required">{{passwordrequired}}</span>

@@ -47,9 +47,9 @@ public class ChangePasswordController {
 			User user = userService
 					.findByUserName(changePassword.getUserName());
 			user.setPassword(changePassword.getNewPassword());
-			//userService.saveUser(user);
+			userService.saveUser(user);
 			model.addAttribute("SucessMessage", messageSource.getMessage(
-					"lms.password.save.success", new Object[] { "" },
+					"lms.password_changed_successfully", new Object[] { "" },
 					Locale.getDefault()));
 		}
 
