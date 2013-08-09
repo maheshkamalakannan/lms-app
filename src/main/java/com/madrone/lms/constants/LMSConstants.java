@@ -15,4 +15,9 @@ public class LMSConstants {
 	public static final String APPLY_LEAVE_SCR 		=  "applyLeaveScreen";
 	public static final String CANCEL_LEAVE_SCR 	=  "cancelLeaveScreen";
 	public static final String LEAVE_SUMMARY_SCR 	=  "leaveSummaryScreen";
+	
+	public static final String MANAGER_HOME_SCR     =  "managerHomeScreen";
+	public static final String MANAGER_VIEW_LEAVE_REQUEST_SCR   = "viewLeaveRequestScreen";
+	public static final String MANAGER_VIEW_APPROVED_LEAVES_SCR = "viewApprovedLeavesScreen";
+	public static final String MANAGER_VIEW_REJECTED_LEAVES_SCR = "viewRejectedLeavesScreen";
 }
