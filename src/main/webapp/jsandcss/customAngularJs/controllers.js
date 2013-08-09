@@ -20,8 +20,9 @@ function constantsController($scope){
     $scope.signin            = "Sign In";
     $scope.oldpasswordrequired           = "Old Password is required.";
     $scope.newpasswordrequired           = "New Password is required.";
-    $scope.newpasswordminlength          = "Password must be 7 characters";
+    $scope.newpasswordminlength          = "Password must be 7 characters.";
     $scope.confirmationpasswordrequired  = "Confirm Password is required.";
+    $scope.confirmationpassword          = "Current password and New Password are same.";
     $scope.passwordmismatch              = "Password Mismatched.";
     
     
@@ -29,11 +30,16 @@ function constantsController($scope){
     $scope.hometabs                      = "Home > Leaves > Apply Leaves";
 }
 function changePasswordController($scope){
-	$scope.showerror=false;
+	$scope.showerror = false;
+	$scope.confirmerror = false;
 	$scope.savepassword = function(form,event){
 		if(form.$valid){
 			if($scope.passwordconfirm !=  $scope.passwordnew){
 				$scope.showerror=true;
+				event.preventDefault();
+			}
+			else if($scope.passwordcurrent ==  $scope.passwordnew){
+				$scope.confirmerror=true;
 				event.preventDefault();
 			}
 			else{
@@ -47,6 +53,7 @@ function changePasswordController($scope){
 	
 	$scope.clearerror = function(){
 		$scope.showerror=false;
+		$scope.confirmerror=false;
 	};
 	
 	$scope.reset = function(){

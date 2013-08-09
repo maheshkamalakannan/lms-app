@@ -19,6 +19,8 @@
             <div id="loginform" ng-class="{true: 'error'}[submitted && loginForm.email.$invalid,submitted && loginForm.password.$invalid ]">
 			         <h2 style="margin-left:73px;">{{signin}}</h2>
 					 <div id="loginelements">
+					      <!--<form:errors style="width: 80%;" path="password" cssClass="error" />-->
+					      <form:errors style="width: 80%; margin-left: -30px; margin-top: -20px;" path="password" cssClass="alert-error" />
 						  <input type="email" 
 								 name="userName" 
 								 placeholder="Email Address" 
@@ -36,7 +38,6 @@
 								  required/><br>
 							      <div>
 							        <span class="error" style="width: 80%;" ng-show="submitted && loginForm.password.$error.required">{{passwordrequired}}</span>
-							        <form:errors style="width: 80%;" path="password" cssClass="error" />
 							      </div>
 					   <div id="submit">
 						  <input type="submit" name="submit" value="Login" ng-click="[submitted=true,loginSubmit(loginForm,$event)]"/>
@@ -46,7 +47,6 @@
 		</div>
       </div>
 	</div>
-		
  </form:form>
 
 </body>

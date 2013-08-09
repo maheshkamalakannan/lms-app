@@ -10,9 +10,11 @@
    			    <h5>${empName}</h5>
 			    <a href="/lms-app">Sign Out</a>
 	        </div>
-	         <c:if test="${SucessMessage != null}">
-  				       <div class="success">${SucessMessage}</div>
-			  </c:if>  
+	       
+	          <c:if test="${SucessMessage != null}">
+	  		     <div class="success">${SucessMessage}</div>
+			  </c:if>
+	  		 <form:errors path="oldPassword" cssClass="alert-error" />
     		 <div class="changepasswordele"> 
 					<input  type="hidden" name="userName" id="userName" value = "${userName}"/>
 					<input  type="hidden" name="empName" id="empName" value = "${empName}"/>
@@ -26,6 +28,7 @@
 				      <div>
 				        <span class="error" style="width: 35%;" ng-show="submitted && changepassword.newPassword.$error.required">{{newpasswordrequired}}</span>
 				        <span class="error" style="width: 35%;" ng-show="submitted && changepassword.newPassword.$error.minlength">{{newpasswordminlength}}</span>
+				        <span class="error" ng-model="confirmerror" ng-show="confirmerror">{{confirmationpassword}}</span>
 				      </div>
 						      
 				     <input  type="password" name="confirmNewPasswod" placeholder="Confirm Password" style="margin-left: 2px; width: 35%;" ng-model="passwordconfirm" ng-change="clearerror()" required/><br>
