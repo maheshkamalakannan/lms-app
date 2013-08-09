@@ -31,13 +31,13 @@
     </definition>  
       
     <definition extends="base.definition" name="employee">  
-        <put-attribute name="title" value="LMS-Employee's Menu"></put-attribute>  
+        <put-attribute name="title" value="LMS-Employee-Home"></put-attribute>  
         <put-attribute name="body" value="/WEB-INF/jsp/employee/employeeHome.jsp"></put-attribute> 
         <put-attribute name="menu" value="/WEB-INF/jsp/employee/employeemenu.jsp"></put-attribute>
     </definition>
     
     <definition extends="base.definition" name="employeeHomeScreen">  
-        <put-attribute name="title" value="LMS-Employee-Menu"></put-attribute>  
+        <put-attribute name="title" value="LMS-Employee-Home"></put-attribute>  
         <put-attribute name="body" value="/WEB-INF/jsp/employee/employeeHome.jsp"></put-attribute> 
         <put-attribute name="menu" value="/WEB-INF/jsp/employee/employeemenu.jsp"></put-attribute>
     </definition>
@@ -67,9 +67,33 @@
     </definition>
     
     <definition extends="base.definition" name="manager">  
-        <put-attribute name="title" value="LMS-Managers Menu"></put-attribute>  
-        <put-attribute name="body" value="/WEB-INF/jsp/applyleave.jsp"></put-attribute> 
-        <put-attribute name="menu" value="/WEB-INF/jsp/layout/mangermenu.jsp"></put-attribute>
+        <put-attribute name="title" value="LMS-Manager-Home"></put-attribute>  
+        <put-attribute name="body" value="/WEB-INF/jsp/manager/managerHome.jsp"></put-attribute> 
+        <put-attribute name="menu" value="/WEB-INF/jsp/manager/managerMenu.jsp"></put-attribute>
+    </definition>
+    
+    <definition extends="base.definition" name="managerHomeScreen">  
+        <put-attribute name="title" value="LMS-Manager-Home"></put-attribute>  
+        <put-attribute name="body" value="/WEB-INF/jsp/manager/managerHome.jsp"></put-attribute> 
+        <put-attribute name="menu" value="/WEB-INF/jsp/manager/managerMenu.jsp"></put-attribute>
+    </definition>
+    
+    <definition extends="base.definition" name="viewLeaveRequestScreen">  
+        <put-attribute name="title" value="LMS-Manager-View Leave Request"></put-attribute>  
+        <put-attribute name="body" value="/WEB-INF/jsp/manager/viewLeaveRequests.jsp"></put-attribute> 
+        <put-attribute name="menu" value="/WEB-INF/jsp/manager/managerMenu.jsp"></put-attribute>
+    </definition>
+    
+    <definition extends="base.definition" name="viewApprovedLeavesScreen">  
+        <put-attribute name="title" value="LMS-Manager-View Approved Leaves"></put-attribute>  
+        <put-attribute name="body" value="/WEB-INF/jsp/manager/viewApprovedLeaves.jsp"></put-attribute> 
+        <put-attribute name="menu" value="/WEB-INF/jsp/manager/managerMenu.jsp"></put-attribute>
+    </definition>
+    
+    <definition extends="base.definition" name="viewRejectedLeavesScreen">  
+        <put-attribute name="title" value="LMS-Manager-View Approved Leaves"></put-attribute>  
+        <put-attribute name="body" value="/WEB-INF/jsp/manager/viewRejectedLeaves.jsp"></put-attribute> 
+        <put-attribute name="menu" value="/WEB-INF/jsp/manager/managerMenu.jsp"></put-attribute>
     </definition>
     
     <definition extends="base.definition" name="showAddUserScreen">  
