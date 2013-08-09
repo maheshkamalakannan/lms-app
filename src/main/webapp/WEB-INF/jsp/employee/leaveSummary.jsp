@@ -1,4 +1,4 @@
-<%@ include file="../common/include_tags.jsp" %>
+<%@ include file="../common/commonJs.jsp" %>
 
 <div id="rightdata" ng-controller="constantsController">
 <h2> LeaveSummary</h2>
