@@ -396,10 +396,11 @@ li:hover .sub-level .sub-level {
 	margin-right:630px;
 	margin-top: -15px;
 }
+
 #grid{
 	color: #666666;
-    margin-left: 510px;
-    margin-top: -120px;
+    margin-left: 610px;
+    margin-top: 70px;
 }
 
 select {
@@ -473,4 +474,15 @@ textarea {
     border: 1px solid rgb(212,212,212);
     width: 400px; 
     height: 90px;
+}
+
+#empDetailsDiv {
+	margin-top:-412px;
+	margin-left:650px;
+	
+}
+
+#submitDiv {
+	margin-top:-480px;
+	margin-left:450px;
 }
