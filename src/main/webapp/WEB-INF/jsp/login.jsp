@@ -1,4 +1,5 @@
-<%@ include file="common/include_tags.jsp" %>
+<%@ include file="common/commonCss.jsp" %>
+<%@ include file="common/commonJs.jsp" %>
 <html ng-app>
 <head>
 </head>

@@ -1,4 +1,4 @@
-<%@ include file="../common/include_tags.jsp" %>
+<%@ include file="../common/commonJs.jsp"%>
 
 <form:form modelAttribute="ChangePasswordForm" name="changepassword" id="changepassword" method="post"  
            action="/lms-app/submitChangePassword" novalidate="novalidate" ng-controller="constantsController">

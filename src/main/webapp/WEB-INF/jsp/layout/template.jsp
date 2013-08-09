@@ -6,6 +6,7 @@
 	    <title>
 	   	 <tiles:insertAttribute name="title" ignore="true"/>
 		</title>
+		<%@ include file="../common/commonCss.jsp"%>
 	</head>
 	<body>
 	    <tiles:insertAttribute name="header"></tiles:insertAttribute>
