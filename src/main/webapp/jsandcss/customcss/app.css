@@ -204,7 +204,7 @@ form {
 }
 
 #leavesubmit{
-	margin: 2em 1em 2em 30.1em
+	margin: 2em 1em 2em 41em;
 }
 input[type="button"], input[type="submit"], input[type="reset"] { 
     background-image: linear-gradient(#F1F1F1, #F1F1F1 25%, #CCCCCC);
@@ -236,7 +236,6 @@ input[type="button"], input[type="submit"], input[type="reset"] {
 }
 
 .success {
-	
 	padding: 8px 8px 8px 30px;
     background: url("../images/ico_success_large.png") no-repeat scroll 15px 9px #DFF0D8;
     color: #468847;
@@ -390,6 +389,16 @@ li:hover .sub-level .sub-level {
 	margin: 15px;
 }
 
+#applyleaverightcontent{
+	height: 340px;
+    margin: 15px;
+    width: 500px;
+}
+
+#topcontent{
+	 margin: 15px;
+}
+
 #leftcontent{
 	color: #666666;
 	margin-left:30px;
@@ -397,9 +406,14 @@ li:hover .sub-level .sub-level {
 	margin-top: -15px;
 }
 
+#applyleaveleftcontent{
+	height: 340px;;
+    margin: -360px 15px 5px 525px;
+    width: 500px;
+}
+
 #grid{
 	color: #666666;
-    margin-left: 610px;
     margin-top: 70px;
 }
 
@@ -477,12 +491,28 @@ textarea {
 }
 
 #empDetailsDiv {
-	margin-top:-412px;
-	margin-left:650px;
-	
+    margin-top: -237px;
 }
 
 #submitDiv {
 	margin-top:-480px;
 	margin-left:450px;
+}
+
+h5{
+	color: #666666;
+}
+
+h5:first-letter {
+    text-transform: uppercase;
+}
+
+.radio{
+	margin-left:100px;
+}
+
+.employeeleavedetails{
+	float: right;
+    margin-right: -440px;
+    margin-top: -200px;
 }

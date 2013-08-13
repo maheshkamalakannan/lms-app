@@ -18,7 +18,6 @@ function constantsController($scope){
 	$scope.invalidemail      = "Invalid Email address.";
 	$scope.passwordrequired  = "Password is required.";
     $scope.signin            = "Sign In";
-    $scope.oldpasswordrequired           = "Old Password is required.";
     $scope.newpasswordrequired           = "New Password is required.";
     $scope.newpasswordminlength          = "Password must be 7 characters.";
     $scope.confirmationpasswordrequired  = "Confirm Password is required.";
@@ -76,14 +75,46 @@ mycontroller.controller('gridCtrl', function($scope) {
 });
 
 mycontroller.controller('MainCtrl', function($scope, $window, $location) {
-  $scope.datepicker = {date: new Date("2012-09-01T00:00:00.000Z")};
-});
+	  $scope.fromdate              = new Date();
+	  $scope.todate                = new Date();
+	  $scope.todategreaterfromdate = false;
+	  var diff                     = "";
+	  
+	  $scope.todaysdate = function(event) {
+		  if($scope.fromdate > $scope.todate ){
+			  $scope.todategreaterfromdate = true;
+			  event.preventDefault();
+		  }
+		  else{
+			    $scope.todategreaterfromdate = false;
+			    $scope.days                  = 0;
+			    diff = Math.floor(( $scope.todate - $scope.fromdate ) / 86400000);
+			    $scope.days = diff+1;
+		    }
+		  };
+		  
+		  $scope.fromsdate = function(event) {
+			  if($scope.fromdate > $scope.todate ){
+				  $scope.todategreaterfromdate = true;
+				  event.preventDefault();
+			  }
+			  else{
+				  $scope.days                  = 0;
+				  diff = Math.floor(( $scope.todate - $scope.fromdate ) / 86400000);
+				  $scope.days = diff+1;
+			  }
+		  };
+	});
 
 function applyLeaveController($scope){
 	 $scope.leaves = [
                      {LeaveCode : 'CL', LeaveName : 'Casual Leave' },       
                      {LeaveCode : 'EL', LeaveName : 'Earned Leave' }];
-	 $scope.leavetype = 'CL';
+	 $scope.leavetype    = 'CL';
+	 $scope.fromdaygreeting  = 'am';
+	 $scope.todaygreeting = 'am';
+	 
+	 
 }
 function welcomeController($scope, $http) {
 	$scope.oldpassword = false;
