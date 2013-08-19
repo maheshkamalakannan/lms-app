@@ -74,46 +74,127 @@ mycontroller.controller('gridCtrl', function($scope) {
     		multiSelect: false};
 });
 
-mycontroller.controller('MainCtrl', function($scope, $window, $location) {
-	  $scope.fromdate              = new Date();
-	  $scope.todate                = new Date();
+mycontroller.controller('applyLeaveController', function($scope, $window, $location) {
 	  $scope.todategreaterfromdate = false;
 	  var diff                     = "";
+	  $scope.tofromgreeting        = false;
+	  $scope.leaves = [
+	                     {LeaveCode : 'CL', LeaveName : 'Casual Leave' },       
+	                     {LeaveCode : 'EL', LeaveName : 'Earned Leave' }];
+	  $scope.leavetype        = 'CL';
+	  $scope.fromdaygreeting  = 'am';
+	  $scope.todaygreeting    = 'pm';
+	  /*$scope.fromdate         = new Date();
+	  $scope.todate           = new Date();
+	  $scope.days             = 1;*/
 	  
 	  $scope.todaysdate = function(event) {
-		  if($scope.fromdate > $scope.todate ){
+		  if(($scope.fromdate > $scope.todate) && ($scope.fromdate != '' && $scope.todate != '')){
 			  $scope.todategreaterfromdate = true;
 			  event.preventDefault();
 		  }
 		  else{
 			    $scope.todategreaterfromdate = false;
-			    $scope.days                  = 0;
-			    diff = Math.floor(( $scope.todate - $scope.fromdate ) / 86400000);
-			    $scope.days = diff+1;
+			    var fromgreeting             = $scope.fromdaygreeting;
+				var togreeting               = $scope.todaygreeting;
+				$scope.tofromgreeting        = false;
+				$('#fromdaygreeting').removeAttr('disabled');
+				$('#todaygreeting').removeAttr('disabled');
+				calculateDays(fromgreeting,togreeting,event);
 		    }
 		  };
 		  
-		  $scope.fromsdate = function(event) {
-			  if($scope.fromdate > $scope.todate ){
-				  $scope.todategreaterfromdate = true;
-				  event.preventDefault();
-			  }
-			  else{
-				  $scope.days                  = 0;
-				  diff = Math.floor(( $scope.todate - $scope.fromdate ) / 86400000);
-				  $scope.days = diff+1;
-			  }
+		  $scope.selectfromGreeting = function(event){
+			 $scope.tofromgreeting        = false;
+			 if($scope.fromdate == '' && $scope.todate == '')
+			 {
+				 $scope.submitted        = false;
+			 }
+			 else{
+				 var fromgreeting = $scope.fromdaygreeting;
+				 var togreeting   = $scope.todaygreeting;
+				 calculateDays(fromgreeting,togreeting,event);
+			 }
 		  };
-	});
+		  
+  function calculateDays(fromgreeting,togreeting,event){
+	     if(((fromgreeting == 'pm' && togreeting == 'pm') || (fromgreeting == 'am' && togreeting == 'am')) && ($scope.fromdate < $scope.todate)){
+			    $scope.days                  = 0;
+			    diff = Math.floor(( $scope.todate - $scope.fromdate ) / 86400000);
+			    $scope.days = (diff+1)-0.5;
+		 }
+		 else if((fromgreeting == 'am' && togreeting == 'pm') && ($scope.fromdate < $scope.todate)){
+			    $scope.days                  = 0;
+			    diff = Math.floor(( $scope.todate - $scope.fromdate ) / 86400000);
+			    $scope.days = (diff+1);
+		 }
+		 else if((fromgreeting == 'pm' && togreeting == 'am') && ($scope.fromdate < $scope.todate)){
+			    $scope.days                  = 0;
+			    diff = Math.floor(( $scope.todate - $scope.fromdate ) / 86400000);
+			    $scope.days = (diff);
+		 }
+		 else if(($scope.fromdate > $scope.todate)){
+			 console.log(" from date is greater not applicable");
+		 }
+		 else{
+			 if((fromgreeting == 'pm' && togreeting == 'pm') || (fromgreeting == 'am' && togreeting == 'am')){
+				 $scope.days                  = 0;
+				 diff = Math.floor(( $scope.todate - $scope.fromdate ) / 86400000);
+				 $scope.days = (diff+1)-0.5;
+			 }
+			 else if((fromgreeting == 'pm' && togreeting == 'am')){
+				 $scope.tofromgreeting = true;
+				 $scope.days = '';
+				 event.preventDefault();
+			}
+			else{
+				 $scope.days                  = 0;
+				 diff = Math.floor(( $scope.todate - $scope.fromdate ) / 86400000);
+				 $scope.days = (diff+1);
+			 }
+		 }
+  }
+		  
+  function countSatSun(start, end){
+			  var weekendcount = 0;
+			  if(end < start){
+				  return;
+			  }
+			  for(var count = {sun:0, sat:0}; start < end; start.setDate(start.getDate() + 1)){
+				if(start.getDay() == 0){
+					 // count.sun++;
+					weekendcount++;
+				}
+				else if(start.getDay() == 6){
+					//count.sat++;
+					weekendcount++;
+				}
+			 }
+			  return weekendcount;
+		}
+  
+  $scope.saveleave = function(form,event){
+		 if(form.$valid){
+			 form.submit();
+		 }
+		 else{
+			 $scope.tofromgreeting        = false;
+			 event.preventDefault();
+		 }
+	 };
+	 
+	 $scope.resetapplyleave = function(){
+			$scope.ephone     = '';
+			$scope.lreason    = '';
+			$scope.fromdate   = '';
+			$scope.todate     = '';
+			$('.error').css("display","none");
+			$('#todaygreeting').attr('disabled','true');
+			$('#fromdaygreeting').attr('disabled','true');
+		};
+});
 
 function applyLeaveController($scope){
-	 $scope.leaves = [
-                     {LeaveCode : 'CL', LeaveName : 'Casual Leave' },       
-                     {LeaveCode : 'EL', LeaveName : 'Earned Leave' }];
-	 $scope.leavetype    = 'CL';
-	 $scope.fromdaygreeting  = 'am';
-	 $scope.todaygreeting = 'am';
-	 
 	 
 }
 function welcomeController($scope, $http) {
