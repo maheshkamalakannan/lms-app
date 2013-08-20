@@ -4,7 +4,7 @@
 <h2> Home - Employee</h2>
 <div id="rightcontent">
 		  	<div class="signout">
-   			    <h5>${empName}</h5>
+   			    <h5>${EmpForm.firstName} ${EmpForm.lastName}</h5>
 			    <a href="#">Sign Out</a>
 	        </div>
 </div>
