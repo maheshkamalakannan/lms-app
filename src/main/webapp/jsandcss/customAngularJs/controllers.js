@@ -8,6 +8,7 @@ function loginController($scope) {
 	   form.submit();
 	 }
 	 else{
+	  $('.alert-error').hide();	 
 	  event.preventDefault();
 	 }
   };
