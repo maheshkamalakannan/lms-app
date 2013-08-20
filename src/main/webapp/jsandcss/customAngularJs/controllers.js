@@ -19,11 +19,21 @@ function constantsController($scope){
 	$scope.invalidemail      = "Invalid Email address.";
 	$scope.passwordrequired  = "Password is required.";
     $scope.signin            = "Sign In";
+    
     $scope.newpasswordrequired           = "New Password is required.";
     $scope.newpasswordminlength          = "Password must be 7 characters.";
     $scope.confirmationpasswordrequired  = "Confirm Password is required.";
     $scope.confirmationpassword          = "Current password and New Password are same.";
     $scope.passwordmismatch              = "Passwords do not match.";
+    
+    $scope.fromdaterequired              = "From date Required.";
+    $scope.todaterequired                = "To date Required.";
+    $scope.tofromcombination             = "This combination not allowed.";
+    $scope.todategreater                 = "To-date should be greater.";
+    $scope.phonerequired                 = "Phone number Required.";
+    $scope.leavereasonrequired           = "Leave Reason Required.";
+    $scope.daygreeting1                  = "AM";
+    $scope.daygreeting2                  = "PM";
     
     
     $scope.changepasswordtabs            = "Home > Settings > Change Password";
