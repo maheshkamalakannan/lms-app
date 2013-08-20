@@ -77,12 +77,13 @@ function changePasswordController($scope){
 var mycontroller = angular.module('mainController', ['ngGrid','$strap.directives']);
 
 mycontroller.controller('gridCtrl', function($scope) {
-	$scope.gridData = [{Type: "CL", Total: 10, Consumed: 5, Balance: 2},
-	                   {Type: "EL", Total: 10, Consumed: 5, Balance: 2}];
-    
-    $scope.gridOptions = { 
-    		data: 'gridData',
-    		multiSelect: false};
+
+	$scope.init = function(data1) {
+		$scope.gridData = data1;
+		$scope.gridOptions = { 
+	    		data: 'gridData',
+	    		multiSelect: false};
+	}
 });
 
 mycontroller.controller('applyLeaveController', function($scope, $window, $location) {
