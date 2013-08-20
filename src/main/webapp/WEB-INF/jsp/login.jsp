@@ -25,7 +25,8 @@
 						  <input type="email" 
 								 name="userName" 
 								 placeholder="Email Address" 
-								 ng-model="email" 
+								 ng-model="email"
+								 maxlength="30" 
 								 required/><br>
 								 <div>
 								   <span class="error" style="width: 80%;" ng-show="submitted && loginForm.userName.$error.required">{{emailrequired}}</span>
