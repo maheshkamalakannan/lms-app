@@ -16,7 +16,9 @@ import javax.persistence.Table;
 @Entity
 @SequenceGenerator(
 		name="SEQ_STORE",
-		sequenceName="employeeleave__id_seq"
+		sequenceName="employeeleave__id_seq",
+		initialValue=1, 
+		allocationSize=100
 )
 @Table(name="employeeleave_")
 public class EmployeeLeave implements Serializable {
@@ -28,16 +30,32 @@ public class EmployeeLeave implements Serializable {
 	private Leave leave;
 	private Calendar fromDate;
 	private Calendar toDate;
+	private int noOfDays;
+	
+	private String fromDateSession;  //This is for setting AM or PM
+	private String toDateSession;    //This is for setting AM or PM
+	private String reasonForLeave;
+	private String emergencyPhoneNumber;
+	private String leaveStatus;
+	private String cancellationComments;
+	private Calendar cancellationDate;
+	private Calendar approvalDate;
+	private String approvalComments;
 	
 	public EmployeeLeave() {
 	}
 	
 	public EmployeeLeave(Employee employee, Leave leave, Calendar fromDate,
-			Calendar toDate) {
+			Calendar toDate, int noOfDays,String fromDateSession,String toDateSession) {
+		
 		this.employee = employee;
 		this.leave = leave;
 		this.fromDate = fromDate;
-		this.toDate = toDate;				
+		this.toDate = toDate;
+		this.noOfDays = noOfDays;
+		this.fromDateSession = fromDateSession;
+		this.toDateSession = toDateSession;
+		
 	}
 	
 	@Id
@@ -87,6 +105,96 @@ public class EmployeeLeave implements Serializable {
 
 	public void setToDate(Calendar toDate) {
 		this.toDate = toDate;
+	}
+	
+	@Column(name = "no_of_days", nullable = false)
+	public int getNoOfDays() {
+		return noOfDays;
+	}
+
+	public void setNoOfDays(int noOfDays) {
+		this.noOfDays = noOfDays;
+	}
+
+	@Column(name = "from_date_session", nullable = false)
+	public String getFromDateSession() {
+		return fromDateSession;
+	}
+
+	public void setFromDateSession(String fromDateSession) {
+		this.fromDateSession = fromDateSession;
+	}
+
+	@Column(name = "to_date_session", nullable = false)
+	public String getToDateSession() {
+		return toDateSession;
+	}
+
+	public void setToDateSession(String toDateSession) {
+		this.toDateSession = toDateSession;
+	}
+	
+	@Column(name = "reason_for_leave", nullable = true)
+	public String getReasonForLeave() {
+		return reasonForLeave;
+	}
+
+	public void setReasonForLeave(String reasonForLeave) {
+		this.reasonForLeave = reasonForLeave;
+	}
+	
+	@Column(name = "emergeny_phone", nullable = true)
+	public String getEmergencyPhoneNumber() {
+		return emergencyPhoneNumber;
+	}
+
+	public void setEmergencyPhoneNumber(String emergencyPhoneNumber) {
+		this.emergencyPhoneNumber = emergencyPhoneNumber;
+	}
+
+	@Column(name = "leave_status", nullable = false)
+	public String getLeaveStatus() {
+		return leaveStatus;
+	}
+
+	public void setLeaveStatus(String leaveStatus) {
+		this.leaveStatus = leaveStatus;
+	}
+
+	@Column(name = "cancellation_comments", nullable = true)
+	public String getCancellationComments() {
+		return cancellationComments;
+	}
+
+	public void setCancellationComments(String cancellationComments) {
+		this.cancellationComments = cancellationComments;
+	}
+
+	@Column(name = "approval_comments", nullable = true)
+	public String getApprovalComments() {
+		return approvalComments;
+	}
+
+	public void setApprovalComments(String approvalComments) {
+		this.approvalComments = approvalComments;
+	}
+	
+	@Column(name = "cancellation_date", nullable = true)
+	public Calendar getCancellationDate() {
+		return cancellationDate;
+	}
+
+	public void setCancellationDate(Calendar cancellationDate) {
+		this.cancellationDate = cancellationDate;
+	}
+
+	@Column(name = "approval_date", nullable = true)
+	public Calendar getApprovalDate() {
+		return approvalDate;
+	}
+
+	public void setApprovalDate(Calendar approvalDate) {
+		this.approvalDate = approvalDate;
 	}
 
 	@Override

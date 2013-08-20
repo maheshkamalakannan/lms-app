@@ -15,17 +15,19 @@ public class Leave implements Serializable {
 	
 	private String id;
 	private String description;
-	private int days;
+	private float days;
 	
 	public Leave() {
 	}
 	
-	public Leave(String id, String description, int days) {
+	public Leave(String id, String description, float days) {
 		this.id = id;
         this.description = description;
         this.days = days;
     }
 	
+	
+
 	@Id
 	@Column(name = "id", nullable = false)
 	public String getId() {
@@ -45,11 +47,12 @@ public class Leave implements Serializable {
 		this.description = description;
 	}
 	
-	public int getDays() {
+	@Column(name = "days")
+	public float getDays() {
 		return days;
 	}
 	
-	public void setDays(int days) {
+	public void setDays(float days) {
 		this.days = days;
 	}
 	

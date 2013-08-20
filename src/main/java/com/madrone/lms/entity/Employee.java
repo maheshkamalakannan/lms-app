@@ -37,10 +37,12 @@ public class Employee implements Serializable {
 	private Department department;
 	private Role role;
 	private Set<EmployeeLeave> employeeLeaves = new HashSet<EmployeeLeave>();
+	private String reporting_to;
 		
 	public Employee() {
 	}
 	
+
 	public Employee(String id, String firstName, String lastName, 
 			String primaryEmail, String secondaryEmail, 
 			Calendar dateOfJoin, DesignationEnum designation,
@@ -128,6 +130,24 @@ public class Employee implements Serializable {
 
 	public void setAddress(Address address) {
 		this.address = address;
+	}
+	
+	
+   
+    @ManyToOne(cascade={CascadeType.ALL})
+    @JoinColumn(name="reporting_to")
+    private Employee manager;
+	
+    public String getReporting_to() {
+		return reporting_to;
+	}
+    
+
+	@OneToMany(mappedBy="manager")
+    private Set<Employee> employeeGroup = new HashSet<Employee>();
+
+	public void setReporting_to(String reporting_to) {
+		this.reporting_to = reporting_to;
 	}
 	
 	@ManyToOne

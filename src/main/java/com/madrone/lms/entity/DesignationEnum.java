@@ -12,6 +12,10 @@ public enum DesignationEnum {
 	
 	private final String description;
 
+	public String getDescription() {
+		return description;
+	}
+
 	DesignationEnum(String description) {
 		this.description = description;
 	}
