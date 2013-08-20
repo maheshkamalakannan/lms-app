@@ -66,6 +66,7 @@ public class EmployeeDaoImpl extends AbstractDaoImpl<Employee, String>
             criterionList.add(Restrictions.eq("primaryEmail", userName));
             List<Employee> employees = findByCriteria(criterionList);
             
+            
             return employees.isEmpty() ? "":employees.get(0).getRole().getId();
     }
 }
