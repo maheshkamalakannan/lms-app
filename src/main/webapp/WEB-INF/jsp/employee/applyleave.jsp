@@ -26,8 +26,8 @@
 						       data-date-today-Highlight='true' bs-datepicker readonly ng-change="todaysdate($event)" required/>
 		            	<button type="button" class="btn" data-toggle="datepicker"><i class="icon-calendar"></i></button>
 	               	 </div>
-	               	 <input type="radio" disabled ng-model="fromdaygreeting" name="fromdaygreeting" id="fromdaygreeting" value="am" checked="checked" ng-change="selectfromGreeting($event)"> AM 
-                     <input type="radio" ng-model="fromdaygreeting" name="fromdaygreeting" id="fromdaygreeting" value="pm" ng-change="selectfromGreeting($event)"> PM <br/>
+	               	 <input type="radio" ng-disabled="applyleave.todatepicker.$invalid" ng-model="fromdaygreeting" name="fromdaygreeting" id="fromdaygreeting" value="am" ng-change="selectfromGreeting($event)" checked> AM 
+                     <input type="radio" ng-disabled="applyleave.todatepicker.$invalid" ng-model="fromdaygreeting" name="fromdaygreeting" id="fromdaygreeting" value="pm" ng-change="selectfromGreeting($event)"> PM <br/>
 	            </td>
 	         </tr>
 	         <tr>
@@ -40,11 +40,13 @@
 				  	<div class="control-group input-append">
 					    <input name="todatepicker" id="inputDatepicker" style="background-color: #FFFFFF;" class="input-small" type="text" ng-model="todate"
 					           data-date-format="dd/mm/yyyy" data-date-days-Of-Week-Disabled =[0,6]
-						       data-date-today-Highlight='true' bs-datepicker readonly ng-change="todaysdate($event)" required/>
-		        	    <button type="button" class="btn" data-toggle="datepicker"><i class="icon-calendar"></i></button>
+						       data-date-today-Highlight='true'  ng-disabled="applyleave.fromdatepicker.$invalid" 
+						       ng-change="[todaysdate($event)]"bs-datepicker readonly required/>
+		        	    <button type="button" ng-disabled="applyleave.fromdatepicker.$invalid" class="btn" data-toggle="datepicker"><i class="icon-calendar"></i></button>
 	               	 </div>
-	               	 <input type="radio" disabled ng-model="todaygreeting" name="todaygreeting" id="todaygreeting" ng-change="selectfromGreeting($event)" value="am" > AM 
-                     <input type="radio" ng-model="todaygreeting" name="todaygreeting" id="todaygreeting" ng-change="selectfromGreeting($event)" value="pm" checked="checked"> PM <br/>
+	               	 <!--  {{applyleave.fromdatepicker.$invalid+'nothing yet'}}-->
+	               	 <input type="radio" ng-disabled="applyleave.todatepicker.$invalid" ng-model="todaygreeting" name="todaygreeting" id="todaygreeting" ng-change="selectfromGreeting($event)" value="am" > AM 
+                     <input type="radio" ng-disabled="applyleave.todatepicker.$invalid" ng-model="todaygreeting" name="todaygreeting" id="todaygreeting" ng-change="selectfromGreeting($event)" value="pm" checked> PM <br/>
 	              </td>
 	       	</tr>
 	       	<tr>
@@ -53,20 +55,19 @@
 		    	     <span class="error" style="width: 80%; margin-top:-12px; margin-bottom:-4px;" ng-model="todategreaterfromdate" ng-show="todategreaterfromdate">To-date should be greater.</span>
 	                 <span class="error" style="width: 80%; margin-top:-12px; margin-bottom:-4px;" ng-model="tofromgreeting" ng-show="tofromgreeting">This combination not allowed.</span>
 		    	     <span class="error" style="width: 80%; margin-top:-12px; margin-bottom:-4px;" ng-model="submitted" ng-show="submitted && applyleave.todatepicker.$error.required">To date Required.</span>
-		    	     <span class="error" style="width: 80%; margin-top:-12px; margin-bottom:-4px;" ng-model="selectdates" ng-show="selectdates">Please select dates first.</span>
 	    	     </td>
 	    	</tr>
 	       	<tr>
 		       	  <td><span class="rc">Number Of Days</span></td>
 	              <td><input type="text" name="days" style="width: 15%; background-color: #FFFFFF;" ng-model="days" readonly><br></td>
 	       	</tr>
-	       		<tr> 
+	       	<tr> 
 	 	          <td><span class="rc">Emergency Phone</span></td>
-	              <td><input type="text"  ng-model="ephone" name="phone" required/></td>
+	              <td><input type="text" ng-model="ephone" name="phone" required/></td>
 		    </tr>
 		    <tr>
 	    	     <td></td>
-	    	     <td><span class="error" style="width: 80%; margin-top:-12px; margin-bottom:-4px;"  ng-model="submitted" ng-show="submitted && applyleave.leavereason.$error.required">Phone number Required.</span></td>
+	    	     <td><span class="error" style="width: 80%; margin-top:-12px; margin-bottom:-4px;"  ng-model="submitted" ng-show="submitted && applyleave.phone.$error.required">Phone number Required.</span></td>
 	    	</tr>
 	       	<tr> 
 	 	          <td><span class="rc">Reason</span></td>

@@ -78,15 +78,13 @@ mycontroller.controller('applyLeaveController', function($scope, $window, $locat
 	  $scope.todategreaterfromdate = false;
 	  var diff                     = "";
 	  $scope.tofromgreeting        = false;
+	  var countwithoutweekend      = ""; 
 	  $scope.leaves = [
 	                     {LeaveCode : 'CL', LeaveName : 'Casual Leave' },       
 	                     {LeaveCode : 'EL', LeaveName : 'Earned Leave' }];
 	  $scope.leavetype        = 'CL';
 	  $scope.fromdaygreeting  = 'am';
 	  $scope.todaygreeting    = 'pm';
-	  /*$scope.fromdate         = new Date();
-	  $scope.todate           = new Date();
-	  $scope.days             = 1;*/
 	  
 	  $scope.todaysdate = function(event) {
 		  if(($scope.fromdate > $scope.todate) && ($scope.fromdate != '' && $scope.todate != '')){
@@ -98,8 +96,7 @@ mycontroller.controller('applyLeaveController', function($scope, $window, $locat
 			    var fromgreeting             = $scope.fromdaygreeting;
 				var togreeting               = $scope.todaygreeting;
 				$scope.tofromgreeting        = false;
-				$('#fromdaygreeting').removeAttr('disabled');
-				$('#todaygreeting').removeAttr('disabled');
+				countwithoutweekend = calcBusinessDays($scope.fromdate,$scope.todate);
 				calculateDays(fromgreeting,togreeting,event);
 		    }
 		  };
@@ -120,18 +117,18 @@ mycontroller.controller('applyLeaveController', function($scope, $window, $locat
   function calculateDays(fromgreeting,togreeting,event){
 	     if(((fromgreeting == 'pm' && togreeting == 'pm') || (fromgreeting == 'am' && togreeting == 'am')) && ($scope.fromdate < $scope.todate)){
 			    $scope.days                  = 0;
-			    diff = Math.floor(( $scope.todate - $scope.fromdate ) / 86400000);
-			    $scope.days = (diff+1)-0.5;
+			    //diff = Math.floor(( $scope.todate - $scope.fromdate ) / 86400000);
+			    $scope.days = (countwithoutweekend+1)-0.5;
 		 }
 		 else if((fromgreeting == 'am' && togreeting == 'pm') && ($scope.fromdate < $scope.todate)){
 			    $scope.days                  = 0;
-			    diff = Math.floor(( $scope.todate - $scope.fromdate ) / 86400000);
-			    $scope.days = (diff+1);
+			    //diff = Math.floor(( $scope.todate - $scope.fromdate ) / 86400000);
+			    $scope.days = (countwithoutweekend+1);
 		 }
 		 else if((fromgreeting == 'pm' && togreeting == 'am') && ($scope.fromdate < $scope.todate)){
 			    $scope.days                  = 0;
-			    diff = Math.floor(( $scope.todate - $scope.fromdate ) / 86400000);
-			    $scope.days = (diff);
+			    //diff = Math.floor(( $scope.todate - $scope.fromdate ) / 86400000);
+			    $scope.days = (countwithoutweekend);
 		 }
 		 else if(($scope.fromdate > $scope.todate)){
 			 console.log(" from date is greater not applicable");
@@ -139,8 +136,8 @@ mycontroller.controller('applyLeaveController', function($scope, $window, $locat
 		 else{
 			 if((fromgreeting == 'pm' && togreeting == 'pm') || (fromgreeting == 'am' && togreeting == 'am')){
 				 $scope.days                  = 0;
-				 diff = Math.floor(( $scope.todate - $scope.fromdate ) / 86400000);
-				 $scope.days = (diff+1)-0.5;
+				 //diff = Math.floor(( $scope.todate - $scope.fromdate ) / 86400000);
+				 $scope.days = (countwithoutweekend+1)-0.5;
 			 }
 			 else if((fromgreeting == 'pm' && togreeting == 'am')){
 				 $scope.tofromgreeting = true;
@@ -149,36 +146,49 @@ mycontroller.controller('applyLeaveController', function($scope, $window, $locat
 			}
 			else{
 				 $scope.days                  = 0;
-				 diff = Math.floor(( $scope.todate - $scope.fromdate ) / 86400000);
-				 $scope.days = (diff+1);
+				 //diff = Math.floor(( $scope.todate - $scope.fromdate ) / 86400000);
+				 $scope.days = (countwithoutweekend+1);
 			 }
 		 }
   }
-		  
-  function countSatSun(start, end){
-			  var weekendcount = 0;
-			  if(end < start){
-				  return;
-			  }
-			  for(var count = {sun:0, sat:0}; start < end; start.setDate(start.getDate() + 1)){
-				if(start.getDay() == 0){
-					 // count.sun++;
-					weekendcount++;
-				}
-				else if(start.getDay() == 6){
-					//count.sat++;
-					weekendcount++;
-				}
-			 }
-			  return weekendcount;
-		}
+  
+  /*http://stackoverflow.com/questions/3464268/find-day-difference-between-two-dates-excluding-weekend-days*/
+  function calcBusinessDays(dDate1, dDate2) { // input given as Date objects
+      var iWeeks, iDateDiff, iAdjust = 0;
+      if (dDate2 < dDate1) return -1; // error code if dates transposed
+      var iWeekday1 = dDate1.getDay(); // day of week
+      var iWeekday2 = dDate2.getDay();
+      iWeekday1 = (iWeekday1 == 0) ? 7 : iWeekday1; // change Sunday from 0 to 7
+      iWeekday2 = (iWeekday2 == 0) ? 7 : iWeekday2;
+		
+      if ((iWeekday1 > 5) && (iWeekday2 > 5)) iAdjust = 1; // adjustment if both days on weekend
+      iWeekday1 = (iWeekday1 > 5) ? 5 : iWeekday1; // only count weekdays
+      iWeekday2 = (iWeekday2 > 5) ? 5 : iWeekday2;
+
+      // calculate differnece in weeks (1000mS * 60sec * 60min * 24hrs * 7 days = 604800000)
+      iWeeks = Math.floor((dDate2.getTime() - dDate1.getTime()) / 604800000)
+
+      if (iWeekday1 <= iWeekday2) {
+        iDateDiff = (iWeeks * 5) + (iWeekday2 - iWeekday1)
+      } else {
+        iDateDiff = ((iWeeks + 1) * 5) - (iWeekday1 - iWeekday2)
+      }
+
+      iDateDiff -= iAdjust // take into account both days on weekend
+
+      return (iDateDiff); // add 1 because dates are inclusive
+  }
   
   $scope.saveleave = function(form,event){
 		 if(form.$valid){
-			 form.submit();
+			 if($scope.tofromgreeting == true || $scope.todategreaterfromdate == true){
+				 event.preventDefault();
+			 }
+			 else{
+			   form.submit();
+			 }
 		 }
 		 else{
-			 $scope.tofromgreeting        = false;
 			 event.preventDefault();
 		 }
 	 };
@@ -188,6 +198,8 @@ mycontroller.controller('applyLeaveController', function($scope, $window, $locat
 			$scope.lreason    = '';
 			$scope.fromdate   = '';
 			$scope.todate     = '';
+			$scope.fromdaygreeting  = 'am';
+			$scope.todaygreeting    = 'pm';
 			$('.error').css("display","none");
 			$('#todaygreeting').attr('disabled','true');
 			$('#fromdaygreeting').attr('disabled','true');
