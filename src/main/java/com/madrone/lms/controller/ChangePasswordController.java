@@ -30,7 +30,13 @@ public class ChangePasswordController {
 	@Autowired
 	private MessageSource messageSource;
 
-	// This function is used in ChangePassword.jsp file
+	@RequestMapping(value = "/changePassword", method = RequestMethod.GET)
+	public String changePassword(Model model, ChangePasswordForm form) {
+		model.addAttribute("ChangePasswordForm", new ChangePasswordForm());
+		return LMSConstants.CHANGE_PASSWORD_SCR;
+	}
+		
+		
 	@RequestMapping(value = "/submitChangePassword", method = RequestMethod.POST)
 	public String submitChangePassword(
 			Model model,

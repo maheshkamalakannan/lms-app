@@ -20,4 +20,5 @@ public class LMSConstants {
 	public static final String MANAGER_VIEW_LEAVE_REQUEST_SCR   = "viewLeaveRequestScreen";
 	public static final String MANAGER_VIEW_APPROVED_LEAVES_SCR = "viewApprovedLeavesScreen";
 	public static final String MANAGER_VIEW_REJECTED_LEAVES_SCR = "viewRejectedLeavesScreen";
+	public static final String LEAVE_STATUS_PENDING = "P";
 }

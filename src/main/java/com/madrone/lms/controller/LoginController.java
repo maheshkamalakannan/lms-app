@@ -2,6 +2,8 @@ package com.madrone.lms.controller;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +14,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.bind.support.SessionStatus;
 
 import com.madrone.lms.constants.LMSConstants;
 import com.madrone.lms.entity.Employee;
@@ -22,7 +23,7 @@ import com.madrone.lms.service.EmployeeService;
 import com.madrone.lms.service.UserService;
 
 @Controller
-@SessionAttributes({ "empName", "userName" })
+@SessionAttributes("EmpForm")
 public class LoginController {
 	private static final Logger logger = LoggerFactory
 			.getLogger(LoginController.class);
@@ -35,6 +36,7 @@ public class LoginController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String showLoginForm(Model model) {
+		logger.info("Inside showLoginForm()");
 		model.addAttribute("LoginForm", new LoginForm());
 		return LMSConstants.LOGIN_MENU;
 	}
@@ -42,28 +44,30 @@ public class LoginController {
 	@RequestMapping(value = "/authenticate", method = RequestMethod.POST)
 	public String authenticate(Model model,
 			@ModelAttribute("LoginForm") LoginForm loginForm,
-			BindingResult result, Map<String, Object> map) {
+			BindingResult result, Map<String, Object> map, 
+			HttpSession session) {
 
-		// loginValidator.validate(login, result);
+		logger.info("Inside authenticate()");
+		String returnString = LMSConstants.LOGIN_MENU;
+		boolean validUser = userService.authenticateUser(
+				loginForm.getUserName(), loginForm.getPassword());
 
-		if (!userService.authenticateUser(loginForm.getUserName(),
-				loginForm.getPassword())) {
+		if (validUser) {
+			returnString = employeeService.findMenuOption(loginForm.getUserName());
+			Employee employee = employeeService.findByEmailAddress(loginForm
+					.getUserName());
+		    
+			map.put("userName", loginForm.getUserName());
+			map.put("EmpForm",employee);
+			session.setAttribute("sessionUser", loginForm.getUserName());
+			return returnString;
+
+		} else {
 			result.rejectValue("password",
 					"lms.login.username.and.password.notvalid");
+			return LMSConstants.LOGIN_MENU;
+
 		}
 
-		String returnString = result.hasErrors() ? LMSConstants.LOGIN_MENU
-				: employeeService.findMenuOption(loginForm.getUserName());
-		logger.info("User Name and password given is correct.");
-		map.put("userName", loginForm.getUserName());
-
-		Employee employee = employeeService.findByEmailAddress(loginForm
-				.getUserName());
-		map.put("empName",
-				employee.getFirstName() + " " + employee.getLastName());
-
-		return returnString;
 	}
-
-
 }

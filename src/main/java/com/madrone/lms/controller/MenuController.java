@@ -25,24 +25,12 @@ public class MenuController {
 	@Autowired
 	private UserService userService;
 
-	// These functions are used in EmployeeMenu.jsp file
-	@RequestMapping(value = "/changePassword", method = RequestMethod.GET)
-	public String changePassword(Model model, ChangePasswordForm form) {
-		model.addAttribute("ChangePasswordForm", new ChangePasswordForm());
-		return LMSConstants.CHANGE_PASSWORD_SCR;
-	}
-
 	@RequestMapping(value = "/employeeHome", method = RequestMethod.GET)
 	public String employeeHome(Model model, ApplyLeaveForm form) {
 		model.addAttribute("EmployeeHomeForm", new EmployeeHomeForm());
 		return LMSConstants.EMPLOYEE_HOME_SCR;
 	}
-
-	@RequestMapping(value = "/applyLeave", method = RequestMethod.GET)
-	public String applyLeave(Model model, ApplyLeaveForm form) {
-		model.addAttribute("ApplyLeaveForm", new ApplyLeaveForm());
-		return LMSConstants.APPLY_LEAVE_SCR;
-	}
+	
 
 	@RequestMapping(value = "/cancelLeave", method = RequestMethod.GET)
 	public String cancelLeave(Model model, CancelLeaveForm form) {
