@@ -1,12 +1,24 @@
 package com.madrone.lms.service.impl;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.madrone.lms.dao.EmployeeDao;
+import com.madrone.lms.dao.EmployeeLeaveDao;
 import com.madrone.lms.dao.LeaveDao;
+import com.madrone.lms.entity.Employee;
+import com.madrone.lms.entity.EmployeeLeave;
 import com.madrone.lms.entity.Leave;
+import com.madrone.lms.form.ApplyLeaveFormGrid;
 import com.madrone.lms.service.LeaveService;
+import com.madrone.lms.utils.DateUtils;
 
 @Service("leaveService")
 @Transactional(readOnly = true)
@@ -14,7 +26,13 @@ public class LeaveServiceImpl implements LeaveService {
 
 	@Autowired
 	private LeaveDao leaveDao;
-	
+
+	@Autowired
+	private EmployeeDao empDao;
+
+	@Autowired
+	private EmployeeLeaveDao empLeaveDao;
+
 	@Override
 	public Leave findById(String id) {
 		return leaveDao.findById(id);
@@ -31,6 +49,64 @@ public class LeaveServiceImpl implements LeaveService {
 	public void deleteLeave(String id) {
 		Leave l = leaveDao.findById(id);
 		leaveDao.delete(l);
+	}
+
+	@Override
+	public List<Leave> getLeaveTypes() {
+		return leaveDao.getLeaveTypes();
+	}
+
+	@Override
+	public List<ApplyLeaveFormGrid> getApplyLeaveGridDetails(String userName) {
+		List<Leave> leaveList = leaveDao.getLeaveTypes();
+		List<ApplyLeaveFormGrid> applyLeaveGrid = new ArrayList<ApplyLeaveFormGrid>();
+
+		for (Leave l : leaveList) {
+			ApplyLeaveFormGrid gridBean = new ApplyLeaveFormGrid();
+			gridBean.setType(l.getId());
+			
+			findEmployeeLeaveBalance(gridBean, userName, l.getDays());
+			applyLeaveGrid.add(gridBean);
+		}
+		return applyLeaveGrid;
+	}
+
+	private void findEmployeeLeaveBalance(ApplyLeaveFormGrid gridBean,
+			String user, float daysAllotedPerMonth) {
+		Employee employee = empDao.findByEmailAddressWithLeaves(user);
+
+		int noOfMonths = 0;
+		float totalLeaveTaken = 0.0f;
+
+		Calendar now = Calendar.getInstance();
+		Calendar doj = employee.getDateOfJoin();
+		Date dateOfJoin = doj.getTime();
+
+		int year = doj.get(Calendar.YEAR);
+		String firstDay = "01/01/" + String.valueOf(year);
+		Date fistDayOfThisYear = DateUtils.convertStringToCalendar(firstDay)
+				.getTime();
+
+		if (dateOfJoin.after(fistDayOfThisYear)) {
+			noOfMonths = now.get(Calendar.MONTH) - doj.get(Calendar.MONTH);
+		} else {
+			noOfMonths = now.get(Calendar.MONTH);
+		}
+		gridBean.setTotal(daysAllotedPerMonth * noOfMonths);
+
+		Set<EmployeeLeave> empLeaveList = employee.getEmployeeLeaves();
+
+		if (empLeaveList.size() > 0) {
+			for (EmployeeLeave el : empLeaveList) {
+				if (el.getLeave().getId().equals(gridBean.getType())) {
+					totalLeaveTaken = totalLeaveTaken + el.getNoOfDays();
+				}
+			}
+		}
+
+		gridBean.setConsumed(totalLeaveTaken);
+		gridBean.setBalance(gridBean.getTotal() - totalLeaveTaken);
+
 	}
 
 }
