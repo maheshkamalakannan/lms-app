@@ -4,6 +4,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
+
+import com.madrone.lms.entity.LeaveStatusEnum;
 
 public class DateUtils {
 
@@ -21,6 +24,20 @@ public class DateUtils {
 		}
 		
 		return cal;
+	}
+	
+	
+	public static Date convertStringToDate(String stringDate) {
+		Date now = new Date();
+		SimpleDateFormat sdfDate = new SimpleDateFormat(pattern);
+		try {
+			now =  sdfDate.parse(stringDate);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		return now;
+		
 	}
 	
 
@@ -60,11 +77,23 @@ public class DateUtils {
 		
 	}
 
-	private static float daysBetweenFromDateAndTodate(Date fdate, Date tdate) {
-		return 0;
+	private static int daysBetweenFromDateAndTodate(Date d1, Date d2) {
+		  int days =  (int)( (d2.getTime() - d1.getTime()) / (1000 * 60 * 60 * 24));
+		  return days+1;
 	}
 	
-
+	
+  //Enum populate Example
+	public static void main(String args[]) {
+	    
+		for (LeaveStatusEnum l : LeaveStatusEnum.values()) {
+			System.out.println("Description======" + l.description());
+			System.out.println("Name ======" + l.name());
+			System.out.println("---" + l.valueOf("PENDING_APPROVAL"));
+		}
+   }
+	
+	
 }
 
 
