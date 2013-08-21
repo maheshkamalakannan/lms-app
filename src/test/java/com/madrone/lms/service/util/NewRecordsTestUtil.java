@@ -61,7 +61,7 @@ public class NewRecordsTestUtil {
 									"TN", 600004);
 			this.user 	  	= new User("test@madronesoft.com", "password");
 			this.leave 	  	= new Leave("CL", "CASUAL LEAVE",20);
-			this.empleave 	= new EmployeeLeave(emp, leave, Calendar.getInstance(), Calendar.getInstance());
+			//this.empleave 	= new EmployeeLeave(emp, leave, Calendar.getInstance(), Calendar.getInstance());
 		}
 		
 			
