@@ -7,7 +7,7 @@
 		<div id="rightcontent">
 		  <h5>{{changepasswordtabs}}</h5>
 		  	<div class="signout">
-   			    <h5>${empName}</h5>
+   			    <h5>${EmpForm.firstName} ${EmpForm.lastName}</h5>
 			    <a href="/lms-app">Sign Out</a>
 	        </div>
 	       
