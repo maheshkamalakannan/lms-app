@@ -1,18 +1,9 @@
 package com.madrone.lms.controller;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.OutputStream;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
-
-import org.codehaus.jackson.JsonGenerationException;
-import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,12 +34,10 @@ public class ApplyLeaveController {
 
 	@Autowired
 	private LeaveService leaveService;
-
+	
 	@Autowired
 	private MessageSource messageSource;
 
-	@Autowired
-	ServletContext context;
 
 	@RequestMapping(value = "/applyLeave", method = RequestMethod.GET)
 	public String applyLeave(Model model, ApplyLeaveForm form,
@@ -73,6 +62,7 @@ public class ApplyLeaveController {
 		}
 
 		model.addAttribute("jsonString", jsonString);
+		System.out.println("jsonString  "+jsonString);
 		model.addAttribute("leaveList", leaveDetailsGridList);
 		model.addAttribute("ApplyLeaveForm", new ApplyLeaveForm());
 		

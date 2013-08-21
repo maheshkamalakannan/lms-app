@@ -23,7 +23,7 @@ import com.madrone.lms.service.EmployeeService;
 import com.madrone.lms.service.UserService;
 
 @Controller
-@SessionAttributes("EmpForm")
+@SessionAttributes({"EmpForm","userName"})
 public class LoginController {
 	private static final Logger logger = LoggerFactory
 			.getLogger(LoginController.class);
@@ -60,7 +60,7 @@ public class LoginController {
 			map.put("userName", loginForm.getUserName());
 			map.put("EmpForm",employee);
 			session.setAttribute("sessionUser", loginForm.getUserName());
-			return returnString;
+			return returnString.toLowerCase();
 
 		} else {
 			result.rejectValue("password",

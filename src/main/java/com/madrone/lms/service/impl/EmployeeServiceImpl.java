@@ -40,7 +40,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public Employee findByEmailAddress(String primaryEmail) {
-		return empDao.findByEmailAddress(primaryEmail);
+		Employee emp = empDao.findByEmailAddress(primaryEmail);                
+        emp = setReportingPerson(emp);
+        return emp;
 	}
 
 	@Override
@@ -50,6 +52,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public String findMenuOption(String userName) {
-		return empDao.findRole(userName);
+		return empDao.findRole(userName).toLowerCase();
 	}
+	
+	private Employee setReportingPerson(Employee emp) {
+        Employee manager = empDao.findById(emp.getReporting_to());
+        emp.setReporting_to(manager.getFirstName()+ " " + manager.getLastName());
+        return emp;
+    }
 }
