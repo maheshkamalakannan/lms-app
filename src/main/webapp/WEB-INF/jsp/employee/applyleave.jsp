@@ -117,8 +117,8 @@
 		        </tbody>
 		      </table>
 		    </div>
-			<div id="applyleavegrid" ng-controller="gridCtrl" ng-init='init(data1=${jsonString})'>
-			  <div class="applyleavegridStyle" ng-grid="gridOptions"></div>
+			<div id="grid" ng-controller="gridCtrl" ng-init='init(data1=${jsonString})'>
+			  <div class="gridStyle" ng-grid="gridOptions"></div>
 		    </div>
 	  </div>
  	  <div id="leavesubmit">

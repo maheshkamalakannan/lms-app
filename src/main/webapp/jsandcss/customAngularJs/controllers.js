@@ -82,13 +82,7 @@ mycontroller.controller('gridCtrl', function($scope) {
 		$scope.gridData = data1;
 		$scope.gridOptions = { 
 	    		data: 'gridData',
-	    		multiSelect: false,
-	    		showFooter:true,
-	    		columnDefs: [{field: 'Type', displayName: 'Type'},
-	    		             {field: 'Total', displayName: 'Total'},
-	    		             {field: 'Consumed', displayName: 'Consumed'},
-	    		             {field: 'Balance', displayName: 'Balance'}
-	    		             ]};
+	    		multiSelect: false};
 	}
 });
 

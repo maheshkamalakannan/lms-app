@@ -412,10 +412,9 @@ li:hover .sub-level .sub-level {
     width: 500px;
 }
 
-#cancelleavecentercontent{
-	height: 400px;
-    margin: 15px 15px 10px;
-    width: 78em;
+#grid{
+	color: #666666;
+    margin-top: 70px;
 }
 
 select {
@@ -485,15 +484,10 @@ textarea {
 	margin: 5em 1em 2em 26em;
 }
 
-.applyleavegridStyle {
+.gridStyle {
     border: 1px solid rgb(212,212,212);
-    width: 405px; 
-    height:147.5px;
-}
-
-#applyleavegrid{
-	color: #666666;
-    margin-top: 20px;
+    width: 400px; 
+    height: 90px;
 }
 
 #empDetailsDiv {
