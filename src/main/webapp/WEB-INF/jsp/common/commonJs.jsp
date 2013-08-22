@@ -16,6 +16,7 @@
 	<script type="text/javascript" src="http://angular-ui.github.com/ng-grid/lib/ng-grid.debug.js"></script>
 	<script type="text/javascript" src="https://mgcrea.github.com/angular-strap/js/angular-strap.js"></script>
     <script type="text/javascript" src="https://mgcrea.github.com/angular-strap/vendor/bootstrap-datepicker.js"></script>
+    <script type="text/javascript" src="https://raw.github.com/SamWM/jQuery-Plugins/master/numeric/jquery.numeric.js"></script>
 	<script type="text/javascript" src="<%=request.getContextPath()%>/jsandcss/customAngularJs/controllers.js"></script>	
 	
 </head>

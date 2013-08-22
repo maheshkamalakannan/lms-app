@@ -79,9 +79,16 @@ function changePasswordController($scope){
 
 var mycontroller = angular.module('mainController', ['ngGrid','$strap.directives']);
 
-/*mycontroller.controller('applyleavegrid', function($scope) {
-	
-});*/
+/* Directive to allowing only number in textbox */
+mycontroller.directive('numberMask', function() {
+    return {
+        restrict: 'A',
+        link: function(scope, element, attrs) {
+            $(element).numeric();
+        }
+    };
+});
+
 mycontroller.controller('employeehomeController', function($scope, $window, $location) {
 	 /*JS for employee home page*/
 });
@@ -231,6 +238,7 @@ mycontroller.controller('applyLeaveController', function($scope, $window, $locat
 			$('#todaygreeting').attr('disabled','true');
 			$('#fromdaygreeting').attr('disabled','true');
 		};
+			
 });
 
 mycontroller.controller('cancelleaveController', function($scope, $window, $location) {
