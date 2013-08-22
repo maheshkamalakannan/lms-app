@@ -36,8 +36,11 @@ function constantsController($scope){
     $scope.daygreeting2                  = "PM";
     
     
+    $scope.hometab                       = "Home";
     $scope.changepasswordtabs            = "Home > Settings > Change Password";
-    $scope.hometabs                      = "Home > Leaves > Apply Leaves";
+    $scope.applyleavetab                 = "Home > Leaves > Apply Leave";
+    $scope.cancelleavetab                = "Home > Leaves > Cancel Leave";
+    $scope.leavesummarytab               = "Home > Leave Summary";
 }
 function changePasswordController($scope){
 	$scope.showerror = false;
@@ -77,7 +80,6 @@ function changePasswordController($scope){
 var mycontroller = angular.module('mainController', ['ngGrid','$strap.directives']);
 
 mycontroller.controller('gridCtrl', function($scope) {
-
 	$scope.init = function(data1) {
 		$scope.gridData = data1;
 		$scope.gridOptions = { 
@@ -90,6 +92,10 @@ mycontroller.controller('gridCtrl', function($scope) {
 	    		             {field: 'Balance', displayName: 'Balance'}
 	    		             ]};
 	}
+});
+
+mycontroller.controller('employeehomeController', function($scope, $window, $location) {
+	 /*JS for employee home page*/
 });
 
 mycontroller.controller('applyLeaveController', function($scope, $window, $location) {
@@ -225,9 +231,15 @@ mycontroller.controller('applyLeaveController', function($scope, $window, $locat
 		};
 });
 
-function applyLeaveController($scope){
-	 
-}
+mycontroller.controller('cancelleaveController', function($scope, $window, $location) {
+	 /*JS for cancel leave page*/
+});
+
+mycontroller.controller('leavesummaryController', function($scope, $window, $location) {
+	 /*JS for leavesummary page*/
+});
+
+
 function welcomeController($scope, $http) {
 	$scope.oldpassword = false;
 	$scope.newpassword = false;

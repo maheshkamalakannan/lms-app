@@ -4,7 +4,7 @@
 
 	<div id="rightdata" ng-controller="applyLeaveController">
 	  <div id="topcontent" style="margin-bottom:2px;">
-      	<h5>{{hometabs}}</h5>
+      	<h5>{{applyleavetab}}</h5>
           <div class="signout">
               <h5>${EmpForm.firstName} ${EmpForm.lastName}</h5>
              <input type = "hidden" name = "userName" value="${userName}" />
