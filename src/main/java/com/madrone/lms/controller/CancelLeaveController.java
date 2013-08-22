@@ -17,10 +17,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.madrone.lms.constants.LMSConstants;
 import com.madrone.lms.entity.EmployeeLeave;
 import com.madrone.lms.form.CancelLeaveForm;
-import com.madrone.lms.form.CancelLeaveFormGrid;
 import com.madrone.lms.service.EmployeeLeaveService;
-import com.madrone.lms.service.LeaveService;
-import com.madrone.lms.utils.DateUtils;
+import com.madrone.lms.utils.JSONUtils;
 
 @Controller
 public class CancelLeaveController {
@@ -41,25 +39,8 @@ public class CancelLeaveController {
 		String userName = (String) session.getAttribute("sessionUser");
 		List<EmployeeLeave> cancelLeaveList = empLeaveService
 				.getCancelLeaveList(userName);
-		List<CancelLeaveFormGrid> gridList = new ArrayList<CancelLeaveFormGrid>();
-		ObjectMapper mapper = new ObjectMapper();
-
-		for (EmployeeLeave el : cancelLeaveList) {
-			CancelLeaveFormGrid bean = new CancelLeaveFormGrid();
-			bean.setFromDate(DateUtils.convertCalendarToString(el.getFromDate()));
-			bean.setToDate(DateUtils.convertCalendarToString(el.getToDate()));
-			bean.setLeaveType(el.getLeave().getId());
-			bean.setNoOfDays(el.getNoOfDays());
-			gridList.add(bean);
-		}
-
-		String jsonString = "";
-		try {
-			jsonString = mapper.writeValueAsString(gridList);
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-
+		String jsonString = JSONUtils.leaveListGridJSON(cancelLeaveList);
+		
 		model.addAttribute("jsonString", jsonString);
 		return LMSConstants.CANCEL_LEAVE_SCR;
 	}

@@ -23,6 +23,7 @@ import com.madrone.lms.form.ApplyLeaveForm;
 import com.madrone.lms.form.ApplyLeaveFormGrid;
 import com.madrone.lms.service.EmployeeLeaveService;
 import com.madrone.lms.service.LeaveService;
+import com.madrone.lms.utils.JSONUtils;
 
 @Controller
 public class ApplyLeaveController {
@@ -42,9 +43,8 @@ public class ApplyLeaveController {
 	@RequestMapping(value = "/applyLeave", method = RequestMethod.GET)
 	public String applyLeave(Model model, ApplyLeaveForm form,
 			HttpSession session)  {
-		
 		logger.info("Inside applyLeave()");
-		final ObjectMapper mapper = new ObjectMapper();
+		
 
 		//To Show the Leave-Type combo box in Jsp Page
 		List<Leave> ltList = leaveService.getLeaveTypes();
@@ -52,18 +52,13 @@ public class ApplyLeaveController {
 		String userName = (String) session.getAttribute("sessionUser");
 
 		// This for to Show Values in Grid.
-		List<ApplyLeaveFormGrid> leaveDetailsGridList = leaveService
+		List<ApplyLeaveFormGrid> gridList = leaveService
 				.getApplyLeaveGridDetails(userName);
-		String jsonString="";
-		try {
-			jsonString = mapper.writeValueAsString(leaveDetailsGridList);
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
+		String jsonString= JSONUtils.applyLeaveGridJSON(gridList);
+		
 
 		model.addAttribute("jsonString", jsonString);
-		System.out.println("jsonString  "+jsonString);
-		model.addAttribute("leaveList", leaveDetailsGridList);
+		model.addAttribute("leaveList", gridList);
 		model.addAttribute("ApplyLeaveForm", new ApplyLeaveForm());
 		
 		

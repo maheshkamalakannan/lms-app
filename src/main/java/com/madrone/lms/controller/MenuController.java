@@ -30,13 +30,7 @@ public class MenuController {
 		model.addAttribute("EmployeeHomeForm", new EmployeeHomeForm());
 		return LMSConstants.EMPLOYEE_HOME_SCR;
 	}
-
-	@RequestMapping(value = "/leaveSummary", method = RequestMethod.GET)
-	public String leaveSummary(Model model, LeaveSummaryForm form) {
-		model.addAttribute("LeaveSummaryForm", new LeaveSummaryForm());
-		return LMSConstants.LEAVE_SUMMARY_SCR;
-	}
-
+	
 	// These functions are used in managerMenu.jsp file
 	@RequestMapping(value = "/managerHome", method = RequestMethod.GET)
 	public String managerHome(Model model, ApplyLeaveForm form) {
