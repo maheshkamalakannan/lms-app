@@ -30,7 +30,7 @@ public class EmployeeLeave implements Serializable {
 	private Leave leave;
 	private Calendar fromDate;
 	private Calendar toDate;
-	private int noOfDays;
+	private float noOfDays;
 	
 	private String fromDateSession;  //This is for setting AM or PM
 	private String toDateSession;    //This is for setting AM or PM
@@ -108,11 +108,11 @@ public class EmployeeLeave implements Serializable {
 	}
 	
 	@Column(name = "no_of_days", nullable = false)
-	public int getNoOfDays() {
+	public float getNoOfDays() {
 		return noOfDays;
 	}
 
-	public void setNoOfDays(int noOfDays) {
+	public void setNoOfDays(float noOfDays) {
 		this.noOfDays = noOfDays;
 	}
 

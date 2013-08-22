@@ -12,7 +12,7 @@ public class ApplyLeaveForm {
 	private String toDateSession;
 	
 	private String leaveType;
-	private int noOfDays;
+	private float noOfDays;
 	private String reason;
 	private String emergencyPhone;
 	private LeaveStatusEnum status;
@@ -48,10 +48,10 @@ public class ApplyLeaveForm {
 	public void setLeaveType(String leaveType) {
 		this.leaveType = leaveType;
 	}
-	public int getNoOfDays() {
+	public float getNoOfDays() {
 		return noOfDays;
 	}
-	public void setNoOfDays(int noOfDays) {
+	public void setNoOfDays(float noOfDays) {
 		this.noOfDays = noOfDays;
 	}
 	public String getReason() {
