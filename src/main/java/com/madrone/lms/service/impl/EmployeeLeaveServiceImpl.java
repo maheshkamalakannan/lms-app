@@ -1,5 +1,7 @@
 package com.madrone.lms.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -60,6 +62,12 @@ public class EmployeeLeaveServiceImpl implements EmployeeLeaveService {
 		el.setLeaveStatus(LMSConstants.LEAVE_STATUS_PENDING);
 
 		empLeaveDao.saveOrUpdate(el);
+	}
+
+	@Override
+	public List<EmployeeLeave> getCancelLeaveList(String userName) {
+		Employee emp = empDao.findByEmailAddress(userName);
+		return empLeaveDao.getCancelLeaveList(emp);
 	}
 
 }
