@@ -82,7 +82,13 @@ mycontroller.controller('gridCtrl', function($scope) {
 		$scope.gridData = data1;
 		$scope.gridOptions = { 
 	    		data: 'gridData',
-	    		multiSelect: false};
+	    		multiSelect: false,
+	    		showFooter:true,
+	    		columnDefs: [{field: 'Type', displayName: 'Type'},
+	    		             {field: 'Total', displayName: 'Total'},
+	    		             {field: 'Consumed', displayName: 'Consumed'},
+	    		             {field: 'Balance', displayName: 'Balance'}
+	    		             ]};
 	}
 });
 
@@ -201,6 +207,7 @@ mycontroller.controller('applyLeaveController', function($scope, $window, $locat
 			 }
 		 }
 		 else{
+			 $('.success').css("display","none");
 			 event.preventDefault();
 		 }
 	 };
