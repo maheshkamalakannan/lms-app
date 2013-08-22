@@ -79,21 +79,9 @@ function changePasswordController($scope){
 
 var mycontroller = angular.module('mainController', ['ngGrid','$strap.directives']);
 
-mycontroller.controller('gridCtrl', function($scope) {
-	$scope.init = function(data1) {
-		$scope.gridData = data1;
-		$scope.gridOptions = { 
-	    		data: 'gridData',
-	    		multiSelect: false,
-	    		showFooter:true,
-	    		columnDefs: [{field: 'Type', displayName: 'Type'},
-	    		             {field: 'Total', displayName: 'Total'},
-	    		             {field: 'Consumed', displayName: 'Consumed'},
-	    		             {field: 'Balance', displayName: 'Balance'}
-	    		             ]};
-	}
-});
-
+/*mycontroller.controller('applyleavegrid', function($scope) {
+	
+});*/
 mycontroller.controller('employeehomeController', function($scope, $window, $location) {
 	 /*JS for employee home page*/
 });
@@ -109,6 +97,20 @@ mycontroller.controller('applyLeaveController', function($scope, $window, $locat
 	  $scope.leavetype        = 'CL';
 	  $scope.fromdaygreeting  = 'am';
 	  $scope.todaygreeting    = 'pm';
+	  
+	  /*Grid and grid data for Apply Leave*/
+	  $scope.init = function(data1) {
+			$scope.gridData = data1;
+			$scope.gridOptions = { 
+		    		data: 'gridData',
+		    		multiSelect: false,
+		    		showFooter:true,
+		    		columnDefs: [{field: 'Type', displayName: 'Type'},
+		    		             {field: 'Total', displayName: 'Total'},
+		    		             {field: 'Consumed', displayName: 'Consumed'},
+		    		             {field: 'Balance', displayName: 'Balance'}
+		    		             ]};
+	  };
 	  
 	  $scope.todaysdate = function(event) {
 		  if(($scope.fromdate > $scope.todate) && ($scope.fromdate != '' && $scope.todate != '')){
@@ -232,7 +234,33 @@ mycontroller.controller('applyLeaveController', function($scope, $window, $locat
 });
 
 mycontroller.controller('cancelleaveController', function($scope, $window, $location) {
-	 /*JS for cancel leave page*/
+	/*Grid and grid data for cancel Leave*/
+	  $scope.init = function(data1) {
+			$scope.gridData = data1;
+			$scope.gridOptions = { 
+		    		data: 'gridData',
+		    		multiSelect: false,
+		    		showFooter:true,
+		    		columnDefs: [{field: 'fromDate', displayName: 'From Date'},
+		    		             {field: 'toDate', displayName: 'To Date'},
+		    		             {field: 'noOfDays', displayName: 'Total Days'},
+		    		             {displayName: 'Action', cellTemplate: '<input type="radio" ng-model="cancelleave" name="cancelleave" id="cancelleave">'}
+		    		             ]};
+	  };
+	  
+	  $scope.cancelleave = function(form,event){
+		 if(form.$invalid){
+			   form.submit();
+			 }
+		 else{
+			 event.preventDefault();
+		 }
+	};
+	
+	$scope.resetcancelleave = function(){
+		$('.error').css("display","none");
+        $scope.cnclreason = '';
+	};
 });
 
 mycontroller.controller('leavesummaryController', function($scope, $window, $location) {
