@@ -1,9 +1,19 @@
 package com.madrone.lms.form;
 
+
 public class CancelLeaveForm {
 	
 	private String userName;
 	private String empName;
+	
+	private String reason;
+	
+	public String getReason() {
+		return reason;
+	}
+	public void setReason(String reason) {
+		this.reason = reason;
+	}
 	
 	public String getUserName() {
 		return userName;

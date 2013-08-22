@@ -30,41 +30,37 @@ public class MenuController {
 		model.addAttribute("EmployeeHomeForm", new EmployeeHomeForm());
 		return LMSConstants.EMPLOYEE_HOME_SCR;
 	}
-	
-
-	@RequestMapping(value = "/cancelLeave", method = RequestMethod.GET)
-	public String cancelLeave(Model model, CancelLeaveForm form) {
-		model.addAttribute("CancelLeaveForm", new CancelLeaveForm());
-		return LMSConstants.CANCEL_LEAVE_SCR;
-	}
 
 	@RequestMapping(value = "/leaveSummary", method = RequestMethod.GET)
 	public String leaveSummary(Model model, LeaveSummaryForm form) {
 		model.addAttribute("LeaveSummaryForm", new LeaveSummaryForm());
 		return LMSConstants.LEAVE_SUMMARY_SCR;
 	}
+
 	// These functions are used in managerMenu.jsp file
 	@RequestMapping(value = "/managerHome", method = RequestMethod.GET)
 	public String managerHome(Model model, ApplyLeaveForm form) {
 		model.addAttribute("ManagerHomeForm", new ManagerHomeForm());
 		return LMSConstants.MANAGER_HOME_SCR;
 	}
-	
+
 	@RequestMapping(value = "/viewleaveRequests", method = RequestMethod.GET)
 	public String viewleaveRequests(Model model, ApplyLeaveForm form) {
 		model.addAttribute("ViewLeaveRequestForm", new ViewLeaveRequestForm());
 		return LMSConstants.MANAGER_VIEW_LEAVE_REQUEST_SCR;
 	}
-	
+
 	@RequestMapping(value = "/viewApprovedLeaves", method = RequestMethod.GET)
 	public String viewApprovedleaves(Model model, ApplyLeaveForm form) {
-		model.addAttribute("ViewApprovedLeavesForm", new ViewApprovedLeavesForm());
+		model.addAttribute("ViewApprovedLeavesForm",
+				new ViewApprovedLeavesForm());
 		return LMSConstants.MANAGER_VIEW_APPROVED_LEAVES_SCR;
 	}
-	
+
 	@RequestMapping(value = "/viewRejectedLeaves", method = RequestMethod.GET)
 	public String viewRejectedleaves(Model model, ApplyLeaveForm form) {
-		model.addAttribute("ViewRejectedLeavesForm", new ViewRejectedLeavesForm());
+		model.addAttribute("ViewRejectedLeavesForm",
+				new ViewRejectedLeavesForm());
 		return LMSConstants.MANAGER_VIEW_REJECTED_LEAVES_SCR;
 	}
 
