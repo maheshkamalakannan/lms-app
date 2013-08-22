@@ -15,7 +15,7 @@
        <div id="applyleaverightcontent" style="margin-top:2px;">  
 		  <table cellpadding="4">
 		    <tr>
-			   <td><span class="rc">Leave Type</span></td>
+			   <td><span class="rc">{{employeeleavetype}}</span></td>
 		       <td><select name="leaveType">
   				  	 	<c:forEach items="${leaveTypes}" var="ltype">
        				 		<option value="${ltype.id}">${ltype.description}</option>
@@ -23,7 +23,7 @@
 					</select></td>
 	        </tr>
 	        <tr>
-		       	<td><span class="rc">From Date</span></td>
+		       	<td><span class="rc">{{alfromdate}}</span></td>
 				<td>
 					<div class="control-group input-append">
 						<input name="fromDate" id="fromDate" style="background-color: #FFFFFF;" class="input-small" type="text" ng-model="fromdate" 
@@ -40,12 +40,12 @@
 	    	     <td><span class="error" style="width: 80%; margin-top:-12px; margin-bottom:-4px;" ng-model="submitted" ng-show="submitted && applyleave.fromDate.$error.required">{{fromdaterequired}}</span></td>
 	    	</tr>
 	         <tr>
-	              <td><span class="rc">To Date</span></td>
+	              <td><span class="rc">{{altodate}}</span></td>
 				  <td>
 				  	<div class="control-group input-append">
 					    <input name="toDate" id="toDate" style="background-color: #FFFFFF;" class="input-small" type="text" ng-model="todate"
 					           data-date-format="dd/mm/yyyy" data-date-days-Of-Week-Disabled =[0,6]
-						       data-date-today-Highlight='true'  ng-disabled="applyleave.fromdatepicker.$invalid" 
+						       data-date-today-Highlight='true'  ng-disabled="applyleave.fromDate.$invalid" 
 						       ng-change="[todaysdate($event)]"bs-datepicker readonly required/>
 		        	    <button type="button" ng-disabled="applyleave.fromDate.$invalid" class="btn" data-toggle="datepicker"><i class="icon-calendar"></i></button>
 	               	 </div>
@@ -63,19 +63,20 @@
 	    	     </td>
 	    	</tr>
 	       	<tr>
-		       	  <td><span class="rc">Number Of Days</span></td>
+		       	  <td><span class="rc">{{numberofdays}}</span></td>
 	              <td><input type="text" name="noOfDays" style="width: 15%; background-color: #FFFFFF;" ng-model="days" readonly><br></td>
 	       	</tr>
 	       	<tr> 
-	 	          <td><span class="rc">Emergency Phone</span></td>
-	              <td><input type="text" ng-model="ephone" name="emergencyPhone" maxlength="12" number-mask required/></td>
+	 	          <td><span class="rc">{{emergencyphone}}</span></td>
+	              <td><input type="text" ng-model="ephone" name="emergencyPhone" maxlength="15" ng-minlength="8" number-mask required/></td>
 		    </tr>
 		    <tr>
 	    	     <td></td>
-	    	     <td><span class="error" style="width: 80%; margin-top:-12px; margin-bottom:-4px;"  ng-model="submitted" ng-show="submitted && applyleave.emergencyPhone.$error.required">{{phonerequired}}</span></td>
+	    	     <td><span class="error" style="width: 80%; margin-top:-12px; margin-bottom:-4px;"  ng-model="submitted" ng-show="submitted && applyleave.emergencyPhone.$error.required">{{phonerequired}}</span>
+	    	         <span class="error" style="width: 80%; margin-top:-12px; margin-bottom:-4px;"  ng-show="submitted &&  applyleave.emergencyPhone.$error.minlength">{{phonenumberminlength}}</span></td>
 	    	</tr>
 	       	<tr> 
-	 	          <td><span class="rc">Reason</span></td>
+	 	          <td><span class="rc">{{reason}}</span></td>
 	              <td><textarea style="padding: 4px 6px;" ng-model="lreason" name="reason" required maxlength="100"></textarea></td>
 		    </tr>
 		    <tr>
@@ -94,23 +95,23 @@
 			  <table cellpadding="4">
 		        <tbody>
 		          <tr>
-					<td class="rc">Employee ID : </td>
+					<td class="rc">{{employeeid}}</td>
 					<td>${EmpForm.id}</td>
 				</tr>
 				<tr>
-					<td class="rc">Email : </td>
+					<td class="rc">{{employeeemail}}</td>
 					<td>${EmpForm.primaryEmail}</td>
 				</tr>
 				<tr>
-					<td class="rc">Designation : </td>
+					<td class="rc">{{employeedesignation}}</td>
 					<td>${EmpForm.designation.description}</td>
 				</tr>
 				<tr>
-					<td class="rc">Reporting To : </td>
+					<td class="rc">{{reportingto}}</td>
 					<td>${EmpForm.reporting_to}</td>
 				</tr>
 				<tr>
-					<td class="rc">Joined On : </td>
+					<td class="rc">{{joiningdate}}</td>
 					
 					<td>${EmpForm.dateOfJoin.time}</td>
 				</tr>

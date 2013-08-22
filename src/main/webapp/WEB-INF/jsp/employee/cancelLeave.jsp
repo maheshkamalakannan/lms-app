@@ -1,6 +1,6 @@
 <%@ include file="../common/commonJs.jsp" %>
 
-<form:form name="cancelleave" id="cancelleave" method="post" novalidate="novalidate" action="" ng-controller="constantsController">
+<form:form name="cancelleave" id="cancelleave" method="post" novalidate="novalidate" action="/lms-app/cancelLeave" ng-controller="constantsController">
 
 	<div id="rightdata" ng-controller="cancelleaveController">
 	  <div id="topcontent" style="margin-bottom:2px;">
@@ -12,29 +12,29 @@
 	            <a href="/lms-app">Sign Out</a>
 	          </div>
 	  </div>
-	  <div style="width:600px; padding:15px;">
+	  <div id="cancelleaverightcontent">
 	       <div id="cancelleavegrid" ng-init='init(data1=${jsonString})'>
 		      <div class="cancelleavegridStyle" ng-grid="gridOptions"></div>
 	       </div>
 	  </div> 
-	  <div style="width:350px; margin:-31em 15px 5px 52em; height: 340px;">
+	  <div id="cancelleaveleftcontent">
 		  <table cellpadding="4">
 	        <tbody>
 	          <tr>
-				<td class="rc">Email : </td>
+				<td class="rc">{{employeeemail}}</td>
 				<td>vijay.c@madronesoft.com</td>
 			</tr>
 			<tr>
-				<td class="rc">Reporting To : </td>
+				<td class="rc">{{reportingto}}</td>
 				<td>Kumarvel C.M</td>
 			</tr>
 			</tbody>
 		  </table> 
 	      <div class="rc" style="margin-top:50px; padding:5px;">Reason For Cancellation:</div>
-	      <textarea style="padding: 4px 6px; margin-left:5px;" ng-model="cnclreason" name="cancelreason" required maxlength="100"></textarea>
-	      <span class="error" style="width: 70%;" ng-show="submitted && cancelleave.cancelreason.$error.required">{{leavereasonrequired}}</span>
+	      <textarea style="margin-left:5px; width:300px; height:100px;" ng-model="cnclreason" name="cancelreason" required maxlength="100"></textarea>
+	      <span class="error" style="width: 75%; margin-left:5px;" ng-show="submitted && cancelleave.cancelreason.$error.required">{{cancelreasonrequired}}</span>
 		  <div style="padding: 15px 3px; margin-left:5px;">
-	           <input type="submit" name="submit" value="Submit" ng-click="[submitted=true,cancelleave(cancelleave,$event)]"/> 
+	           <input type="submit" name="submit" value="Submit" ng-click="[submitted=true,submitcancelleave(cancelleave,$event)]"/> 
 	   		   <input type="reset"  style="margin-left:10px;" name="reset"   value="Cancel" ng-click="[submitted=false,resetcancelleave()]"/>
 		  </div>
 	  </div>

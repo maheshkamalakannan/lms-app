@@ -26,15 +26,28 @@ function constantsController($scope){
     $scope.confirmationpassword          = "Current password and New Password are same.";
     $scope.passwordmismatch              = "Passwords do not match.";
     
-    $scope.fromdaterequired              = "From date Required.";
-    $scope.todaterequired                = "To date Required.";
-    $scope.tofromcombination             = "This combination not allowed.";
+    $scope.employeeleavetype             = "Leave Type";
+    $scope.alfromdate                    = "From Date";
+    $scope.altodate                      = "To Date";
+    $scope.numberofdays                  = "Number Of Days";
+    $scope.emergencyphone                = "Emergency Phone";
+    $scope.reason                        = "Reason";
+    $scope.employeeid                    = "Employee ID :";
+    $scope.employeeemail                 = "Email :";
+    $scope.employeedesignation           = "Designation :";
+    $scope.reportingto                   = "Reporting To :"; 
+    $scope.joiningdate                   = "Joining Date :"; 
+    $scope.fromdaterequired              = "From date is Required.";
+    $scope.todaterequired                = "To date is Required.";
+    $scope.tofromcombination             = "Selected combination not allowed.";
     $scope.todategreater                 = "To-date should be greater.";
-    $scope.phonerequired                 = "Phone number Required.";
-    $scope.leavereasonrequired           = "Leave Reason Required.";
+    $scope.phonerequired                 = "Phone number is Required.";
+    $scope.leavereasonrequired           = "Reason for Leave is Required.";
+    $scope.phonenumberminlength          = "Phone No must be 8 digits";
     $scope.daygreeting1                  = "AM";
     $scope.daygreeting2                  = "PM";
     
+    $scope.cancelreasonrequired          = "Reason for Cancellation is Required.";
     
     $scope.hometab                       = "Home";
     $scope.changepasswordtabs            = "Home > Settings > Change Password";
@@ -256,8 +269,8 @@ mycontroller.controller('cancelleaveController', function($scope, $window, $loca
 		    		             ]};
 	  };
 	  
-	  $scope.cancelleave = function(form,event){
-		 if(form.$invalid){
+	  $scope.submitcancelleave = function(form,event){
+		 if(form.$valid){
 			   form.submit();
 			 }
 		 else{
