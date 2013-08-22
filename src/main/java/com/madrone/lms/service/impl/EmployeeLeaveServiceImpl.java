@@ -70,4 +70,10 @@ public class EmployeeLeaveServiceImpl implements EmployeeLeaveService {
 		return empLeaveDao.getCancelLeaveList(emp);
 	}
 
+	@Override
+	public List<EmployeeLeave> getLeaveList(String userName) {
+		Employee emp = empDao.findByEmailAddress(userName);
+		return empLeaveDao.getLeaveList(emp);
+	}
+
 }

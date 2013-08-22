@@ -16,5 +16,7 @@ public interface EmployeeLeaveService {
 
 	List<EmployeeLeave> getCancelLeaveList(String userName);
 
+	List<EmployeeLeave> getLeaveList(String userName);
+
 	
 }
