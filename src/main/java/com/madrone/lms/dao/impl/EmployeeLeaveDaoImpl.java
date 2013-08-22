@@ -39,4 +39,12 @@ public class EmployeeLeaveDaoImpl extends AbstractDaoImpl<EmployeeLeave, Long>
 		return employeeLeaveList;
 		
 	}
+
+	@Override
+	public List<EmployeeLeave> getLeaveList(Employee employee) {
+		List<Criterion> criterionList = new ArrayList<Criterion>();
+		criterionList.add(Restrictions.eq("employee", employee));
+		List<EmployeeLeave> employeeLeaveList = findByCriteria(criterionList);
+		return employeeLeaveList;
+	}
 }
