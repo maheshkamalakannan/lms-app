@@ -12,7 +12,7 @@
              <a href="/lms-app">Sign Out</a>
            </div>
        </div>
-       <div id="applyleaverightcontent" style="margin-top:2px;">  
+       <div id="applyleaveleftcontent" style="margin-top:2px;">  
 		  <table cellpadding="4">
 		    <tr>
 			   <td><span class="rc">{{employeeleavetype}}</span></td>
@@ -87,7 +87,7 @@
 		  </table>
 		</div>
 	  
-	  <div id="applyleaveleftcontent">
+	  <div id="applyleaverightcontent" style="margin-top:2px;">
 		  <c:if test="${SucessMessage != null}">
 		      <div class="success" style="margin: 5px 5px 5px 0px; width:57%;">${SucessMessage}</div>
 		   </c:if>
@@ -121,10 +121,12 @@
 			<div id="applyleavegrid" ng-init='init(data1=${jsonString})'>
 			  <div class="applyleavegridStyle" ng-grid="gridOptions"></div>
 		    </div>
-	  </div>
+	  
  	  <div id="leavesubmit">
             <input type="submit" name="submit" value="Save" ng-click="[submitted=true,saveleave(applyleave,$event)]"/> 
     		<input type="reset"  style="margin-left:10px;" name="reset"   value="Cancel" ng-click="[submitted=false,resetapplyleave()]"/>
 	  </div>
+	  
+	 </div> 
 	</div>
 </form:form>

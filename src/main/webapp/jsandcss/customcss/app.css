@@ -204,7 +204,7 @@ form {
 }
 
 #leavesubmit{
-	margin: 2em 1em 2em 41em;
+	margin: 25px 0 0;
 }
 input[type="button"], input[type="submit"], input[type="reset"] { 
     background-image: linear-gradient(#F1F1F1, #F1F1F1 25%, #CCCCCC);
@@ -389,26 +389,29 @@ li:hover .sub-level .sub-level {
 	margin: 15px;
 }
 
-#applyleaverightcontent{
-	height: 340px;
-    margin: 15px;
-    width: 500px;
-}
-
 #applyleaveleftcontent{
 	height: 340px;
-    margin: -360px 15px 5px 525px;
-    width: 500px;
+    margin: 15px;
+    float:left;
 }
 
-#cancelleaverightcontent{
-	width:600px; 
-	padding:15px;
+#applyleaverightcontent{
+	height: 340px;
+    float: right;
+    width: 500px;
+    margin: 15px;
 }
 
 #cancelleaveleftcontent{
+	width:600px; 
+	padding:15px;
+	float:left;
+}
+
+#cancelleaverightcontent{
 	width:350px; 
-	margin:-31em 15px 5px 52em; 
+	float:right;
+	padding:15px;
 	height: 340px;
 }
 

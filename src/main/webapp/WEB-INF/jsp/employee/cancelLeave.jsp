@@ -13,21 +13,21 @@
 	            <a href="/lms-app">Sign Out</a>
 	          </div>
 	  </div>
-	  <div id="cancelleaverightcontent">
+	  <div id="cancelleaveleftcontent">
 	       <div id="cancelleavegrid" ng-init='init(data1=${jsonString})'>
 		      <div class="cancelleavegridStyle" ng-grid="gridOptions"></div>
 	       </div>
 	  </div> 
-	  <div id="cancelleaveleftcontent">
+	  <div id="cancelleaverightcontent">
 		  <table cellpadding="4">
 	        <tbody>
 	          <tr>
 				<td class="rc">{{employeeemail}}</td>
-				<td>vijay.c@madronesoft.com</td>
+				<td>${EmpForm.primaryEmail}</td>
 			</tr>
 			<tr>
 				<td class="rc">{{reportingto}}</td>
-				<td>Kumarvel C.M</td>
+				<td>${EmpForm.reporting_to}</td>
 			</tr>
 			</tbody>
 		  </table>
