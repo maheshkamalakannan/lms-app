@@ -245,6 +245,7 @@ mycontroller.controller('applyLeaveController', function($scope, $window, $locat
 			$scope.lreason    = '';
 			$scope.fromdate   = '';
 			$scope.todate     = '';
+			$scope.days       = '';
 			$scope.fromdaygreeting  = 'am';
 			$scope.todaygreeting    = 'pm';
 			$('.error').css("display","none");
@@ -291,7 +292,34 @@ mycontroller.controller('cancelleaveController', function($scope, $window, $loca
 });
 
 mycontroller.controller('leavesummaryController', function($scope, $window, $location) {
-	 /*JS for leavesummary page*/
+	/*Grid and grid data for LeaveSummary*/
+	  $scope.init = function(data1,data2) {
+			$scope.gridData1 = data1;
+			$scope.gridData2 = data2;
+			$scope.gridOptions2 = { 
+		    		data: 'gridData2',
+		    		selectedItems: $scope.mySelections,
+		    		multiSelect: false,
+		    		showFooter:true,
+		    		columnDefs: [{field: 'fromDate', displayName: 'From Date', width:92},
+		    		             {field: 'toDate', displayName: 'To Date', width:92},
+		    		             {field: 'noOfDays', displayName: 'Total Days'},
+		    		             {field: 'leaveType', displayName: 'Leave Type'},
+		    		             {field: 'status', displayName: 'Status',  width:62},
+		    		             {field: 'reason', displayName: 'Reason', enableCellEdit:true, width:202},
+		    		            ]
+			       };
+			$scope.gridOptions1 = { 
+					data: 'gridData1',
+		    		multiSelect: false,
+		    		showFooter:true,
+		    		columnDefs: [{field: 'Type', displayName: 'Type'},
+		    		             {field: 'Total', displayName: 'Total'},
+		    		             {field: 'Consumed', displayName: 'Consumed'},
+		    		             {field: 'Balance', displayName: 'Balance'}
+		    		             ]
+			       };
+	  };
 });
 
 
