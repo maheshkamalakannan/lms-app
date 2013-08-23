@@ -48,6 +48,7 @@ function constantsController($scope){
     $scope.daygreeting2                  = "PM";
     
     $scope.cancelreasonrequired          = "Reason for Cancellation is Required.";
+    $scope.selectleavetocncl             = "Select Leave to cancel.";
     
     $scope.hometab                       = "Home";
     $scope.changepasswordtabs            = "Home > Settings > Change Password";
@@ -268,7 +269,8 @@ mycontroller.controller('cancelleaveController', function($scope, $window, $loca
 		    		selectWithCheckboxOnly: true,
                     showSelectionCheckbox: true,
                     canSelectRows: true,
-                    afterSelectionChange: function (item, event) {  },
+                    keepLastSelected: false,
+                    afterSelectionChange: function (item, event) { $scope.selectleavetocancel = false; },
 		    		columnDefs: [{field: 'fromDate', displayName: 'From Date'},
 		    		             {field: 'toDate', displayName: 'To Date'},
 		    		             {field: 'noOfDays', displayName: 'Total Days'},
@@ -277,7 +279,12 @@ mycontroller.controller('cancelleaveController', function($scope, $window, $loca
 	  };
 	  
 	  $scope.submitcancelleave = function(form,event){
+		  $scope.selectleavetocancel = false;
 		 if(form.$valid){
+			 if($scope.mySelections == ''){
+				 $scope.selectleavetocancel = true;
+				 event.preventDefault();
+			 }
 			   form.submit();
 			 }
 		 else{
@@ -301,12 +308,12 @@ mycontroller.controller('leavesummaryController', function($scope, $window, $loc
 		    		selectedItems: $scope.mySelections,
 		    		multiSelect: false,
 		    		showFooter:true,
-		    		columnDefs: [{field: 'fromDate', displayName: 'From Date', width:92},
-		    		             {field: 'toDate', displayName: 'To Date', width:92},
-		    		             {field: 'noOfDays', displayName: 'Total Days'},
-		    		             {field: 'leaveType', displayName: 'Leave Type'},
-		    		             {field: 'status', displayName: 'Status',  width:62},
-		    		             {field: 'reason', displayName: 'Reason', enableCellEdit:true, width:202},
+		    		columnDefs: [{field: 'fromDate', displayName: 'From Date', width:95},
+		    		             {field: 'toDate', displayName: 'To Date', width:95},
+		    		             {field: 'noOfDays', displayName: 'Total Days', width:95},
+		    		             {field: 'leaveType', displayName: 'Leave Type', width:95},
+		    		             {field: 'status', displayName: 'Status', width:60},
+		    		             {field: 'reason', displayName: 'Reason',resizable:false},
 		    		            ]
 			       };
 			$scope.gridOptions1 = { 
