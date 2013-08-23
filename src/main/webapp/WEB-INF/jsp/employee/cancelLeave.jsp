@@ -9,6 +9,7 @@
 	             <h5>${EmpForm.firstName} ${EmpForm.lastName}</h5>
 	            <input type = "hidden" name = "userName" value="${userName}" />
 	            <input type = "hidden" name = "empId" value="${EmpForm.id}" />
+	            <input type = "hidden" name = "selecteddata" value ={{mySelections}} />
 	            <a href="/lms-app">Sign Out</a>
 	          </div>
 	  </div>
@@ -29,10 +30,10 @@
 				<td>Kumarvel C.M</td>
 			</tr>
 			</tbody>
-		  </table> 
+		  </table>
 	      <div class="rc" style="margin-top:50px; padding:5px;">Reason For Cancellation:</div>
-	      <textarea style="margin-left:5px; width:300px; height:100px;" ng-model="cnclreason" name="cancelreason" required maxlength="100"></textarea>
-	      <span class="error" style="width: 75%; margin-left:5px;" ng-show="submitted && cancelleave.cancelreason.$error.required">{{cancelreasonrequired}}</span>
+	      <textarea style="margin-left:5px; width:300px; height:100px;" ng-model="cnclreason" name="reason" required maxlength="100"></textarea>
+	      <span class="error" style="width: 75%; margin-left:5px;" ng-show="submitted && cancelleave.reason.$error.required">{{cancelreasonrequired}}</span>
 		  <div style="padding: 15px 3px; margin-left:5px;">
 	           <input type="submit" name="submit" value="Submit" ng-click="[submitted=true,submitcancelleave(cancelleave,$event)]"/> 
 	   		   <input type="reset"  style="margin-left:10px;" name="reset"   value="Cancel" ng-click="[submitted=false,resetcancelleave()]"/>

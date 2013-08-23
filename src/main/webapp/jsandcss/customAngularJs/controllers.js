@@ -257,16 +257,22 @@ mycontroller.controller('applyLeaveController', function($scope, $window, $locat
 mycontroller.controller('cancelleaveController', function($scope, $window, $location) {
 	/*Grid and grid data for cancel Leave*/
 	  $scope.init = function(data1) {
+		    $scope.mySelections = [];
 			$scope.gridData = data1;
 			$scope.gridOptions = { 
 		    		data: 'gridData',
+		    		selectedItems: $scope.mySelections,
 		    		multiSelect: false,
 		    		showFooter:true,
+		    		selectWithCheckboxOnly: true,
+                    showSelectionCheckbox: true,
+                    canSelectRows: true,
+                    afterSelectionChange: function (item, event) {  },
 		    		columnDefs: [{field: 'fromDate', displayName: 'From Date'},
 		    		             {field: 'toDate', displayName: 'To Date'},
 		    		             {field: 'noOfDays', displayName: 'Total Days'},
-		    		             {displayName: 'Action', cellTemplate: '<input type="radio" ng-model="cancelleave" name="cancelleave" id="cancelleave">'}
-		    		             ]};
+		    		            ]
+			       };
 	  };
 	  
 	  $scope.submitcancelleave = function(form,event){
