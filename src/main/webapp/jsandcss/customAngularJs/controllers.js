@@ -308,22 +308,22 @@ mycontroller.controller('leavesummaryController', function($scope, $window, $loc
 		    		selectedItems: $scope.mySelections,
 		    		multiSelect: false,
 		    		showFooter:true,
-		    		columnDefs: [{field: 'fromDate', displayName: 'From Date', width:95},
-		    		             {field: 'toDate', displayName: 'To Date', width:95},
-		    		             {field: 'noOfDays', displayName: 'Total Days', width:95},
-		    		             {field: 'leaveType', displayName: 'Leave Type', width:95},
-		    		             {field: 'status', displayName: 'Status', width:60},
-		    		             {field: 'reason', displayName: 'Reason',resizable:false},
+		    		columnDefs: [{field: 'fromDate', displayName: 'From Date', width:95, cellClass:'alignreason'},
+		    		             {field: 'toDate', displayName: 'To Date', width:95, cellClass:'alignreason'},
+		    		             {field: 'noOfDays', displayName: 'Total Days', width:95, cellClass:'alignreason'},
+		    		             {field: 'leaveType', displayName: 'Leave Type', width:95, cellClass:'alignreason'},
+		    		             {field: 'status', displayName: 'Status', width:60, cellClass:'alignreason'},
+		    		             {field: 'reason', displayName: 'Reason', resizable:false, cellClass:'alignreason'},
 		    		            ]
 			       };
 			$scope.gridOptions1 = { 
 					data: 'gridData1',
 		    		multiSelect: false,
 		    		showFooter:true,
-		    		columnDefs: [{field: 'Type', displayName: 'Type'},
-		    		             {field: 'Total', displayName: 'Total'},
-		    		             {field: 'Consumed', displayName: 'Consumed'},
-		    		             {field: 'Balance', displayName: 'Balance'}
+		    		columnDefs: [{field: 'Type', displayName: 'Type', cellClass:'alignreason'},
+		    		             {field: 'Total', displayName: 'Total', cellClass:'alignreason'},
+		    		             {field: 'Consumed', displayName: 'Consumed', cellClass:'alignreason'},
+		    		             {field: 'Balance', displayName: 'Balance', cellClass:'alignreason'}
 		    		             ]
 			       };
 	  };

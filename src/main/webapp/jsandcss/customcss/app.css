@@ -516,6 +516,20 @@ textarea {
     height:390px;
 }
 
+.leavesummarygridStyle{
+	border: 1px solid rgb(212,212,212);
+	width: 100%; 
+    height:250px;
+}
+
+.leavesummaryContent{
+	padding:0 10em 15px 10em;
+}
+
+.alignreason{
+	text-align:center;
+}
+
 #empDetailsDiv {
     margin-top: -237px;
 }
