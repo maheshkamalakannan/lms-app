@@ -68,7 +68,7 @@
 	       	</tr>
 	       	<tr> 
 	 	          <td><span class="rc">{{emergencyphone}}</span></td>
-	              <td><input type="text" ng-model="ephone" name="emergencyPhone" maxlength="15" ng-minlength="8" number-mask required/></td>
+	              <td><input type="text" ng-model="ephone" name="emergencyPhone" maxlength="12" ng-minlength="8" number-mask required/></td>
 		    </tr>
 		    <tr>
 	    	     <td></td>
