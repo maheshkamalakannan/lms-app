@@ -63,7 +63,7 @@ public class CancelLeaveController {
 			System.out.println("FromDate..." + cancelForm.getFromDate());
 			// empLeaveService.cancelEmployeeLeave(cancelForm);
 			model.addAttribute("SucessMessage", messageSource.getMessage(
-					"lms.applyLeave_success_message", new Object[] { "" },
+					"lms.cancelLeave_success_message", new Object[] { "" },
 					Locale.getDefault()));
 		}
 

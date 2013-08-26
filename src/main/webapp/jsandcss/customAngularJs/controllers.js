@@ -126,10 +126,10 @@ mycontroller.controller('applyLeaveController', function($scope, $window, $locat
 		    		data: 'gridData',
 		    		multiSelect: false,
 		    		showFooter:true,
-		    		columnDefs: [{field: 'Type', displayName: 'Type'},
-		    		             {field: 'Total', displayName: 'Total'},
-		    		             {field: 'Consumed', displayName: 'Consumed'},
-		    		             {field: 'Balance', displayName: 'Balance'}
+		    		columnDefs: [{field: 'Type', displayName: 'Type', cellClass:'aligncolumn'},
+		    		             {field: 'Total', displayName: 'Total', cellClass:'aligncolumn'},
+		    		             {field: 'Consumed', displayName: 'Consumed', cellClass:'aligncolumn'},
+		    		             {field: 'Balance', displayName: 'Balance', cellClass:'aligncolumn'}
 		    		             ]};
 	  };
 	  
@@ -266,14 +266,14 @@ mycontroller.controller('cancelleaveController', function($scope, $window, $loca
 		    		selectedItems: $scope.mySelections,
 		    		multiSelect: false,
 		    		showFooter:true,
-		    		selectWithCheckboxOnly: true,
+		    		selectWithCheckboxOnly: false,
                     showSelectionCheckbox: true,
-                    canSelectRows: true,
                     keepLastSelected: false,
+                    showFilter:true,
                     afterSelectionChange: function (item, event) { $scope.selectleavetocancel = false; },
-		    		columnDefs: [{field: 'fromDate', displayName: 'From Date'},
-		    		             {field: 'toDate', displayName: 'To Date'},
-		    		             {field: 'noOfDays', displayName: 'Total Days'},
+		    		columnDefs: [{field: 'fromDate', displayName: 'From Date', cellClass:'aligncolumn'},
+		    		             {field: 'toDate', displayName: 'To Date', cellClass:'aligncolumn'},
+		    		             {field: 'noOfDays', displayName: 'Total Days', cellClass:'aligncolumn'},
 		    		            ]
 			       };
 	  };
@@ -294,7 +294,9 @@ mycontroller.controller('cancelleaveController', function($scope, $window, $loca
 	
 	$scope.resetcancelleave = function(){
 		$('.error').css("display","none");
-        $scope.cnclreason = '';
+		$('.ngSelectionCheckbox').attr("checked", false);
+		$scope.mySelections = '';
+        $scope.cnclreason   = '';
 	};
 });
 
@@ -308,22 +310,22 @@ mycontroller.controller('leavesummaryController', function($scope, $window, $loc
 		    		selectedItems: $scope.mySelections,
 		    		multiSelect: false,
 		    		showFooter:true,
-		    		columnDefs: [{field: 'fromDate', displayName: 'From Date', width:95, cellClass:'alignreason'},
-		    		             {field: 'toDate', displayName: 'To Date', width:95, cellClass:'alignreason'},
-		    		             {field: 'noOfDays', displayName: 'Total Days', width:95, cellClass:'alignreason'},
-		    		             {field: 'leaveType', displayName: 'Leave Type', width:95, cellClass:'alignreason'},
-		    		             {field: 'status', displayName: 'Status', width:60, cellClass:'alignreason'},
-		    		             {field: 'reason', displayName: 'Reason', resizable:false, cellClass:'alignreason'},
+		    		columnDefs: [{field: 'fromDate', displayName: 'From Date', width:95, cellClass:'aligncolumn'},
+		    		             {field: 'toDate', displayName: 'To Date', width:95, cellClass:'aligncolumn'},
+		    		             {field: 'noOfDays', displayName: 'Total Days', width:95, cellClass:'aligncolumn'},
+		    		             {field: 'leaveType', displayName: 'Leave Type', width:95, cellClass:'aligncolumn'},
+		    		             {field: 'status', displayName: 'Status', width:60, cellClass:'aligncolumn'},
+		    		             {field: 'reason', displayName: 'Reason', resizable:false, cellClass:'aligncolumn'},
 		    		            ]
 			       };
 			$scope.gridOptions1 = { 
 					data: 'gridData1',
 		    		multiSelect: false,
 		    		showFooter:true,
-		    		columnDefs: [{field: 'Type', displayName: 'Type', cellClass:'alignreason'},
-		    		             {field: 'Total', displayName: 'Total', cellClass:'alignreason'},
-		    		             {field: 'Consumed', displayName: 'Consumed', cellClass:'alignreason'},
-		    		             {field: 'Balance', displayName: 'Balance', cellClass:'alignreason'}
+		    		columnDefs: [{field: 'Type', displayName: 'Type', cellClass:'aligncolumn'},
+		    		             {field: 'Total', displayName: 'Total', cellClass:'aligncolumn'},
+		    		             {field: 'Consumed', displayName: 'Consumed', cellClass:'aligncolumn'},
+		    		             {field: 'Balance', displayName: 'Balance', cellClass:'aligncolumn'}
 		    		             ]
 			       };
 	  };
