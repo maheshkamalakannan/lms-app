@@ -1,8 +1,20 @@
 'use strict';
 
-/* Controllers */
+var mycontroller = angular.module('mainController', ['ngGrid','$strap.directives']);
 
-function loginController($scope) {
+/* Directives */
+/* Allowing only number in textbox */
+mycontroller.directive('numberMask', function() {
+    return {
+        restrict: 'A',
+        link: function(scope, element, attrs) {
+            $(element).numeric();
+        }
+    };
+});
+
+/* Controllers */
+mycontroller.controller('loginController', function($scope, $window, $location) {
   $scope.loginSubmit = function(form,event){
      if(form.$valid){
 	   form.submit();
@@ -12,9 +24,9 @@ function loginController($scope) {
 	  event.preventDefault();
 	 }
   };
-}
+});
 
-function constantsController($scope){
+mycontroller.controller('constantsController', function($scope, $window, $location) {
 	$scope.emailrequired     = "Email address is required.";
 	$scope.invalidemail      = "Invalid Email address.";
 	$scope.passwordrequired  = "Password is required.";
@@ -55,8 +67,11 @@ function constantsController($scope){
     $scope.applyleavetab                 = "Home > Leaves > Apply Leave";
     $scope.cancelleavetab                = "Home > Leaves > Cancel Leave";
     $scope.leavesummarytab               = "Home > Leave Summary";
-}
-function changePasswordController($scope){
+    
+    $scope.viewapprovedleaves            = "Home > Reports > View Approved Leaves";
+});
+
+mycontroller.controller('changePasswordController', function($scope, $window, $location) {
 	$scope.showerror = false;
 	$scope.confirmerror = false;
 	$scope.savepassword = function(form,event){
@@ -89,18 +104,6 @@ function changePasswordController($scope){
 		$scope.passwordconfirm = '';
 		$('.error').css("display","none");
 	};
-}
-
-var mycontroller = angular.module('mainController', ['ngGrid','$strap.directives']);
-
-/* Directive to allowing only number in textbox */
-mycontroller.directive('numberMask', function() {
-    return {
-        restrict: 'A',
-        link: function(scope, element, attrs) {
-            $(element).numeric();
-        }
-    };
 });
 
 mycontroller.controller('employeehomeController', function($scope, $window, $location) {
@@ -329,6 +332,11 @@ mycontroller.controller('leavesummaryController', function($scope, $window, $loc
 		    		             ]
 			       };
 	  };
+});
+
+mycontroller.controller('managerViewApprovedLeaveController', function($scope, $window, $location) {
+	/*JS for managerviewapprovedleaves*/
+	alert("hello");
 });
 
 

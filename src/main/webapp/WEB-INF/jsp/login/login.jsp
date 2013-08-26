@@ -1,12 +1,6 @@
-<%@ include file="common/commonCss.jsp" %>
-<%@ include file="common/commonJs.jsp" %>
-<html ng-app>
-<head>
-</head>
+<%@ include file="../common/commonJs.jsp" %>
 
-<body>
-
-	<form:form modelAttribute="LoginForm" name="loginForm" method="post"  action="/lms-app/authenticate" ng-controller="loginController" novalidate="novalidate" >
+<form:form modelAttribute="LoginForm" name="loginForm" method="post"  action="/lms-app/authenticate" ng-controller="loginController" novalidate="novalidate" >
 	<div class="content" ng-controller="constantsController">
 		<div class="background logo_desc">
 		</div>
@@ -50,6 +44,3 @@
       </div>
 	</div>
  </form:form>
-
-</body>
-</html>

@@ -54,22 +54,34 @@ public class MenuController {
 	}
 
 	// These functions are used in adminMenu.jsp file
-	@RequestMapping(value = "/showAddUser", method = RequestMethod.GET)
-	public String showAddUserForm(Model model, UserForm Userform) {
+	@RequestMapping(value = "/addUser", method = RequestMethod.GET)
+	public String addUserForm(Model model, UserForm Userform) {
 		model.addAttribute("UserForm", new UserForm());
-		return "showAddUserScreen";
+		return LMSConstants.ADMIN_ADD_USER_SCR;
 	}
 
-	@RequestMapping(value = "/showDeleteUser", method = RequestMethod.GET)
-	public String showDeleteUserForm(Model model, UserForm Userform) {
+	@RequestMapping(value = "/deleteUser", method = RequestMethod.GET)
+	public String deleteUserForm(Model model, UserForm Userform) {
 		model.addAttribute("UserForm", new UserForm());
-		return "showDeleteUserScreen";
+		return LMSConstants.ADMIN_DELETE_USER_SCR;
 	}
 
-	@RequestMapping(value = "/showModifyUser", method = RequestMethod.GET)
-	public String showModifyUserForm(Model model, UserForm Userform) {
+	@RequestMapping(value = "/modifyUser", method = RequestMethod.GET)
+	public String modifyUserForm(Model model, UserForm Userform) {
 		model.addAttribute("UserForm", new UserForm());
-		return "showModifyUserScreen";
+		return LMSConstants.ADMIN_MODIFY_USER_SCR;
+	}
+	
+	@RequestMapping(value = "/setLeaveType", method = RequestMethod.GET)
+	public String setLeaveTypeForm(Model model, UserForm Userform) {
+		model.addAttribute("UserForm", new UserForm());
+		return LMSConstants.ADMIN_SET_LEAVE_TYPE_SCR;
+	}
+	
+	@RequestMapping(value = "/viewLeave", method = RequestMethod.GET)
+	public String viewLeaveForm(Model model, UserForm Userform) {
+		model.addAttribute("UserForm", new UserForm());
+		return LMSConstants.ADMIN_VIEW_LEAVE_SCR;
 	}
 
 }

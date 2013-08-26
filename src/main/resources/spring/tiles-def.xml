@@ -14,8 +14,8 @@
     
     <definition name="login.definition" template="/WEB-INF/jsp/layout/logintemplate.jsp">  
         <put-attribute name="title" value="SignIn"></put-attribute>  
-        <put-attribute name="header" value="/WEB-INF/jsp//layout/header.jsp"></put-attribute>  
-        <put-attribute name="body" value="/WEB-INF/jsp/login.jsp"></put-attribute>  
+        <put-attribute name="header" value="/WEB-INF/jsp/layout/header.jsp"></put-attribute>  
+        <put-attribute name="body" value="/WEB-INF/jsp/login/login.jsp"></put-attribute>  
         <put-attribute name="footer" value="/WEB-INF/jsp/layout/footer.jsp"></put-attribute>  
     </definition>  
     
@@ -96,23 +96,40 @@
         <put-attribute name="menu" value="/WEB-INF/jsp/manager/managerMenu.jsp"></put-attribute>
     </definition>
     
-    <definition extends="base.definition" name="showAddUserScreen">  
-        <put-attribute name="title" value="Admin Menu"></put-attribute>  
-        <put-attribute name="body" value="/WEB-INF/jsp/adduser.jsp"></put-attribute> 
-        <put-attribute name="menu" value="/WEB-INF/jsp/layout/adminmenu.jsp"></put-attribute>
+     <definition extends="base.definition" name="admin">  
+        <put-attribute name="title" value="LMS-Admin"></put-attribute>  
+        <put-attribute name="body" value="/WEB-INF/jsp/admin/adminAddUser.jsp"></put-attribute> 
+        <put-attribute name="menu" value="/WEB-INF/jsp/admin/adminMenu.jsp"></put-attribute>
     </definition>
     
-     <definition extends="base.definition" name="showDeleteUserScreen">  
-        <put-attribute name="title" value="Admin Menu"></put-attribute>  
-        <put-attribute name="body" value="/WEB-INF/jsp/deleteuser.jsp"></put-attribute> 
-        <put-attribute name="menu" value="/WEB-INF/jsp/layout/adminmenu.jsp"></put-attribute>
+    <definition extends="base.definition" name="addUserScreen">  
+        <put-attribute name="title" value="LMS-Admin-Add User"></put-attribute>  
+        <put-attribute name="body" value="/WEB-INF/jsp/admin/adminAddUser.jsp"></put-attribute> 
+        <put-attribute name="menu" value="/WEB-INF/jsp/admin/adminMenu.jsp"></put-attribute>
     </definition>
     
-     <definition extends="base.definition" name="showModifyUserScreen">  
-        <put-attribute name="title" value="Admin Menu"></put-attribute>  
-        <put-attribute name="body" value="/WEB-INF/jsp/modifyuser.jsp"></put-attribute> 
-        <put-attribute name="menu" value="/WEB-INF/jsp/layout/adminmenu.jsp"></put-attribute>
+     <definition extends="base.definition" name="deleteUserScreen">  
+        <put-attribute name="title" value="LMS-Admin-Delete User"></put-attribute>  
+        <put-attribute name="body" value="/WEB-INF/jsp/admin/adminDeleteUser.jsp"></put-attribute> 
+        <put-attribute name="menu" value="/WEB-INF/jsp/admin/adminMenu.jsp"></put-attribute>
     </definition>
     
+     <definition extends="base.definition" name="modifyUserScreen">  
+        <put-attribute name="title" value="LMS-Admin-Modify User"></put-attribute>  
+        <put-attribute name="body" value="/WEB-INF/jsp/admin/adminModifyUser.jsp"></put-attribute> 
+        <put-attribute name="menu" value="/WEB-INF/jsp/admin/adminMenu.jsp"></put-attribute>
+    </definition>
+    
+    <definition extends="base.definition" name="setLeaveTypeScreen">  
+        <put-attribute name="title" value="LMS-Admin-Set Leave Type"></put-attribute>  
+        <put-attribute name="body" value="/WEB-INF/jsp/admin/adminSetLeaveType.jsp"></put-attribute> 
+        <put-attribute name="menu" value="/WEB-INF/jsp/admin/adminMenu.jsp"></put-attribute>
+    </definition>
+    
+    <definition extends="base.definition" name="viewLeaveScreen">  
+        <put-attribute name="title" value="LMS-Admin-View Leave"></put-attribute>  
+        <put-attribute name="body" value="/WEB-INF/jsp/admin/adminViewLeave.jsp"></put-attribute> 
+        <put-attribute name="menu" value="/WEB-INF/jsp/admin/adminMenu.jsp"></put-attribute>
+    </definition>
     
 </tiles-definitions> 
