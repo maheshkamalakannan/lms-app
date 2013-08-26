@@ -1,5 +1,9 @@
 package com.madrone.lms.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.madrone.lms.constants.LMSConstants;
+import com.madrone.lms.entity.EmployeeLeave;
 import com.madrone.lms.form.ChangePasswordForm;
 import com.madrone.lms.form.EmployeeHomeForm;
 import com.madrone.lms.form.LeaveForm;
@@ -16,13 +21,18 @@ import com.madrone.lms.form.UserForm;
 import com.madrone.lms.form.ViewApprovedLeavesForm;
 import com.madrone.lms.form.ViewLeaveRequestForm;
 import com.madrone.lms.form.ViewRejectedLeavesForm;
+import com.madrone.lms.service.EmployeeLeaveService;
 import com.madrone.lms.service.UserService;
+import com.madrone.lms.utils.JSONUtils;
 
 @Controller
 public class MenuController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private EmployeeLeaveService empLeaveService;
 
 	@RequestMapping(value = "/employeeHome", method = RequestMethod.GET)
 	public String employeeHome(Model model, LeaveForm form) {
@@ -82,5 +92,8 @@ public class MenuController {
 		model.addAttribute("UserForm", new UserForm());
 		return LMSConstants.ADMIN_VIEW_LEAVE_SCR;
 	}
+	
+	
+
 
 }
