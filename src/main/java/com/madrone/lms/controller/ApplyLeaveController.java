@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import javax.servlet.http.HttpSession;
-import org.codehaus.jackson.map.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +18,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.madrone.lms.constants.LMSConstants;
 import com.madrone.lms.entity.Leave;
 //import com.madrone.lms.entity.LeaveTypes;
-import com.madrone.lms.form.ApplyLeaveForm;
 import com.madrone.lms.form.ApplyLeaveFormGrid;
+import com.madrone.lms.form.LeaveForm;
 import com.madrone.lms.service.EmployeeLeaveService;
 import com.madrone.lms.service.LeaveService;
 import com.madrone.lms.utils.JSONUtils;
@@ -41,7 +40,7 @@ public class ApplyLeaveController {
 
 
 	@RequestMapping(value = "/applyLeave", method = RequestMethod.GET)
-	public String applyLeave(Model model, ApplyLeaveForm form,
+	public String applyLeave(Model model, LeaveForm form,
 			HttpSession session)  {
 		logger.info("Inside applyLeave()");
 		
@@ -59,7 +58,7 @@ public class ApplyLeaveController {
 
 		model.addAttribute("jsonString", jsonString);
 		model.addAttribute("leaveList", gridList);
-		model.addAttribute("ApplyLeaveForm", new ApplyLeaveForm());
+		model.addAttribute("ApplyLeaveForm", new LeaveForm());
 		
 		
 		return LMSConstants.APPLY_LEAVE_SCR;
@@ -67,7 +66,7 @@ public class ApplyLeaveController {
 
 	@RequestMapping(value = "/submitApplyLeave", method = RequestMethod.POST)
 	public String submitApplyLeave(Model model,
-			@ModelAttribute("ApplyLeaveForm") ApplyLeaveForm applyLeaveForm,
+			@ModelAttribute("ApplyLeaveForm") LeaveForm applyLeaveForm,
 			BindingResult result, Map<String, Object> map) {
 		logger.info("Inside submitApplyLeave()");
 		logger.info("EMPId" + applyLeaveForm.getEmpId());

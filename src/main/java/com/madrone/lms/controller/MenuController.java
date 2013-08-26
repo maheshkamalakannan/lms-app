@@ -7,10 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.madrone.lms.constants.LMSConstants;
-import com.madrone.lms.form.ApplyLeaveForm;
-import com.madrone.lms.form.CancelLeaveForm;
 import com.madrone.lms.form.ChangePasswordForm;
 import com.madrone.lms.form.EmployeeHomeForm;
+import com.madrone.lms.form.LeaveForm;
 import com.madrone.lms.form.LeaveSummaryForm;
 import com.madrone.lms.form.ManagerHomeForm;
 import com.madrone.lms.form.UserForm;
@@ -26,28 +25,28 @@ public class MenuController {
 	private UserService userService;
 
 	@RequestMapping(value = "/employeeHome", method = RequestMethod.GET)
-	public String employeeHome(Model model, ApplyLeaveForm form) {
+	public String employeeHome(Model model, LeaveForm form) {
 		model.addAttribute("EmployeeHomeForm", new EmployeeHomeForm());
 		return LMSConstants.EMPLOYEE_HOME_SCR;
 	}
 	
 	// These functions are used in managerMenu.jsp file
 	@RequestMapping(value = "/managerHome", method = RequestMethod.GET)
-	public String managerHome(Model model, ApplyLeaveForm form) {
+	public String managerHome(Model model, LeaveForm form) {
 		model.addAttribute("ManagerHomeForm", new ManagerHomeForm());
 		return LMSConstants.MANAGER_HOME_SCR;
 	}
 
 
 	@RequestMapping(value = "/viewApprovedLeaves", method = RequestMethod.GET)
-	public String viewApprovedleaves(Model model, ApplyLeaveForm form) {
+	public String viewApprovedleaves(Model model, LeaveForm form) {
 		model.addAttribute("ViewApprovedLeavesForm",
 				new ViewApprovedLeavesForm());
 		return LMSConstants.MANAGER_VIEW_APPROVED_LEAVES_SCR;
 	}
 
 	@RequestMapping(value = "/viewRejectedLeaves", method = RequestMethod.GET)
-	public String viewRejectedleaves(Model model, ApplyLeaveForm form) {
+	public String viewRejectedleaves(Model model, LeaveForm form) {
 		model.addAttribute("ViewRejectedLeavesForm",
 				new ViewRejectedLeavesForm());
 		return LMSConstants.MANAGER_VIEW_REJECTED_LEAVES_SCR;

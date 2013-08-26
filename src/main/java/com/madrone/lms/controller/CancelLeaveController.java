@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.madrone.lms.constants.LMSConstants;
 import com.madrone.lms.entity.EmployeeLeave;
-import com.madrone.lms.form.CancelLeaveForm;
+import com.madrone.lms.form.LeaveForm;
 import com.madrone.lms.service.EmployeeLeaveService;
 import com.madrone.lms.utils.JSONUtils;
 
@@ -34,10 +34,10 @@ public class CancelLeaveController {
 	private MessageSource messageSource;
 
 	@RequestMapping(value = "/cancelLeave", method = RequestMethod.GET)
-	public String cancelLeave(Model model, CancelLeaveForm form,
+	public String cancelLeave(Model model, LeaveForm form,
 			HttpSession session) {
 		logger.info("Inside cancelLeave()");
-		model.addAttribute("CancelLeaveForm", new CancelLeaveForm());
+		model.addAttribute("CancelLeaveForm", new LeaveForm());
 
 		// Setting values into Cancel - Leave Grid
 		String userName = (String) session.getAttribute("sessionUser");
@@ -51,13 +51,13 @@ public class CancelLeaveController {
 
 	@RequestMapping(value = "/submitCancelLeave", method = RequestMethod.POST)
 	public String submitCancelLeave(Model model,
-			@ModelAttribute("cancelLeaveForm") CancelLeaveForm form,
+			@ModelAttribute("cancelLeaveForm") LeaveForm form,
 			BindingResult result, Map<String, Object> map) {
 
 		logger.info("submitCancelLeave");
 		String jsonString = form.getSelecteddata();
 
-		CancelLeaveForm cancelForm = JSONUtils
+		LeaveForm cancelForm = JSONUtils
 				.convertJsonToObjectForCancelLeave(jsonString);
 		if (cancelForm != null) {
 			System.out.println("FromDate..." + cancelForm.getFromDate());
