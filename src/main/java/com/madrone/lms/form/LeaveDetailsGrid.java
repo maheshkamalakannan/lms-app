@@ -3,8 +3,11 @@ package com.madrone.lms.form;
 
 public class LeaveDetailsGrid {
 	
+	private String id;
 	private String fromDate;
+	private String fromDateSession;
 	private String toDate;
+	private String toDateSession;
 	private float noOfDays;
 	private String leaveType;
 	private boolean action;
@@ -13,6 +16,24 @@ public class LeaveDetailsGrid {
 	
 	
 	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getFromDateSession() {
+		return fromDateSession;
+	}
+	public void setFromDateSession(String fromDateSession) {
+		this.fromDateSession = fromDateSession;
+	}
+	public String getToDateSession() {
+		return toDateSession;
+	}
+	public void setToDateSession(String toDateSession) {
+		this.toDateSession = toDateSession;
+	}
 	public String getStatus() {
 		return status;
 	}

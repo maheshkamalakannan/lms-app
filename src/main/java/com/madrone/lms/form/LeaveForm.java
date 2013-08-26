@@ -2,7 +2,7 @@ package com.madrone.lms.form;
 
 import com.madrone.lms.entity.LeaveStatusEnum;
 
-public class ApplyLeaveForm {
+public class LeaveForm {
 	
 	private String empId;
 	
@@ -10,14 +10,25 @@ public class ApplyLeaveForm {
 	private String toDate;
 	private String fromDateSession;
 	private String toDateSession;
-	
 	private String leaveType;
 	private float noOfDays;
 	private String reason;
 	private String emergencyPhone;
+
 	private LeaveStatusEnum status;
+	private String action;
+	
+	private String selecteddata;
+	
+	private long id; // This is reffering ID of EmployeeLeave
 	
 	
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
 	public String getEmpId() {
 		return empId;
 	}
@@ -79,6 +90,20 @@ public class ApplyLeaveForm {
 	public void setToDateSession(String toDateSession) {
 		this.toDateSession = toDateSession;
 	}
+	
+	public String getAction() {
+		return action;
+	}
+	public void setAction(String action) {
+		this.action = action;
+	}
+	public String getSelecteddata() {
+		return selecteddata;
+	}
+	public void setSelecteddata(String selecteddata) {
+		this.selecteddata = selecteddata;
+	}
+
 
 	@Override
 	public String toString() {
