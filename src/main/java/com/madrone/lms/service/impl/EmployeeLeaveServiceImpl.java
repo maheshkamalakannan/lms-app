@@ -13,7 +13,7 @@ import com.madrone.lms.dao.EmployeeLeaveDao;
 import com.madrone.lms.entity.Employee;
 import com.madrone.lms.entity.EmployeeLeave;
 import com.madrone.lms.entity.Leave;
-import com.madrone.lms.form.ApplyLeaveForm;
+import com.madrone.lms.form.LeaveForm;
 import com.madrone.lms.service.EmployeeLeaveService;
 import com.madrone.lms.utils.DateUtils;
 
@@ -41,27 +41,19 @@ public class EmployeeLeaveServiceImpl implements EmployeeLeaveService {
 
 	@Override
 	@Transactional(readOnly = false)
-	public void saveEmployeeLeave(ApplyLeaveForm applyLeaveForm) {
-
-		EmployeeLeave el = new EmployeeLeave();
-		Employee e = empDao.findById(applyLeaveForm.getEmpId());
-		el.setEmployee(e);
-
-		Leave l = new Leave();
-		l.setId(applyLeaveForm.getLeaveType());
-		el.setLeave(l);
-
-		el.setFromDate(DateUtils.convertStringToCalendar(applyLeaveForm
-				.getFromDate()));
-		el.setToDate(DateUtils.convertStringToCalendar(applyLeaveForm
-				.getToDate()));
-		el.setFromDateSession(applyLeaveForm.getFromDateSession());
-		el.setToDateSession(applyLeaveForm.getToDateSession());
-		el.setNoOfDays(applyLeaveForm.getNoOfDays());
-		el.setReasonForLeave(applyLeaveForm.getReason());
-		el.setEmergencyPhoneNumber(applyLeaveForm.getEmergencyPhone());
+	public void saveEmployeeLeave(LeaveForm applyLeaveForm) {
+		EmployeeLeave el = setBeanValues(applyLeaveForm);
 		el.setLeaveStatus(LMSConstants.LEAVE_STATUS_PENDING);
 
+		empLeaveDao.saveOrUpdate(el);
+	}
+	
+	@Override
+	@Transactional(readOnly = false)
+	public void cancelEmployeeLeave(LeaveForm applyLeaveForm) {
+		System.out.println("Inside empleaveserviceimpl......update.....");
+		EmployeeLeave el = setBeanValues(applyLeaveForm);
+		el.setLeaveStatus(LMSConstants.LEAVE_STATUS_CANCEL);
 		empLeaveDao.saveOrUpdate(el);
 	}
 
@@ -90,6 +82,33 @@ public class EmployeeLeaveServiceImpl implements EmployeeLeaveService {
 	public List<EmployeeLeave> getPendingLeaveList(String userName) {
 		Employee emp = empDao.findByEmailAddress(userName);
 		return empLeaveDao.getPendingLeaveList(emp);
+	}
+
+	
+	private EmployeeLeave setBeanValues(LeaveForm leaveForm) {
+
+		EmployeeLeave el = new EmployeeLeave();
+		Employee e = empDao.findById(leaveForm.getEmpId());
+		el.setEmployee(e);
+
+		Leave l = new Leave();
+		l.setId(leaveForm.getLeaveType());
+		el.setLeave(l);
+		
+		el.setId(leaveForm.getId());
+
+		el.setFromDate(DateUtils.convertStringToCalendar(leaveForm
+				.getFromDate()));
+		el.setToDate(DateUtils.convertStringToCalendar(leaveForm
+				.getToDate()));
+		el.setFromDateSession(leaveForm.getFromDateSession());
+		el.setToDateSession(leaveForm.getToDateSession());
+		el.setNoOfDays(leaveForm.getNoOfDays());
+		el.setReasonForLeave(leaveForm.getReason());
+		el.setEmergencyPhoneNumber(leaveForm.getEmergencyPhone());
+		
+		return el;
+		
 	}
 
 }
