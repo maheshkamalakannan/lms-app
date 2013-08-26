@@ -38,11 +38,6 @@ public class MenuController {
 		return LMSConstants.MANAGER_HOME_SCR;
 	}
 
-	@RequestMapping(value = "/viewleaveRequests", method = RequestMethod.GET)
-	public String viewleaveRequests(Model model, ApplyLeaveForm form) {
-		model.addAttribute("ViewLeaveRequestForm", new ViewLeaveRequestForm());
-		return LMSConstants.MANAGER_VIEW_LEAVE_REQUEST_SCR;
-	}
 
 	@RequestMapping(value = "/viewApprovedLeaves", method = RequestMethod.GET)
 	public String viewApprovedleaves(Model model, ApplyLeaveForm form) {
