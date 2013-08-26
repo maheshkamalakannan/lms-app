@@ -2,6 +2,7 @@ package com.madrone.lms.service;
 
 import java.util.List;
 
+import com.madrone.lms.entity.Employee;
 import com.madrone.lms.entity.EmployeeLeave;
 import com.madrone.lms.form.ApplyLeaveForm;
 import com.madrone.lms.form.CancelLeaveForm;
@@ -14,9 +15,11 @@ public interface EmployeeLeaveService {
 
 	void deleteEmployeeLeave(long id);
 
-	List<EmployeeLeave> getCancelLeaveList(String userName);
+	List<EmployeeLeave> getPendingLeaveList(String userName);
 
 	List<EmployeeLeave> getLeaveList(String userName);
+
+	List<EmployeeLeave> getLeaveListOfTeam(String userName);
 
 	
 }

@@ -1,5 +1,6 @@
 package com.madrone.lms.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,15 +66,30 @@ public class EmployeeLeaveServiceImpl implements EmployeeLeaveService {
 	}
 
 	@Override
-	public List<EmployeeLeave> getCancelLeaveList(String userName) {
-		Employee emp = empDao.findByEmailAddress(userName);
-		return empLeaveDao.getCancelLeaveList(emp);
-	}
-
-	@Override
 	public List<EmployeeLeave> getLeaveList(String userName) {
 		Employee emp = empDao.findByEmailAddress(userName);
 		return empLeaveDao.getLeaveList(emp);
+	}
+
+	@Override
+	public List<EmployeeLeave> getLeaveListOfTeam(String userName) {
+		Employee leadEmployee = empDao.findByEmailAddress(userName);
+		List<Employee> teamList = empDao.findTeamList(leadEmployee);
+		List<EmployeeLeave> teamLeaveList = new ArrayList<EmployeeLeave>();
+
+		for (Employee emp : teamList) {
+			List<EmployeeLeave> leaveList = empLeaveDao
+					.getPendingLeaveList(emp);
+			leaveList.addAll(leaveList);
+		}
+
+		return teamLeaveList;
+	}
+
+	@Override
+	public List<EmployeeLeave> getPendingLeaveList(String userName) {
+		Employee emp = empDao.findByEmailAddress(userName);
+		return empLeaveDao.getPendingLeaveList(emp);
 	}
 
 }
