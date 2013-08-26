@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.madrone.lms.entity.Employee;
 import com.madrone.lms.entity.EmployeeLeave;
-import com.madrone.lms.form.CancelLeaveForm;
 
 
 public interface EmployeeLeaveDao extends AbstractDao<EmployeeLeave, Long> {

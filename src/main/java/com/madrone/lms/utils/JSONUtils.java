@@ -1,33 +1,19 @@
 package com.madrone.lms.utils;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.codehaus.jackson.JsonParseException;
-import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 
 import com.madrone.lms.entity.EmployeeLeave;
 import com.madrone.lms.form.ApplyLeaveFormGrid;
-import com.madrone.lms.form.CancelLeaveForm;
 import com.madrone.lms.form.LeaveDetailsGrid;
+import com.madrone.lms.form.LeaveForm;
 
 public class JSONUtils {
 	
 	static final ObjectMapper mapper = new ObjectMapper();
 	
-	public static void main(String args[]) {
-		
-		String json = "{\"fromDate\":\"13/08/2013\",\"toDate\":\"15/08/2013\",\"noOfDays\":2,\"leaveType\":\"CL\",\"action\":false,\"status\":\"P\",\"reason\":\"..\"}";
-		try {
-			CancelLeaveForm form = mapper.readValue(json, CancelLeaveForm.class);
-			System.out.println("FromDate" + form.getFromDate());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		}
 	
 	
 	public static String applyLeaveGridJSON(List<ApplyLeaveFormGrid> gridList ) {
@@ -48,12 +34,17 @@ public class JSONUtils {
 		ObjectMapper mapper = new ObjectMapper();
 		for (EmployeeLeave el : leaveList) {
 			LeaveDetailsGrid bean = new LeaveDetailsGrid();
+			
+			bean.setId(String.valueOf(el.getId()));
 			bean.setFromDate(DateUtils.convertCalendarToString(el.getFromDate()));
+			bean.setFromDateSession(el.getFromDateSession());
 			bean.setToDate(DateUtils.convertCalendarToString(el.getToDate()));
+			bean.setToDateSession(el.getToDateSession());
 			bean.setLeaveType(el.getLeave().getId());
 			bean.setNoOfDays(el.getNoOfDays());
 			bean.setStatus(el.getLeaveStatus());
 			bean.setReason(el.getReasonForLeave());
+			
 			gridList.add(bean);
 		}
 		try {
@@ -65,15 +56,15 @@ public class JSONUtils {
 	}
 
 
-	public static CancelLeaveForm convertJsonToObjectForCancelLeave(
+	public static LeaveForm convertJsonToObjectForCancelLeave(
 			String jsonString) {
 
 		jsonString = jsonString.replace("[", "");
 		jsonString = jsonString.replace("]", "");
-		CancelLeaveForm cancelForm  = null;
-		 
+		LeaveForm cancelForm  = null;
+		
 		try {
-				cancelForm  = new ObjectMapper().readValue(jsonString, CancelLeaveForm.class);
+				cancelForm  = new ObjectMapper().readValue(jsonString, LeaveForm.class);
 		 
 		} catch (Exception ex) {
 			ex.printStackTrace();
