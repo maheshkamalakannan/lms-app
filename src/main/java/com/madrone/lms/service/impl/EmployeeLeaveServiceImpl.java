@@ -62,8 +62,11 @@ public class EmployeeLeaveServiceImpl implements EmployeeLeaveService {
 	public List<LeaveDetailsGrid> getLeaveList(String userName) {
 		Employee emp = empDao.findByEmailAddress(userName);
 		List<EmployeeLeave> leaveList = empLeaveDao.getLeaveList(emp);
-		List<LeaveDetailsGrid> teamLeaveList = setBeanValuesForGrid(leaveList);
-		return teamLeaveList;
+		List<LeaveDetailsGrid> returnList = new ArrayList<LeaveDetailsGrid>();
+		if(leaveList!=null) {
+			returnList = setBeanValuesForGrid(leaveList);
+		}
+		return returnList;
 	}
 
 
@@ -71,18 +74,32 @@ public class EmployeeLeaveServiceImpl implements EmployeeLeaveService {
 	public List<LeaveDetailsGrid> getLeaveListOfTeam(String userName) {
 		Employee leadEmployee = empDao.findByEmailAddress(userName);
 		List<Employee> teamList = empDao.findTeamList(leadEmployee);
-		List<LeaveDetailsGrid> returnList = new ArrayList<LeaveDetailsGrid>();
-		if(teamList!=null) {
-			for (Employee emp : teamList) {
-				List<EmployeeLeave> leaveList = empLeaveDao
-						.getPendingLeaveList(emp);
-				returnList = setBeanValuesForGrid(leaveList);
+		List<LeaveDetailsGrid> teamLeaveList = new ArrayList<LeaveDetailsGrid>();
+
+		for (Employee emp : teamList) {
+			List<EmployeeLeave> leaveList = empLeaveDao
+					.getPendingLeaveList(emp);
+			for (EmployeeLeave el : leaveList) {
+				LeaveDetailsGrid bean = new LeaveDetailsGrid();
+				bean.setId(String.valueOf(el.getId()));
+				bean.setEmpId(el.getEmployee().getId());
+				bean.setEmpName(el.getEmployee().getFirstName());
+				bean.setFromDateSession(el.getFromDateSession());
+				bean.setFromDate(DateUtils.convertCalendarToString(el
+						.getFromDate()));
+				bean.setToDate(DateUtils.convertCalendarToString(el
+						.getFromDate()));
+				bean.setToDateSession(el.getToDateSession());
+				bean.setLeaveType(el.getLeave().getId());
+				bean.setNoOfDays(el.getNoOfDays());
+				bean.setStatus(el.getLeaveStatus());
+				teamLeaveList.add(bean);
 			}
 		}
-		return returnList;
+
+		return teamLeaveList;
 	}
-
-
+	
 	@Override
 	public List<LeaveDetailsGrid> getPendingLeaveList(String userName) {
 		Employee emp = empDao.findByEmailAddress(userName);
@@ -93,6 +110,7 @@ public class EmployeeLeaveServiceImpl implements EmployeeLeaveService {
 		}
 		return returnList;
 	}
+
 
 	private EmployeeLeave setBeanValuesForSave(LeaveForm leaveForm) {
 
@@ -117,7 +135,7 @@ public class EmployeeLeaveServiceImpl implements EmployeeLeaveService {
 		return el;
 
 	}
-	
+
 	
 	private List<LeaveDetailsGrid> setBeanValuesForGrid(
 			List<EmployeeLeave> leaveList) {
@@ -144,5 +162,5 @@ public class EmployeeLeaveServiceImpl implements EmployeeLeaveService {
 		return returnList;
 		
 	}
-
+	
 }
