@@ -44,7 +44,7 @@ public class EmployeeLeaveServiceImpl implements EmployeeLeaveService {
 	@Override
 	@Transactional(readOnly = false)
 	public void saveEmployeeLeave(LeaveForm applyLeaveForm) {
-		EmployeeLeave el = setBeanValues(applyLeaveForm);
+		EmployeeLeave el = setBeanValuesForSave(applyLeaveForm);
 		el.setLeaveStatus(LMSConstants.LEAVE_STATUS_PENDING);
 
 		empLeaveDao.saveOrUpdate(el);
@@ -53,73 +53,48 @@ public class EmployeeLeaveServiceImpl implements EmployeeLeaveService {
 	@Override
 	@Transactional(readOnly = false)
 	public void cancelEmployeeLeave(LeaveForm applyLeaveForm) {
-		EmployeeLeave el = setBeanValues(applyLeaveForm);
+		EmployeeLeave el = setBeanValuesForSave(applyLeaveForm);
 		el.setLeaveStatus(LMSConstants.LEAVE_STATUS_CANCEL);
-		empLeaveDao.saveOrUpdate(el);
+		empLeaveDao.update(el);
 	}
 
 	@Override
-	public List<EmployeeLeave> getLeaveList(String userName) {
+	public List<LeaveDetailsGrid> getLeaveList(String userName) {
 		Employee emp = empDao.findByEmailAddress(userName);
-		return empLeaveDao.getLeaveList(emp);
-	}
-
-	@Override
-	public List<ViewLeaveRequestForm> getLeaveListOfTeam(String userName) {
-		Employee leadEmployee = empDao.findByEmailAddress(userName);
-		List<Employee> teamList = empDao.findTeamList(leadEmployee);
-		List<ViewLeaveRequestForm> teamLeaveList = new ArrayList<ViewLeaveRequestForm>();
-
-		for (Employee emp : teamList) {
-			List<EmployeeLeave> leaveList = empLeaveDao
-					.getPendingLeaveList(emp);
-
-			for (EmployeeLeave el : leaveList) {
-				ViewLeaveRequestForm bean = new ViewLeaveRequestForm();
-				bean.setEmpId(el.getEmployee().getId());
-				bean.setEmpName(el.getEmployee().getFirstName());
-				bean.setFromDateSession(el.getFromDateSession());
-				bean.setFromDate(DateUtils.convertCalendarToString(el
-						.getFromDate()));
-				bean.setToDate(DateUtils.convertCalendarToString(el
-						.getFromDate()));
-				bean.setToDateSession(el.getToDateSession());
-				bean.setLeaveReason(el.getReasonForLeave());
-				bean.setLeaveType(el.getLeave().getId());
-				bean.setNoOfDays(el.getNoOfDays());
-				bean.setStatus(el.getLeaveStatus());
-				teamLeaveList.add(bean);
-			}
-		}
-
+		List<EmployeeLeave> leaveList = empLeaveDao.getLeaveList(emp);
+		List<LeaveDetailsGrid> teamLeaveList = setBeanValuesForGrid(leaveList);
 		return teamLeaveList;
 	}
+
+
+	@Override
+	public List<LeaveDetailsGrid> getLeaveListOfTeam(String userName) {
+		Employee leadEmployee = empDao.findByEmailAddress(userName);
+		List<Employee> teamList = empDao.findTeamList(leadEmployee);
+		List<LeaveDetailsGrid> returnList = new ArrayList<LeaveDetailsGrid>();
+		if(teamList!=null) {
+			for (Employee emp : teamList) {
+				List<EmployeeLeave> leaveList = empLeaveDao
+						.getPendingLeaveList(emp);
+				returnList = setBeanValuesForGrid(leaveList);
+			}
+		}
+		return returnList;
+	}
+
 
 	@Override
 	public List<LeaveDetailsGrid> getPendingLeaveList(String userName) {
 		Employee emp = empDao.findByEmailAddress(userName);
 		List<EmployeeLeave> leaveList = empLeaveDao.getPendingLeaveList(emp);
 		List<LeaveDetailsGrid> returnList = new ArrayList<LeaveDetailsGrid>();
-		
-		if(leaveList!=null && leaveList.size()>0) { 
-			for (EmployeeLeave el : leaveList) {
-				LeaveDetailsGrid bean = new LeaveDetailsGrid();
-				bean.setId(String.valueOf(el.getId()));
-				bean.setFromDate(DateUtils.convertCalendarToString(el.getFromDate()));
-				bean.setFromDateSession(el.getFromDateSession());
-				bean.setToDate(DateUtils.convertCalendarToString(el.getToDate()));
-				bean.setToDateSession(el.getToDateSession());
-				bean.setLeaveType(el.getLeave().getId());
-				bean.setNoOfDays(el.getNoOfDays());
-				bean.setStatus(el.getLeaveStatus());
-				bean.setReason(el.getReasonForLeave());
-				returnList.add(bean);
-			}
+		if(leaveList!=null) {
+			returnList = setBeanValuesForGrid(leaveList);
 		}
 		return returnList;
 	}
 
-	private EmployeeLeave setBeanValues(LeaveForm leaveForm) {
+	private EmployeeLeave setBeanValuesForSave(LeaveForm leaveForm) {
 
 		EmployeeLeave el = new EmployeeLeave();
 		Employee e = empDao.findById(leaveForm.getEmpId());
@@ -137,11 +112,37 @@ public class EmployeeLeaveServiceImpl implements EmployeeLeaveService {
 		el.setFromDateSession(leaveForm.getFromDateSession());
 		el.setToDateSession(leaveForm.getToDateSession());
 		el.setNoOfDays(leaveForm.getNoOfDays());
-		el.setReasonForLeave(leaveForm.getReason());
+		el.setCancellationComments(leaveForm.getReason());
 		el.setEmergencyPhoneNumber(leaveForm.getEmergencyPhone());
-
 		return el;
 
+	}
+	
+	
+	private List<LeaveDetailsGrid> setBeanValuesForGrid(
+			List<EmployeeLeave> leaveList) {
+		
+		List<LeaveDetailsGrid> returnList = new ArrayList<LeaveDetailsGrid>();
+		
+		for(EmployeeLeave el:leaveList) {
+			LeaveDetailsGrid bean = new LeaveDetailsGrid();
+			bean.setId(String.valueOf(el.getId()));
+			bean.setEmpId(el.getEmployee().getId());
+			bean.setEmpName(el.getEmployee().getFirstName());
+			bean.setFromDateSession(el.getFromDateSession());
+			bean.setFromDate(DateUtils.convertCalendarToString(el
+					.getFromDate()));
+			bean.setToDate(DateUtils.convertCalendarToString(el
+					.getFromDate()));
+			bean.setToDateSession(el.getToDateSession());
+			bean.setReason(el.getReasonForLeave());
+			bean.setLeaveType(el.getLeave().getId());
+			bean.setNoOfDays(el.getNoOfDays());
+			bean.setStatus(el.getLeaveStatus());
+			returnList.add(bean);
+		}
+		return returnList;
+		
 	}
 
 }

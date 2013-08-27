@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import com.madrone.lms.constants.LMSConstants;
+import com.madrone.lms.form.LeaveDetailsGrid;
 import com.madrone.lms.form.ViewLeaveRequestForm;
 import com.madrone.lms.service.EmployeeLeaveService;
 import com.madrone.lms.utils.JSONUtils;
@@ -33,9 +34,9 @@ public class ViewLeaveReqController {
 			HttpSession session) {
 		logger.info("Inside viewApproveLeave()");
 		String userName = (String) session.getAttribute("sessionUser");
-		List<ViewLeaveRequestForm> leaveListOfTeam = empLeaveService
+		List<LeaveDetailsGrid> leaveListOfTeam = empLeaveService
 				.getLeaveListOfTeam(userName);
-		String jsonString = JSONUtils.approveGridJSON(leaveListOfTeam);
+		String jsonString = JSONUtils.leaveListGridJSON(leaveListOfTeam);
 		model.addAttribute("jsonString", jsonString);
 
 		model.addAttribute("ViewLeaveRequestForm", new ViewLeaveRequestForm());

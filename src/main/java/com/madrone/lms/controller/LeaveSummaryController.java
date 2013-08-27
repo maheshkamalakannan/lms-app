@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.madrone.lms.constants.LMSConstants;
 import com.madrone.lms.entity.EmployeeLeave;
 import com.madrone.lms.form.ApplyLeaveFormGrid;
+import com.madrone.lms.form.LeaveDetailsGrid;
 import com.madrone.lms.form.LeaveSummaryForm;
 import com.madrone.lms.service.EmployeeLeaveService;
 import com.madrone.lms.service.LeaveService;
@@ -39,15 +40,13 @@ public class LeaveSummaryController {
 
 		List<ApplyLeaveFormGrid> LeaveBalanceList = leaveService
 				.getApplyLeaveGridDetails(userName);
-		List<EmployeeLeave> leaveList = empLeaveService.getLeaveList(userName);
+		List<LeaveDetailsGrid> leaveList = empLeaveService.getLeaveList(userName);
 
 		String jsonString1 = JSONUtils.applyLeaveGridJSON(LeaveBalanceList);
 		String jsonString2 = JSONUtils.leaveListGridJSON(leaveList);
 		
 		model.addAttribute("jsonString1", jsonString1);
 		model.addAttribute("jsonString2", jsonString2);
-		System.out.println("jsonString1" + jsonString1);
-		System.out.println("jsonString2" + jsonString2);
 
 		model.addAttribute("LeaveSummaryForm", new LeaveSummaryForm());
 		return LMSConstants.LEAVE_SUMMARY_SCR;

@@ -56,12 +56,12 @@ public class CancelLeaveController {
 
 		logger.info("submitCancelLeave");
 		String jsonString = form.getSelecteddata();
+		System.out.println("Cancel--Screen" + jsonString);
 
 		LeaveForm cancelForm = JSONUtils
 				.convertJsonToObjectForCancelLeave(jsonString);
 		if (cancelForm != null) {
-			System.out.println("FromDate..." + cancelForm.getFromDate());
-			 empLeaveService.cancelEmployeeLeave(cancelForm);
+			empLeaveService.cancelEmployeeLeave(cancelForm);
 			model.addAttribute("SucessMessage", messageSource.getMessage(
 					"lms.cancelLeave_success_message", new Object[] { "" },
 					Locale.getDefault()));

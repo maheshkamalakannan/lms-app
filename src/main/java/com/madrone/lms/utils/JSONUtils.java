@@ -7,7 +7,6 @@ import org.codehaus.jackson.map.ObjectMapper;
 import com.madrone.lms.form.ApplyLeaveFormGrid;
 import com.madrone.lms.form.LeaveDetailsGrid;
 import com.madrone.lms.form.LeaveForm;
-import com.madrone.lms.form.ViewLeaveRequestForm;
 
 public class JSONUtils {
 	
@@ -54,19 +53,6 @@ public class JSONUtils {
 			
 		}
 		return cancelForm; 
-	}
-	
-	//This Function is used in ViewLeaveRequest controller.
-	public static String approveGridJSON(List<ViewLeaveRequestForm> leaveList) {
-		String jsonString = "";
-		ObjectMapper mapper = new ObjectMapper();
-		
-		try {
-			jsonString = mapper.writeValueAsString(leaveList);
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-		return jsonString;
 	}
 	
 

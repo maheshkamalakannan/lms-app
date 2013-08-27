@@ -5,11 +5,14 @@ import com.madrone.lms.entity.LeaveStatusEnum;
 public class LeaveForm {
 	
 	private String empId;
+	private String empName;
 	
 	private String fromDate;
 	private String toDate;
 	private String fromDateSession;
 	private String toDateSession;
+	
+
 	private String leaveType;
 	private float noOfDays;
 	private String reason;
@@ -102,6 +105,13 @@ public class LeaveForm {
 	}
 	public void setSelecteddata(String selecteddata) {
 		this.selecteddata = selecteddata;
+	}
+	
+	public String getEmpName() {
+		return empName;
+	}
+	public void setEmpName(String empName) {
+		this.empName = empName;
 	}
 
 
