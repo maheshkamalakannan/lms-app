@@ -9,7 +9,7 @@
 	             <h5>${EmpForm.firstName} ${EmpForm.lastName}</h5>
 	            <input type = "hidden" name = "userName" value="${userName}" />
 	            <input type = "hidden" name = "empId" value="${EmpForm.id}" />
-	            <input type = "hidden" name = "selecteddata" value ={{mySelections}} />
+	            <input type = "hidden" name = "selecteddata" value ={{selecteddata}} />
 	            <a href="/lms-app">Sign Out</a>
 	          </div>
 	  </div>

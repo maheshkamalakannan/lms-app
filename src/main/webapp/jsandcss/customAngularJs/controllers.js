@@ -76,6 +76,8 @@ mycontroller.controller('constantsController', function($scope, $window, $locati
     $scope.viewleaverequest              = "Home > Leave > View Leave Requests";
     $scope.viewapprovedleaves            = "Home > Reports > View Approved Leaves";
     $scope.viewrejectedleaves            = "Home > Reports > View Rejected Leaves";
+    
+    $scope.adminadduser                  = "Home > Users > Add Users";
 });
 
 mycontroller.controller('changePasswordController', function($scope, $window, $location) {
@@ -374,6 +376,8 @@ mycontroller.controller('managerViewApprovedLeaveController', function($scope, $
 	
 	$scope.assign = function(row){
 		$scope.myData1 = row.entity;
+		$scope.selecteddata = [{"empId": row.entity.empId, "empName": row.entity.empName, "leaveType": row.entity.leaveType, "fromDate": row.entity.fromDate, "fromDateSession":row.entity.fromDate,
+			                    "toDate": row.entity.toDate ,"toDateSession": row.entity.toDateSession, "noOfDays": row.entity.noOfDays, "status": row.entity.status, "approvalComment": row.entity.approvalComment}];
 		$scope.selectleavetoapprove = false;
 		$scope.selectleavetoreject  = false;
 	};
@@ -424,6 +428,10 @@ mycontroller.controller('managerViewApprovedLeaveController', function($scope, $
 			 event.preventDefault();
 		 }
 	};
+	
+});
+
+mycontroller.controller('adduserController', function($scope, $window, $location) {
 	
 });
 
