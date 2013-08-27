@@ -590,3 +590,26 @@ h5:first-letter {
     margin-right: -440px;
     margin-top: -200px;
 }
+
+#adminleftcontent{
+	float:left;
+	width:490px;
+	padding:15px;
+}
+
+#adminrightcontent{
+	float:right;
+	width:490px;
+	padding:15px;
+}
+
+.admincentercontent{
+	margin: 330px 0 0 420px;
+    padding: 15px;
+    width: 250px;
+}
+
+.adminbuttonsalign{
+	margin-left: 70px;
+    padding-top: 20px;
+}

@@ -433,6 +433,46 @@ mycontroller.controller('managerViewApprovedLeaveController', function($scope, $
 
 mycontroller.controller('adduserController', function($scope, $window, $location) {
 	
+	$scope.olddate = function($event){
+		$scope.dateishigher = false;
+		/*if($scope.dateofjoin > new Date()){
+			 $scope.dateishigher = true;
+			 event.preventDefault();
+		 }
+		else{
+			$scope.dateishigher = false;
+		}*/
+	};
+	
+	 $scope.saveuser = function(form,event){
+		 if(form.$valid){
+			 if($scope.dateofjoin > new Date()){
+				 $scope.dateishigher = true;
+				 event.preventDefault();
+			 }
+				 form.submit();
+			 }
+		 else{
+			 event.preventDefault();
+		 }
+	};
+	
+	$scope.resetuser = function(){
+		$('.error').css("display","none");
+		$scope.ngfirstname = '';
+        $scope.nglastname  = '';
+        $scope.ngemail     = '';
+        $scope.ngpassword  = '';
+        $scope.dateofjoin  = '';
+        $scope.ngdesignation = '';
+        $scope.nglevel     = '';
+        $scope.ngreportingto = '';
+        $scope.ngaddress   = '';
+        $scope.ngcity      = '';
+        $scope.ngstate     = '';
+        $scope.ngpincode   = '';
+	};
+	
 });
 
 
