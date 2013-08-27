@@ -62,6 +62,11 @@ mycontroller.controller('constantsController', function($scope, $window, $locati
     $scope.cancelreasonrequired          = "Reason for Cancellation is Required.";
     $scope.selectleavetocncl             = "Select Leave to cancel.";
     
+    $scope.viewleaverequestcomment           = "Comments :";
+    $scope.viewleaverequestcommentrequired   = "Comment is Required.";
+    $scope.viewleaverequestapprove           = "Select a Leave to Approve.";
+    $scope.viewleaverequestreject            = "Select a Leave to Reject.";
+    
     $scope.hometab                       = "Home";
     $scope.changepasswordtabs            = "Home > Settings > Change Password";
     $scope.applyleavetab                 = "Home > Leaves > Apply Leave";
@@ -278,7 +283,9 @@ mycontroller.controller('cancelleaveController', function($scope, $window, $loca
                     afterSelectionChange: function (item, event) { $scope.selectleavetocancel = false; },
 		    		columnDefs: [{field: 'fromDate', displayName: 'From Date', cellClass:'aligncolumn'},
 		    		             {field: 'toDate', displayName: 'To Date', cellClass:'aligncolumn'},
+		    		             {field: 'leaveType', displayName: 'Type', cellClass:'aligncolumn'},
 		    		             {field: 'noOfDays', displayName: 'Total Days', cellClass:'aligncolumn'},
+		    		             {field: 'status', displayName: 'Status', width:60, cellClass:'aligncolumn'},
 		    		            ]
 			       };
 	  };
@@ -337,8 +344,87 @@ mycontroller.controller('leavesummaryController', function($scope, $window, $loc
 });
 
 mycontroller.controller('managerViewApprovedLeaveController', function($scope, $window, $location) {
-	/*JS for managerviewapprovedleaves*/
-	alert("hello");
+	    $scope.selectleavetoapprove = false;
+	    $scope.selectleavetoreject  = false;
+	    $scope.myData1              = ' ';
+	    
+		$scope.init = function(data1) {
+		$scope.gridData = [];
+		$scope.gridData = data1;
+		$scope.gridOptions = { 
+	    		data: 'gridData',
+	    		multiSelect: false,
+	    		showFooter:true,
+	    		columnDefs: [{displayName: '', cellClass:'aligncolumn', cellTemplate: '<input type="radio" name="view" id="view"  ng-click="assign(row)" value="View">'},
+	    		             {field: 'empId', displayName: 'ID',cellClass:'aligncolumn'},
+	    		             {field: 'empName', displayName: 'Name',cellClass:'aligncolumn'},
+	    		             {field: 'leaveType', displayName: 'Type',cellClass:'aligncolumn'},
+	    		             {field: 'fromDate', displayName: 'From Date',cellClass:'aligncolumn'},
+	    		             {field: 'fromDateSession', displayName: 'Session',cellClass:'aligncolumn'},
+	    		             {field: 'toDate', displayName: 'To Date'},
+	    		             {field: 'toDateSession', displayName: 'Session',cellClass:'aligncolumn'},
+	    		             {field: 'noOfDays', displayName: 'Days',cellClass:'aligncolumn'},
+	    		             {field: 'leaveReason', displayName: 'Reason',cellClass:'aligncolumn'},
+	    		             ]};
+		 $scope.$on('ngGridEventData', function (e,s) {
+	         $scope.gridOptions.selectItem(0,true);
+	         $(".ngViewport").focus();
+	     });
+	};
+	
+	$scope.assign = function(row){
+		$scope.myData1 = row.entity;
+		$scope.selectleavetoapprove = false;
+		$scope.selectleavetoreject  = false;
+	};
+	/*$scope.assign = function(row){
+		$scope.myData1 = [{Type: row.entity.leaveType, Total: '30', Consumed: '20', Balance: '10'}];
+	};
+
+	$scope.gridOptions1 = {
+	        data: 'myData1',
+	        columnDefs: [{ field: "Type",displayName : "Type",cellClass:'aligncolumn' },
+	                     { field: "Total", displayName : "Total",cellClass:'aligncolumn'},
+	                     { field: "Consumed", displayName : "Consumed",cellClass:'aligncolumn'},
+	                     { field: "Balance", displayName : "Balance",cellClass:'aligncolumn'},
+	                    ]
+	    };*/
+	
+
+	  $scope.approveleave = function(form,event){
+		 if(form.$valid){
+			 if($scope.myData1 == ' ' ){
+				 $scope.selectleavetoapprove = true;
+				 $scope.selectleavetoreject = false;
+				 event.preventDefault();
+			 }
+			 else{
+				 form.submit();
+			 }
+			   
+			 }
+		 else{
+			 event.preventDefault();
+		 }
+	};
+	
+	$scope.rejectleave = function (form,event){
+		if(form.$valid){
+			 if($scope.myData1 == ' ' ){
+				 $scope.selectleavetoreject = true;
+				 $scope.selectleavetoapprove = false;
+				 event.preventDefault();
+			 }
+			 else{
+				 form.submit();
+			 }
+			   
+			 }
+		 else{
+			 event.preventDefault();
+		 }
+	};
+	
 });
 
 
