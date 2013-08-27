@@ -68,32 +68,32 @@
     
     <definition extends="base.definition" name="manager">  
         <put-attribute name="title" value="LMS-Manager-Home"></put-attribute>  
-        <put-attribute name="body" value="/WEB-INF/jsp/manager/managerHome.jsp"></put-attribute> 
-        <put-attribute name="menu" value="/WEB-INF/jsp/manager/managerMenu.jsp"></put-attribute>
+        <put-attribute name="body" value="/WEB-INF/jsp/projectmanager/managerHome.jsp"></put-attribute> 
+        <put-attribute name="menu" value="/WEB-INF/jsp/projectmanager/projectManagerMenu.jsp"></put-attribute>
     </definition>
     
     <definition extends="base.definition" name="managerHomeScreen">  
         <put-attribute name="title" value="LMS-Manager-Home"></put-attribute>  
-        <put-attribute name="body" value="/WEB-INF/jsp/manager/managerHome.jsp"></put-attribute> 
-        <put-attribute name="menu" value="/WEB-INF/jsp/manager/managerMenu.jsp"></put-attribute>
+        <put-attribute name="body" value="/WEB-INF/jsp/projectmanager/managerHome.jsp"></put-attribute> 
+        <put-attribute name="menu" value="/WEB-INF/jsp/projectmanager/projectManagerMenu.jsp"></put-attribute>
     </definition>
     
     <definition extends="base.definition" name="viewLeaveRequestScreen">  
-        <put-attribute name="title" value="LMS-Manager-View Leave Request"></put-attribute>  
-        <put-attribute name="body" value="/WEB-INF/jsp/manager/viewLeaveRequests.jsp"></put-attribute> 
-        <put-attribute name="menu" value="/WEB-INF/jsp/manager/managerMenu.jsp"></put-attribute>
+        <put-attribute name="title" value="LMS-Manager-View Leave Requests"></put-attribute>  
+        <put-attribute name="body" value="/WEB-INF/jsp/projectmanager/managerViewLeaveRequests.jsp"></put-attribute> 
+        <put-attribute name="menu" value="/WEB-INF/jsp/projectmanager/projectManagerMenu.jsp"></put-attribute>
     </definition>
     
     <definition extends="base.definition" name="viewApprovedLeavesScreen">  
         <put-attribute name="title" value="LMS-Manager-View Approved Leaves"></put-attribute>  
-        <put-attribute name="body" value="/WEB-INF/jsp/manager/viewApprovedLeaves.jsp"></put-attribute> 
-        <put-attribute name="menu" value="/WEB-INF/jsp/manager/managerMenu.jsp"></put-attribute>
+        <put-attribute name="body" value="/WEB-INF/jsp/projectmanager/managerviewApprovedLeaves.jsp"></put-attribute> 
+        <put-attribute name="menu" value="/WEB-INF/jsp/projectmanager/projectManagerMenu.jsp"></put-attribute>
     </definition>
     
     <definition extends="base.definition" name="viewRejectedLeavesScreen">  
         <put-attribute name="title" value="LMS-Manager-View Approved Leaves"></put-attribute>  
-        <put-attribute name="body" value="/WEB-INF/jsp/manager/viewRejectedLeaves.jsp"></put-attribute> 
-        <put-attribute name="menu" value="/WEB-INF/jsp/manager/managerMenu.jsp"></put-attribute>
+        <put-attribute name="body" value="/WEB-INF/jsp/projectmanager/managerViewRejectedLeaves.jsp"></put-attribute> 
+        <put-attribute name="menu" value="/WEB-INF/jsp/projectmanager/projectManagerMenu.jsp"></put-attribute>
     </definition>
     
      <definition extends="base.definition" name="admin">  

@@ -68,7 +68,9 @@ mycontroller.controller('constantsController', function($scope, $window, $locati
     $scope.cancelleavetab                = "Home > Leaves > Cancel Leave";
     $scope.leavesummarytab               = "Home > Leave Summary";
     
+    $scope.viewleaverequest              = "Home > Leave > View Leave Requests";
     $scope.viewapprovedleaves            = "Home > Reports > View Approved Leaves";
+    $scope.viewrejectedleaves            = "Home > Reports > View Rejected Leaves";
 });
 
 mycontroller.controller('changePasswordController', function($scope, $window, $location) {
