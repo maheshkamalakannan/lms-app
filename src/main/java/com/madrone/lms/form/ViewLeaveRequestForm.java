@@ -6,12 +6,26 @@ public class ViewLeaveRequestForm {
 
 	private String empId;
 	private String empName;
-	private Calendar fromDate;
-	private Calendar toDate;
-	private String leaveReson;
-	private String approvalComment;
+	private String fromDate;
+	private String fromDateSession;
+	private String toDate;
+	private String toDateSession;
+	private String status;
+	private float noOfDays;
 	
 	
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	public float getNoOfDays() {
+		return noOfDays;
+	}
+	public void setNoOfDays(float noOfDays) {
+		this.noOfDays = noOfDays;
+	}
 	public String getEmpId() {
 		return empId;
 	}
@@ -24,23 +38,41 @@ public class ViewLeaveRequestForm {
 	public void setEmpName(String empName) {
 		this.empName = empName;
 	}
-	public Calendar getFromDate() {
+	public String getFromDate() {
 		return fromDate;
 	}
-	public void setFromDate(Calendar fromDate) {
+	public void setFromDate(String fromDate) {
 		this.fromDate = fromDate;
 	}
-	public Calendar getToDate() {
+	public String getFromDateSession() {
+		return fromDateSession;
+	}
+	public void setFromDateSession(String fromDateSession) {
+		this.fromDateSession = fromDateSession;
+	}
+	public String getToDate() {
 		return toDate;
 	}
-	public void setToDate(Calendar toDate) {
+	public void setToDate(String toDate) {
 		this.toDate = toDate;
 	}
-	public String getLeaveReson() {
-		return leaveReson;
+	public String getToDateSession() {
+		return toDateSession;
 	}
-	public void setLeaveReson(String leaveReson) {
-		this.leaveReson = leaveReson;
+	public void setToDateSession(String toDateSession) {
+		this.toDateSession = toDateSession;
+	}
+	public String getLeaveType() {
+		return leaveType;
+	}
+	public void setLeaveType(String leaveType) {
+		this.leaveType = leaveType;
+	}
+	public String getLeaveReason() {
+		return leaveReason;
+	}
+	public void setLeaveReason(String leaveReason) {
+		this.leaveReason = leaveReason;
 	}
 	public String getApprovalComment() {
 		return approvalComment;
@@ -48,6 +80,9 @@ public class ViewLeaveRequestForm {
 	public void setApprovalComment(String approvalComment) {
 		this.approvalComment = approvalComment;
 	}
+	private String leaveType;
+	private String leaveReason;
+	private String approvalComment;
 	
 	
 }

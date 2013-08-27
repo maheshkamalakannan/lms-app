@@ -14,6 +14,7 @@ import com.madrone.lms.entity.Employee;
 import com.madrone.lms.entity.EmployeeLeave;
 import com.madrone.lms.entity.Leave;
 import com.madrone.lms.form.LeaveForm;
+import com.madrone.lms.form.ViewLeaveRequestForm;
 import com.madrone.lms.service.EmployeeLeaveService;
 import com.madrone.lms.utils.DateUtils;
 
@@ -47,11 +48,10 @@ public class EmployeeLeaveServiceImpl implements EmployeeLeaveService {
 
 		empLeaveDao.saveOrUpdate(el);
 	}
-	
+
 	@Override
 	@Transactional(readOnly = false)
 	public void cancelEmployeeLeave(LeaveForm applyLeaveForm) {
-		System.out.println("Inside empleaveserviceimpl......update.....");
 		EmployeeLeave el = setBeanValues(applyLeaveForm);
 		el.setLeaveStatus(LMSConstants.LEAVE_STATUS_CANCEL);
 		empLeaveDao.saveOrUpdate(el);
@@ -64,15 +64,31 @@ public class EmployeeLeaveServiceImpl implements EmployeeLeaveService {
 	}
 
 	@Override
-	public List<EmployeeLeave> getLeaveListOfTeam(String userName) {
+	public List<ViewLeaveRequestForm> getLeaveListOfTeam(String userName) {
 		Employee leadEmployee = empDao.findByEmailAddress(userName);
 		List<Employee> teamList = empDao.findTeamList(leadEmployee);
-		List<EmployeeLeave> teamLeaveList = new ArrayList<EmployeeLeave>();
+		List<ViewLeaveRequestForm> teamLeaveList = new ArrayList<ViewLeaveRequestForm>();
 
 		for (Employee emp : teamList) {
 			List<EmployeeLeave> leaveList = empLeaveDao
 					.getPendingLeaveList(emp);
-			leaveList.addAll(leaveList);
+
+			for (EmployeeLeave el : leaveList) {
+				ViewLeaveRequestForm bean = new ViewLeaveRequestForm();
+				bean.setEmpId(el.getEmployee().getId());
+				bean.setEmpName(el.getEmployee().getFirstName());
+				bean.setFromDateSession(el.getFromDateSession());
+				bean.setFromDate(DateUtils.convertCalendarToString(el
+						.getFromDate()));
+				bean.setToDate(DateUtils.convertCalendarToString(el
+						.getFromDate()));
+				bean.setToDateSession(el.getToDateSession());
+				bean.setLeaveReason(el.getReasonForLeave());
+				bean.setLeaveType(el.getLeave().getId());
+				bean.setNoOfDays(el.getNoOfDays());
+				bean.setStatus(el.getLeaveStatus());
+				teamLeaveList.add(bean);
+			}
 		}
 
 		return teamLeaveList;
@@ -84,7 +100,6 @@ public class EmployeeLeaveServiceImpl implements EmployeeLeaveService {
 		return empLeaveDao.getPendingLeaveList(emp);
 	}
 
-	
 	private EmployeeLeave setBeanValues(LeaveForm leaveForm) {
 
 		EmployeeLeave el = new EmployeeLeave();
@@ -94,21 +109,20 @@ public class EmployeeLeaveServiceImpl implements EmployeeLeaveService {
 		Leave l = new Leave();
 		l.setId(leaveForm.getLeaveType());
 		el.setLeave(l);
-		
+
 		el.setId(leaveForm.getId());
 
 		el.setFromDate(DateUtils.convertStringToCalendar(leaveForm
 				.getFromDate()));
-		el.setToDate(DateUtils.convertStringToCalendar(leaveForm
-				.getToDate()));
+		el.setToDate(DateUtils.convertStringToCalendar(leaveForm.getToDate()));
 		el.setFromDateSession(leaveForm.getFromDateSession());
 		el.setToDateSession(leaveForm.getToDateSession());
 		el.setNoOfDays(leaveForm.getNoOfDays());
 		el.setReasonForLeave(leaveForm.getReason());
 		el.setEmergencyPhoneNumber(leaveForm.getEmergencyPhone());
-		
+
 		return el;
-		
+
 	}
 
 }

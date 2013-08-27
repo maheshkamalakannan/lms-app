@@ -13,7 +13,7 @@ import com.madrone.lms.entity.EmployeeLeave;
 
 @Repository("employeeLeaveDao")
 public class EmployeeLeaveDaoImpl extends AbstractDaoImpl<EmployeeLeave, Long>
-						implements EmployeeLeaveDao {
+		implements EmployeeLeaveDao {
 
 	protected EmployeeLeaveDaoImpl() {
 		super(EmployeeLeave.class);
@@ -25,7 +25,6 @@ public class EmployeeLeaveDaoImpl extends AbstractDaoImpl<EmployeeLeave, Long>
 		List<EmployeeLeave> employeeLeaveList = findByCriteria(criterionList);
 		return employeeLeaveList;
 	}
-
 
 	@Override
 	public List<EmployeeLeave> getLeaveList(Employee employee) {

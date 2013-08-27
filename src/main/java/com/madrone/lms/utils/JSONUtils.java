@@ -9,6 +9,7 @@ import com.madrone.lms.entity.EmployeeLeave;
 import com.madrone.lms.form.ApplyLeaveFormGrid;
 import com.madrone.lms.form.LeaveDetailsGrid;
 import com.madrone.lms.form.LeaveForm;
+import com.madrone.lms.form.ViewLeaveRequestForm;
 
 public class JSONUtils {
 	
@@ -27,28 +28,12 @@ public class JSONUtils {
 	}
 	
 	
-	public static String leaveListGridJSON(List<EmployeeLeave> leaveList) {
+	public static String leaveListGridJSON(List<ViewLeaveRequestForm> leaveList) {
 		String jsonString = "";
-		List<LeaveDetailsGrid> gridList = new ArrayList<LeaveDetailsGrid>();
-		
 		ObjectMapper mapper = new ObjectMapper();
-		for (EmployeeLeave el : leaveList) {
-			LeaveDetailsGrid bean = new LeaveDetailsGrid();
-			
-			bean.setId(String.valueOf(el.getId()));
-			bean.setFromDate(DateUtils.convertCalendarToString(el.getFromDate()));
-			bean.setFromDateSession(el.getFromDateSession());
-			bean.setToDate(DateUtils.convertCalendarToString(el.getToDate()));
-			bean.setToDateSession(el.getToDateSession());
-			bean.setLeaveType(el.getLeave().getId());
-			bean.setNoOfDays(el.getNoOfDays());
-			bean.setStatus(el.getLeaveStatus());
-			bean.setReason(el.getReasonForLeave());
-			
-			gridList.add(bean);
-		}
+		
 		try {
-			jsonString = mapper.writeValueAsString(gridList);
+			jsonString = mapper.writeValueAsString(leaveList);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
