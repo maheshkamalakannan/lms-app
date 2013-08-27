@@ -1,7 +1,7 @@
 package com.madrone.lms.form;
 
 import com.madrone.lms.entity.LeaveStatusEnum;
-
+// This Form common for Apply Leave and Cancel Leave Screens.
 public class LeaveForm {
 	
 	private String empId;

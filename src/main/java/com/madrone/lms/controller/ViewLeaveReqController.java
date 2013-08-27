@@ -35,8 +35,7 @@ public class ViewLeaveReqController {
 		String userName = (String) session.getAttribute("sessionUser");
 		List<ViewLeaveRequestForm> leaveListOfTeam = empLeaveService
 				.getLeaveListOfTeam(userName);
-		String jsonString = JSONUtils.leaveListGridJSON(leaveListOfTeam);
-
+		String jsonString = JSONUtils.approveGridJSON(leaveListOfTeam);
 		model.addAttribute("jsonString", jsonString);
 
 		model.addAttribute("ViewLeaveRequestForm", new ViewLeaveRequestForm());

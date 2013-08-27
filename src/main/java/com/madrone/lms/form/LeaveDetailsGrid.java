@@ -14,8 +14,22 @@ public class LeaveDetailsGrid {
 	private String status;
 	private String reason;
 	
+	private String empId;
+	private String empName;
 	
 	
+	public String getEmpId() {
+		return empId;
+	}
+	public void setEmpId(String empId) {
+		this.empId = empId;
+	}
+	public String getEmpName() {
+		return empName;
+	}
+	public void setEmpName(String empName) {
+		this.empName = empName;
+	}
 	public String getId() {
 		return id;
 	}

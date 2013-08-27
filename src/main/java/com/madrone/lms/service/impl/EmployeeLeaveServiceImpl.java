@@ -13,6 +13,7 @@ import com.madrone.lms.dao.EmployeeLeaveDao;
 import com.madrone.lms.entity.Employee;
 import com.madrone.lms.entity.EmployeeLeave;
 import com.madrone.lms.entity.Leave;
+import com.madrone.lms.form.LeaveDetailsGrid;
 import com.madrone.lms.form.LeaveForm;
 import com.madrone.lms.form.ViewLeaveRequestForm;
 import com.madrone.lms.service.EmployeeLeaveService;
@@ -95,9 +96,27 @@ public class EmployeeLeaveServiceImpl implements EmployeeLeaveService {
 	}
 
 	@Override
-	public List<EmployeeLeave> getPendingLeaveList(String userName) {
+	public List<LeaveDetailsGrid> getPendingLeaveList(String userName) {
 		Employee emp = empDao.findByEmailAddress(userName);
-		return empLeaveDao.getPendingLeaveList(emp);
+		List<EmployeeLeave> leaveList = empLeaveDao.getPendingLeaveList(emp);
+		List<LeaveDetailsGrid> returnList = new ArrayList<LeaveDetailsGrid>();
+		
+		if(leaveList!=null && leaveList.size()>0) { 
+			for (EmployeeLeave el : leaveList) {
+				LeaveDetailsGrid bean = new LeaveDetailsGrid();
+				bean.setId(String.valueOf(el.getId()));
+				bean.setFromDate(DateUtils.convertCalendarToString(el.getFromDate()));
+				bean.setFromDateSession(el.getFromDateSession());
+				bean.setToDate(DateUtils.convertCalendarToString(el.getToDate()));
+				bean.setToDateSession(el.getToDateSession());
+				bean.setLeaveType(el.getLeave().getId());
+				bean.setNoOfDays(el.getNoOfDays());
+				bean.setStatus(el.getLeaveStatus());
+				bean.setReason(el.getReasonForLeave());
+				returnList.add(bean);
+			}
+		}
+		return returnList;
 	}
 
 	private EmployeeLeave setBeanValues(LeaveForm leaveForm) {

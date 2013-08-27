@@ -1,11 +1,9 @@
 package com.madrone.lms.utils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.codehaus.jackson.map.ObjectMapper;
 
-import com.madrone.lms.entity.EmployeeLeave;
 import com.madrone.lms.form.ApplyLeaveFormGrid;
 import com.madrone.lms.form.LeaveDetailsGrid;
 import com.madrone.lms.form.LeaveForm;
@@ -16,7 +14,7 @@ public class JSONUtils {
 	static final ObjectMapper mapper = new ObjectMapper();
 	
 	
-	
+	//This function used in Apply-leave Screen.
 	public static String applyLeaveGridJSON(List<ApplyLeaveFormGrid> gridList ) {
 		String jsonString = "";
 		try {
@@ -27,8 +25,8 @@ public class JSONUtils {
 		return jsonString;
 	}
 	
-	
-	public static String leaveListGridJSON(List<ViewLeaveRequestForm> leaveList) {
+	//This function used in Cancel-leave Screen.
+	public static String leaveListGridJSON(List<LeaveDetailsGrid> leaveList) {
 		String jsonString = "";
 		ObjectMapper mapper = new ObjectMapper();
 		
@@ -40,7 +38,7 @@ public class JSONUtils {
 		return jsonString;
 	}
 
-
+	//This function used in Cancel-leave Screen.
 	public static LeaveForm convertJsonToObjectForCancelLeave(
 			String jsonString) {
 
@@ -56,6 +54,19 @@ public class JSONUtils {
 			
 		}
 		return cancelForm; 
+	}
+	
+	//This Function is used in ViewLeaveRequest controller.
+	public static String approveGridJSON(List<ViewLeaveRequestForm> leaveList) {
+		String jsonString = "";
+		ObjectMapper mapper = new ObjectMapper();
+		
+		try {
+			jsonString = mapper.writeValueAsString(leaveList);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		return jsonString;
 	}
 	
 
