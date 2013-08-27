@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.madrone.lms.constants.LMSConstants;
 import com.madrone.lms.dao.EmployeeDao;
 import com.madrone.lms.dao.EmployeeLeaveDao;
 import com.madrone.lms.dao.LeaveDao;
@@ -99,7 +100,9 @@ public class LeaveServiceImpl implements LeaveService {
 		if (empLeaveList.size() > 0) {
 			for (EmployeeLeave el : empLeaveList) {
 				if (el.getLeave().getId().equals(gridBean.getType())) {
-					totalLeaveTaken = totalLeaveTaken + el.getNoOfDays();
+					if (!el.getLeaveStatus().equals(LMSConstants.LEAVE_STATUS_CANCEL)) {
+						totalLeaveTaken = totalLeaveTaken + el.getNoOfDays();
+					}
 				}
 			}
 		}
