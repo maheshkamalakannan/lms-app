@@ -13,6 +13,22 @@ mycontroller.directive('numberMask', function() {
     };
 });
 
+mycontroller.directive('widthReducer', function() {
+    return {
+        restrict: 'A',
+        link: function(scope, element, attrs) {
+        	if($(element).prop("tagName") == "SELECT"){
+        		$(element).css("width","165");
+        	}
+        	else{
+        		$(element).css("width","150");
+        	}
+        	
+        }
+    };
+});
+
+
 /* Controllers */
 mycontroller.controller('loginController', function($scope, $window, $location) {
   $scope.loginSubmit = function(form,event){

@@ -600,14 +600,22 @@ h5:first-letter {
 }
 
 #adminleftcontent{
-	float:left;
-	width:490px;
-	padding:15px;
+	float: left;
+    padding: 15px;
+    width: 310px;
+}
+
+#adminmiddlecontent{
+    display: inline-block;
+    left: 10px;
+    margin: 17px 0 0 50%;
+    position: absolute;
+    width: 340px;
 }
 
 #adminrightcontent{
 	float:right;
-	width:490px;
+	width:300px;
 	padding:15px;
 }
 
@@ -619,5 +627,6 @@ h5:first-letter {
 
 .adminbuttonsalign{
 	margin-left: 70px;
+	margin-top: 175px;
     padding-top: 20px;
 }
