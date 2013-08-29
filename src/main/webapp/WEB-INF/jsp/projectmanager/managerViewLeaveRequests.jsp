@@ -33,9 +33,11 @@ function rejectBtnClick()
 	       <c:if test="${SucessMessage != null}">
 		      <div class="success" style="margin: -40px 5px 5px 250px; width:42%;">${SucessMessage}</div>
 		   </c:if>
-	       <div style="padding-bottom:10px;"ng-init='init(data1=${jsonString})'>
+		 <div class="leavesummaryContent">  
+	       <div ng-init='init(data1=${jsonString})'>
 		      <div class="viewleaverequestgridStyle" ng-grid="gridOptions"></div>
 	       </div>
+	     </div>
 		   <!--  <div id="viewleaverequestleftcontent">
 		      <div class="viewleaverequestgridStyle1" ng-grid="gridOptions1"></div>
 	       </div> -->
