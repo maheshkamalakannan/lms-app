@@ -1,8 +1,8 @@
 <%@ include file="../common/commonJs.jsp" %>
 
-<form:form name="cancelleave" id="cancelleave" method="post" novalidate="novalidate" action="/lms-app/cancelLeave" ng-controller="constantsController">
+<form:form name="viewapproveleave" id="viewapproveleave" method="post" novalidate="novalidate" action="" ng-controller="constantsController">
 
-	<div id="rightdata" ng-controller="cancelleaveController">
+	<div id="rightdata" ng-controller="viewApprovedLeaveController">
 	  <div id="topcontent" style="margin-bottom:2px;">
 	     	<h5>{{viewapprovedleaves}}</h5>
 	         <div class="signout">
@@ -13,5 +13,10 @@
 	            <a href="/lms-app">Sign Out</a>
 	          </div>
 	  </div>
+	   <div class="leavesummaryContent">  
+	       <div ng-init='init(data1=${jsonString})'>
+		      <div class="approverejectedleavegridStyle" ng-grid="gridOptions"></div>
+	       </div>
+	   </div>
 	</div>
 </form:form>
