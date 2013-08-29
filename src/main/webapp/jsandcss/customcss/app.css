@@ -204,7 +204,7 @@ form {
 }
 
 #leavesubmit{
-	margin: 25px 0 0;
+	margin: 15px 0 0;
 }
 input[type="button"], input[type="submit"], input[type="reset"] { 
     background-image: linear-gradient(#F1F1F1, #F1F1F1 25%, #CCCCCC);
@@ -423,8 +423,9 @@ li:hover .sub-level .sub-level {
 
 #viewleaverequestrightcontent{
 	/* float: right; */
-	float: left;
+	margin-left:65px;
     width: 450px;
+    margin-top:-2px;
 }
 #viewleaverequestleftcontent{
 	float:left;
@@ -538,15 +539,15 @@ textarea {
 .leavesummarygridStyle{
 	border: 1px solid rgb(212,212,212);
 	width: 100%; 
-    height:250px;
+    height:240px;
     padding:5px;
 }
 
 .viewleaverequestgridStyle{
-	width:75em;
-	height:200px;
 	border: 1px solid rgb(212,212,212);
-	padding:5px;
+	width: 100%; 
+    height:200px;
+    padding:5px;
 }
 
 .viewleaverequestgridStyle1{
@@ -557,7 +558,7 @@ textarea {
 }
 
 .leavesummaryContent{
-	padding:0 10em 15px 10em;
+	padding:0 5em 15px 5em;
 }
 
 .aligncolumn{

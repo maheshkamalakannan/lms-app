@@ -89,7 +89,7 @@
 	  
 	  <div id="applyleaverightcontent" style="margin-top:2px;">
 		  <c:if test="${SucessMessage != null}">
-		      <div class="success" style="margin: 5px 5px 5px 0px; width:57%;">${SucessMessage}</div>
+		      <div class="success" style="margin: -10px 5px 5px 0px; width:57%;">${SucessMessage}</div>
 		   </c:if>
 		  <div>
 			  <table cellpadding="4">
