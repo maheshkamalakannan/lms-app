@@ -3,6 +3,8 @@ package com.madrone.lms.controller;
 import java.util.Locale;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,12 +33,14 @@ public class ChangePasswordController {
 	private MessageSource messageSource;
 
 	@RequestMapping(value = "/changePassword", method = RequestMethod.GET)
-	public String changePassword(Model model, ChangePasswordForm form) {
+	public String changePassword(Model model, ChangePasswordForm form,
+			HttpSession session) {
 		model.addAttribute("ChangePasswordForm", new ChangePasswordForm());
-		return LMSConstants.CHANGE_PASSWORD_SCR;
+		return LMSConstants.CHANGE_PASSWORD_SCR + "_"
+				+ session.getAttribute("sessionRole");
+
 	}
-		
-		
+
 	@RequestMapping(value = "/submitChangePassword", method = RequestMethod.POST)
 	public String submitChangePassword(
 			Model model,

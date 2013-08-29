@@ -60,6 +60,7 @@ public class LoginController {
 			map.put("userName", loginForm.getUserName());
 			map.put("EmpForm",employee);
 			session.setAttribute("sessionUser", loginForm.getUserName());
+			session.setAttribute("sessionRole",returnString);
 			return returnString.toLowerCase();
 
 		} else {

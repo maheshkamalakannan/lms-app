@@ -34,8 +34,7 @@ public class CancelLeaveController {
 	private MessageSource messageSource;
 
 	@RequestMapping(value = "/cancelLeave", method = RequestMethod.GET)
-	public String cancelLeave(Model model, LeaveForm form,
-			HttpSession session) {
+	public String cancelLeave(Model model, LeaveForm form, HttpSession session) {
 		logger.info("Inside cancelLeave()");
 		model.addAttribute("CancelLeaveForm", new LeaveForm());
 
@@ -46,7 +45,8 @@ public class CancelLeaveController {
 		String jsonString = JSONUtils.leaveListGridJSON(cancelLeaveList);
 
 		model.addAttribute("jsonString", jsonString);
-		return LMSConstants.CANCEL_LEAVE_SCR;
+		return LMSConstants.CANCEL_LEAVE_SCR + "_"
+				+ session.getAttribute("sessionRole");
 	}
 
 	@RequestMapping(value = "/submitCancelLeave", method = RequestMethod.POST)
@@ -58,8 +58,7 @@ public class CancelLeaveController {
 		String jsonString = form.getSelecteddata();
 		System.out.println("Cancel--Screen" + jsonString);
 
-		LeaveForm cancelForm = JSONUtils
-				.convertJsonToObjectForCancelLeave(jsonString);
+		LeaveForm cancelForm = JSONUtils.convertJsonToObjectToClass(jsonString);
 		if (cancelForm != null) {
 			empLeaveService.cancelEmployeeLeave(cancelForm);
 			model.addAttribute("SucessMessage", messageSource.getMessage(

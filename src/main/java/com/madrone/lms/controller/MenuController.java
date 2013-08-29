@@ -1,5 +1,7 @@
 package com.madrone.lms.controller;
 
+
+
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -11,14 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.madrone.lms.constants.LMSConstants;
-import com.madrone.lms.entity.EmployeeLeave;
-import com.madrone.lms.form.ChangePasswordForm;
 import com.madrone.lms.form.EmployeeHomeForm;
+import com.madrone.lms.form.LeaveDetailsGrid;
 import com.madrone.lms.form.LeaveForm;
-import com.madrone.lms.form.LeaveSummaryForm;
 import com.madrone.lms.form.ManagerHomeForm;
 import com.madrone.lms.form.UserForm;
-import com.madrone.lms.form.ViewApprovedLeavesForm;
 import com.madrone.lms.form.ViewLeaveRequestForm;
 import com.madrone.lms.form.ViewRejectedLeavesForm;
 import com.madrone.lms.service.EmployeeLeaveService;
@@ -47,20 +46,6 @@ public class MenuController {
 		return LMSConstants.MANAGER_HOME_SCR;
 	}
 
-
-	@RequestMapping(value = "/viewApprovedLeaves", method = RequestMethod.GET)
-	public String viewApprovedleaves(Model model, LeaveForm form) {
-		model.addAttribute("ViewApprovedLeavesForm",
-				new ViewApprovedLeavesForm());
-		return LMSConstants.MANAGER_VIEW_APPROVED_LEAVES_SCR;
-	}
-
-	@RequestMapping(value = "/viewRejectedLeaves", method = RequestMethod.GET)
-	public String viewRejectedleaves(Model model, LeaveForm form) {
-		model.addAttribute("ViewRejectedLeavesForm",
-				new ViewRejectedLeavesForm());
-		return LMSConstants.MANAGER_VIEW_REJECTED_LEAVES_SCR;
-	}
 
 	// These functions are used in adminMenu.jsp file
 	@RequestMapping(value = "/addUser", method = RequestMethod.GET)
@@ -93,7 +78,4 @@ public class MenuController {
 		return LMSConstants.ADMIN_VIEW_LEAVE_SCR;
 	}
 	
-	
-
-
 }

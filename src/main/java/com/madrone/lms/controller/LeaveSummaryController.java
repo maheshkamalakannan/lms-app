@@ -49,7 +49,8 @@ public class LeaveSummaryController {
 		model.addAttribute("jsonString2", jsonString2);
 
 		model.addAttribute("LeaveSummaryForm", new LeaveSummaryForm());
-		return LMSConstants.LEAVE_SUMMARY_SCR;
+		return LMSConstants.LEAVE_SUMMARY_SCR+"_" +  
+			session.getAttribute("sessionRole");
 	}
 
 	// To Show Values in the First Grid.

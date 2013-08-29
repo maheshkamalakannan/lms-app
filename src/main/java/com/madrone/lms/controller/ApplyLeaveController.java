@@ -54,14 +54,12 @@ public class ApplyLeaveController {
 		List<ApplyLeaveFormGrid> gridList = leaveService
 				.getApplyLeaveGridDetails(userName);
 		String jsonString= JSONUtils.applyLeaveGridJSON(gridList);
-		
-
 		model.addAttribute("jsonString", jsonString);
 		model.addAttribute("leaveList", gridList);
 		model.addAttribute("ApplyLeaveForm", new LeaveForm());
 		
-		
-		return LMSConstants.APPLY_LEAVE_SCR;
+	   	return LMSConstants.APPLY_LEAVE_SCR+"_" +  
+	   		session.getAttribute("sessionRole");
 	}
 
 	@RequestMapping(value = "/submitApplyLeave", method = RequestMethod.POST)
@@ -69,7 +67,6 @@ public class ApplyLeaveController {
 			@ModelAttribute("ApplyLeaveForm") LeaveForm applyLeaveForm,
 			BindingResult result, Map<String, Object> map) {
 		logger.info("Inside submitApplyLeave()");
-		logger.info("EMPId" + applyLeaveForm.getEmpId());
 
 		empLeaveService.saveEmployeeLeave(applyLeaveForm);
 		model.addAttribute("SucessMessage", messageSource.getMessage(
