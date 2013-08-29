@@ -336,7 +336,7 @@ mycontroller.controller('leavesummaryController', function($scope, $window, $loc
 					data: 'gridData1',
 		    		multiSelect: false,
 		    		showFooter:true,
-		    		columnDefs: [{field: 'Type', displayName: 'Type', cellClass:'aligncolumn'},
+		    		columnDefs: [{field: 'Type', displayName: 'Leave Type', cellClass:'aligncolumn'},
 		    		             {field: 'Total', displayName: 'Total', cellClass:'aligncolumn'},
 		    		             {field: 'Consumed', displayName: 'Consumed', cellClass:'aligncolumn'},
 		    		             {field: 'Balance', displayName: 'Balance', cellClass:'aligncolumn'}
@@ -357,15 +357,16 @@ mycontroller.controller('managerViewApprovedLeaveController', function($scope, $
 	    		data: 'gridData',
 	    		multiSelect: false,
 	    		showFooter:true,
-	    		columnDefs: [{displayName: '', cellClass:'aligncolumn', cellTemplate: '<input type="radio" name="view" id="view"  ng-click="assign(row)" value="View">'},
-	    		             {field: 'empId', displayName: 'ID',cellClass:'aligncolumn'},
-	    		             {field: 'empName', displayName: 'Name',cellClass:'aligncolumn'},
-	    		             {field: 'leaveType', displayName: 'Type',cellClass:'aligncolumn'},
-	    		             {field: 'fromDate', displayName: 'From Date',cellClass:'aligncolumn'},
-	    		             {field: 'fromDateSession', displayName: 'Session',cellClass:'aligncolumn'},
-	    		             {field: 'toDate', displayName: 'To Date'},
-	    		             {field: 'toDateSession', displayName: 'Session',cellClass:'aligncolumn'},
-	    		             {field: 'noOfDays', displayName: 'Days',cellClass:'aligncolumn'},
+	    		columnDefs: [{displayName: '', cellClass:'aligncolumn', cellTemplate: '<input type="radio" name="view" id="view"  ng-click="assign(row)" value="View">', width:20,},
+	    		             {field: 'empId', displayName: 'ID',cellClass:'aligncolumn',width:50,},
+	    		             {field: 'empName', displayName: 'Name',cellClass:'aligncolumn',width:90,},
+	    		             {field: 'leaveType', displayName: 'Leave Type',cellClass:'aligncolumn',width:95,},
+	    		             {field: 'fromDate', displayName: 'From Date',cellClass:'aligncolumn',width:90,},
+	    		             {field: 'fromDateSession', displayName: 'Session',cellClass:'aligncolumn',width:70,},
+	    		             {field: 'toDate', displayName: 'To Date',cellClass:'aligncolumn', width:90,},
+	    		             {field: 'toDateSession', displayName: 'Session',cellClass:'aligncolumn',width:70,},
+	    		             {field: 'noOfDays', displayName: 'Days',cellClass:'aligncolumn',width:40,},
+	    		             {field: '', displayName: 'Contact',cellClass:'aligncolumn',width:90,},
 	    		             {field: 'leaveReason', displayName: 'Reason',cellClass:'aligncolumn'},
 	    		             ]};
 		 $scope.$on('ngGridEventData', function (e,s) {
@@ -433,16 +434,15 @@ mycontroller.controller('managerViewApprovedLeaveController', function($scope, $
 });
 
 mycontroller.controller('adduserController', function($scope, $window, $location) {
-	
 	$scope.olddate = function($event){
 		$scope.dateishigher = false;
-		/*if($scope.dateofjoin > new Date()){
+		if($scope.dateofjoin > new Date()){
 			 $scope.dateishigher = true;
 			 event.preventDefault();
 		 }
 		else{
 			$scope.dateishigher = false;
-		}*/
+		}
 	};
 	
 	 $scope.saveuser = function(form,event){
@@ -475,7 +475,6 @@ mycontroller.controller('adduserController', function($scope, $window, $location
 	};
 	
 });
-
 
 function welcomeController($scope, $http) {
 	$scope.oldpassword = false;
