@@ -358,7 +358,6 @@ mycontroller.controller('managerViewApprovedLeaveController', function($scope, $
 	    		multiSelect: false,
 	    		showFooter:true,
 	    		columnDefs: [{displayName: '', cellClass:'aligncolumn', cellTemplate: '<input type="radio" name="view" id="view"  ng-click="assign(row)" value="View">'},
-	    		             {field: 'id', displayName: 'ID',cellClass:'aligncolumn'},
 	    		             {field: 'empId', displayName: 'ID',cellClass:'aligncolumn'},
 	    		             {field: 'empName', displayName: 'Name',cellClass:'aligncolumn'},
 	    		             {field: 'leaveType', displayName: 'Type',cellClass:'aligncolumn'},
