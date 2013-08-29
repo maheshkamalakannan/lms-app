@@ -19,9 +19,13 @@ public interface EmployeeLeaveService {
 
 	List<LeaveDetailsGrid> getLeaveList(String userName);
 
-	List<LeaveDetailsGrid> getLeaveListOfTeam(String userName);
+	List<LeaveDetailsGrid> getLeaveListOfTeam(String userName, String filterBy);
 
 	void cancelEmployeeLeave(LeaveForm cancelForm);
+
+	void approveEmployeeLeave(LeaveForm approveForm);
+
+	void rejectEmployeeLeave(LeaveForm approveForm);
 
 	
 }

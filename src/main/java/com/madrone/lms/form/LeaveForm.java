@@ -23,7 +23,18 @@ public class LeaveForm {
 	
 	private String selecteddata;
 	
+	private String screenName;
+	
+	
 	private long id; // This is reffering ID of EmployeeLeave
+	
+	public String getScreenName() {
+		return screenName;
+	}
+	public void setScreenName(String screenName) {
+		this.screenName = screenName;
+	}
+
 	
 	
 	public long getId() {

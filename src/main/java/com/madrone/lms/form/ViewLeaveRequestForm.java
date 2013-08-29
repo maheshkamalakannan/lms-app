@@ -11,8 +11,19 @@ public class ViewLeaveRequestForm {
 	private String toDateSession;
 	private String status;
 	private float noOfDays;
+	private String selecteddata;
+	
+	private String leaveType;
+	private String leaveReason;
+	private String approvalComment;
 	
 	
+	public String getSelecteddata() {
+		return selecteddata;
+	}
+	public void setSelecteddata(String selecteddata) {
+		this.selecteddata = selecteddata;
+	}
 	public String getStatus() {
 		return status;
 	}
@@ -79,9 +90,7 @@ public class ViewLeaveRequestForm {
 	public void setApprovalComment(String approvalComment) {
 		this.approvalComment = approvalComment;
 	}
-	private String leaveType;
-	private String leaveReason;
-	private String approvalComment;
+	
 	
 	
 }

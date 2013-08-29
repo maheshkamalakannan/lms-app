@@ -7,6 +7,7 @@ import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
+import com.madrone.lms.constants.LMSConstants;
 import com.madrone.lms.dao.EmployeeLeaveDao;
 import com.madrone.lms.entity.Employee;
 import com.madrone.lms.entity.EmployeeLeave;
@@ -37,7 +38,25 @@ public class EmployeeLeaveDaoImpl extends AbstractDaoImpl<EmployeeLeave, Long>
 	@Override
 	public List<EmployeeLeave> getPendingLeaveList(Employee employee) {
 		List<Criterion> criterionList = new ArrayList<Criterion>();
-		criterionList.add(Restrictions.eq("leaveStatus", "P"));
+		criterionList.add(Restrictions.eq("leaveStatus", LMSConstants.LEAVE_STATUS_PENDING));
+		criterionList.add(Restrictions.eq("employee", employee));
+		List<EmployeeLeave> employeeLeaveList = findByCriteria(criterionList);
+		return employeeLeaveList;
+	}
+	
+	@Override
+	public List<EmployeeLeave> getApprovalLeaveList(Employee employee) {
+		List<Criterion> criterionList = new ArrayList<Criterion>();
+		criterionList.add(Restrictions.eq("leaveStatus", LMSConstants.LEAVE_STATUS_APPROVE));
+		criterionList.add(Restrictions.eq("employee", employee));
+		List<EmployeeLeave> employeeLeaveList = findByCriteria(criterionList);
+		return employeeLeaveList;
+	}
+
+	@Override
+	public List<EmployeeLeave> getRejectionLeaveList(Employee employee) {
+		List<Criterion> criterionList = new ArrayList<Criterion>();
+		criterionList.add(Restrictions.eq("leaveStatus", LMSConstants.LEAVE_STATUS_REJECT));
 		criterionList.add(Restrictions.eq("employee", employee));
 		List<EmployeeLeave> employeeLeaveList = findByCriteria(criterionList);
 		return employeeLeaveList;

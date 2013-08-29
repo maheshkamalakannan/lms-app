@@ -358,6 +358,7 @@ mycontroller.controller('managerViewApprovedLeaveController', function($scope, $
 	    		multiSelect: false,
 	    		showFooter:true,
 	    		columnDefs: [{displayName: '', cellClass:'aligncolumn', cellTemplate: '<input type="radio" name="view" id="view"  ng-click="assign(row)" value="View">'},
+	    		             {field: 'id', displayName: 'ID',cellClass:'aligncolumn'},
 	    		             {field: 'empId', displayName: 'ID',cellClass:'aligncolumn'},
 	    		             {field: 'empName', displayName: 'Name',cellClass:'aligncolumn'},
 	    		             {field: 'leaveType', displayName: 'Type',cellClass:'aligncolumn'},
@@ -376,7 +377,7 @@ mycontroller.controller('managerViewApprovedLeaveController', function($scope, $
 	
 	$scope.assign = function(row){
 		$scope.myData1 = row.entity;
-		$scope.selecteddata = [{"empId": row.entity.empId, "empName": row.entity.empName, "leaveType": row.entity.leaveType, "fromDate": row.entity.fromDate, "fromDateSession":row.entity.fromDate,
+		$scope.selecteddata = [{"id": row.entity.id,"empId": row.entity.empId, "empName": row.entity.empName, "leaveType": row.entity.leaveType, "fromDate": row.entity.fromDate, "fromDateSession":row.entity.fromDateSession,
 			                    "toDate": row.entity.toDate ,"toDateSession": row.entity.toDateSession, "noOfDays": row.entity.noOfDays, "status": row.entity.status, "approvalComment": row.entity.approvalComment}];
 		$scope.selectleavetoapprove = false;
 		$scope.selectleavetoreject  = false;
@@ -394,7 +395,6 @@ mycontroller.controller('managerViewApprovedLeaveController', function($scope, $
 	                    ]
 	    };*/
 	
-
 	  $scope.approveleave = function(form,event){
 		 if(form.$valid){
 			 if($scope.myData1 == ' ' ){
@@ -403,7 +403,8 @@ mycontroller.controller('managerViewApprovedLeaveController', function($scope, $
 				 event.preventDefault();
 			 }
 			 else{
-				 form.submit();
+				 document.viewleavereq.action = "/lms-app/submitViewLeaveRequest1";
+				 document.viewleavereq.submit();
 			 }
 			   
 			 }
@@ -420,7 +421,8 @@ mycontroller.controller('managerViewApprovedLeaveController', function($scope, $
 				 event.preventDefault();
 			 }
 			 else{
-				 form.submit();
+				 document.viewleavereq.action = "/lms-app/submitViewLeaveRequest2";
+				 document.viewleavereq.submit();
 			 }
 			   
 			 }
@@ -548,6 +550,7 @@ function welcomeController($scope, $http) {
 	  };
   
   
+	  
 
 }
 

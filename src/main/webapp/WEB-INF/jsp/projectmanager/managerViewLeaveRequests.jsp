@@ -1,6 +1,22 @@
 <%@ include file="../common/commonJs.jsp" %>
+<script language="Javascript">
+function approveBtnClick()
+{
+    document.viewleavereq.action = "/lms-app/submitViewLeaveRequest1";
+    document.viewleavereq.submit(); // Submit the page
+    return true;
+}
 
-<form:form name="viewleavereq" id="viewleavereq" method="post" novalidate="novalidate" action="/lms-app/cancelLeave" ng-controller="constantsController">
+function rejectBtnClick()
+{
+    document.viewleavereq.action = "/lms-app/submitViewLeaveRequest2";
+    document.viewleavereq.submit(); // Submit the page
+    return true;
+}
+</script>
+
+
+<form:form name="viewleavereq" ng-model="ngviewleavereq" id="viewleavereq" method="post" novalidate="novalidate" action="/lms-app/cancelLeave" ng-controller="constantsController">
 
 	<div id="rightdata" ng-controller="managerViewApprovedLeaveController">
 	  <div id="topcontent" style="margin-bottom:2px;">
@@ -29,9 +45,11 @@
 		      <span class="error" style="width: 65%; margin-left:5px;" ng-show="submitted && viewleavereq.comments.$error.required">{{viewleaverequestcommentrequired}}</span>
 		      <span class="error" style="width: 65%; margin-left:5px;" ng-model="selectleavetoapprove" ng-show="selectleavetoapprove">{{viewleaverequestapprove}}</span>
 		      <span class="error" style="width: 65%; margin-left:5px;" ng-model="selectleavetoreject" ng-show="selectleavetoreject">{{viewleaverequestreject}}</span>
-			  <div style="margin-top:7px; margin-left:5px;">
-		           <input type="submit" name="submit" value="Approve" ng-click="[submitted=true,approveleave(viewleavereq,$event)]"/> 
-		   		   <input type="submit"  style="margin-left:10px;" name="submit"   value="Reject" ng-click="[submitted=true,rejectleave(viewleavereq,$event)]"/>
+			 <div style="margin-top:7px; margin-left:5px;">
+		           <input type="button" name="approveBtn" value="Approve" 
+		           	      ng-click="[submitted=true,approveleave(viewleavereq,$event),approveBtnClick()]"/> 
+		   		   <input type="button" name="rejectBtn"  value="Reject" style="margin-left:10px;"    
+		   		          ng-click="[submitted=true,rejectleave(viewleavereq,$event),rejectBtnClick()]"/>
 			  </div>
 		  </div>
 	  </div>

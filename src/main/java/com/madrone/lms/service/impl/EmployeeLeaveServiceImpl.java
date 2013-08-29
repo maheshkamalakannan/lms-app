@@ -15,7 +15,6 @@ import com.madrone.lms.entity.EmployeeLeave;
 import com.madrone.lms.entity.Leave;
 import com.madrone.lms.form.LeaveDetailsGrid;
 import com.madrone.lms.form.LeaveForm;
-import com.madrone.lms.form.ViewLeaveRequestForm;
 import com.madrone.lms.service.EmployeeLeaveService;
 import com.madrone.lms.utils.DateUtils;
 
@@ -59,26 +58,49 @@ public class EmployeeLeaveServiceImpl implements EmployeeLeaveService {
 	}
 
 	@Override
+	@Transactional(readOnly = false)
+	public void approveEmployeeLeave(LeaveForm approveLeaveForm) {
+		EmployeeLeave el = setBeanValuesForSave(approveLeaveForm);
+		el.setLeaveStatus(LMSConstants.LEAVE_STATUS_APPROVE);
+		empLeaveDao.update(el);
+	}
+
+	@Override
+	@Transactional(readOnly = false)
+	public void rejectEmployeeLeave(LeaveForm approveForm) {
+		EmployeeLeave el = setBeanValuesForSave(approveForm);
+		el.setLeaveStatus(LMSConstants.LEAVE_STATUS_REJECT);
+		empLeaveDao.update(el);
+	}
+
+	@Override
 	public List<LeaveDetailsGrid> getLeaveList(String userName) {
 		Employee emp = empDao.findByEmailAddress(userName);
 		List<EmployeeLeave> leaveList = empLeaveDao.getLeaveList(emp);
 		List<LeaveDetailsGrid> returnList = new ArrayList<LeaveDetailsGrid>();
-		if(leaveList!=null) {
+		if (leaveList != null) {
 			returnList = setBeanValuesForGrid(leaveList);
 		}
 		return returnList;
 	}
 
-
 	@Override
-	public List<LeaveDetailsGrid> getLeaveListOfTeam(String userName) {
+	public List<LeaveDetailsGrid> getLeaveListOfTeam(String userName,
+			String filter) {
 		Employee leadEmployee = empDao.findByEmailAddress(userName);
 		List<Employee> teamList = empDao.findTeamList(leadEmployee);
 		List<LeaveDetailsGrid> teamLeaveList = new ArrayList<LeaveDetailsGrid>();
+		List<EmployeeLeave> leaveList = new ArrayList<EmployeeLeave>();
 
 		for (Employee emp : teamList) {
-			List<EmployeeLeave> leaveList = empLeaveDao
-					.getPendingLeaveList(emp);
+			if ("ALL".equals(filter)) {
+				leaveList = empLeaveDao.getPendingLeaveList(emp);
+			} else if ("A".equals(filter)) {
+				leaveList = empLeaveDao.getApprovalLeaveList(emp);
+			} else if ("R".equals(filter)) {
+				leaveList = empLeaveDao.getRejectionLeaveList(emp);
+			}
+
 			for (EmployeeLeave el : leaveList) {
 				LeaveDetailsGrid bean = new LeaveDetailsGrid();
 				bean.setId(String.valueOf(el.getId()));
@@ -99,18 +121,17 @@ public class EmployeeLeaveServiceImpl implements EmployeeLeaveService {
 
 		return teamLeaveList;
 	}
-	
+
 	@Override
 	public List<LeaveDetailsGrid> getPendingLeaveList(String userName) {
 		Employee emp = empDao.findByEmailAddress(userName);
 		List<EmployeeLeave> leaveList = empLeaveDao.getPendingLeaveList(emp);
 		List<LeaveDetailsGrid> returnList = new ArrayList<LeaveDetailsGrid>();
-		if(leaveList!=null) {
+		if (leaveList != null) {
 			returnList = setBeanValuesForGrid(leaveList);
 		}
 		return returnList;
 	}
-
 
 	private EmployeeLeave setBeanValuesForSave(LeaveForm leaveForm) {
 
@@ -136,22 +157,19 @@ public class EmployeeLeaveServiceImpl implements EmployeeLeaveService {
 
 	}
 
-	
 	private List<LeaveDetailsGrid> setBeanValuesForGrid(
 			List<EmployeeLeave> leaveList) {
-		
+
 		List<LeaveDetailsGrid> returnList = new ArrayList<LeaveDetailsGrid>();
-		
-		for(EmployeeLeave el:leaveList) {
+
+		for (EmployeeLeave el : leaveList) {
 			LeaveDetailsGrid bean = new LeaveDetailsGrid();
 			bean.setId(String.valueOf(el.getId()));
 			bean.setEmpId(el.getEmployee().getId());
 			bean.setEmpName(el.getEmployee().getFirstName());
 			bean.setFromDateSession(el.getFromDateSession());
-			bean.setFromDate(DateUtils.convertCalendarToString(el
-					.getFromDate()));
-			bean.setToDate(DateUtils.convertCalendarToString(el
-					.getFromDate()));
+			bean.setFromDate(DateUtils.convertCalendarToString(el.getFromDate()));
+			bean.setToDate(DateUtils.convertCalendarToString(el.getFromDate()));
 			bean.setToDateSession(el.getToDateSession());
 			bean.setReason(el.getReasonForLeave());
 			bean.setLeaveType(el.getLeave().getId());
@@ -160,7 +178,7 @@ public class EmployeeLeaveServiceImpl implements EmployeeLeaveService {
 			returnList.add(bean);
 		}
 		return returnList;
-		
+
 	}
-	
+
 }
