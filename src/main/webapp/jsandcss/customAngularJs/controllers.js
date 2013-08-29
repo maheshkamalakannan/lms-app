@@ -302,6 +302,7 @@ mycontroller.controller('cancelleaveController', function($scope, $window, $loca
 			   form.submit();
 			 }
 		 else{
+			 $('.success').css("display","none");
 			 event.preventDefault();
 		 }
 	};
@@ -409,6 +410,7 @@ mycontroller.controller('managerViewApprovedLeaveController', function($scope, $
 			   
 			 }
 		 else{
+			 $('.success').css("display","none");
 			 event.preventDefault();
 		 }
 	};
@@ -427,6 +429,7 @@ mycontroller.controller('managerViewApprovedLeaveController', function($scope, $
 			   
 			 }
 		 else{
+			 $('.success').css("display","none");
 			 event.preventDefault();
 		 }
 	};
@@ -454,6 +457,7 @@ mycontroller.controller('adduserController', function($scope, $window, $location
 				 form.submit();
 			 }
 		 else{
+			 $('.success').css("display","none");
 			 event.preventDefault();
 		 }
 	};
