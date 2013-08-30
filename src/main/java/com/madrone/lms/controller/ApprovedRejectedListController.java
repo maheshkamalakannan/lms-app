@@ -50,7 +50,7 @@ public class ApprovedRejectedListController {
 		System.out.println("RejectedList-Json" + jsonString);
 		model.addAttribute("jsonString", jsonString);
 		model.addAttribute("ViewLeaveRequestForm", new ViewLeaveRequestForm());
-		return LMSConstants.MANAGER_VIEW_APPROVED_LEAVES_SCR;
+		return LMSConstants.MANAGER_VIEW_REJECTED_LEAVES_SCR;
 	}
 
 }
