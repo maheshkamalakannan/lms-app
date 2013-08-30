@@ -1,5 +1,7 @@
 package com.madrone.lms.service;
 
+import java.util.List;
+
 import com.madrone.lms.entity.Department;
 
 public interface DepartmentService {
@@ -11,5 +13,7 @@ public interface DepartmentService {
 	void saveDepartment(Department d);
 
 	void deleteDepartment(String id);
+
+	List<Department> getDepartmentList();
 
 }

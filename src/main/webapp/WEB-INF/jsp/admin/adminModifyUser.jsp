@@ -14,7 +14,7 @@
 	          </div>
 	          <div>
 	            <span class="rc">Email Address :</span> 
-	            <input style="margin-left:17px" type="email" name="searchemail" ng-model="ngsearchemail" width-reducer required/>
+	            <input style="margin-left:17px" type="email" name="searchEmail" ng-model="ngsearchemail" width-reducer required/>
 	            <input type="button" name="Search" value="Search" ng-click="[search=true,searchuser(modifyuser,$event)]"/>
 	            <span class="error" style="width: 20%;margin-top:-5px; margin-left:120px;" ng-show="search && modifyuser.searchemail.$error.required">Email Address is Required.</span> 
 	            <span class="error" style="width: 20%;margin-top:-5px; margin-left:120px;" ng-show="search && modifyuser.searchemail.$error.email">Email Address is invalid.</span>
