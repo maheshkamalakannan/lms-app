@@ -572,8 +572,8 @@ textarea {
 	text-align:center;
 }
 
-.texttransform{
-	text-transform:uppercase;
+button.btn {
+    height: 30px;
 }
 
 #empDetailsDiv {

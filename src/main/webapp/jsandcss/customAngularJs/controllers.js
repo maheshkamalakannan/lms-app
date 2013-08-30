@@ -93,8 +93,8 @@ mycontroller.controller('constantsController', function($scope, $window, $locati
     $scope.viewapprovedleaves            = "Home > Reports > View Approved Leaves";
     $scope.viewrejectedleaves            = "Home > Reports > View Rejected Leaves";
     
-    $scope.adminadduser                  = "Home > Users > Add Users";
-    $scope.adminmoddeluser               = "Home > Users > Modify / Delete Users";
+    $scope.adminadduser                  = "Home > Users > Add User";
+    $scope.adminmoddeluser               = "Home > Users > Modify User";
 });
 
 mycontroller.controller('changePasswordController', function($scope, $window, $location) {
@@ -554,8 +554,25 @@ mycontroller.controller('adduserController', function($scope, $window, $location
 	
 });
 
-mycontroller.controller('modifyDeleteUserController', function($scope, $window, $location) {
+mycontroller.controller('modifyUserController', function($scope, $window, $location) {
+	$scope.ngsearchemail = '';  
+    $('#adminleftcontent').remove();
+    $('#adminmiddlecontent').remove();
+    $('#adminrightcontent').remove();
 	
+	$scope.searchuser = function(form,event){
+		alert($scope.ngsearchemail);
+		if($scope.ngsearchemail == ''){
+			event.preventDefault();
+		}
+		else{
+			$('form').attr("action","/lms-app/submitSearchUser");
+			$('form').submit();
+			 /*$('#adminleftcontent').append();
+			 $('#adminmiddlecontent').append();
+			 $('#adminrightcontent').append();*/
+		}
+	};
 });
 
 function welcomeController($scope, $http) {
