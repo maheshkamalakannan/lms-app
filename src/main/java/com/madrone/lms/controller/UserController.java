@@ -79,7 +79,7 @@ public class UserController {
 		userService.saveUserAndEmployee(userForm);
 
 		model.addAttribute("SucessMessage", messageSource.getMessage(
-				"lms.password_changed_successfully", new Object[] { "" },
+				"lms.adduser_success_message", new Object[] { "" },
 				Locale.getDefault()));
 
 		return LMSConstants.ADMIN_ADD_USER_SCR;

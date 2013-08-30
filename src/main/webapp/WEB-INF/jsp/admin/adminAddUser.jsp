@@ -1,6 +1,6 @@
 <%@ include file="../common/commonJs.jsp" %>
 
-<form:form name="adduser" id="adduser" method="post" novalidate="novalidate" action="/lms-app/cancelLeave" ng-controller="constantsController">
+<form:form name="adduser" id="adduser" method="post" novalidate="novalidate" action="/lms-app/submitAdduser" ng-controller="constantsController">
 
 	<div id="rightdata" ng-controller="adduserController">
 	  <div id="topcontent" style="margin-bottom:2px;">
@@ -36,7 +36,7 @@
     	     </td>
 	     </tr>
 	     <tr><td><span class="rc">Employee ID :</span></td>
-	          <td><input type="text" name="empid" ng-model="ngempid" width-reducer required/>
+	          <td><input type="text" name="newEmpId" ng-model="ngempid" width-reducer required/>
 	      </tr>
 	      <tr>
     	     <td></td>
@@ -102,7 +102,12 @@
 			    	     </td>
 				     </tr>
 		   	         <tr><td><span class="rc">Designation :</span></td>
-	          			 <td><input type="text" name="designation" ng-model="ngdesignation" width-reducer required/>
+	          			 <td><select name="desig">
+      						<c:forEach items="${desiglist}" var="desig">
+	       						<option value="${desig.id}">${desig.description}</option>
+	   						</c:forEach>
+				</select>
+			</td>
 	      			 </tr>
 	                 <tr>
     	     			<td></td>
@@ -111,18 +116,19 @@
 	     			 </tr>
 				   	 <tr>
 					   <td><span class="rc">Department :</span></td>
-				       <td><select name="leaveType" width-reducer>
-			      				   <option value="admin">ADMIN</option>
-			      				   <option value="admin">DEVELOPMENT</option>
-							</select>
-						</td>
+				       <td><select name="dept">
+	      					<c:forEach items="${deptlist}" var="dept">
+		       					<option value="${dept.id}">${dept.description}</option>
+		   					</c:forEach>
+						</select>
+			</td>
 				      </tr>
 				     <tr><td><span class="rc">Level :</span></td>
-				           <td><select name="level" width-reducer>
-				      				   <option value="admin">Amin</option>
-				      				   <option value="admin">Employee</option>
-								</select>
-							</td>
+				            <td><select name="role">
+  				  	 		<c:forEach items="${rolelist}" var="role">
+       				 			<option value="${role.id}">${role.description}</option>
+   							</c:forEach>
+							</select></td>
 				      </tr>
 				      <tr>
 			    	     <td></td>
@@ -130,11 +136,11 @@
 			    	     </td>
 				     </tr>
 				     <tr><td><span class="rc">Reporting To :</span></td>
-				           <td><select name="level" width-reducer>
-				      				   <option value="admin">Manager</option>
-				      				   <option value="admin">Admin</option>
-								</select>
-							</td>
+				            <td><select name="reportingto">
+  				  	 		<c:forEach items="${repolist}" var="report">
+       				 			<option value="${report.id}">${report.description}</option>
+   							</c:forEach>
+							</select></td>
 				      </tr>
 				      <tr>
 			    	     <td></td>
@@ -188,7 +194,7 @@
 		    	                                                                                                            (submitted && adduser.address.$error.required) || (submitted && adduser.city.$error.required) ||
 		    	                                                                                                            (submitted && adduser.state.$error.required) || (submitted && adduser.pincode.$error.required) ||
 		    	                                                                                                            (submitted && adduser.level.$error.required) || (submitted && adduser.reportingto.$error.required) ||
-		    	                                                                                                            (submitted && adduser.empid.$error.required) || (submitted && adduser.phone.$error.required))">All fields are mandatory.</span>
+		    	                                                                                                            (submitted && adduser.newEmpId.$error.required) || (submitted && adduser.phone.$error.required))">All fields are mandatory.</span>
 		    	    </td>
 			    </tr>
 			</tbody>

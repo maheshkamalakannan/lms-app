@@ -19,6 +19,15 @@ public class UserForm {
 	private String state;
 	private int pincode;
 	private String role;
+	private String newEmpId;
+
+	public String getNewEmpId() {
+		return newEmpId;
+	}
+
+	public void setNewEmpId(String newEmpId) {
+		this.newEmpId = newEmpId;
+	}
 
 	private String searchEmail; // used in Modify and Delete user screens.
 

@@ -74,8 +74,9 @@ public class UserServiceImpl implements UserService {
 	@Override
 	@Transactional(readOnly = false)
 	public void saveUserAndEmployee(UserForm userForm) {
-		Employee emp = new Employee("011", userForm.getFirstname(),
-				userForm.getLastname(), userForm.getEmail(), "",
+		Employee emp = new Employee(userForm.getNewEmpId(),
+				userForm.getFirstname(), userForm.getLastname(),
+				userForm.getEmail(), "",
 				DateUtils.convertStringToCalendar(userForm.getDateofjoin()),
 				EnumUtils.getDesignation(userForm.getDesig()),
 				userForm.getAddress(), "", userForm.getCity(),
@@ -88,7 +89,7 @@ public class UserServiceImpl implements UserService {
 		Role role = new Role();
 		role.setId(userForm.getRole());
 		emp.setRole(role);
-		emp.setReporting_to(userForm.getReportingto());
+		emp.setReporting_to("003");
 
 		User user = new User(userForm.getEmail(), userForm.getPassword());
 		user.setEmployee(emp);

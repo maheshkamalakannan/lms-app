@@ -1,5 +1,7 @@
 package com.madrone.lms.service;
 
+import java.util.List;
+
 import com.madrone.lms.entity.Employee;
 
 public interface EmployeeService {
@@ -17,4 +19,5 @@ public interface EmployeeService {
 	Employee findByEmailAddressWithLeaves(String primaryEmail);
 
 	String findMenuOption(String userName);
+
 }
