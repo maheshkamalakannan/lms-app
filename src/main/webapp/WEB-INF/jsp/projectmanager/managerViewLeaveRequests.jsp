@@ -1,22 +1,6 @@
 <%@ include file="../common/commonJs.jsp" %>
-<script language="Javascript">
-function approveBtnClick()
-{
-    document.viewleavereq.action = "/lms-app/submitViewLeaveRequest1";
-    document.viewleavereq.submit(); // Submit the page
-    return true;
-}
 
-function rejectBtnClick()
-{
-    document.viewleavereq.action = "/lms-app/submitViewLeaveRequest2";
-    document.viewleavereq.submit(); // Submit the page
-    return true;
-}
-</script>
-
-
-<form:form name="viewleavereq" ng-model="ngviewleavereq" id="viewleavereq" method="post" novalidate="novalidate" action="/lms-app/cancelLeave" ng-controller="constantsController">
+<form:form name="viewleavereq" ng-model="ngviewleavereq" id="viewleavereq" method="post" novalidate="novalidate"  ng-controller="constantsController">
 
 	<div id="rightdata" ng-controller="ViewLeaveRequestsController">
 	  <div id="topcontent" style="margin-bottom:2px;">

@@ -94,6 +94,7 @@ mycontroller.controller('constantsController', function($scope, $window, $locati
     $scope.viewrejectedleaves            = "Home > Reports > View Rejected Leaves";
     
     $scope.adminadduser                  = "Home > Users > Add Users";
+    $scope.adminmoddeluser               = "Home > Users > Modify / Delete Users";
 });
 
 mycontroller.controller('changePasswordController', function($scope, $window, $location) {
@@ -419,8 +420,8 @@ mycontroller.controller('ViewLeaveRequestsController', function($scope, $window,
 				 event.preventDefault();
 			 }
 			 else{
-				 document.viewleavereq.action = "/lms-app/submitViewLeaveRequest1";
-				 document.viewleavereq.submit();
+				 $('form').attr("action","/lms-app/submitViewLeaveRequest1");
+				 $('form').submit();
 			 }
 			   
 			 }
@@ -438,8 +439,8 @@ mycontroller.controller('ViewLeaveRequestsController', function($scope, $window,
 				 event.preventDefault();
 			 }
 			 else{
-				 document.viewleavereq.action = "/lms-app/submitViewLeaveRequest2";
-				 document.viewleavereq.submit();
+				 $('form').attr("action","/lms-app/submitViewLeaveRequest2");
+				 $('form').submit();
 			 }
 			   
 			 }
@@ -550,6 +551,10 @@ mycontroller.controller('adduserController', function($scope, $window, $location
         $scope.ngstate     = '';
         $scope.ngpincode   = '';
 	};
+	
+});
+
+mycontroller.controller('modifyDeleteUserController', function($scope, $window, $location) {
 	
 });
 
