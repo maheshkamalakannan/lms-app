@@ -179,16 +179,21 @@
 		    	    <td>
 		    	    </td>
 			    </tr>
-			</tbody>
-		</table>
-		<div class="adminbuttonsalign">
-		    <span class="error" style="width: 80%; margin-top:-5px; margin-bottom:10px;" ng-model="submitted" ng-show="((submitted && adduser.firstname.$error.required) || (submitted && adduser.lastname.$error.required) ||
+			    <tr>
+		    	    <td></td>
+		    	    <td>
+		    	    <span class="error" style="width: 80%; margin-top:35px;  margin-bottom: -80px;" ng-model="submitted" ng-show="((submitted && adduser.firstname.$error.required) || (submitted && adduser.lastname.$error.required) ||
 		    	                                                                                                            (submitted && adduser.email.$error.required) || (submitted && adduser.password.$error.required) ||
 		    	                                                                                                            (submitted && adduser.dateofjoin.$error.required) || (submitted && adduser.designation.$error.required) ||
 		    	                                                                                                            (submitted && adduser.address.$error.required) || (submitted && adduser.city.$error.required) ||
 		    	                                                                                                            (submitted && adduser.state.$error.required) || (submitted && adduser.pincode.$error.required) ||
 		    	                                                                                                            (submitted && adduser.level.$error.required) || (submitted && adduser.reportingto.$error.required) ||
 		    	                                                                                                            (submitted && adduser.empid.$error.required) || (submitted && adduser.phone.$error.required))">All fields are mandatory.</span>
+		    	    </td>
+			    </tr>
+			</tbody>
+		</table>
+		<div class="adminbuttonsalign">
 	        <input type="submit" name="submit" value="Save" ng-click="[submitted=true,saveuser(adduser,$event)]"/> 
 			<input type="reset"  style="margin-left:10px;" name="reset"   value="Cancel" ng-click="[submitted=false,resetuser()]"/>
 		</div>

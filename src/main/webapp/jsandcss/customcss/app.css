@@ -572,6 +572,10 @@ textarea {
 	text-align:center;
 }
 
+.texttransform{
+	text-transform:uppercase;
+}
+
 #empDetailsDiv {
     margin-top: -237px;
 }
@@ -627,6 +631,5 @@ h5:first-letter {
 
 .adminbuttonsalign{
 	margin-left: 70px;
-	margin-top: 175px;
-    padding-top: 20px;
+    margin-top: 180px;
 }

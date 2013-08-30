@@ -297,11 +297,10 @@ mycontroller.controller('cancelleaveController', function($scope, $window, $loca
 		    		selectWithCheckboxOnly: false,
                     showSelectionCheckbox: true,
                     keepLastSelected: false,
-                    showFilter:true,
                     afterSelectionChange: function (item, event) { $scope.selectleavetocancel = false; },
 		    		columnDefs: [{field: 'fromDate', displayName: 'From Date', cellClass:'aligncolumn'},
 		    		             {field: 'toDate', displayName: 'To Date', cellClass:'aligncolumn'},
-		    		             {field: 'leaveType', displayName: 'Type', cellClass:'aligncolumn'},
+		    		             {field: 'leaveType', displayName: 'Leave Type', cellClass:'aligncolumn'},
 		    		             {field: 'noOfDays', displayName: 'Total Days', cellClass:'aligncolumn'},
 		    		             {field: 'status', displayName: 'Status', width:60, cellClass:'aligncolumn'},
 		    		            ]
@@ -362,7 +361,7 @@ mycontroller.controller('leavesummaryController', function($scope, $window, $loc
 	  };
 });
 
-mycontroller.controller('managerViewApprovedLeaveController', function($scope, $window, $location) {
+mycontroller.controller('ViewLeaveRequestsController', function($scope, $window, $location) {
 	    $scope.selectleavetoapprove = false;
 	    $scope.selectleavetoreject  = false;
 	    $scope.myData1              = ' ';
@@ -472,6 +471,11 @@ mycontroller.controller('viewRejectedLeaveController', function($scope, $window,
 	    		             {field: 'status', displayName: 'Status',cellClass:'aligncolumn',width:60,},
 	    		             {field: 'leaveReason', displayName: 'Reason',cellClass:'aligncolumn'},
 	    		             ]};
+		
+		 $scope.$on('ngGridEventData', function (e,s) {
+	         $scope.gridOptions.selectItem(0,true);
+	         $(".ngViewport").focus();
+	     });
 	};
 	
 });
@@ -496,6 +500,11 @@ mycontroller.controller('viewApprovedLeaveController', function($scope, $window,
 	    		             {field: 'status', displayName: 'Status',cellClass:'aligncolumn',width:60,},
 	    		             {field: 'leaveReason', displayName: 'Reason',cellClass:'aligncolumn'},
 	    		             ]};
+		
+		 $scope.$on('ngGridEventData', function (e,s) {
+	         $scope.gridOptions.selectItem(0,true);
+	         $(".ngViewport").focus();
+	     });
 	};
 	
 });
