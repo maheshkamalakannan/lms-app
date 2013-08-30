@@ -1,9 +1,14 @@
 package com.madrone.lms.dao.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.hibernate.Hibernate;
+import org.hibernate.criterion.Criterion;
 import org.springframework.stereotype.Repository;
 
 import com.madrone.lms.dao.RoleDao;
+import com.madrone.lms.entity.Leave;
 import com.madrone.lms.entity.Role;
 
 @Repository("roleDao")
@@ -28,5 +33,13 @@ public class RoleDaoImpl extends AbstractDaoImpl<Role, String>
 		}		
 		return r;
 	}
+	
+	@Override
+	public List<Role> getRoleTypes() {
+		List<Criterion> criterionList = new ArrayList<Criterion>();
+		List<Role> roleTypes = findByCriteria(criterionList);
+		return roleTypes;
+	}
+
 
 }

@@ -18,14 +18,19 @@ public class Role implements Serializable {
 	
 	private String id;
 	private String description;
+	private int level;
+	
+	
+
 	private Set<Employee> employees = new HashSet<Employee>();
 	
 	public Role() {		
 	}
 	
-	public Role(String id, String description) {
+	public Role(String id, String description,int level) {
 		this.id = id;
 		this.description = description;
+		this.level = level;
 	}
 	
 	@Id
@@ -45,6 +50,15 @@ public class Role implements Serializable {
 	
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	@Column(name = "level")
+	public int getLevel() {
+		return level;
+	}
+
+	public void setLevel(int level) {
+		this.level = level;
 	}
 		
 	@OneToMany(mappedBy="role")

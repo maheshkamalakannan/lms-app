@@ -1,6 +1,7 @@
 package com.madrone.lms.service;
 
 import com.madrone.lms.entity.User;
+import com.madrone.lms.form.UserForm;
 
 public interface UserService {
 
@@ -13,6 +14,10 @@ public interface UserService {
 	User findByUserName(String userName);
 
 	boolean authenticateUser(String userName, String password);
+
+	void saveUserAndEmployee(UserForm userForm);
+
+	UserForm searchUser(String searchEmail);
 
 
 }

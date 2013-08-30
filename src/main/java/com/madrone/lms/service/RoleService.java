@@ -1,5 +1,7 @@
 package com.madrone.lms.service;
 
+import java.util.List;
+
 import com.madrone.lms.entity.Role;
 
 public interface RoleService {
@@ -11,4 +13,8 @@ public interface RoleService {
 	void saveRole(Role d);
 
 	void deleteRole(String id);
+
+	List<Role> getRoleList();
+
+	List<Role> getReportingToList();
 }

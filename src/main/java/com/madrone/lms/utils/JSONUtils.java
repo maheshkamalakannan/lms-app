@@ -1,9 +1,7 @@
 package com.madrone.lms.utils;
 
 import java.util.List;
-
 import org.codehaus.jackson.map.ObjectMapper;
-
 import com.madrone.lms.form.ApplyLeaveFormGrid;
 import com.madrone.lms.form.LeaveDetailsGrid;
 import com.madrone.lms.form.LeaveForm;
@@ -53,5 +51,5 @@ public class JSONUtils {
 		}
 		return leaveForm;
 	}
-
+	
 }

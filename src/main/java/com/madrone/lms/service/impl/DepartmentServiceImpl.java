@@ -1,5 +1,7 @@
 package com.madrone.lms.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,6 +38,11 @@ public class DepartmentServiceImpl implements DepartmentService {
 	public void deleteDepartment(String id) {
 		Department d = departmentDao.findById(id);
 		departmentDao.delete(d);
+	}
+
+	@Override
+	public List<Department> getDepartmentList() {
+		return departmentDao.getDepartmentList();
 	}
 
 }

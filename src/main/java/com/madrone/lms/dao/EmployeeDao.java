@@ -3,6 +3,7 @@ package com.madrone.lms.dao;
 import java.util.List;
 
 import com.madrone.lms.entity.Employee;
+import com.madrone.lms.entity.User;
 
 public interface EmployeeDao extends AbstractDao<Employee, String>{
 	
@@ -17,5 +18,6 @@ public interface EmployeeDao extends AbstractDao<Employee, String>{
 	String findRole(String userName);
 
 	List<Employee> findTeamList(Employee leadEmployee);
+
 
 }
