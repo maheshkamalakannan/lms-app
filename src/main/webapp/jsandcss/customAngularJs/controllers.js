@@ -288,30 +288,31 @@ mycontroller.controller('applyLeaveController', function($scope, $window, $locat
 mycontroller.controller('cancelleaveController', function($scope, $window, $location) {
 	/*Grid and grid data for cancel Leave*/
 	  $scope.init = function(data1) {
-		    $scope.mySelections = [];
-			$scope.gridData = data1;
+		    $scope.selecteddata  = '';
+			$scope.gridData      = data1;
 			$scope.gridOptions = { 
 		    		data: 'gridData',
-		    		selectedItems: $scope.mySelections,
 		    		multiSelect: false,
 		    		showFooter:true,
-		    		selectWithCheckboxOnly: false,
-                    showSelectionCheckbox: true,
-                    keepLastSelected: false,
-                    afterSelectionChange: function (item, event) { $scope.selectleavetocancel = false; },
-		    		columnDefs: [{field: 'fromDate', displayName: 'From Date', cellClass:'aligncolumn'},
+		    		columnDefs: [{displayName: '', cellClass:'aligncolumn', cellTemplate: '<input type="radio" name="cancel" id="cancel" ng-model="ngcancel" ng-click="assign(row)" value="cancel">', width:20,},
+		    		             {field: 'fromDate', displayName: 'From Date', cellClass:'aligncolumn'},
 		    		             {field: 'toDate', displayName: 'To Date', cellClass:'aligncolumn'},
 		    		             {field: 'leaveType', displayName: 'Leave Type', cellClass:'aligncolumn'},
 		    		             {field: 'noOfDays', displayName: 'Total Days', cellClass:'aligncolumn'},
 		    		             {field: 'status', displayName: 'Status', width:60, cellClass:'aligncolumn'},
 		    		            ]
 			       };
+			$scope.assign = function(row){
+				$scope.myData1 = row.entity;
+				$scope.selecteddata = [{"id":row.entity.id,"fromDate": row.entity.fromDate,"fromDateSession":row.entity.fromDateSession,"toDate": row.entity.toDate,"toDateSession":row.entity.toDateSession,"noOfDays": row.entity.noOfDays,"leaveType": row.entity.leaveType,"action":row.entity.action,"status": row.entity.status,"reason":row.entity.reason,"empId":row.entity.empId,"empName":row.entity.empName}];
+				$scope.selectleavetocancel = false;
+			};
 	  };
 	  
 	  $scope.submitcancelleave = function(form,event){
 		  $scope.selectleavetocancel = false;
 		 if(form.$valid){
-			 if($scope.mySelections == ''){
+			 if($scope.selecteddata == ''){
 				 $scope.selectleavetocancel = true;
 				 event.preventDefault();
 			 }
@@ -328,6 +329,7 @@ mycontroller.controller('cancelleaveController', function($scope, $window, $loca
 		$('.ngSelectionCheckbox').attr("checked", false);
 		$scope.mySelections = '';
         $scope.cnclreason   = '';
+        $scope.selecteddata = '';
 	};
 });
 
