@@ -12,6 +12,9 @@
 	            <input type = "hidden" name = "selecteddata" value ={{mySelections}} />
 	            <a href="/lms-app">Sign Out</a>
 	          </div>
+	          
+		      <div class="success" style="margin: -27px 5px 5px 250px; width:42%;">${SucessMessage}</div>
+		     
 	  </div>
 	  <div id="adminleftcontent">
 	   <table>
