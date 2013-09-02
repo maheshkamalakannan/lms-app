@@ -33,6 +33,7 @@ mycontroller.directive('makeReadonly', function() {
         restrict: 'A',
         link: function(scope, element, attrs) {
         	$(element).attr("disabled", true);
+        	$(element).css("background-color", "#FFFFFF");
         }
     };
 });
@@ -103,7 +104,8 @@ mycontroller.controller('constantsController', function($scope, $window, $locati
     $scope.viewrejectedleaves            = "Home > Reports > View Rejected Leaves";
     
     $scope.adminadduser                  = "Home > Users > Add User";
-    $scope.adminmoddeluser               = "Home > Users > Modify User";
+    $scope.adminmoduser                  = "Home > Users > Modify User";
+    $scope.admindeluser                  = "Home > Users > Delete User";
 });
 
 mycontroller.controller('changePasswordController', function($scope, $window, $location) {
@@ -562,6 +564,8 @@ mycontroller.controller('adduserController', function($scope, $window, $location
         $scope.ngstate     = '';
         $scope.ngpincode   = '';
         $scope.ngsecemail  = '';
+        $scope.ngempid     = '';
+        $scope.ngphone     = '';
 	};
 	
 });
@@ -570,8 +574,10 @@ mycontroller.controller('modifyUserController', function($scope, $window, $locat
 	$scope.showdiv       = false;
 	$scope.userexistence = false;
 	$scope.ngsearch      = true;
+	$scope.ngsearchemail = '';
 	$scope.searchuser = function(form,data){
 		var user = $scope.ngsearchemail;
+		if((user != "") && (!form.$error.email)){
 		 $.ajax({
              type: "POST",
              url: "http://localhost:8082/lms-app/submitSearchUser",
@@ -592,6 +598,10 @@ mycontroller.controller('modifyUserController', function($scope, $window, $locat
                      alert('no party');
                      }
              });
+		}
+		else{
+			event.preventDefault();
+		}
 	};
 	
 	$scope.olddate = function($event){
@@ -606,8 +616,42 @@ mycontroller.controller('modifyUserController', function($scope, $window, $locat
 	};
 	
 	$scope.takeuserback = function(){
+		$('.error').css("display","none");
+		$scope.ngfirstname = '';
+        $scope.nglastname  = '';
+        $scope.ngemail     = '';
+        $scope.ngpassword  = '';
+        $scope.dateofjoin  = '';
+        $scope.ngdesignation = '';
+        $scope.nglevel     = '';
+        $scope.ngreportingto = '';
+        $scope.ngaddress   = '';
+        $scope.ngcity      = '';
+        $scope.ngstate     = '';
+        $scope.ngpincode   = '';
+        $scope.ngsecemail  = '';
+        $scope.ngempid     = '';
+        $scope.ngphone     = '';
 		$scope.showdiv       = false;
 		$scope.ngsearch      = true;
+	};
+	
+	$scope.updateuser = function(form,event){
+		if(form.$valid){
+			 if($scope.dateofjoin > new Date()){
+				 $scope.dateishigher = true;
+				 event.preventDefault();
+			 }
+				 form.submit();
+			 }
+		 else{
+			 $('.success').css("display","none");
+			 event.preventDefault();
+		 }
+	};
+	
+	$scope.changeEmail = function(){
+		$scope.userexistence = false;
 	};
 });
 

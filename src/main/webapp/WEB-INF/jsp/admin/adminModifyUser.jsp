@@ -4,7 +4,7 @@
 
 	<div id="rightdata" ng-controller="modifyUserController">
 	  <div id="topcontent" style="margin-bottom:2px;">
-	     	<h5>{{adminmoddeluser}}</h5>
+	     	<h5>{{adminmoduser}}</h5>
 	         <div class="signout">
 	             <h5>${EmpForm.firstName} ${EmpForm.lastName}</h5>
 	            <input type = "hidden" name = "userName" value="${userName}" />
@@ -12,12 +12,15 @@
 	            <input type = "hidden" name = "selecteddata" value ={{mySelections}} />
 	            <a href="/lms-app">Sign Out</a>
 	          </div>
+	          <c:if test="${SucessMessage != null}">
+		        <div class="success" style="margin: -27px 5px 5px 250px; width:42%;">${SucessMessage}</div>
+		      </c:if>
 	          <div id="search" ng-model="ngsearch" ng-show="ngsearch">
 	            <span class="rc">Email Address :</span> 
-	            <input style="margin-left:17px" type="email" name="searchEmail" id="searchEmail" ng-model="ngsearchemail" width-reducer required/>
+	            <input style="margin-left:17px" type="email" name="emailSearch" id="searchEmail" ng-model="ngsearchemail" ng-change="changeEmail()" width-reducer required/>
 	            <input type="button" name="Search" value="Search" ng-click="[search=true,searchuser(modifyuser,$event)]"/>
-	            <span class="error" style="width: 20%;margin-top:-5px; margin-left:120px;" ng-show="search && modifyuser.searchemail.$error.required">Email Address is Required.</span> 
-	            <span class="error" style="width: 20%;margin-top:-5px; margin-left:120px;" ng-show="search && modifyuser.searchemail.$error.email">Email Address is invalid.</span>
+	            <span class="error" style="width: 20%;margin-top:-5px; margin-left:120px;" ng-show="search && modifyuser.emailSearch.$error.required">Email Address is Required.</span> 
+	            <span class="error" style="width: 20%;margin-top:-5px; margin-left:120px;" ng-show="search && modifyuser.emailSearch.$error.email">Email Address is invalid.</span>
 	            <div class="error" ng-model="userexistence" ng-show= "userexistence" style="margin: 120px 150px 150px 350px; width:32%;">Email Address Does Not Exists.</div>
 	         </div>
 	  </div>
@@ -199,7 +202,7 @@
 			</tbody>
 		</table>
 		<div class="adminbuttonsalign">
-	        <input type="submit" name="submit" value="Update" ng-click="[submitted=true,saveuser(modifyuser,$event)]"/> 
+	        <input type="submit" name="submit" value="Update" ng-click="[submitted=true,updateuser(modifyuser,$event)]"/> 
 			<input type="button"  style="margin-left:10px;" name="back"   value="Back" ng-click="[takeuserback()]"/>
 		</div>
 	  </div>
