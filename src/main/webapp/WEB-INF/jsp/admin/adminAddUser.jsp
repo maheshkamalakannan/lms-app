@@ -45,7 +45,7 @@
 	  <div id="adminleftcontent">
 	   <table>
 	    <tbody>
-	      <tr><td><span class="rc">First Name :</span></td>
+	      <tr><td><span class="rc">{{firstname}}</span></td>
 	          <td><input type="text" name="firstname" ng-model="ngfirstname" maxlength="30" width-reducer required/>
 	      </tr>
 	      <tr>
@@ -53,7 +53,7 @@
     	     <td> 
     	     </td>
 	     </tr>
-	      <tr><td><span class="rc">Last Name :</span></td>
+	      <tr><td><span class="rc">{{lasttname}}</span></td>
 	          <td><input type="text" name="lastname" ng-model="nglastname" maxlength="30" width-reducer required/>
 	      </tr>
 	      <tr>
@@ -61,7 +61,7 @@
     	     <td>
     	     </td>
 	     </tr>
-	     <tr><td><span class="rc">Employee ID :</span></td>
+	     <tr><td><span class="rc">{{empid}}</span></td>
 	          <td><input type="text" name="newEmpId" ng-model="ngempid" width-reducer required/>
 	      </tr>
 	      <tr>
@@ -69,16 +69,16 @@
     	     <td>
     	     </td>
 	     </tr>
-	      <tr><td><span class="rc">Email Address :</span></td>
+	      <tr><td><span class="rc">{{employeeemail}}</span></td>
 	          <td><input type="email" name="email" ng-model="ngemail" width-reducer required/>
 	      </tr>
 	      <tr>
     	     <td></td>
     	     <td>
-	    	     <span class="error" style="width: 85%;margin-top:-5px; margin-bottom:4px;" ng-show="submitted && adduser.email.$error.email">Email Address is invalid.</span>
+	    	     <span class="error" style="width: 85%;margin-top:-5px; margin-bottom:4px;" ng-show="submitted && adduser.email.$error.email">{{invalidemail}}</span>
     	     </td>
 	     </tr>
-	      <tr><td><span class="rc">Contact :</span></td>
+	      <tr><td><span class="rc">{{contact}}</span></td>
 	          <td><input type="text" name="phone" ng-model="ngphone" maxlength="10" width-reducer required/>
 	      </tr>
 	      <tr>
@@ -86,7 +86,7 @@
     	     <td>
     	     </td>
 	     </tr>
-	      <tr><td><span class="rc">Password :</span></td>
+	      <tr><td><span class="rc">{{admpassword}}</span></td>
 	          <td><input type="password" name="password" ng-model="ngpassword" maxlength="10" ng-minlength="7" width-reducer required/>
 	      </tr>
 	      <tr>
@@ -95,13 +95,13 @@
     	       <span class="error" style="width: 85%; margin-top:-5px; margin-bottom:4px;" ng-show="submitted && adduser.password.$error.minlength">{{newpasswordminlength}}</span>
     	     </td>
 	     </tr>
-       	 <tr><td><span class="rc">Secondary Email :</span></td>
+       	 <tr><td><span class="rc">{{secemail}}</span></td>
 	   			 <td><input type="email" name="secemail" ng-model="ngsecemail" width-reducer/>
 		 </tr>
 	     <tr>
 	  	 <td></td>
  			<td>
- 			  <span class="error" style="width: 85%;margin-top:-5px; margin-bottom:4px;" ng-show="submitted && adduser.secemail.$error.email">Email Address is invalid.</span>
+ 			  <span class="error" style="width: 85%;margin-top:-5px; margin-bottom:4px;" ng-show="submitted && adduser.secemail.$error.email">{{invalidemail}}</span>
  			</td>
 		 </tr>
 	     
@@ -112,7 +112,7 @@
 		   <table>
 		   	 <tbody>
 		   	         <tr>
-				       	<td><span class="rc">Date Of Join :</span></td>
+				       	<td><span class="rc">{{joiningdate}}</span></td>
 						<td>
 							<div class="control-group input-append">
 								<input name="dateofjoin" id="dateofjoin" style="background-color: #FFFFFF; width:115px" class="input-small" type="text" ng-model="dateofjoin" 
@@ -124,10 +124,10 @@
 			          <tr>
 			    	     <td></td>
 			    	     <td>
-				    	    <span class="error" style="width: 105%; margin-top:-5px; margin-bottom:4px;" ng-model="dateishigher" ng-show="dateishigher">Date is Join is incorrect.</span> 
+				    	    <span class="error" style="width: 105%; margin-top:-5px; margin-bottom:4px;" ng-model="dateishigher" ng-show="dateishigher">{{joindateincorrect}}</span> 
 			    	     </td>
 				     </tr>
-		   	         <tr><td><span class="rc">Designation :</span></td>
+		   	         <tr><td><span class="rc">{{employeedesignation}}</span></td>
 	          			 <td><select name="desig">
       						<c:forEach items="${desiglist}" var="desig">
 	       						<option value="${desig.id}">${desig.description}</option>
@@ -141,7 +141,7 @@
     	     			</td>
 	     			 </tr>
 				   	 <tr>
-					   <td><span class="rc">Department :</span></td>
+					   <td><span class="rc">{{department}}</span></td>
 				       <td><select name="dept">
 	      					<c:forEach items="${deptlist}" var="dept">
 		       					<option value="${dept.id}">${dept.description}</option>
@@ -149,7 +149,7 @@
 						</select>
 			</td>
 				      </tr>
-				     <tr><td><span class="rc">Role :</span></td>
+				     <tr><td><span class="rc">{{role}}</span></td>
 				            <div id="info">
 				            <td><select name="role" id="role" onchange="doAjaxPost()">
   				  	 		<c:forEach items="${rolelist}" var="role">
@@ -163,7 +163,7 @@
 			    	     <td>
 			    	     </td>
 				     </tr>
-				     <tr><td><span class="rc">Reporting To :</span></td>
+				     <tr><td><span class="rc">{{reportingto}}</span></td>
 				            <td><select name="reportingto" id="reportingto">
   				  	 		<c:forEach items="${repolist}" var="report">
        				 			<option value="${report.id}">${report.description}</option>
@@ -175,7 +175,7 @@
 			    	     <td>
 			    	     </td>
 				     </tr>
-				      <tr><td><span class="rc">Address :</span></td>
+				      <tr><td><span class="rc">{{address}}</span></td>
 				          <td><textarea style="padding: 4px 6px; height:70px;" ng-model="ngaddress" name="address" id="address" 
 				          width-reducer required maxlength="100"></textarea></td>
 				      </tr>
@@ -190,7 +190,7 @@
 	<div id="adminrightcontent">
 		<table>
 			<tbody>
-				<tr><td><span class="rc">City :</span></td>
+				<tr><td><span class="rc">{{city}}</span></td>
 		            <td><input type="text" name="city" ng-model="ngcity" maxlength="20" width-reducer required/>
 			    </tr>
 			    <tr>
@@ -198,7 +198,7 @@
 		    	    <td>
 		    	    </td>
 			    </tr>
-			    <tr><td><span class="rc">State :</span></td>
+			    <tr><td><span class="rc">{{state}}</span></td>
 			        <td><input type="text" name="state" ng-model="ngstate" width-reducer required/>
 			    </tr>
 			    <tr>
@@ -206,7 +206,7 @@
 		    	    <td>
 		    	    </td>
 			    </tr>
-			    <tr><td><span class="rc">Pincode :</span></td>
+			    <tr><td><span class="rc">{{pincode}}</span></td>
 			        <td><input type="text" name="pincode" ng-model="ngpincode" maxlength="6" width-reducer required/>
 			    </tr>
 			    <tr>
@@ -223,7 +223,7 @@
 		    	                                                                                                            (submitted && adduser.address.$error.required) || (submitted && adduser.city.$error.required) ||
 		    	                                                                                                            (submitted && adduser.state.$error.required) || (submitted && adduser.pincode.$error.required) ||
 		    	                                                                                                            (submitted && adduser.level.$error.required) || (submitted && adduser.reportingto.$error.required) ||
-		    	                                                                                                            (submitted && adduser.newEmpId.$error.required) || (submitted && adduser.phone.$error.required))">All fields are mandatory.</span>
+		    	                                                                                                            (submitted && adduser.newEmpId.$error.required) || (submitted && adduser.phone.$error.required))">{{mandatoryfields}}</span>
 		    	    </td>
 			    </tr>
 			</tbody>

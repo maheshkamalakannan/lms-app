@@ -16,18 +16,18 @@
 		        <div class="success" style="margin: -27px 5px 5px 250px; width:42%;">${SucessMessage}</div>
 		      </c:if>
 	          <div id="search" ng-model="ngsearch" ng-show="ngsearch">
-	            <span class="rc">Email Address :</span> 
+	            <span class="rc">{{employeeemail}}</span> 
 	            <input style="margin-left:17px" type="email" name="emailSearch" id="searchEmail" ng-model="ngsearchemail" ng-change="changeEmail()" width-reducer required/>
 	            <input type="button" name="Search" value="Search" ng-click="[search=true,searchuser(modifyuser,$event)]"/>
-	            <span class="error" style="width: 20%;margin-top:-5px; margin-left:120px;" ng-show="search && modifyuser.emailSearch.$error.required">Email Address is Required.</span> 
-	            <span class="error" style="width: 20%;margin-top:-5px; margin-left:120px;" ng-show="search && modifyuser.emailSearch.$error.email">Email Address is invalid.</span>
-	            <div class="error" ng-model="userexistence" ng-show= "userexistence" style="margin: 120px 150px 150px 350px; width:32%;">Email Address Does Not Exists.</div>
+	            <span class="error" style="width: 20%;margin-top:-5px; margin-left:120px;" ng-show="search && modifyuser.emailSearch.$error.required">{{emailrequired}}</span> 
+	            <span class="error" style="width: 20%;margin-top:-5px; margin-left:120px;" ng-show="search && modifyuser.emailSearch.$error.email">{{invalidemail}}</span>
+	            <div class="error" ng-model="userexistence" ng-show= "userexistence" style="margin: 120px 150px 150px 350px; width:32%;">{{emailnotexists}}</div>
 	         </div>
 	  </div>
 	  <div id="adminleftcontent" ng-model="showdiv" ng-show="showdiv">
 	   <table>
 	    <tbody>
-	      <tr><td><span class="rc">First Name :</span></td>
+	      <tr><td><span class="rc">{{firstname}}</span></td>
 	          <td><input type="text" name="firstname" ng-model="ngfirstname" maxlength="30" width-reducer required/>
 	      </tr>
 	      <tr>
@@ -35,7 +35,7 @@
     	     <td> 
     	     </td>
 	     </tr>
-	      <tr><td><span class="rc">Last Name :</span></td>
+	      <tr><td><span class="rc">{{lasttname}}</span></td>
 	          <td><input type="text" name="lastname" ng-model="nglastname" maxlength="30" width-reducer required/>
 	      </tr>
 	      <tr>
@@ -43,7 +43,7 @@
     	     <td>
     	     </td>
 	     </tr>
-	     <tr><td><span class="rc">Employee ID :</span></td>
+	     <tr><td><span class="rc">{{empid}}</span></td>
 	          <td><input type="text" name="empid" ng-model="ngempid" width-reducer required/>
 	      </tr>
 	      <tr>
@@ -51,16 +51,16 @@
     	     <td>
     	     </td>
 	     </tr>
-	      <tr><td><span class="rc">Email Address :</span></td>
+	      <tr><td><span class="rc">{{employeeemail}}</span></td>
 	          <td><input type="email" name="email" ng-model="ngemail" width-reducer required/>
 	      </tr>
 	      <tr>
     	     <td></td>
     	     <td>
-	    	     <span class="error" style="width: 80%;margin-top:-5px; margin-bottom:4px;" ng-show="submitted && modifyuser.email.$error.email">Email Address is invalid.</span>
+	    	     <span class="error" style="width: 80%;margin-top:-5px; margin-bottom:4px;" ng-show="submitted && modifyuser.email.$error.email">{{invalidemail}}</span>
     	     </td>
 	     </tr>
-	      <tr><td><span class="rc">Contact :</span></td>
+	      <tr><td><span class="rc">{{contact}}</span></td>
 	          <td><input type="text" name="phone" ng-model="ngphone" maxlength="10" width-reducer required/>
 	      </tr>
 	      <tr>
@@ -68,7 +68,7 @@
     	     <td>
     	     </td>
 	     </tr>
-	      <tr><td><span class="rc">Password :</span></td>
+	      <tr><td><span class="rc">{{admpassword}}</span></td>
 	          <td><input type="password" name="password" ng-model="ngpassword" maxlength="10" ng-minlength="7" width-reducer required/>
 	      </tr>
 	      <tr>
@@ -77,13 +77,13 @@
     	       <span class="error" style="width: 85%; margin-top:-5px; margin-bottom:4px;" ng-show="submitted && modifyuser.password.$error.minlength">{{newpasswordminlength}}</span>
     	     </td>
 	     </tr>
-       	 <tr><td><span class="rc">Secondary Email :</span></td>
+       	 <tr><td><span class="rc">{{secemail}}</span></td>
 	   			 <td><input type="email" name="secemail" ng-model="ngsecemail" width-reducer/>
 		 </tr>
 	     <tr>
 	  	 <td></td>
  			<td>
- 			  <span class="error" style="width: 80%;margin-top:-5px; margin-bottom:4px;" ng-show="submitted && modifyuser.secemail.$error.email">Email Address is invalid.</span>
+ 			  <span class="error" style="width: 80%;margin-top:-5px; margin-bottom:4px;" ng-show="submitted && modifyuser.secemail.$error.email">{{invalidemail}}</span>
  			</td>
 		 </tr>
 	     
@@ -94,7 +94,7 @@
 		   <table>
 		   	 <tbody>
 		   	         <tr>
-				       	<td><span class="rc">Date Of Join :</span></td>
+				       	<td><span class="rc">{{joiningdate}}</span></td>
 						<td>
 							<div class="control-group input-append">
 								<input name="dateofjoin" id="dateofjoin" style="background-color: #FFFFFF; width:115px" class="input-small" type="text" ng-model="dateofjoin" 
@@ -106,10 +106,10 @@
 			          <tr>
 			    	     <td></td>
 			    	     <td>
-				    	    <span class="error" style="width: 105%; margin-top:-5px; margin-bottom:4px;" ng-model="dateishigher" ng-show="dateishigher">Date is Join is incorrect.</span> 
+				    	    <span class="error" style="width: 105%; margin-top:-5px; margin-bottom:4px;" ng-model="dateishigher" ng-show="dateishigher">{{joindateincorrect}}</span> 
 			    	     </td>
 				     </tr>
-		   	         <tr><td><span class="rc">Designation :</span></td>
+		   	         <tr><td><span class="rc">{{employeedesignation}}</span></td>
 	          			 <td><input type="text" name="designation" ng-model="ngdesignation" width-reducer required/>
 	      			 </tr>
 	                 <tr>
@@ -118,14 +118,14 @@
     	     			</td>
 	     			 </tr>
 				   	 <tr>
-					   <td><span class="rc">Department :</span></td>
+					   <td><span class="rc">{{department}}</span></td>
 				       <td><select name="leaveType" width-reducer>
 			      				   <option value="admin">ADMIN</option>
 			      				   <option value="admin">DEVELOPMENT</option>
 							</select>
 						</td>
 				      </tr>
-				     <tr><td><span class="rc">Level :</span></td>
+				     <tr><td><span class="rc">{{role}}</span></td>
 				           <td><select name="level" width-reducer>
 				      				   <option value="admin">Amin</option>
 				      				   <option value="admin">Employee</option>
@@ -137,7 +137,7 @@
 			    	     <td>
 			    	     </td>
 				     </tr>
-				     <tr><td><span class="rc">Reporting To :</span></td>
+				     <tr><td><span class="rc">{{reportingto}}</span></td>
 				           <td><select name="level" width-reducer>
 				      				   <option value="admin">Manager</option>
 				      				   <option value="admin">Admin</option>
@@ -149,7 +149,7 @@
 			    	     <td>
 			    	     </td>
 				     </tr>
-				      <tr><td><span class="rc">Address :</span></td>
+				      <tr><td><span class="rc">{{address}}</span></td>
 				          <td><textarea style="padding: 4px 6px; height:70px;" ng-model="ngaddress" name="address"  width-reducer required maxlength="100"></textarea></td>
 				      </tr>
 				      <tr>
@@ -163,7 +163,7 @@
 	<div id="adminrightcontent" ng-model="showdiv" ng-show="showdiv">
 		<table>
 			<tbody>
-				<tr><td><span class="rc">City :</span></td>
+				<tr><td><span class="rc">{{city}}</span></td>
 		            <td><input type="text" name="city" ng-model="ngcity" maxlength="20" width-reducer required/>
 			    </tr>
 			    <tr>
@@ -171,7 +171,7 @@
 		    	    <td>
 		    	    </td>
 			    </tr>
-			    <tr><td><span class="rc">State :</span></td>
+			    <tr><td><span class="rc">{{state}}</span></td>
 			        <td><input type="text" name="state" ng-model="ngstate" width-reducer required/>
 			    </tr>
 			    <tr>
@@ -179,7 +179,7 @@
 		    	    <td>
 		    	    </td>
 			    </tr>
-			    <tr><td><span class="rc">Pincode :</span></td>
+			    <tr><td><span class="rc">{{pincode}}</span></td>
 			        <td><input type="text" name="pincode" ng-model="ngpincode" maxlength="6" width-reducer required/>
 			    </tr>
 			    <tr>
@@ -196,7 +196,7 @@
 		    	                                                                                                            (submitted && modifyuser.address.$error.required) || (submitted && modifyuser.city.$error.required) ||
 		    	                                                                                                            (submitted && modifyuser.state.$error.required) || (submitted && modifyuser.pincode.$error.required) ||
 		    	                                                                                                            (submitted && modifyuser.level.$error.required) || (submitted && modifyuser.reportingto.$error.required) ||
-		    	                                                                                                            (submitted && modifyuser.empid.$error.required) || (submitted && modifyuser.phone.$error.required))">All fields are mandatory.</span>
+		    	                                                                                                            (submitted && modifyuser.empid.$error.required) || (submitted && modifyuser.phone.$error.required))">{{mandatoryfields}}</span>
 		    	    </td>
 			    </tr>
 			</tbody>

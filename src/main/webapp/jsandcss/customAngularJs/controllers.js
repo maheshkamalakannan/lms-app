@@ -93,6 +93,23 @@ mycontroller.controller('constantsController', function($scope, $window, $locati
     $scope.viewleaverequestapprove           = "Select a Leave to Approve.";
     $scope.viewleaverequestreject            = "Select a Leave to Reject.";
     
+    $scope.emailnotexists                    = "Email Address Does Not Exists.";
+    $scope.firstname                         = "First Name :";
+    $scope.lasttname                         = "Last Name :";
+    $scope.empid                             = "Employee ID :";
+    $scope.contact                           = "Contact :";
+    $scope.admpassword                       = "Password :";
+    $scope.secemail                          = "Secondary Email :";
+    $scope.joindateincorrect                 = "Joining Date is Incorrect.";
+    $scope.department                        = "Department :";
+    $scope.role                              = "Role :";
+    $scope.address                           = "Address :";
+    $scope.city                              = "City :";
+    $scope.state                             = "State :";
+    $scope.pincode                           = "Pincode :";
+    $scope.mandatoryfields                   = "All fields are mandatory.";
+    
+    
     $scope.hometab                       = "Home";
     $scope.changepasswordtabs            = "Home > Settings > Change Password";
     $scope.applyleavetab                 = "Home > Leaves > Apply Leave";
