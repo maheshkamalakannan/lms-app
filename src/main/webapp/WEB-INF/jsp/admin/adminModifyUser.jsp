@@ -12,15 +12,16 @@
 	            <input type = "hidden" name = "selecteddata" value ={{mySelections}} />
 	            <a href="/lms-app">Sign Out</a>
 	          </div>
-	          <div>
+	          <div id="search" ng-model="ngsearch" ng-show="ngsearch">
 	            <span class="rc">Email Address :</span> 
-	            <input style="margin-left:17px" type="email" name="searchEmail" ng-model="ngsearchemail" width-reducer required/>
+	            <input style="margin-left:17px" type="email" name="searchEmail" id="searchEmail" ng-model="ngsearchemail" width-reducer required/>
 	            <input type="button" name="Search" value="Search" ng-click="[search=true,searchuser(modifyuser,$event)]"/>
 	            <span class="error" style="width: 20%;margin-top:-5px; margin-left:120px;" ng-show="search && modifyuser.searchemail.$error.required">Email Address is Required.</span> 
 	            <span class="error" style="width: 20%;margin-top:-5px; margin-left:120px;" ng-show="search && modifyuser.searchemail.$error.email">Email Address is invalid.</span>
-	          </div>
+	            <div class="error" ng-model="userexistence" ng-show= "userexistence" style="margin: 120px 150px 150px 350px; width:32%;">Email Address Does Not Exists.</div>
+	         </div>
 	  </div>
-	  <div id="adminleftcontent">
+	  <div id="adminleftcontent" ng-model="showdiv" ng-show="showdiv">
 	   <table>
 	    <tbody>
 	      <tr><td><span class="rc">First Name :</span></td>
@@ -70,7 +71,7 @@
 	      <tr>
     	     <td></td>
     	     <td>
-    	       <span class="error" style="width: 35%;" ng-show="submitted && changepassword.newPassword.$error.minlength">{{newpasswordminlength}}</span>
+    	       <span class="error" style="width: 85%; margin-top:-5px; margin-bottom:4px;" ng-show="submitted && modifyuser.password.$error.minlength">{{newpasswordminlength}}</span>
     	     </td>
 	     </tr>
        	 <tr><td><span class="rc">Secondary Email :</span></td>
@@ -86,7 +87,7 @@
 	    </tbody>
 	   </table>
 	  </div>
-	  <div id="adminmiddlecontent">
+	  <div id="adminmiddlecontent" ng-model="showdiv" ng-show="showdiv">
 		   <table>
 		   	 <tbody>
 		   	         <tr>
@@ -102,7 +103,7 @@
 			          <tr>
 			    	     <td></td>
 			    	     <td>
-				    	    <span class="error" style="width: 80%; margin-top:-5px; margin-bottom:4px;" ng-model="dateishigher" ng-show="dateishigher">Date is Join is incorrect.</span> 
+				    	    <span class="error" style="width: 105%; margin-top:-5px; margin-bottom:4px;" ng-model="dateishigher" ng-show="dateishigher">Date is Join is incorrect.</span> 
 			    	     </td>
 				     </tr>
 		   	         <tr><td><span class="rc">Designation :</span></td>
@@ -156,7 +157,7 @@
 		    </tbody>
 		</table>
 	</div>
-	<div id="adminrightcontent">
+	<div id="adminrightcontent" ng-model="showdiv" ng-show="showdiv">
 		<table>
 			<tbody>
 				<tr><td><span class="rc">City :</span></td>
@@ -198,8 +199,8 @@
 			</tbody>
 		</table>
 		<div class="adminbuttonsalign">
-	        <input type="submit" name="submit" value="Save" ng-click="[submitted=true,saveuser(modifyuser,$event)]"/> 
-			<input type="reset"  style="margin-left:10px;" name="reset"   value="Cancel" ng-click="[submitted=false,resetuser()]"/>
+	        <input type="submit" name="submit" value="Update" ng-click="[submitted=true,saveuser(modifyuser,$event)]"/> 
+			<input type="button"  style="margin-left:10px;" name="back"   value="Back" ng-click="[takeuserback()]"/>
 		</div>
 	  </div>
 	</div>

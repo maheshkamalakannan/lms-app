@@ -28,6 +28,15 @@ mycontroller.directive('widthReducer', function() {
     };
 });
 
+mycontroller.directive('makeReadonly', function() {
+    return {
+        restrict: 'A',
+        link: function(scope, element, attrs) {
+        	$(element).attr("disabled", true);
+        }
+    };
+});
+
 
 /* Controllers */
 mycontroller.controller('loginController', function($scope, $window, $location) {
@@ -552,28 +561,53 @@ mycontroller.controller('adduserController', function($scope, $window, $location
         $scope.ngcity      = '';
         $scope.ngstate     = '';
         $scope.ngpincode   = '';
+        $scope.ngsecemail  = '';
 	};
 	
 });
 
 mycontroller.controller('modifyUserController', function($scope, $window, $location) {
-	$scope.ngsearchemail = '';  
-    $('#adminleftcontent').remove();
-    $('#adminmiddlecontent').remove();
-    $('#adminrightcontent').remove();
+	$scope.showdiv       = false;
+	$scope.userexistence = false;
+	$scope.ngsearch      = true;
+	$scope.searchuser = function(form,data){
+		var user = $scope.ngsearchemail;
+		 $.ajax({
+             type: "POST",
+             url: "http://localhost:8082/lms-app/submitSearchUser",
+             data: "searchEmail=" + user,
+             async: false,
+             success: function(response) {
+            	      if(response == "success"){
+            	    	  $scope.showdiv = true;
+            	    	  $scope.ngsearch= false;
+            	    	  $('.error').css("display","none");
+            	      }
+            	      else{
+            	    	  $scope.userexistence = true;
+            	    	  $scope.showdiv = false;
+            	      }
+                     },
+             error: function(e){
+                     alert('no party');
+                     }
+             });
+	};
 	
-	$scope.searchuser = function(form,event){
-		alert($scope.ngsearchemail);
-		if($scope.ngsearchemail == ''){
-			event.preventDefault();
-		}
+	$scope.olddate = function($event){
+		$scope.dateishigher = false;
+		if($scope.dateofjoin > new Date()){
+			 $scope.dateishigher = true;
+			 event.preventDefault();
+		 }
 		else{
-			$('form').attr("action","/lms-app/submitSearchUser");
-			$('form').submit();
-			 /*$('#adminleftcontent').append();
-			 $('#adminmiddlecontent').append();
-			 $('#adminrightcontent').append();*/
+			$scope.dateishigher = false;
 		}
+	};
+	
+	$scope.takeuserback = function(){
+		$scope.showdiv       = false;
+		$scope.ngsearch      = true;
 	};
 });
 

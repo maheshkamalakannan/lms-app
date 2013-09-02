@@ -93,7 +93,7 @@ public class UserController {
 
 	}
 
-	@RequestMapping(value = "/submitSearchUser", method = RequestMethod.POST)
+	/*@RequestMapping(value = "/submitSearchUser", method = RequestMethod.POST)
 	public String searchUser(Model model,
 			@ModelAttribute("UserForm") UserForm userForm,
 			BindingResult result, Map<String, Object> map) {
@@ -108,6 +108,20 @@ public class UserController {
 		}
 		return LMSConstants.ADMIN_MODIFY_USER_SCR;
 
+	}*/
+	
+	@RequestMapping(value = "/submitSearchUser", method = RequestMethod.POST)
+	public @ResponseBody String searchUser(Model model,
+			@ModelAttribute("UserForm") UserForm userForm,
+			BindingResult result, Map<String, Object> map) {
+        String status = "";
+		userForm = userService.searchUser(userForm.getSearchEmail());
+		if (userForm == null) {
+			status = "error";
+		} else {
+			status = "success";
+		}
+		return status;
 	}
 
 	@RequestMapping(value = "/FindReportingPersonList", 

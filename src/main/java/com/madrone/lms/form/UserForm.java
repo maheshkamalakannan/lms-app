@@ -20,7 +20,7 @@ public class UserForm {
 	private int pincode;
 	private String role;
 	private String newEmpId;
-
+	private String searchEmail; // used in Modify and Delete user screens
 	public String getNewEmpId() {
 		return newEmpId;
 	}
@@ -28,8 +28,6 @@ public class UserForm {
 	public void setNewEmpId(String newEmpId) {
 		this.newEmpId = newEmpId;
 	}
-
-	private String searchEmail; // used in Modify and Delete user screens.
 
 	public String getSearchEmail() {
 		return searchEmail;

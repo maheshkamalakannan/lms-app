@@ -4,7 +4,7 @@
         var role = $('#role').val();
         $.ajax({
 	        type: "POST",
-	        url: "http://localhost:8080/lms-app/FindReportingPersonList",
+	        url: "http://localhost:8082/lms-app/FindReportingPersonList",
 	        data: "role=" + role,
 	        success: function(response) {
 	        	if(response.status == "SUCCESS") {
@@ -75,7 +75,7 @@
 	      <tr>
     	     <td></td>
     	     <td>
-	    	     <span class="error" style="width: 80%;margin-top:-5px; margin-bottom:4px;" ng-show="submitted && adduser.email.$error.email">Email Address is invalid.</span>
+	    	     <span class="error" style="width: 85%;margin-top:-5px; margin-bottom:4px;" ng-show="submitted && adduser.email.$error.email">Email Address is invalid.</span>
     	     </td>
 	     </tr>
 	      <tr><td><span class="rc">Contact :</span></td>
@@ -92,7 +92,7 @@
 	      <tr>
     	     <td></td>
     	     <td>
-    	       <span class="error" style="width: 35%;" ng-show="submitted && changepassword.newPassword.$error.minlength">{{newpasswordminlength}}</span>
+    	       <span class="error" style="width: 85%; margin-top:-5px; margin-bottom:4px;" ng-show="submitted && adduser.password.$error.minlength">{{newpasswordminlength}}</span>
     	     </td>
 	     </tr>
        	 <tr><td><span class="rc">Secondary Email :</span></td>
@@ -101,7 +101,7 @@
 	     <tr>
 	  	 <td></td>
  			<td>
- 			  <span class="error" style="width: 80%;margin-top:-5px; margin-bottom:4px;" ng-show="submitted && adduser.secemail.$error.email">Email Address is invalid.</span>
+ 			  <span class="error" style="width: 85%;margin-top:-5px; margin-bottom:4px;" ng-show="submitted && adduser.secemail.$error.email">Email Address is invalid.</span>
  			</td>
 		 </tr>
 	     
@@ -124,7 +124,7 @@
 			          <tr>
 			    	     <td></td>
 			    	     <td>
-				    	    <span class="error" style="width: 80%; margin-top:-5px; margin-bottom:4px;" ng-model="dateishigher" ng-show="dateishigher">Date is Join is incorrect.</span> 
+				    	    <span class="error" style="width: 105%; margin-top:-5px; margin-bottom:4px;" ng-model="dateishigher" ng-show="dateishigher">Date is Join is incorrect.</span> 
 			    	     </td>
 				     </tr>
 		   	         <tr><td><span class="rc">Designation :</span></td>

@@ -216,7 +216,11 @@ input[type="button"], input[type="submit"], input[type="reset"] {
     padding: 5px;
     text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
     width: 5em;
-} 
+}
+
+select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+	font-size: 13px;
+}
 .error {
  	padding: 8px 8px 8px 30px;
     background: url(../images/ico_exclamation.png) no-repeat 8px center;
@@ -606,7 +610,7 @@ h5:first-letter {
 #adminleftcontent{
 	float: left;
     padding: 15px;
-    width: 310px;
+    width: 350px;
 }
 
 #adminmiddlecontent{
