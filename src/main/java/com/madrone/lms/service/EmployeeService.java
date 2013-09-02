@@ -3,6 +3,8 @@ package com.madrone.lms.service;
 import java.util.List;
 
 import com.madrone.lms.entity.Employee;
+import com.madrone.lms.entity.Role;
+import com.madrone.lms.form.ReportingPerson;
 
 public interface EmployeeService {
 
@@ -19,5 +21,7 @@ public interface EmployeeService {
 	Employee findByEmailAddressWithLeaves(String primaryEmail);
 
 	String findMenuOption(String userName);
+
+	List<ReportingPerson> FindHigherRoles(List<Role> roleListHigher);
 
 }

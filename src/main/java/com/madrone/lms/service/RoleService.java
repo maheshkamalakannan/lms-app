@@ -17,4 +17,8 @@ public interface RoleService {
 	List<Role> getRoleList();
 
 	List<Role> getReportingToList();
+
+	List<Role> getRoleListHigher(int level);
+
+	int getLevel(String roleId);
 }

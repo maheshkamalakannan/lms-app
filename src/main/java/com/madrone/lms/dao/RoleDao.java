@@ -12,4 +12,8 @@ public interface RoleDao extends AbstractDao<Role, String> {
 
 	List<Role> getRoleTypes();
 
+	int getLevel(String roleId);
+
+	List<Role> getRoleListHigher(int level);
+
 }

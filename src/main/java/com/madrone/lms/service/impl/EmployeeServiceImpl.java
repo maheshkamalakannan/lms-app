@@ -1,11 +1,16 @@
 package com.madrone.lms.service.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.madrone.lms.dao.EmployeeDao;
 import com.madrone.lms.entity.Employee;
+import com.madrone.lms.entity.Role;
+import com.madrone.lms.form.ReportingPerson;
 import com.madrone.lms.service.EmployeeService;
 
 @Service("employeeService")
@@ -60,4 +65,19 @@ public class EmployeeServiceImpl implements EmployeeService {
         emp.setReporting_to(manager.getFirstName()+ " " + manager.getLastName());
         return emp;
     }
+
+	@Override
+	public List<ReportingPerson> FindHigherRoles(List<Role> roleListHigher) {
+		List<ReportingPerson> reportingList = new ArrayList<ReportingPerson>();
+		List<Employee> empList = empDao.FindHigherRoles(roleListHigher);
+		
+		for(Employee e:empList) {
+			ReportingPerson bean = new ReportingPerson();
+			bean.setEmpId(e.getId());
+			bean.setEmpName(e.getFirstName() + " " + e.getLastName());
+			reportingList.add(bean);
+		}
+		
+		return reportingList;
+	}
 }

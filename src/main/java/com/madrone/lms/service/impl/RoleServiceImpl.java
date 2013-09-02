@@ -58,4 +58,15 @@ public class RoleServiceImpl implements RoleService {
 		return returnList;
 	}
 
+
+	@Override
+	public int getLevel(String roleId) {
+		return roleDao.getLevel(roleId);
+	}
+
+	@Override
+	public List<Role> getRoleListHigher(int level) {
+		return roleDao.getRoleListHigher(level);
+	}
+
 }

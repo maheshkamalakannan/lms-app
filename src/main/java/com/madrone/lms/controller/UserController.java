@@ -14,15 +14,19 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.madrone.lms.constants.LMSConstants;
 import com.madrone.lms.entity.Department;
 import com.madrone.lms.entity.Role;
+import com.madrone.lms.form.ReportingPerson;
 import com.madrone.lms.form.UserForm;
 import com.madrone.lms.service.DepartmentService;
+import com.madrone.lms.service.EmployeeService;
 import com.madrone.lms.service.RoleService;
 import com.madrone.lms.service.UserService;
 import com.madrone.lms.utils.EnumUtils;
+import com.madrone.lms.utils.JsonResponse;
 
 @Controller
 public class UserController {
@@ -35,6 +39,9 @@ public class UserController {
 
 	@Autowired
 	private DepartmentService deptService;
+
+	@Autowired
+	private EmployeeService empService;
 
 	@Autowired
 	private MessageSource messageSource;
@@ -102,4 +109,28 @@ public class UserController {
 		return LMSConstants.ADMIN_MODIFY_USER_SCR;
 
 	}
+
+	@RequestMapping(value = "/FindReportingPersonList", 
+			method = RequestMethod.POST)
+	public @ResponseBody
+	JsonResponse findReportingList(Model model,
+			@ModelAttribute("UserForm") UserForm userForm, 
+			BindingResult result) {
+
+		JsonResponse res = new JsonResponse();
+		String roleId = userForm.getRole();
+		int level = roleService.getLevel(roleId);
+		List<Role> roleListHigher = roleService.getRoleListHigher(level);
+
+		List<ReportingPerson> empList = empService
+				.FindHigherRoles(roleListHigher);
+
+		if (empList != null && empList.size() > 0) {
+			res.setStatus("SUCCESS");
+			res.setResult(empList);
+
+		}
+		return res;
+	}
+
 }

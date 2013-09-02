@@ -1,3 +1,29 @@
+<script type="text/javascript">
+        function doAjaxPost() {
+        // get the form values
+        var role = $('#role').val();
+        $.ajax({
+	        type: "POST",
+	        url: "http://localhost:8080/lms-app/FindReportingPersonList",
+	        data: "role=" + role,
+	        success: function(response) {
+	        	if(response.status == "SUCCESS") {
+	        		var optionsAsString = "";
+	        		 $('select[name="reportingto"]' ).empty();
+	                for(i =0 ; i < response.result.length ; i++) {
+	        		  optionsAsString = "<option value='" + response.result[i].empId + "'>" + response.result[i].empName + "</option>";
+	        		  $( 'select[name="reportingto"]' ).append( optionsAsString );
+	        		 }
+	             }
+		        },
+	        error: function(e){
+	        	alert('Error: ' + e);
+	        	}
+       		 });
+        }
+ </script>
+
+
 <%@ include file="../common/commonJs.jsp" %>
 
 <form:form name="adduser" id="adduser" method="post" novalidate="novalidate" action="/lms-app/submitAdduser" ng-controller="constantsController">
@@ -123,12 +149,14 @@
 						</select>
 			</td>
 				      </tr>
-				     <tr><td><span class="rc">Level :</span></td>
-				            <td><select name="role">
+				     <tr><td><span class="rc">Role :</span></td>
+				            <div id="info">
+				            <td><select name="role" id="role" onchange="doAjaxPost()">
   				  	 		<c:forEach items="${rolelist}" var="role">
        				 			<option value="${role.id}">${role.description}</option>
    							</c:forEach>
 							</select></td>
+							</div>
 				      </tr>
 				      <tr>
 			    	     <td></td>
@@ -136,7 +164,7 @@
 			    	     </td>
 				     </tr>
 				     <tr><td><span class="rc">Reporting To :</span></td>
-				            <td><select name="reportingto">
+				            <td><select name="reportingto" id="reportingto">
   				  	 		<c:forEach items="${repolist}" var="report">
        				 			<option value="${report.id}">${report.description}</option>
    							</c:forEach>
@@ -148,7 +176,8 @@
 			    	     </td>
 				     </tr>
 				      <tr><td><span class="rc">Address :</span></td>
-				          <td><textarea style="padding: 4px 6px; height:70px;" ng-model="ngaddress" name="address"  width-reducer required maxlength="100"></textarea></td>
+				          <td><textarea style="padding: 4px 6px; height:70px;" ng-model="ngaddress" name="address" id="address" 
+				          width-reducer required maxlength="100"></textarea></td>
 				      </tr>
 				      <tr>
 			    	     <td></td>
