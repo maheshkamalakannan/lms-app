@@ -22,9 +22,9 @@
 		      <div class="viewleaverequestgridStyle" ng-grid="gridOptions"></div>
 	       </div>
 	     </div>
-		   <!--  <div id="viewleaverequestleftcontent">
+		    <div id="viewleaverequestleftcontent">
 		      <div class="viewleaverequestgridStyle1" ng-grid="gridOptions1"></div>
-	       </div> -->
+	       </div> 
 	       <div id="viewleaverequestrightcontent">
 		      <div class="rc">{{viewleaverequestcomment}}</div>
 		      <textarea style="margin-left:5px; width:300px; height:60px;" ng-model="ngcomments" name="comments" required maxlength="100"></textarea>

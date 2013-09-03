@@ -4,7 +4,7 @@
         var role = $('#role').val();
         $.ajax({
 	        type: "POST",
-	        url: "http://localhost:8082/lms-app/FindReportingPersonList",
+	        url: location.protocol + "//" + location.host+"/lms-app/FindReportingPersonList",
 	        data: "role=" + role,
 	        success: function(response) {
 	        	if(response.status == "SUCCESS") {

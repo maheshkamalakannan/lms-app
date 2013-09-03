@@ -12,7 +12,7 @@
 	        <li>
 	            <a href="#">Configuration  >></a>
 	            <ul class="sub-level">
-	                <li><a href="/lms-app/setLeaveType" ng-model="showleavesummarydiv" >Set Level Type</a></li>
+	                <li><a href="/lms-app/setLeaveType" ng-model="showleavesummarydiv" >Set Leave Type</a></li>
 	            </ul>
 	        </li>
 			<li>

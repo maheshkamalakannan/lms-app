@@ -123,6 +123,7 @@ mycontroller.controller('constantsController', function($scope, $window, $locati
     $scope.adminadduser                  = "Home > Users > Add User";
     $scope.adminmoduser                  = "Home > Users > Modify User";
     $scope.admindeluser                  = "Home > Users > Delete User";
+    $scope.adminsetleavetype             = "Home > Configuration > Set Level Type";
 });
 
 mycontroller.controller('changePasswordController', function($scope, $window, $location) {
@@ -428,10 +429,12 @@ mycontroller.controller('ViewLeaveRequestsController', function($scope, $window,
 			                    "toDate": row.entity.toDate ,"toDateSession": row.entity.toDateSession, "noOfDays": row.entity.noOfDays, "status": row.entity.status, "approvalComment": row.entity.approvalComment}];
 		$scope.selectleavetoapprove = false;
 		$scope.selectleavetoreject  = false;
+		
+		$scope.myData1 = [{Type: row.entity.leaveType, Total: '30', Consumed: '20', Balance: '10'}];
 	};
 	/*$scope.assign = function(row){
 		$scope.myData1 = [{Type: row.entity.leaveType, Total: '30', Consumed: '20', Balance: '10'}];
-	};
+	};*/
 
 	$scope.gridOptions1 = {
 	        data: 'myData1',
@@ -440,7 +443,7 @@ mycontroller.controller('ViewLeaveRequestsController', function($scope, $window,
 	                     { field: "Consumed", displayName : "Consumed",cellClass:'aligncolumn'},
 	                     { field: "Balance", displayName : "Balance",cellClass:'aligncolumn'},
 	                    ]
-	    };*/
+	    };
 	
 	  $scope.approveleave = function(form,event){
 		 if(form.$valid){
@@ -597,7 +600,7 @@ mycontroller.controller('modifyUserController', function($scope, $window, $locat
 		if((user != "") && (!form.$error.email)){
 		 $.ajax({
              type: "POST",
-             url: "http://localhost:8082/lms-app/submitSearchUser",
+             url:  location.protocol + "//" + location.host+"/lms-app/submitSearchUser",
              data: "searchEmail=" + user,
              async: false,
              success: function(response) {
@@ -669,6 +672,79 @@ mycontroller.controller('modifyUserController', function($scope, $window, $locat
 	
 	$scope.changeEmail = function(){
 		$scope.userexistence = false;
+	};
+});
+
+mycontroller.controller('setLeaveTypeController', function($scope, $window, $location) {
+	$scope.showleavediv = false;
+	/*$scope.init = function(data1) {
+		$scope.gridData = [];
+		$scope.gridData = data1;
+		$scope.gridOptions = { 
+	    		data: 'gridData',
+	    		multiSelect: false,
+	    		showFooter:true,
+	    		columnDefs: [{field: 'Name', displayName: 'Name',cellClass:'aligncolumn',width:50,},
+	    		             {field: 'Description', displayName: 'Description',cellClass:'aligncolumn',width:90,},
+	    		             {field: 'Days', displayName: 'Days',cellClass:'aligncolumn',width:95,}
+	    		             ]};
+		
+		 $scope.$on('ngGridEventData', function (e,s) {
+	         $scope.gridOptions.selectItem(0,true);
+	         $(".ngViewport").focus();
+	     });
+	};*/
+	$scope.gridData =[{Name:"CL",Description:"Something",Days:"20"},
+	                  {Name:"EL",Description:"again Something",Days:"10"}];
+	$scope.gridOptions = { 
+    		data: 'gridData',
+    		multiSelect: false,
+    		showFooter:true,
+    		columnDefs: [{field: 'Name', displayName: 'Name',cellClass:'aligncolumn'},
+    		             {field: 'Days', displayName: 'Days',cellClass:'aligncolumn'},
+    		             {field: 'Description', displayName: 'Description',cellClass:'aligncolumn'},
+    		             {displayName: 'Delete', cellClass:'aligncolumn', cellTemplate: '<input type="radio" name="view" id="view"  ng-click="deleterow(row)" value="View">', width:60,},
+    		             {displayName: 'Modify', cellClass:'aligncolumn', cellTemplate: '<input type="radio" name="view" id="view"  ng-click="modifyrow(row)" value="View">', width:60,},
+    		             ]};
+	
+	 $scope.$on('ngGridEventData', function (e,s) {
+         $scope.gridOptions.selectItem(0,true);
+         $(".ngViewport").focus();
+     });
+	 
+	$scope.deleterow = function(row){
+		$scope.selecteddata = [{"Name": row.entity.Name,"Description": row.entity.Description, "Days": row.entity.Days}];
+	};
+	
+	$scope.modifyrow = function(row){
+		$scope.showleavediv = true;
+		$scope.ngleaveName  = row.entity.Name;
+		$scope.ngleavedesc  = row.entity.Description;
+		$scope.ngleavedays  = row.entity.Days;
+	};
+	
+	$scope.createleavetype = function(event){
+		$scope.showleavediv = true;
+		$scope.ngleaveName  = '';
+		$scope.ngleavedesc  = '';
+		$scope.ngleavedays  = '';
+	};
+	
+	$scope.cancelleavetype = function(){
+		$scope.showleavediv = false;
+		$scope.ngleaveName  = '';
+		$scope.ngleavedesc  = '';
+		$scope.ngleavedays  = '';
+	};
+	
+	$scope.saveleavetype = function(form,event){
+		if(form.$valid){
+				 form.submit();
+			 }
+		 else{
+			 $('.success').css("display","none");
+			 event.preventDefault();
+		 }
 	};
 });
 
