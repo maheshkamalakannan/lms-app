@@ -19,8 +19,8 @@
 	            <span class="rc">{{employeeemail}}</span> 
 	            <input style="margin-left:17px" type="email" name="emailSearch" id="searchEmail" ng-model="ngsearchemail"  ng-change="changeEmail()" width-reducer required/>
 	            <input type="button" name="Search" value="Search" ng-click="[search=true,searchuser(deleteuser,$event)]"/>
-	            <span class="error" style="width: 20%;margin-top:-5px; margin-left:120px;" ng-show="search && deleteuser.emailSearch.$error.required">{{emailrequired}}</span> 
-	            <span class="error" style="width: 20%;margin-top:-5px; margin-left:120px;" ng-show="search && deleteuser.emailSearch.$error.email">{{invalidemail}}</span>
+	            <span class="error" style="width: 20%;margin-top:-5px; margin-left:65px;" ng-show="search && deleteuser.emailSearch.$error.required">{{emailrequired}}</span> 
+	            <span class="error" style="width: 20%;margin-top:-5px; margin-left:65px;" ng-show="search && deleteuser.emailSearch.$error.email">{{invalidemail}}</span>
 	            <div class="error" ng-model="userexistence" ng-show= "userexistence" style="margin: 120px 150px 150px 350px; width:32%;">{{emailnotexists}}</div>
 	         </div>
 	  </div>
