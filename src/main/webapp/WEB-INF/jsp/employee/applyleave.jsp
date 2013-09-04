@@ -68,16 +68,16 @@
 	       	</tr>
 	       	<tr> 
 	 	          <td><span class="rc">{{emergencyphone}}</span></td>
-	              <td><input type="text" ng-model="ephone" name="emergencyPhone" maxlength="12" ng-minlength="8" number-mask required/></td>
+	              <td><input type="text" ng-model="ephone" name="emergencyPhone" maxlength="12" ng-change="hideerror()" num-only required/></td>
 		    </tr>
 		    <tr>
 	    	     <td></td>
 	    	     <td><span class="error" style="width: 80%; margin-top:-12px; margin-bottom:-4px;"  ng-model="submitted" ng-show="submitted && applyleave.emergencyPhone.$error.required">{{phonerequired}}</span>
-	    	         <span class="error" style="width: 80%; margin-top:-12px; margin-bottom:-4px;"  ng-show="submitted &&  applyleave.emergencyPhone.$error.minlength">{{phonenumberminlength}}</span></td>
+	    	         <span class="error" style="width: 80%; margin-top:-12px; margin-bottom:-4px;"  ng-model="phoneminlen" ng-show="phoneminlen">{{phonenumberminlength}}</span></td>
 	    	</tr>
 	       	<tr> 
 	 	          <td><span class="rc">{{reason}}</span></td>
-	              <td><textarea style="padding: 4px 6px;" ng-model="lreason" name="reason" required maxlength="100"></textarea></td>
+	              <td><textarea style="padding: 4px 6px;" ng-model="lreason" name="reason" required maxlength="100" capitalize-first></textarea></td>
 		    </tr>
 		    <tr>
 	    	     <td></td>

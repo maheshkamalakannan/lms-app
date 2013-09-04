@@ -4,12 +4,18 @@ var mycontroller = angular.module('mainController', ['ngGrid','$strap.directives
 
 /* Directives */
 /* Allowing only number in textbox */
-mycontroller.directive('numberMask', function() {
-    return {
-        restrict: 'A',
-        link: function(scope, element, attrs) {
-            $(element).numeric();
+mycontroller.directive('uiMask', function() {
+	return {
+        require: 'ngModel',
+
+        link: function(scope, element, attrs, controller) {
+                element.mask(attrs.uiMask, {completed  :function()
+                    {
+                      scope.$apply(controller.$setViewValue(this.val()));
+                    }}
+                );
         }
+
     };
 });
 
@@ -38,6 +44,62 @@ mycontroller.directive('makeReadonly', function() {
     };
 });
 
+mycontroller.directive('ngBlur', function() {
+	  return function( scope, elem, attrs ) {
+	    elem.bind('blur', function() {
+	      scope.$apply(attrs.ngBlur);
+	    });
+	  };
+	});
+mycontroller.directive('ngFocus', function( $timeout ) {
+	  return function( scope, elem, attrs ) {
+	    scope.$watch(attrs.ngFocus, function( newval ) {
+	      if ( newval ) {
+	        $timeout(function() {
+	          elem[0].focus();
+	        }, 0, false);
+	      }
+	    });
+	  };
+	});
+
+mycontroller.directive('capitalizeFirst', function(uppercaseFilter) {
+	   return {
+	     require: 'ngModel',
+	     link: function(scope, element, attrs, modelCtrl) {
+	        var capitalize = function(inputValue) {
+	           var capitalized = inputValue.charAt(0).toUpperCase() +
+	               inputValue.substring(1);
+	           if(capitalized !== inputValue) {
+	              modelCtrl.$setViewValue(capitalized);
+	              modelCtrl.$render();
+	            }         
+	            return capitalized;
+	         }
+	         modelCtrl.$parsers.push(capitalize);
+	         capitalize(scope[attrs.ngModel]);
+	     }
+	   };
+	});
+
+mycontroller.directive('numOnly', function(){
+	   return {
+	     require: 'ngModel',
+	     link: function(scope, element, attrs, modelCtrl, event) {
+	         modelCtrl.$parsers.push(function (inputValue) {
+	           if (inputValue == undefined){
+	        	   return '' ;
+	           }
+	           var transformedInput = inputValue.replace(/[^0-9]/g, ''); 
+	           if (transformedInput!=inputValue) {
+	              modelCtrl.$setViewValue(transformedInput);
+	              modelCtrl.$render();
+	           }         
+	           return transformedInput;         
+	       });
+	     }
+	   };
+	});
 
 /* Controllers */
 mycontroller.controller('loginController', function($scope, $window, $location) {
@@ -108,6 +170,7 @@ mycontroller.controller('constantsController', function($scope, $window, $locati
     $scope.state                             = "State :";
     $scope.pincode                           = "Pincode :";
     $scope.mandatoryfields                   = "All fields are mandatory.";
+    $scope.pinlength                         = "Pincode must be 6 digits";
     
     
     $scope.hometab                       = "Home";
@@ -167,7 +230,7 @@ mycontroller.controller('employeehomeController', function($scope, $window, $loc
 
 mycontroller.controller('applyLeaveController', function($scope, $window, $location) {
 	  $scope.todategreaterfromdate = false;
-	  var diff                     = "";
+	  $scope.phoneminlen           = false;
 	  $scope.tofromgreeting        = false;
 	  var countwithoutweekend      = ""; 
 	  $scope.leaves = [
@@ -176,7 +239,7 @@ mycontroller.controller('applyLeaveController', function($scope, $window, $locat
 	  $scope.leavetype        = 'CL';
 	  $scope.fromdaygreeting  = 'am';
 	  $scope.todaygreeting    = 'pm';
-	  
+
 	  /*Grid and grid data for Apply Leave*/
 	  $scope.init = function(data1) {
 			$scope.gridData = data1;
@@ -284,9 +347,17 @@ mycontroller.controller('applyLeaveController', function($scope, $window, $locat
       return (iDateDiff); // add 1 because dates are inclusive
   }
   
+  $scope.hideerror = function(){
+	  $scope.phoneminlen           = false;
+  };
+  
   $scope.saveleave = function(form,event){
 		 if(form.$valid){
 			 if($scope.tofromgreeting == true || $scope.todategreaterfromdate == true){
+				 event.preventDefault();
+			 }
+			 else if($scope.ephone.length < 8){
+				 $scope.phoneminlen = true;
 				 event.preventDefault();
 			 }
 			 else{
@@ -311,7 +382,6 @@ mycontroller.controller('applyLeaveController', function($scope, $window, $locat
 			$('#todaygreeting').attr('disabled','true');
 			$('#fromdaygreeting').attr('disabled','true');
 		};
-			
 });
 
 mycontroller.controller('cancelleaveController', function($scope, $window, $location) {
@@ -544,6 +614,8 @@ mycontroller.controller('viewApprovedLeaveController', function($scope, $window,
 });
 
 mycontroller.controller('adduserController', function($scope, $window, $location) {
+	$scope.pinminlen = false;
+	
 	$scope.olddate = function($event){
 		$scope.dateishigher = false;
 		if($scope.dateofjoin > new Date()){
@@ -555,14 +627,24 @@ mycontroller.controller('adduserController', function($scope, $window, $location
 		}
 	};
 	
+	$scope.hideerror = function(){
+		$scope.pinminlen = false;
+	};
+	
 	 $scope.saveuser = function(form,event){
 		 if(form.$valid){
 			 if($scope.dateofjoin > new Date()){
 				 $scope.dateishigher = true;
 				 event.preventDefault();
 			 }
+			 else if($scope.ngpincode.length < 6){
+				 $scope.pinminlen = true;
+				 event.preventDefault();
+			 }
+			 else{
 				 form.submit();
 			 }
+		}
 		 else{
 			 $('.success').css("display","none");
 			 event.preventDefault();
@@ -652,6 +734,7 @@ mycontroller.controller('modifyUserController', function($scope, $window, $locat
         $scope.ngsecemail  = '';
         $scope.ngempid     = '';
         $scope.ngphone     = '';
+        $scope.ngsearchemail = '';
 		$scope.showdiv       = false;
 		$scope.ngsearch      = true;
 	};

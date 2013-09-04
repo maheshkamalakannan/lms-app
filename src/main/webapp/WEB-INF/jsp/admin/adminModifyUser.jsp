@@ -203,7 +203,7 @@
 		</table>
 		<div class="adminbuttonsalign">
 	        <input type="submit" name="submit" value="Update" ng-click="[submitted=true,updateuser(modifyuser,$event)]"/> 
-			<input type="button"  style="margin-left:10px;" name="back"   value="Back" ng-click="[takeuserback()]"/>
+			<input type="reset"  style="margin-left:10px;" name="back"   value="Back" ng-click="[takeuserback()]"/>
 		</div>
 	  </div>
 	</div>

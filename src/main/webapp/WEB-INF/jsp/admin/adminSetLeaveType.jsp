@@ -22,7 +22,7 @@
 	 <div class="setLeavetypeBottomleftContent" ng-model="showleavediv" ng-show="showleavediv">
 	   <table>
 	    <tbody>
-	      <tr><td><span class="rc">Name:</span></td>
+	      <tr><td><span class="rc">Leave Type:</span></td>
 	          <td><input type="text" name="leaveName" ng-model="ngleaveName" maxlength="10"  required/>
 	      </tr>
 	      <tr>
@@ -32,7 +32,7 @@
     	     </td>
 	     </tr>
 	     <tr><td><span class="rc">Leave Days:</span></td>
-	          <td><input type="text" name="leavedays" ng-model="ngleavedays" required/>
+	          <td><input type="text" name="leavedays" ng-model="ngleavedays" num-only required/>
 	      </tr>
 	      <tr>
     	     <td></td>

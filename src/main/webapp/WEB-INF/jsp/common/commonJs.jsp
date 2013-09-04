@@ -12,11 +12,12 @@
 	<script type="text/javascript" src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
 	
 	<!-- Anguluar Js Files -->
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
 	<script type="text/javascript" src="http://angular-ui.github.com/ng-grid/lib/ng-grid.debug.js"></script>
 	<script type="text/javascript" src="https://mgcrea.github.com/angular-strap/js/angular-strap.js"></script>
     <script type="text/javascript" src="https://mgcrea.github.com/angular-strap/vendor/bootstrap-datepicker.js"></script>
     <!-- <script type="text/javascript" src="https://raw.github.com/SamWM/jQuery-Plugins/master/numeric/jquery.numeric.js"></script> -->
+    <script type="text/javascript" src="<%=request.getContextPath()%>/jsandcss/Jquery/jquery.maskedinput.js"></script>
 	<script type="text/javascript" src="<%=request.getContextPath()%>/jsandcss/customAngularJs/controllers.js"></script>	
 	
 </head>

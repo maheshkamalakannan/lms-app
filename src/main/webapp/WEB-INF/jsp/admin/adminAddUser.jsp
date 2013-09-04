@@ -79,7 +79,7 @@
     	     </td>
 	     </tr>
 	      <tr><td><span class="rc">{{contact}}</span></td>
-	          <td><input type="text" name="phone" ng-model="ngphone" maxlength="10" width-reducer required/>
+	          <td><input type="text" name="phone" ng-model="ngphone" maxlength="10" width-reducer num-only required/>
 	      </tr>
 	      <tr>
     	     <td></td>
@@ -207,11 +207,12 @@
 		    	    </td>
 			    </tr>
 			    <tr><td><span class="rc">{{pincode}}</span></td>
-			        <td><input type="text" name="pincode" ng-model="ngpincode" maxlength="6" width-reducer required/>
+			        <td><input type="text" name="pincode" ng-model="ngpincode" maxlength="6" ng-change="hideerror()" width-reducer num-only required/>
 			    </tr>
 			    <tr>
 		    	    <td></td>
 		    	    <td>
+		    	      <span class="error" style="width: 80%; margin-bottom:-4px;"  ng-model="pinminlen" ng-show="pinminlen">{{pinlength}}</span>
 		    	    </td>
 			    </tr>
 			    <tr>
