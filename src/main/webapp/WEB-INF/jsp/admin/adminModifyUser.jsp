@@ -1,6 +1,6 @@
 <%@ include file="../common/commonJs.jsp" %>
 
-<form:form name="modifyuser" id="modifyuser" method="post" novalidate="novalidate" action="" ng-controller="constantsController">
+<form:form name="modifyuser" id="modifyuser" method="post" novalidate="novalidate" action="/lms-app/submitModifyuser" ng-controller="constantsController">
 
 	<div id="rightdata" ng-controller="modifyUserController">
 	  <div id="topcontent" style="margin-bottom:2px;">
@@ -25,6 +25,7 @@
 	         </div>
 	  </div>
 	  <div id="adminleftcontent" ng-model="showdiv" ng-show="showdiv">
+	  <input type = "hidden" name = "userId"  name="userId" /> 
 	   <table>
 	    <tbody>
 	      <tr><td><span class="rc">{{firstname}}</span></td>
@@ -44,7 +45,7 @@
     	     </td>
 	     </tr>
 	     <tr><td><span class="rc">{{empid}}</span></td>
-	          <td><input type="text" name="empid" ng-model="ngempid" width-reducer required/>
+	          <td><input type="text"readonly="readonly" name=newEmpId ng-model="ngnewEmpId" width-reducer required/>
 	      </tr>
 	      <tr>
     	     <td></td>
@@ -97,7 +98,7 @@
 				       	<td><span class="rc">{{joiningdate}}</span></td>
 						<td>
 							<div class="control-group input-append">
-								<input name="dateofjoin" id="dateofjoin" style="background-color: #FFFFFF; width:115px" class="input-small" type="text" ng-model="dateofjoin" 
+								<input name="dateofjoin" id="dateofjoin" style="background-color: #FFFFFF; width:115px" class="input-small" type="text" ng-model="ngdateofjoin" 
 								       data-date-format="dd/mm/yyyy" data-date-today-Highlight='true' bs-datepicker readonly ng-change="olddate($event)" required/>
 				            	<button type="button" class="btn" data-toggle="datepicker"><i class="icon-calendar"></i></button>
 			               	 </div>
@@ -109,8 +110,14 @@
 				    	    <span class="error" style="width: 105%; margin-top:-5px; margin-bottom:4px;" ng-model="dateishigher" ng-show="dateishigher">{{joindateincorrect}}</span> 
 			    	     </td>
 				     </tr>
-		   	         <tr><td><span class="rc">{{employeedesignation}}</span></td>
-	          			 <td><input type="text" name="designation" ng-model="ngdesignation" width-reducer required/>
+		   	         <tr>
+		   	         <td><span class="rc">{{employeedesignation}}</span></td>
+	          			<td><select name="desig">
+      						<c:forEach items="${desiglist}" var="desig">
+	       						<option value="${desig.id}">${desig.description}</option>
+	   						</c:forEach>
+							</select>
+						</td>
 	      			 </tr>
 	                 <tr>
     	     			<td></td>
@@ -119,18 +126,19 @@
 	     			 </tr>
 				   	 <tr>
 					   <td><span class="rc">{{department}}</span></td>
-				       <td><select name="leaveType" width-reducer>
-			      				   <option value="admin">ADMIN</option>
-			      				   <option value="admin">DEVELOPMENT</option>
-							</select>
+				       <td><select name="dept">
+	      					<c:forEach items="${deptlist}" var="dept">
+		       					<option value="${dept.id}">${dept.description}</option>
+		   					</c:forEach>
+						</select>
 						</td>
 				      </tr>
 				     <tr><td><span class="rc">{{role}}</span></td>
-				           <td><select name="level" width-reducer>
-				      				   <option value="admin">Amin</option>
-				      				   <option value="admin">Employee</option>
-								</select>
-							</td>
+				            <td><select name="role" id="role" onchange="doAjaxPost()">
+  				  	 		<c:forEach items="${rolelist}" var="role">
+       				 			<option value="${role.id}">${role.description}</option>
+   							</c:forEach>
+							</select></td>
 				      </tr>
 				      <tr>
 			    	     <td></td>
@@ -138,11 +146,11 @@
 			    	     </td>
 				     </tr>
 				     <tr><td><span class="rc">{{reportingto}}</span></td>
-				           <td><select name="level" width-reducer>
-				      				   <option value="admin">Manager</option>
-				      				   <option value="admin">Admin</option>
-								</select>
-							</td>
+				            <td><select name="reportingto" id="reportingto">
+  				  	 		<c:forEach items="${repolist}" var="report">
+       				 			<option value="${report.empId}">${report.empName}</option>
+   							</c:forEach>
+							</select></td>
 				      </tr>
 				      <tr>
 			    	     <td></td>

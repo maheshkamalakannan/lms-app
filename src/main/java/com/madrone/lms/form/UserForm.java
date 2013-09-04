@@ -2,6 +2,7 @@ package com.madrone.lms.form;
 
 public class UserForm {
 
+	private String userId;
 	private String userName;
 	private String password;
 
@@ -9,6 +10,7 @@ public class UserForm {
 	private String firstname;
 	private String lastname;
 	private String email;
+
 	private String dateofjoin;
 	private String desig;
 	private String dept;
@@ -19,8 +21,19 @@ public class UserForm {
 	private String state;
 	private int pincode;
 	private String role;
+	private String secemail;
 	private String newEmpId;
 	private String searchEmail; // used in Modify and Delete user screens
+	
+	
+	public String getSecemail() {
+		return secemail;
+	}
+
+	public void setSecemail(String secemail) {
+		this.secemail = secemail;
+	}
+
 	public String getNewEmpId() {
 		return newEmpId;
 	}
@@ -29,6 +42,7 @@ public class UserForm {
 		this.newEmpId = newEmpId;
 	}
 
+	
 	public String getSearchEmail() {
 		return searchEmail;
 	}
@@ -163,6 +177,14 @@ public class UserForm {
 
 	public void setRole(String role) {
 		this.role = role;
+	}
+	
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
 	@Override

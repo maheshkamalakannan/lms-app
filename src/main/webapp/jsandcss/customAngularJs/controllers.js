@@ -686,10 +686,23 @@ mycontroller.controller('modifyUserController', function($scope, $window, $locat
              data: "searchEmail=" + user,
              async: false,
              success: function(response) {
-            	      if(response == "success"){
+            	 if(response.status == "SUCCESS") {
             	    	  $scope.showdiv = true;
             	    	  $scope.ngsearch= false;
             	    	  $('.error').css("display","none");
+            	    	  
+            	    	  $scope.ngfirstname = response.result[0].firstname;  $scope.nglastname    = response.result[0].lastname;
+            	          $scope.ngnewEmpId  = response.result[0].newEmpId;   $scope.ngemail       = response.result[0].email;  
+            	    	  $scope.ngpassword  = response.result[0].password;   $scope.ngsecemail    = response.result[0].secemail;   
+            	    	  $scope.ngaddress   = response.result[0].address;    $scope.ngcity        = response.result[0].city;
+            	    	  $scope.ngstate	 = response.result[0].state;      $scope.ngpincode     = response.result[0].pincode;
+            	    	  $scope.ngdateofjoin= response.result[0].dateofjoin; $scope.nguserId      = response.result[0].userId;
+            	    	  //combos
+            	    	  $('select[name="reportingto"]' ).val(response.result[0].reportingto);      
+            	    	  $('select[name="dept"]' ).val(response.result[0].dept);
+            	    	  $('select[name="desig"]' ).val(response.result[0].desig);
+            	    	  $('select[name="role"]' ).val(response.result[0].role);
+            	    	  $('input[name="userId"]' ).val(response.result[0].userId); 
             	      }
             	      else{
             	    	  $scope.userexistence = true;

@@ -150,13 +150,11 @@
 			</td>
 				      </tr>
 				     <tr><td><span class="rc">{{role}}</span></td>
-				            <div id="info">
 				            <td><select name="role" id="role" onchange="doAjaxPost()">
   				  	 		<c:forEach items="${rolelist}" var="role">
        				 			<option value="${role.id}">${role.description}</option>
    							</c:forEach>
 							</select></td>
-							</div>
 				      </tr>
 				      <tr>
 			    	     <td></td>
@@ -166,7 +164,7 @@
 				     <tr><td><span class="rc">{{reportingto}}</span></td>
 				            <td><select name="reportingto" id="reportingto">
   				  	 		<c:forEach items="${repolist}" var="report">
-       				 			<option value="${report.id}">${report.description}</option>
+       				 			<option value="${report.empId}">${report.empName}</option>
    							</c:forEach>
 							</select></td>
 				      </tr>

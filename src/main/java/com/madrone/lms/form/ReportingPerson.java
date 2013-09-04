@@ -3,6 +3,7 @@ package com.madrone.lms.form;
 public class ReportingPerson {
 	
 	private String empId;
+	private String empName;
 	
 	public String getEmpId() {
 		return empId;
@@ -16,6 +17,6 @@ public class ReportingPerson {
 	public void setEmpName(String empName) {
 		this.empName = empName;
 	}
-	private String empName;
+	
 
 }

@@ -15,7 +15,7 @@ public interface UserService {
 
 	boolean authenticateUser(String userName, String password);
 
-	void saveUserAndEmployee(UserForm userForm);
+	void saveUserAndEmployee(UserForm userForm, String string);
 
 	UserForm searchUser(String searchEmail);
 

@@ -1,5 +1,6 @@
 package com.madrone.lms.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -52,28 +53,19 @@ public class UserController {
 	// These functions are used in adminMenu.jsp file
 	@RequestMapping(value = "/addUser", method = RequestMethod.GET)
 	public String addUserForm(Model model, UserForm Userform) {
-		List<Role> roleList = roleService.getRoleList();
-		List<Role> reportingToList = roleService.getReportingToList();
-		List<Department> deptList = deptService.getDepartmentList();
-		List<Department> desigList = EnumUtils.getDesigList();
-
-		model.addAttribute("rolelist", roleList);
-		model.addAttribute("repolist", reportingToList);
-		model.addAttribute("deptlist", deptList);
-		model.addAttribute("desiglist", desigList);
-		model.addAttribute("UserForm", new UserForm());
+		model = loadComboValues(model);
 		return LMSConstants.ADMIN_ADD_USER_SCR;
 	}
 
 	@RequestMapping(value = "/deleteUser", method = RequestMethod.GET)
 	public String deleteUserForm(Model model, UserForm Userform) {
-		model.addAttribute("UserForm", new UserForm());
+		model = loadComboValues(model);
 		return LMSConstants.ADMIN_DELETE_USER_SCR;
 	}
 
 	@RequestMapping(value = "/modifyUser", method = RequestMethod.GET)
 	public String modifyUserForm(Model model, UserForm Userform) {
-		model.addAttribute("UserForm", new UserForm());
+		model = loadComboValues(model);
 		return LMSConstants.ADMIN_MODIFY_USER_SCR;
 	}
 
@@ -83,7 +75,7 @@ public class UserController {
 			BindingResult result, Map<String, Object> map) {
 
 		logger.info("Inside submitChangePassword method");
-		userService.saveUserAndEmployee(userForm);
+		userService.saveUserAndEmployee(userForm, "ADD");
 
 		model.addAttribute("SucessMessage", messageSource.getMessage(
 				"lms.adduser_success_message", new Object[] { "" },
@@ -93,43 +85,46 @@ public class UserController {
 
 	}
 
-	/*@RequestMapping(value = "/submitSearchUser", method = RequestMethod.POST)
-	public String searchUser(Model model,
+	@RequestMapping(value = "/submitModifyuser", method = RequestMethod.POST)
+	public String submitModifyuser(Model model,
 			@ModelAttribute("UserForm") UserForm userForm,
 			BindingResult result, Map<String, Object> map) {
 
-		userForm = userService.searchUser(userForm.getSearchEmail());
-		if (userForm == null) {
-			model.addAttribute("validUser", false);
-			result.rejectValue("searchEmail", "lms.modifyuser.invalidemail");
-		} else {
-			System.out.println("Valid e-mail");
-			model.addAttribute("UserForm", userForm);
-		}
-		return LMSConstants.ADMIN_MODIFY_USER_SCR;
+		logger.info("Inside submitChangePassword method");
+		userService.saveUserAndEmployee(userForm, "MODIFY");
 
-	}*/
-	
-	@RequestMapping(value = "/submitSearchUser", method = RequestMethod.POST)
-	public @ResponseBody String searchUser(Model model,
-			@ModelAttribute("UserForm") UserForm userForm,
-			BindingResult result, Map<String, Object> map) {
-        String status = "";
-		userForm = userService.searchUser(userForm.getSearchEmail());
-		if (userForm == null) {
-			status = "error";
-		} else {
-			status = "success";
-		}
-		return status;
+		model.addAttribute("SucessMessage", messageSource.getMessage(
+				"lms.modifyuser_success_message", new Object[] { "" },
+				Locale.getDefault()));
+
+		return LMSConstants.ADMIN_ADD_USER_SCR;
+
 	}
 
-	@RequestMapping(value = "/FindReportingPersonList", 
-			method = RequestMethod.POST)
+	@RequestMapping(value = "/submitSearchUser", method = RequestMethod.POST)
+	public @ResponseBody
+	JsonResponse searchUser(Model model,
+			@ModelAttribute("UserForm") UserForm userForm, BindingResult result) {
+		JsonResponse res = new JsonResponse();
+		userForm = userService.searchUser(userForm.getSearchEmail());
+		if (userForm == null) {
+			res.setStatus("ERROR");
+		} else {
+			res.setStatus("SUCCESS");
+			List<UserForm> userList = new ArrayList<UserForm>();
+			userList.add(userForm);
+			res.setResult(userList);
+			model = loadComboValues(model);
+			model.addAttribute("UserForm", userForm);
+		}
+
+		return res;
+	}
+
+	@RequestMapping(value = "/FindReportingPersonList", method = RequestMethod.POST)
 	public @ResponseBody
 	JsonResponse findReportingList(Model model,
-			@ModelAttribute("UserForm") UserForm userForm, 
-			BindingResult result) {
+			@ModelAttribute("UserForm") UserForm userForm, BindingResult result) {
 
 		JsonResponse res = new JsonResponse();
 		String roleId = userForm.getRole();
@@ -145,6 +140,24 @@ public class UserController {
 
 		}
 		return res;
+	}
+
+	private Model loadComboValues(Model model) {
+		List<Role> roleList = roleService.getRoleList();
+		List<Role> reportingToList = roleService.getRoleListHigher(1);
+		List<ReportingPerson> repList = empService
+				.FindHigherRoles(reportingToList);
+
+		List<Department> deptList = deptService.getDepartmentList();
+		List<Department> desigList = EnumUtils.getDesigList();
+
+		model.addAttribute("rolelist", roleList);
+		model.addAttribute("repolist", repList);
+		model.addAttribute("deptlist", deptList);
+		model.addAttribute("desiglist", desigList);
+		model.addAttribute("UserForm", new UserForm());
+
+		return model;
 	}
 
 }

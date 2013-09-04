@@ -76,7 +76,7 @@ public class EmployeeDaoImpl extends AbstractDaoImpl<Employee, String>
 		criterionList
 				.add(Restrictions.eq("reporting_to", leadEmployee.getId()));
 		List<Employee> employees = findByCriteria(criterionList);
-		
+
 		return employees.isEmpty() ? null : employees;
 	}
 
@@ -85,7 +85,7 @@ public class EmployeeDaoImpl extends AbstractDaoImpl<Employee, String>
 		List<Criterion> criterionList = new ArrayList<Criterion>();
 		criterionList.add(Restrictions.in("role", roleListHigher));
 		List<Employee> employees = findByCriteria(criterionList);
-		
+
 		return employees;
 	}
 

@@ -73,7 +73,10 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	@Transactional(readOnly = false)
-	public void saveUserAndEmployee(UserForm userForm) {
+	public void saveUserAndEmployee(UserForm userForm, String action) {
+		System.out.println("designation1111"
+				+ EnumUtils.getDesignation(userForm.getDesig()));
+
 		Employee emp = new Employee(userForm.getNewEmpId(),
 				userForm.getFirstname(), userForm.getLastname(),
 				userForm.getEmail(), "",
@@ -89,13 +92,23 @@ public class UserServiceImpl implements UserService {
 		Role role = new Role();
 		role.setId(userForm.getRole());
 		emp.setRole(role);
-		emp.setReporting_to("003");
+		emp.setReporting_to(userForm.getReportingto());
+		emp.setSecondaryEmail(userForm.getSecemail());
 
 		User user = new User(userForm.getEmail(), userForm.getPassword());
 		user.setEmployee(emp);
 
-		empDao.saveEmployee(emp);
-		userDao.saveUser(user);
+		if ("ADD".equals(action)) {
+			empDao.saveEmployee(emp);
+			userDao.saveUser(user);
+		}
+
+		if ("MODIFY".equals(action)) {
+			user.setUserName(userForm.getEmail());
+			user.setId(Long.valueOf(userForm.getUserId()));
+			empDao.update(emp);
+			userDao.saveUser(user);
+		}
 
 	}
 
@@ -103,13 +116,17 @@ public class UserServiceImpl implements UserService {
 	public UserForm searchUser(String searchEmail) {
 
 		Employee emp = empDao.findByEmailAddress(searchEmail);
+
 		UserForm userform = null;
 		if (emp == null) {
 			return userform;
 		} else {
 			userform = new UserForm();
+			userform.setNewEmpId(emp.getId());
 			userform.setFirstname(emp.getFirstName());
 			userform.setLastname(emp.getLastName());
+			userform.setEmail(emp.getPrimaryEmail());
+			userform.setSecemail(emp.getSecondaryEmail());
 			userform.setDateofjoin(DateUtils.convertCalendarToString(emp
 					.getDateOfJoin()));
 			userform.setDept(emp.getDepartment().getId());
@@ -120,9 +137,13 @@ public class UserServiceImpl implements UserService {
 			userform.setState(emp.getAddress().getState());
 			userform.setCity(emp.getAddress().getCity());
 			userform.setState(emp.getAddress().getState());
+			userform.setPincode(emp.getAddress().getZipcode());
+			userform.setLevel(emp.getRole().getLevel());
+			userform.setRole(emp.getRole().getId());
 
 			User user = userDao.findByUserName(searchEmail);
 			userform.setPassword(user.getPassword());
+			userform.setUserId(String.valueOf(user.getId()));
 			return userform;
 		}
 	}
