@@ -187,6 +187,7 @@ mycontroller.controller('constantsController', function($scope, $window, $locati
     $scope.viewleaverequest              = "Home > Leave > View Leave Requests";
     $scope.viewapprovedleaves            = "Home > Reports > View Approved Leaves";
     $scope.viewrejectedleaves            = "Home > Reports > View Rejected Leaves";
+    $scope.viewcancelledleaves            = "Home > Reports > View Cancelled Leaves";
     
     $scope.adminadduser                  = "Home > Users > Add User";
     $scope.adminmoduser                  = "Home > Users > Modify User";
@@ -571,7 +572,7 @@ mycontroller.controller('ViewLeaveRequestsController', function($scope, $window,
 	
 });
 
-mycontroller.controller('viewRejectedLeaveController', function($scope, $window, $location) {
+mycontroller.controller('viewLeavesController', function($scope, $window, $location) {
 	/*Grid for rejectedlist by manager */
 	$scope.init = function(data1) {
 		$scope.gridData = [];
@@ -581,14 +582,13 @@ mycontroller.controller('viewRejectedLeaveController', function($scope, $window,
 	    		multiSelect: false,
 	    		showFooter:true,
 	    		columnDefs: [{field: 'empId', displayName: 'ID',cellClass:'aligncolumn',width:50,},
-	    		             {field: 'empName', displayName: 'Name',cellClass:'aligncolumn',width:90,},
+	    		             {field: 'empName', displayName: 'Name',cellClass:'aligncolumn',width:110,},
 	    		             {field: 'leaveType', displayName: 'Leave Type',cellClass:'aligncolumn',width:95,},
 	    		             {field: 'fromDate', displayName: 'From Date',cellClass:'aligncolumn',width:90,},
 	    		             {field: 'fromDateSession', displayName: 'Session',cellClass:'aligncolumn',width:70,},
 	    		             {field: 'toDate', displayName: 'To Date',cellClass:'aligncolumn', width:90,},
 	    		             {field: 'toDateSession', displayName: 'Session',cellClass:'aligncolumn',width:70,},
 	    		             {field: 'noOfDays', displayName: 'Days',cellClass:'aligncolumn',width:40,},
-	    		             {field: 'status', displayName: 'Status',cellClass:'aligncolumn',width:60,},
 	    		             {field: 'leaveReason', displayName: 'Reason',cellClass:'aligncolumn'},
 	    		             ]};
 		
@@ -600,8 +600,8 @@ mycontroller.controller('viewRejectedLeaveController', function($scope, $window,
 	
 });
 
-mycontroller.controller('viewApprovedLeaveController', function($scope, $window, $location) {
-	/*Grid for rejectedlist by manager */
+/*mycontroller.controller('viewApprovedLeaveController', function($scope, $window, $location) {
+	Grid for rejectedlist by manager 
 	$scope.init = function(data1) {
 		$scope.gridData = [];
 		$scope.gridData = data1;
@@ -610,14 +610,13 @@ mycontroller.controller('viewApprovedLeaveController', function($scope, $window,
 	    		multiSelect: false,
 	    		showFooter:true,
 	    		columnDefs: [{field: 'empId', displayName: 'ID',cellClass:'aligncolumn',width:50,},
-	    		             {field: 'empName', displayName: 'Name',cellClass:'aligncolumn',width:90,},
+	    		             {field: 'empName', displayName: 'Name',cellClass:'aligncolumn',width:110,},
 	    		             {field: 'leaveType', displayName: 'Leave Type',cellClass:'aligncolumn',width:95,},
 	    		             {field: 'fromDate', displayName: 'From Date',cellClass:'aligncolumn',width:90,},
 	    		             {field: 'fromDateSession', displayName: 'Session',cellClass:'aligncolumn',width:70,},
 	    		             {field: 'toDate', displayName: 'To Date',cellClass:'aligncolumn', width:90,},
 	    		             {field: 'toDateSession', displayName: 'Session',cellClass:'aligncolumn',width:70,},
 	    		             {field: 'noOfDays', displayName: 'Days',cellClass:'aligncolumn',width:40,},
-	    		             {field: 'status', displayName: 'Status',cellClass:'aligncolumn',width:60,},
 	    		             {field: 'leaveReason', displayName: 'Reason',cellClass:'aligncolumn'},
 	    		             ]};
 		
@@ -627,7 +626,7 @@ mycontroller.controller('viewApprovedLeaveController', function($scope, $window,
 	     });
 	};
 	
-});
+});*/
 
 mycontroller.controller('adduserController', function($scope, $window, $location) {
 	$scope.pinminlen = false;

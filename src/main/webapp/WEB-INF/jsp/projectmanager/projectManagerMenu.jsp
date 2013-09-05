@@ -28,6 +28,7 @@
 	            <ul class="sub-level">
 	                <li><a href="/lms-app/approvalList" ng-model="showleavesummarydiv" >View Approved Leaves</a></li>
 	                <li><a href="/lms-app/rejetionList" ng-model="showleavesummarydiv" >View Rejected Leaves</a></li>
+	                <li><a href="/lms-app/cancellationList" ng-model="showleavesummarydiv" >View Cancelled Leaves</a></li>
 	            </ul>
 	        </li>
 	        <li>

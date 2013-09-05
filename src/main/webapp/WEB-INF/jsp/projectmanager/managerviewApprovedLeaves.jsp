@@ -2,7 +2,7 @@
 
 <form:form name="viewapproveleave" id="viewapproveleave" method="post" novalidate="novalidate" action="" ng-controller="constantsController">
 
-	<div id="rightdata" ng-controller="viewApprovedLeaveController">
+	<div id="rightdata" ng-controller="viewLeavesController">
 	  <div id="topcontent" style="margin-bottom:2px;">
 	     	<h5>{{viewapprovedleaves}}</h5>
 	         <div class="signout">
