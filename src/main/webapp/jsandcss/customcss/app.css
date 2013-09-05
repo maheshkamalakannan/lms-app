@@ -673,3 +673,10 @@ h5:first-letter {
     padding: 10px 15px 15px;
     width: 200px;
 }
+
+.csv-data-link-span{
+      float: right;
+      margin-right: 20px;
+      font-size: 13px;
+}
+

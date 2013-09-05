@@ -9,7 +9,7 @@
 		</title>
 		<%@ include file="../common/commonCss.jsp" %>
 	</head>
-	<body>
+	<body ng-cloak>
 		            <tiles:insertAttribute name="header"></tiles:insertAttribute> 
 		            <tiles:insertAttribute name="body"></tiles:insertAttribute> 
 		            <tiles:insertAttribute name="footer"></tiles:insertAttribute> 

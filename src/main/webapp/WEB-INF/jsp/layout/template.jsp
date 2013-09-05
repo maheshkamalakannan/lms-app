@@ -8,7 +8,7 @@
 		</title>
 		<%@ include file="../common/commonCss.jsp"%>
 	</head>
-	<body>
+	<body ng-cloak>
 	    <tiles:insertAttribute name="header"></tiles:insertAttribute>
 
 		<div class="left_block logo_desc" style="width:290px;">

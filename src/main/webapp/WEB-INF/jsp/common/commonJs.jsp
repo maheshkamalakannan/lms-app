@@ -18,7 +18,9 @@
     <script type="text/javascript" src="https://mgcrea.github.com/angular-strap/vendor/bootstrap-datepicker.js"></script>
     <!-- <script type="text/javascript" src="https://raw.github.com/SamWM/jQuery-Plugins/master/numeric/jquery.numeric.js"></script> -->
     <script type="text/javascript" src="<%=request.getContextPath()%>/jsandcss/Jquery/jquery.maskedinput.js"></script>
-	<script type="text/javascript" src="<%=request.getContextPath()%>/jsandcss/customAngularJs/controllers.js"></script>	
+	<script type="text/javascript" src="<%=request.getContextPath()%>/jsandcss/customAngularJs/controllers.js"></script>
+	<script type="text/javascript" src="<%=request.getContextPath()%>/jsandcss/ng-grid/ng-grid-csv-export.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath()%>/jsandcss/ng-grid/ng-grid-flexible-height.js"></script>	
 	
 </head>
 </html>

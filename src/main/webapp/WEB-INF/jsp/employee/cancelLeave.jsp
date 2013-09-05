@@ -36,10 +36,10 @@
 		  </table>
 	      <div class="rc" style="margin-top:50px; padding:5px;">Reason For Cancellation:</div>
 	      <textarea style="margin-left:5px; width:300px; height:100px;" ng-model="cnclreason" name="reason" required maxlength="100"></textarea>
-	      <span class="error" style="width: 75%; margin-left:5px;" ng-show="submitted && cancelleave.reason.$error.required">{{cancelreasonrequired}}</span>
-	      <span class="error" style="width: 75%; margin-left:5px;" ng-model="selectleavetocancel" ng-show="selectleavetocancel">{{selectleavetocncl}}</span>
-	      <span class="error" style="width: 75%; margin-left:5px;" ng-model="afterleave" ng-show="afterleave">{{leavetocncl}}</span>
-		  <div style="padding: 15px 3px; margin-left:5px;">
+	      <span class="error" style="width: 75%; margin-left:5px;  margin-bottom: -35px;" ng-show="submitted && cancelleave.reason.$error.required">{{cancelreasonrequired}}</span>
+	      <span class="error" style="width: 75%; margin-left:5px;  margin-bottom: -35px;" ng-model="selectleavetocancel" ng-show="selectleavetocancel">{{selectleavetocncl}}</span>
+	      <span class="error" style="width: 75%; margin-left:5px;  margin-bottom: -35px;" ng-model="afterleave" ng-show="afterleave">{{leavetocncl}}</span>
+		  <div style="padding: 45px 3px; margin-left:5px;">
 	           <input type="submit" name="submit" value="Submit" ng-click="[submitted=true,submitcancelleave(cancelleave,$event)]"/> 
 	   		   <input type="reset"  style="margin-left:10px;" name="reset"   value="Cancel" ng-click="[submitted=false,resetcancelleave()]"/>
 		  </div>
