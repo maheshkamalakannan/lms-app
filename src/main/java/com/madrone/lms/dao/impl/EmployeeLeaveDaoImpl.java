@@ -61,5 +61,14 @@ public class EmployeeLeaveDaoImpl extends AbstractDaoImpl<EmployeeLeave, Long>
 		List<EmployeeLeave> employeeLeaveList = findByCriteria(criterionList);
 		return employeeLeaveList;
 	}
+	
+	@Override
+	public List<EmployeeLeave> getCancellationLeaveList(Employee employee) {
+		List<Criterion> criterionList = new ArrayList<Criterion>();
+		criterionList.add(Restrictions.eq("leaveStatus", LMSConstants.LEAVE_STATUS_CANCEL));
+		criterionList.add(Restrictions.eq("employee", employee));
+		List<EmployeeLeave> employeeLeaveList = findByCriteria(criterionList);
+		return employeeLeaveList;
+	}
 
 }

@@ -17,5 +17,7 @@ public interface EmployeeLeaveDao extends AbstractDao<EmployeeLeave, Long> {
 	List<EmployeeLeave> getApprovalLeaveList(Employee emp);
 	
 	List<EmployeeLeave> getRejectionLeaveList(Employee emp);
+	
+	List<EmployeeLeave> getCancellationLeaveList(Employee emp);
 
 }

@@ -99,6 +99,8 @@ public class EmployeeLeaveServiceImpl implements EmployeeLeaveService {
 				leaveList = empLeaveDao.getApprovalLeaveList(emp);
 			} else if ("R".equals(filter)) {
 				leaveList = empLeaveDao.getRejectionLeaveList(emp);
+			} else if ("C".equals(filter)) {
+				leaveList = empLeaveDao.getCancellationLeaveList(emp);
 			}
 
 			for (EmployeeLeave el : leaveList) {

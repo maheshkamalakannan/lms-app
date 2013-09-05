@@ -52,5 +52,21 @@ public class ApprovedRejectedListController {
 		model.addAttribute("ViewLeaveRequestForm", new ViewLeaveRequestForm());
 		return LMSConstants.MANAGER_VIEW_REJECTED_LEAVES_SCR;
 	}
+	
+	// Show Form for Summary : Cancelled List
+			@RequestMapping(value = "/cancellationList", method = RequestMethod.GET)
+			public String viewCancelledleaves(Model model, LeaveForm form,
+					HttpSession session) {
+
+				System.out.println("Inside CancelledLeaveSummary()");
+				String userName = (String) session.getAttribute("sessionUser");
+				List<LeaveDetailsGrid> leaveListOfTeam = empLeaveService
+						.getLeaveListOfTeam(userName, "C");
+				String jsonString = JSONUtils.leaveListGridJSON(leaveListOfTeam);
+				System.out.println("ApprovalList-Json" + jsonString);
+				model.addAttribute("jsonString", jsonString);
+				model.addAttribute("ViewLeaveRequestForm", new ViewLeaveRequestForm());
+				return LMSConstants.MANAGER_VIEW_CANCELLED_LEAVES_SCR;
+			}
 
 }

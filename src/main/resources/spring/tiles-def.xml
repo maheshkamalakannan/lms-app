@@ -134,6 +134,12 @@
         <put-attribute name="menu" value="/WEB-INF/jsp/projectmanager/projectManagerMenu.jsp"></put-attribute>
     </definition>
     
+    <definition extends="base.definition" name="viewCancelledLeaveScreen">  
+        <put-attribute name="title" value="LMS-Manager-View Cancelled Leaves"></put-attribute>  
+        <put-attribute name="body" value="/WEB-INF/jsp/projectmanager/managerViewCancelledLeaves.jsp"></put-attribute> 
+        <put-attribute name="menu" value="/WEB-INF/jsp/projectmanager/projectManagerMenu.jsp"></put-attribute>
+    </definition>
+    
      <definition extends="base.definition" name="admin">  
         <put-attribute name="title" value="LMS-Admin-Home"></put-attribute>  
         <put-attribute name="body" value="/WEB-INF/jsp/admin/adminHome.jsp"></put-attribute> 
