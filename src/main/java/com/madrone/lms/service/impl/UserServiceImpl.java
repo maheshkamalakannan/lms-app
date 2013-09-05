@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.madrone.lms.constants.LMSConstants;
 import com.madrone.lms.dao.EmployeeDao;
 import com.madrone.lms.dao.UserDao;
 import com.madrone.lms.entity.Department;
@@ -58,7 +59,7 @@ public class UserServiceImpl implements UserService {
 	@Transactional(readOnly = false)
 	public void deleteUser(String userName) {
 		User user = userDao.findByUserName(userName);
-		userDao.delete(user);
+		userDao.deleteByUser(user);
 	}
 
 	@Override
@@ -74,8 +75,6 @@ public class UserServiceImpl implements UserService {
 	@Override
 	@Transactional(readOnly = false)
 	public void saveUserAndEmployee(UserForm userForm, String action) {
-		System.out.println("designation1111"
-				+ EnumUtils.getDesignation(userForm.getDesig()));
 
 		Employee emp = new Employee(userForm.getNewEmpId(),
 				userForm.getFirstname(), userForm.getLastname(),
@@ -98,18 +97,20 @@ public class UserServiceImpl implements UserService {
 		User user = new User(userForm.getEmail(), userForm.getPassword());
 		user.setEmployee(emp);
 
-		if ("ADD".equals(action)) {
-			empDao.saveEmployee(emp);
-			userDao.saveUser(user);
+		switch (action) {
+			case LMSConstants.INSERT: {
+				empDao.saveEmployee(emp);
+				userDao.saveUser(user);
+				break;
+			}
+			case LMSConstants.UPDATE: {
+				user.setUserName(userForm.getEmail());
+				user.setId(Long.valueOf(userForm.getUserId()));
+				empDao.update(emp);
+				userDao.update(user);
+				break;
+			}
 		}
-
-		if ("MODIFY".equals(action)) {
-			user.setUserName(userForm.getEmail());
-			user.setId(Long.valueOf(userForm.getUserId()));
-			empDao.update(emp);
-			userDao.saveUser(user);
-		}
-
 	}
 
 	@Override
@@ -147,5 +148,7 @@ public class UserServiceImpl implements UserService {
 			return userform;
 		}
 	}
+
+	
 
 }

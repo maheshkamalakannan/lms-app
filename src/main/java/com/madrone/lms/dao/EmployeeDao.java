@@ -15,12 +15,15 @@ public interface EmployeeDao extends AbstractDao<Employee, String>{
 	Employee findByEmailAddressWithLeaves(String primaryEmail);
 	
 	void saveEmployee(Employee employee);
+	
+	void deleteEmployee(Employee employee);
 
 	String findRole(String userName);
 
 	List<Employee> findTeamList(Employee leadEmployee);
 
 	List<Employee> FindHigherRoles(List<Role> roleListHigher);
+	
 
 
 

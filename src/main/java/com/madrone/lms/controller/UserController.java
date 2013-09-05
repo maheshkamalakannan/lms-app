@@ -103,7 +103,24 @@ public class UserController {
 				"lms.modifyuser_success_message", new Object[] { "" },
 				Locale.getDefault()));
 
-		return LMSConstants.ADMIN_ADD_USER_SCR;
+		return LMSConstants.ADMIN_MODIFY_USER_SCR;
+
+	}
+	
+	@RequestMapping(value = "/submitDeleteUser", method = RequestMethod.POST)
+	public String submitDeleteUser(Model model,
+			@ModelAttribute("UserForm") UserForm userForm,
+			BindingResult result, Map<String, Object> map) {
+
+		logger.info("Inside submitDeleteUser method");
+	    userService.deleteUser(userForm.getEmail());
+	    empService.deleteEmployee(userForm.getNewEmpId());
+
+		model.addAttribute("SucessMessage", messageSource.getMessage(
+				"lms.deleteuser_success_message", new Object[] { "" },
+				Locale.getDefault()));
+
+		return LMSConstants.ADMIN_DELETE_USER_SCR;
 
 	}
 

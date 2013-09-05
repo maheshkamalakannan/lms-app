@@ -34,4 +34,9 @@ public class LMSConstants {
 	public static final String LEAVE_STATUS_APPROVE = "A";
 	public static final String LEAVE_STATUS_REJECT  = "R";
 	
+	public static final String INSERT = "INSERT";
+	public static final String UPDATE = "UPDATE";
+	public static final String DELETE = "DELETE";
+	
+	
 }

@@ -60,6 +60,12 @@ public class EmployeeDaoImpl extends AbstractDaoImpl<Employee, String>
 	public void saveEmployee(Employee employee) {
 		saveOrUpdate(employee);
 	}
+	
+	@Override
+	public void deleteEmployee(Employee employee) {
+		delete(employee);
+	}
+	
 
 	@Override
 	public String findRole(String userName) {

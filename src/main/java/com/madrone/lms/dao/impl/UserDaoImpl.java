@@ -22,7 +22,7 @@ public class UserDaoImpl extends AbstractDaoImpl<User, Long>
 	public void saveUser(User user) {
 		saveOrUpdate(user);		
 	}
-
+	
 	@Override
 	public User findByUserName(String userName) {
 		 List<Criterion> criterionList = new ArrayList<Criterion>();
@@ -46,4 +46,9 @@ public class UserDaoImpl extends AbstractDaoImpl<User, Long>
             List<User> users = findByCriteria(criterionList);
             return (users == null || users.size()==0) ? false:true;
     }
+
+	@Override
+	public void deleteByUser(User user) {
+		delete(user);
+	}
 }

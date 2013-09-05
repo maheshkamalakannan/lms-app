@@ -9,4 +9,6 @@ public interface UserDao extends AbstractDao<User, Long> {
 	User findByUserName(String userName);
 
 	boolean authenticateUser(String userName, String password);
+
+	void deleteByUser(User user);
 }

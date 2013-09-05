@@ -27,18 +27,19 @@ public class EnumUtils {
 		DesignationEnum desigEnum = null;
 		
 		switch(desig) {
-			case "AD" : desigEnum = DesignationEnum.AD;
-			case "PM" : desigEnum = DesignationEnum.PM;
-			case "QA" : desigEnum = DesignationEnum.QA;
-			case "SE" : desigEnum = DesignationEnum.SE;
-			case "SSE" : desigEnum = DesignationEnum.SSE;
-			case "STL" : desigEnum = DesignationEnum.STL;
-			case "TL" : desigEnum = DesignationEnum.TL;
-			default: desigEnum = DesignationEnum.SE;
+			case "AD" : desigEnum = DesignationEnum.AD; break;
+			case "PM" : desigEnum = DesignationEnum.PM; break;
+			case "QA" : desigEnum = DesignationEnum.QA; break;
+			case "SE" : desigEnum = DesignationEnum.SE; break;
+			case "SSE" : desigEnum = DesignationEnum.SSE; break;
+			case "STL" : desigEnum = DesignationEnum.STL; break;
+			case "TL" : desigEnum = DesignationEnum.TL; break;
+			default: desigEnum = DesignationEnum.SE; 
 		}
 		
 		return desigEnum;
 	
 	}
+	
 
 }
