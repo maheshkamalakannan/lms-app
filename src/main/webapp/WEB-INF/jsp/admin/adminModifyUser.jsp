@@ -45,7 +45,7 @@
     	     </td>
 	     </tr>
 	     <tr><td><span class="rc">{{empid}}</span></td>
-	          <td><input type="text"readonly="readonly" name=newEmpId ng-model="ngnewEmpId" width-reducer required/>
+	          <td><input type="text" readonly="readonly" name=newEmpId ng-model="ngnewEmpId" width-reducer required/>
 	      </tr>
 	      <tr>
     	     <td></td>
@@ -211,7 +211,7 @@
 		</table>
 		<div class="adminbuttonsalign">
 	        <input type="submit" name="submit" value="Update" ng-click="[submitted=true,updateuser(modifyuser,$event)]"/> 
-			<input type="reset"  style="margin-left:10px;" name="back"   value="Back" ng-click="[takeuserback()]"/>
+			<input type="button"  style="margin-left:10px;" name="back"   value="Back" ng-click="[takeuserback()]"/>
 		</div>
 	  </div>
 	</div>

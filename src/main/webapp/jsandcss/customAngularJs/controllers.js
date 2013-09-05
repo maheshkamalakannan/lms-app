@@ -758,7 +758,6 @@ mycontroller.controller('modifyUserController', function($scope, $window, $locat
         $scope.ngsecemail  = '';
         $scope.ngempid     = '';
         $scope.ngphone     = '';
-        $scope.ngsearchemail = '';
 		$scope.showdiv       = false;
 		$scope.ngsearch      = true;
 	};
