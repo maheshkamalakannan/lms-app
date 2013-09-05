@@ -172,6 +172,11 @@ mycontroller.controller('constantsController', function($scope, $window, $locati
     $scope.mandatoryfields                   = "All fields are mandatory.";
     $scope.pinlength                         = "Pincode must be 6 digits";
     
+    $scope.setleavedesc                      = "Description";
+    $scope.setleavedays                      = "Leave Days";
+    $scope.setleavedescreq                   = "Leave Description is Required.";
+    $scope.setleavedaysreq                   = "Leave Days are Required.";
+    $scope.setleavetypereq                   = "Leave Type is Required.";
     
     $scope.hometab                       = "Home";
     $scope.changepasswordtabs            = "Home > Settings > Change Password";
@@ -186,7 +191,7 @@ mycontroller.controller('constantsController', function($scope, $window, $locati
     $scope.adminadduser                  = "Home > Users > Add User";
     $scope.adminmoduser                  = "Home > Users > Modify User";
     $scope.admindeluser                  = "Home > Users > Delete User";
-    $scope.adminsetleavetype             = "Home > Configuration > Set Level Type";
+    $scope.adminsetleavetype             = "Home > Configuration > Set Leave Type";
 });
 
 mycontroller.controller('changePasswordController', function($scope, $window, $location) {
@@ -820,10 +825,12 @@ mycontroller.controller('setLeaveTypeController', function($scope, $window, $loc
      });
 	 
 	$scope.deleterow = function(row){
+		$('.success').css("display","none");
 		$scope.selecteddata = [{"Name": row.entity.Name,"Description": row.entity.Description, "Days": row.entity.Days}];
 	};
 	
 	$scope.modifyrow = function(row){
+		$('.success').css("display","none");
 		$scope.showleavediv = true;
 		$scope.ngleaveName  = row.entity.Name;
 		$scope.ngleavedesc  = row.entity.Description;
@@ -831,6 +838,7 @@ mycontroller.controller('setLeaveTypeController', function($scope, $window, $loc
 	};
 	
 	$scope.createleavetype = function(event){
+		$('.success').css("display","none");
 		$scope.showleavediv = true;
 		$scope.ngleaveName  = '';
 		$scope.ngleavedesc  = '';

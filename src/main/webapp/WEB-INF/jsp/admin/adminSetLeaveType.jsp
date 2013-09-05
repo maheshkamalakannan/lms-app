@@ -12,6 +12,9 @@
 	            <input type = "hidden" name = "selecteddata" value ={{mySelections}} />
 	            <a href="/lms-app">Sign Out</a>
 	          </div>
+	          <c:if test="${SucessMessage != null}">
+	            <div class="success" style="margin: -40px 5px 5px 23.5em; width:37.5%;">Leave is Deleted Successfully.</div>
+	          </c:if>
 	  </div>
 	  <div class="leavesummaryContent">  
 	       <div>
@@ -20,40 +23,45 @@
 	       <input style="margin-top:5px;" type="button" name="Search" value="Create" ng-click="[createleavetype($event)]"/>
 	  </div>
 	  <div class="setleavetypebottom">
+	  
+	     <c:if test="${SucessMessage != null}">
+		      <div class="success" style="margin: -40px 5px 5px 250px; width:42%;">Leave is Created / Modified Successfully.</div>
+		 </c:if>
+		 
 		 <div class="setLeavetypeBottomleftContent" ng-model="showleavediv" ng-show="showleavediv">
-		   <table>
+		   <table cellpadding="4">
 		    <tbody>
-		      <tr><td><span class="rc">Leave Type:</span></td>
+		      <tr><td><span class="rc">{{employeeleavetype}}</span></td>
 		          <td><input type="text" name="leaveName" ng-model="ngleaveName" maxlength="10"  required/>
 		      </tr>
 		      <tr>
 	    	     <td></td>
 	    	     <td> 
-	    	     <span class="error" style="width: 95%; margin-top:-5px; margin-bottom: 5px;" ng-show="submitted && setleavetype.leaveName.$error.required">Leave Name is Required.</span>
+	    	     <span class="error" style="width: 95%; margin-top:-13px; margin-bottom: 5px;" ng-show="submitted && setleavetype.leaveName.$error.required">{{setleavetypereq}}</span>
 	    	     </td>
 		     </tr>
-		     <tr><td><span class="rc">Leave Days:</span></td>
-		          <td><input type="text" name="leavedays" ng-model="ngleavedays" num-only required/>
+		     <tr><td><span class="rc">{{setleavedays}}</span></td>
+		          <td><input type="text" name="leavedays" ng-model="ngleavedays" maxlength="2" num-only required/>
 		      </tr>
 		      <tr>
 	    	     <td></td>
 	    	     <td>
-	    	     <span class="error" style="width: 95%; margin-top:-5px; margin-bottom: 5px;" ng-show="submitted && setleavetype.leavedesc.$error.required">Leave Days is Required.</span>
+	    	     <span class="error" style="width: 95%; margin-top:-13px; margin-bottom: 5px;" ng-show="submitted && setleavetype.leavedesc.$error.required">{{setleavedaysreq}}</span>
 	    	     </td>
 		     </tr>
 		    </tbody>
 		   </table>
 		 </div>
 		 <div class="setLeavetypeBottommiddelContent" ng-model="showleavediv" ng-show="showleavediv">
-			   <table>
+			   <table cellpadding="4">
 			    <tbody>
-			      <tr><td><span class="rc">Description:</span></td>
+			      <tr><td><span class="rc">{{setleavedesc}}</span></td>
 			          <td><textarea name="leavedesc" ng-model="ngleavedesc" maxlength="30"  required></textarea>
 			      </tr>
 			      <tr>
 		    	     <td></td>
 		    	     <td>
-		    	     <span class="error" style="width: 95%; margin-top:-5px; margin-bottom: 5px;" ng-show="submitted && setleavetype.leavedesc.$error.required">Leave Description is Required.</span>
+		    	     <span class="error" style="width: 95%; margin-top:-13px; margin-bottom: 5px;" ng-show="submitted && setleavetype.leavedesc.$error.required">{{setleavedescreq}}</span>
 		    	     </td>
 			     </tr>
 			    </tbody>
