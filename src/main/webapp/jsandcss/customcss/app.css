@@ -568,6 +568,13 @@ textarea {
     height:180px;
     padding:5px;
 }
+.setleavetypebottom{
+    height: 165px;
+    margin-left: 69px;
+    margin-top: -15px;
+    padding: 5px;
+    width: 70em;
+}
 
 .viewleaverequestgridStyle1{
 	border: 1px solid rgb(212,212,212);
@@ -648,23 +655,21 @@ h5:first-letter {
 
 .setLeavetypeBottomleftContent{
 	float: left;
-    padding: 15px;
-    padding-left:65px;
+    padding: 7px 7px 7px 95px;
     width: 350px;
 }
 
 .setLeavetypeBottommiddelContent{
     display: inline-block;
-    left: 70px;
-    margin: 17px 0 0 50%;
+    height: 120px;
+    left: 15em;
+    margin: 7px 0 0 50%;
     position: absolute;
     width: 340px;
-    height: 120px;
 }
 .setleavetypebutton{
-	float:right;
-	width:200px;
-	padding:15px;
-	padding-top:130px;
-	margin-right: 220px;
+	float: right;
+    margin-right: 45px;
+    padding: 10px 15px 15px;
+    width: 200px;
 }

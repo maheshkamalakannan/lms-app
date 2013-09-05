@@ -33,7 +33,7 @@
 		      <span class="error" style="width: 65%; margin-left:5px;" ng-model="selectleavetoreject" ng-show="selectleavetoreject">{{viewleaverequestreject}}</span>
 			 <div style="margin-top:7px; margin-left:5px;">
 		           <input type="button" name="approveBtn" value="Approve" 
-		           	      ng-click="[submitted=true,approveleave(viewleavereq,$event),approveBtnClick()]"/> 
+		           	      ng-click="[submitted=false,approveleave(viewleavereq,$event),approveBtnClick()]"/> 
 		   		   <input type="button" name="rejectBtn"  value="Reject" style="margin-left:10px;"    
 		   		          ng-click="[submitted=true,rejectleave(viewleavereq,$event),rejectBtnClick()]"/>
 			  </div>

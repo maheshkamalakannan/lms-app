@@ -466,7 +466,8 @@ mycontroller.controller('leavesummaryController', function($scope, $window, $loc
 mycontroller.controller('ViewLeaveRequestsController', function($scope, $window, $location) {
 	    $scope.selectleavetoapprove = false;
 	    $scope.selectleavetoreject  = false;
-	    $scope.myData1              = ' ';
+	    $scope.myData1              = '';
+	    $scope.ngcomments           = '';
 	    
 		$scope.init = function(data1) {
 		$scope.gridData = [];
@@ -517,7 +518,7 @@ mycontroller.controller('ViewLeaveRequestsController', function($scope, $window,
 	
 	  $scope.approveleave = function(form,event){
 		 if(form.$valid){
-			 if($scope.myData1 == ' ' ){
+			 if($scope.myData1 == '' ){
 				 $scope.selectleavetoapprove = true;
 				 $scope.selectleavetoreject = false;
 				 event.preventDefault();
@@ -528,6 +529,15 @@ mycontroller.controller('ViewLeaveRequestsController', function($scope, $window,
 			 }
 			   
 			 }
+		 else if(form.$invalid){
+			 if($scope.ngcomments == '' && $scope.myData1 != ''){
+				 $('form').attr("action","/lms-app/submitViewLeaveRequest1");
+				 $('form').submit();
+			 }
+			 else{
+				 $scope.selectleavetoapprove = true;
+			 }
+		 }
 		 else{
 			 $('.success').css("display","none");
 			 event.preventDefault();
@@ -536,7 +546,7 @@ mycontroller.controller('ViewLeaveRequestsController', function($scope, $window,
 	
 	$scope.rejectleave = function (form,event){
 		if(form.$valid){
-			 if($scope.myData1 == ' ' ){
+			 if($scope.myData1 == '' ){
 				 $scope.selectleavetoreject = true;
 				 $scope.selectleavetoapprove = false;
 				 event.preventDefault();
@@ -548,6 +558,7 @@ mycontroller.controller('ViewLeaveRequestsController', function($scope, $window,
 			   
 			 }
 		 else{
+			 $scope.selectleavetoapprove = false;
 			 $('.success').css("display","none");
 			 event.preventDefault();
 		 }
@@ -796,11 +807,12 @@ mycontroller.controller('setLeaveTypeController', function($scope, $window, $loc
     		data: 'gridData',
     		multiSelect: false,
     		showFooter:true,
-    		columnDefs: [{field: 'Name', displayName: 'Name',cellClass:'aligncolumn'},
-    		             {field: 'Days', displayName: 'Days',cellClass:'aligncolumn'},
-    		             {field: 'Description', displayName: 'Description',cellClass:'aligncolumn'},
-    		             {displayName: 'Delete', cellClass:'aligncolumn', cellTemplate: '<input type="radio" name="view" id="view"  ng-click="deleterow(row)" value="View">', width:60,},
+    		columnDefs: [{displayName: 'Delete', cellClass:'aligncolumn', cellTemplate: '<input type="radio" name="view" id="view"  ng-click="deleterow(row)" value="View">', width:60,},
     		             {displayName: 'Modify', cellClass:'aligncolumn', cellTemplate: '<input type="radio" name="view" id="view"  ng-click="modifyrow(row)" value="View">', width:60,},
+    		             {field: 'Name', displayName: 'Name',cellClass:'aligncolumn', width:60,},
+    		             {field: 'Days', displayName: 'Days',cellClass:'aligncolumn', width:60,},
+    		             {field: 'Description', displayName: 'Description',cellClass:'aligncolumn'},
+    		             
     		             ]};
 	
 	 $scope.$on('ngGridEventData', function (e,s) {

@@ -51,6 +51,12 @@ public class UserController {
 			.getLogger(UserController.class);
 
 	// These functions are used in adminMenu.jsp file
+	@RequestMapping(value = "/adminHome", method = RequestMethod.GET)
+	public String adminHomeForm(Model model, UserForm Userform) {
+		model = loadComboValues(model);
+		return LMSConstants.ADMIN_HOME_SCR;
+	}
+	
 	@RequestMapping(value = "/addUser", method = RequestMethod.GET)
 	public String addUserForm(Model model, UserForm Userform) {
 		model = loadComboValues(model);

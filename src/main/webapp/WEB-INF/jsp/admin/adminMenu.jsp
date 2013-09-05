@@ -1,6 +1,8 @@
  <div id="leftdata">
 	<div id="navigation">
 	    <ul class="top-level">
+	        <li><a href="/lms-app/adminHome">Home</a>
+	        </li>
 	        <li>
 	            <a href="#">User  >></a>
 	            <ul class="sub-level">

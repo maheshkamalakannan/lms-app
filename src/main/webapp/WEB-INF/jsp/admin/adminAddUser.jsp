@@ -46,7 +46,7 @@
 	   <table>
 	    <tbody>
 	      <tr><td><span class="rc">{{firstname}}</span></td>
-	          <td><input type="text" name="firstname" ng-model="ngfirstname" maxlength="30" width-reducer required/>
+	          <td><input type="text" name="firstname" ng-model="ngfirstname" maxlength="20" width-reducer required/>
 	      </tr>
 	      <tr>
     	     <td></td>
@@ -54,7 +54,7 @@
     	     </td>
 	     </tr>
 	      <tr><td><span class="rc">{{lasttname}}</span></td>
-	          <td><input type="text" name="lastname" ng-model="nglastname" maxlength="30" width-reducer required/>
+	          <td><input type="text" name="lastname" ng-model="nglastname" maxlength="20" width-reducer required/>
 	      </tr>
 	      <tr>
     	     <td></td>
@@ -96,7 +96,7 @@
     	     </td>
 	     </tr>
        	 <tr><td><span class="rc">{{secemail}}</span></td>
-	   			 <td><input type="email" name="secemail" ng-model="ngsecemail" width-reducer/>
+	   			 <td><input type="email" name="secemail"  maxlength="30" ng-model="ngsecemail" width-reducer/>
 		 </tr>
 	     <tr>
 	  	 <td></td>
