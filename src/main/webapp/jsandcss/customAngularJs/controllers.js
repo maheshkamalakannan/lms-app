@@ -149,6 +149,7 @@ mycontroller.controller('constantsController', function($scope, $window, $locati
     
     $scope.cancelreasonrequired          = "Reason for Cancellation is Required.";
     $scope.selectleavetocncl             = "Select Leave to cancel.";
+    $scope.leavetocncl                   = "Leave cannot be cancelled.";
     
     $scope.viewleaverequestcomment           = "Comments :";
     $scope.viewleaverequestcommentrequired   = "Comment is Required.";
@@ -390,7 +391,7 @@ mycontroller.controller('applyLeaveController', function($scope, $window, $locat
 		};
 });
 
-mycontroller.controller('cancelleaveController', function($scope, $window, $location) {
+mycontroller.controller('cancelleaveController', function($scope, $window, $location, $filter) {
 	/*Grid and grid data for cancel Leave*/
 	  $scope.init = function(data1) {
 		    $scope.selecteddata  = '';
@@ -409,6 +410,7 @@ mycontroller.controller('cancelleaveController', function($scope, $window, $loca
 			       };
 			$scope.assign = function(row){
 				$scope.myData1 = row.entity;
+				$scope.selectedtodate = row.entity.toDate;
 				$scope.selecteddata = [{"id":row.entity.id,"fromDate": row.entity.fromDate,"fromDateSession":row.entity.fromDateSession,"toDate": row.entity.toDate,"toDateSession":row.entity.toDateSession,"noOfDays": row.entity.noOfDays,"leaveType": row.entity.leaveType,"action":row.entity.action,"status": row.entity.status,"reason":row.entity.reason,"empId":row.entity.empId,"empName":row.entity.empName}];
 				$scope.selectleavetocancel = false;
 			};
@@ -416,12 +418,19 @@ mycontroller.controller('cancelleaveController', function($scope, $window, $loca
 	  
 	  $scope.submitcancelleave = function(form,event){
 		  $scope.selectleavetocancel = false;
+		  $scope.afterleave          = false;
+		  $scope.output = $filter('date')(new Date($scope.selectedtodate), 'dd/MM/yyyy');
+		  var todate    = new Date($scope.output);
 		 if(form.$valid){
 			 if($scope.selecteddata == ''){
 				 $scope.selectleavetocancel = true;
 				 event.preventDefault();
 			 }
-			   form.submit();
+			 else if((todate.getTime() <= new Date().getTime())){
+				 $scope.afterleave          = true;
+				 event.preventDefault();
+			 }
+			 else{form.submit();}
 			 }
 		 else{
 			 $('.success').css("display","none");

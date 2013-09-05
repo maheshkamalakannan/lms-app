@@ -171,7 +171,7 @@ public class EmployeeLeaveServiceImpl implements EmployeeLeaveService {
 			bean.setEmpName(el.getEmployee().getFirstName());
 			bean.setFromDateSession(el.getFromDateSession());
 			bean.setFromDate(DateUtils.convertCalendarToString(el.getFromDate()));
-			bean.setToDate(DateUtils.convertCalendarToString(el.getFromDate()));
+			bean.setToDate(DateUtils.convertCalendarToString(el.getToDate()));
 			bean.setToDateSession(el.getToDateSession());
 			bean.setReason(el.getReasonForLeave());
 			bean.setLeaveType(el.getLeave().getId());
