@@ -27,5 +27,7 @@ public interface EmployeeLeaveService {
 
 	void rejectEmployeeLeave(LeaveForm approveForm);
 
+	List<LeaveDetailsGrid> getPendingAndApprovalLeaveList(String userName);
+
 	
 }

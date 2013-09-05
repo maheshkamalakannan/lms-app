@@ -71,4 +71,13 @@ public class EmployeeLeaveDaoImpl extends AbstractDaoImpl<EmployeeLeave, Long>
 		return employeeLeaveList;
 	}
 
+	@Override
+	public List<EmployeeLeave> getPendingAndApprovalList(Employee employee) {
+		List<Criterion> criterionList = new ArrayList<Criterion>();
+		criterionList.add(Restrictions.in("leaveStatus", new String[]{"P","A"}));
+		criterionList.add(Restrictions.eq("employee", employee));
+		List<EmployeeLeave> employeeLeaveList = findByCriteria(criterionList);
+		return employeeLeaveList;
+	}
+
 }

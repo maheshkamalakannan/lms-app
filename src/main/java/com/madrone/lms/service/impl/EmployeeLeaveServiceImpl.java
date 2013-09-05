@@ -183,4 +183,15 @@ public class EmployeeLeaveServiceImpl implements EmployeeLeaveService {
 
 	}
 
+	@Override
+	public List<LeaveDetailsGrid> getPendingAndApprovalLeaveList(String userName) {
+		Employee emp = empDao.findByEmailAddress(userName);
+		List<EmployeeLeave> leaveList = empLeaveDao.getPendingAndApprovalList(emp);
+		List<LeaveDetailsGrid> returnList = new ArrayList<LeaveDetailsGrid>();
+		if (leaveList != null) {
+			returnList = setBeanValuesForGrid(leaveList);
+		}
+		return returnList;
+	}
+
 }

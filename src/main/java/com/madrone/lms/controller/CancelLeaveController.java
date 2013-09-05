@@ -41,9 +41,9 @@ public class CancelLeaveController {
 		// Setting values into Cancel - Leave Grid
 		String userName = (String) session.getAttribute("sessionUser");
 		List<LeaveDetailsGrid> cancelLeaveList = empLeaveService
-				.getPendingLeaveList(userName);
+				.getPendingAndApprovalLeaveList(userName);
 		String jsonString = JSONUtils.leaveListGridJSON(cancelLeaveList);
-
+        System.out.println("JSONString===" + jsonString);
 		model.addAttribute("jsonString", jsonString);
 		return LMSConstants.CANCEL_LEAVE_SCR + "_"
 				+ session.getAttribute("sessionRole");
