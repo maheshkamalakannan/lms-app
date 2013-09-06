@@ -68,7 +68,7 @@
 	       	</tr>
 	       	<tr> 
 	 	          <td><span class="rc">{{emergencyphone}}</span></td>
-	              <td><input type="text" ng-model="ephone" name="emergencyPhone" maxlength="12" ng-change="hideerror()" num-only required/></td>
+	              <td><input type="text" ng-model="ephone" name="emergencyPhone" maxlength="10" ng-change="hideerror()" num-only required/></td>
 		    </tr>
 		    <tr>
 	    	     <td></td>

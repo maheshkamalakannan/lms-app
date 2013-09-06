@@ -101,6 +101,39 @@ mycontroller.directive('numOnly', function(){
 	   };
 	});
 
+mycontroller.directive('passwordMeter', function(){
+	   return {
+	     require: 'ngModel',
+	     link: function(scope, element, attrs, modelCtrl, event) {
+	         scope.$watch(function (newval,oldval) {
+	           var strongRegex = new RegExp("^(?=.{7,})(?=.*[A-Z])(?=.*[0-9])(?=.*\\W).*$", "g");
+	           var goodRegex1  = new RegExp("^(?=.{7,})(?=.*[A-Z])(?=.*\\W).*$", "g");
+	           var goodRegex2  = new RegExp("^(?=.{7,})(?=.*[A-Z])(?=.*[0-9]).*$", "g");
+	           var goodRegex3  = new RegExp("^(?=.{7,})(?=.*[0-9])(?=.*\\W).*$", "g");
+	           var weakRegex1  = new RegExp("^(?=.{7,})(?=.*[0-9]).*$", "g");
+	           var weakRegex2  = new RegExp("^(?=.{7,})(?=.*\\W).*$", "g");
+	           var weakRegex3  = new RegExp("^(?=.{7,})(?=.*[A-Z]).*$", "g");
+	           var weakRegex4  = new RegExp("^(?=.{7,})(?=.*[a-z]).*$", "g");
+	           if((strongRegex.test($(element).val()) == true)){
+	        	   scope.error = "Excellent";
+	        	   $('#metererror').css("color","green");
+	        	   $('#metererror').css("margin-right","0px");
+	           }
+	           else if((goodRegex1.test($(element).val()) == true) || (goodRegex2.test($(element).val()) == true) || (goodRegex3.test($(element).val()) == true)){
+	        	   scope.error = "Good";
+	        	   $('#metererror').css("color","orange");
+	        	   $('#metererror').css("margin-right","22px");
+	           }
+	           else if((weakRegex1.test($(element).val()) == true) || (weakRegex2.test($(element).val()) == true) || (weakRegex3.test($(element).val()) == true) || (weakRegex4.test($(element).val()) == true)){
+	        	   scope.error = "Weak";
+	        	   $('#metererror').css("color","red");
+	        	   $('#metererror').css("margin-right","22px");
+	           }
+	       });
+	     }
+	   };
+	});
+
 /* Controllers */
 mycontroller.controller('loginController', function($scope, $window, $location) {
   $scope.loginSubmit = function(form,event){
@@ -229,6 +262,17 @@ mycontroller.controller('changePasswordController', function($scope, $window, $l
 		$scope.passwordconfirm = '';
 		$('.error').css("display","none");
 	};
+	
+/*	$scope.hidemeter = function(){
+		if($scope.passwordnew.length > 6){
+			alert("hi");
+			$('#metererror').css("display","block");
+		}
+		else if($scope.passwordnew.length < 6){
+			alert("bye");
+			$('#metererror').css("display","none");
+		}
+	};*/
 });
 
 mycontroller.controller('employeehomeController', function($scope, $window, $location) {
@@ -393,6 +437,9 @@ mycontroller.controller('applyLeaveController', function($scope, $window, $locat
 });
 
 mycontroller.controller('cancelleaveController', function($scope, $window, $location, $filter) {
+	  $scope.ngweak = false;
+	  $scope.nggood = false;
+	  $scope.ngexcellent = false;
 	/*Grid and grid data for cancel Leave*/
 	  $scope.init = function(data1) {
 		    $scope.selecteddata  = '';
@@ -414,6 +461,7 @@ mycontroller.controller('cancelleaveController', function($scope, $window, $loca
 			$scope.assign = function(row){
 				$scope.myData1 = row.entity;
 				$scope.selectedtodate = row.entity.toDate;
+				$scope.status         = row.entity.status;
 				$scope.selecteddata = [{"id":row.entity.id,"fromDate": row.entity.fromDate,"fromDateSession":row.entity.fromDateSession,"toDate": row.entity.toDate,"toDateSession":row.entity.toDateSession,"noOfDays": row.entity.noOfDays,"leaveType": row.entity.leaveType,"action":row.entity.action,"status": row.entity.status,"reason":row.entity.reason,"empId":row.entity.empId,"empName":row.entity.empName}];
 				$scope.selectleavetocancel = false;
 			};
@@ -429,7 +477,7 @@ mycontroller.controller('cancelleaveController', function($scope, $window, $loca
 				 $scope.selectleavetocancel = true;
 				 event.preventDefault();
 			 }
-			 else if((todate.getTime() <= new Date().getTime())){
+			 else if((todate.getTime() <= new Date().getTime()) && ($scope.status =='A')){
 				 $scope.afterleave          = true;
 				 event.preventDefault();
 			 }

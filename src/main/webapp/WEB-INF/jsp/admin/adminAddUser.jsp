@@ -62,7 +62,7 @@
     	     </td>
 	     </tr>
 	     <tr><td><span class="rc">{{empid}}</span></td>
-	          <td><input type="text" name="newEmpId" ng-model="ngempid" width-reducer required/>
+	          <td><input type="text" name="newEmpId" ng-model="ngempid" maxlenght="5" num-only width-reducer required/>
 	      </tr>
 	      <tr>
     	     <td></td>
@@ -70,7 +70,7 @@
     	     </td>
 	     </tr>
 	      <tr><td><span class="rc">{{employeeemail}}</span></td>
-	          <td><input type="email" name="email" ng-model="ngemail" width-reducer required/>
+	          <td><input type="email" name="email" ng-model="ngemail" maxlength="30" width-reducer required/>
 	      </tr>
 	      <tr>
     	     <td></td>
