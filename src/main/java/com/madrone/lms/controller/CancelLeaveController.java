@@ -43,7 +43,6 @@ public class CancelLeaveController {
 		List<LeaveDetailsGrid> cancelLeaveList = empLeaveService
 				.getPendingAndApprovalLeaveList(userName);
 		String jsonString = JSONUtils.leaveListGridJSON(cancelLeaveList);
-        System.out.println("JSONString===" + jsonString);
 		model.addAttribute("jsonString", jsonString);
 		return LMSConstants.CANCEL_LEAVE_SCR + "_"
 				+ session.getAttribute("sessionRole");
@@ -56,7 +55,6 @@ public class CancelLeaveController {
 
 		logger.info("submitCancelLeave");
 		String jsonString = form.getSelecteddata();
-		System.out.println("Cancel--Screen" + jsonString);
 
 		LeaveForm cancelForm = JSONUtils.convertJsonToObjectToClass(jsonString);
 		if (cancelForm != null) {

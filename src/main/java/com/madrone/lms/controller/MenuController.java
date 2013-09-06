@@ -35,17 +35,17 @@ public class MenuController {
 		model.addAttribute("ManagerHomeForm", new ManagerHomeForm());
 		return LMSConstants.MANAGER_HOME_SCR;
 	}
+	
+	// These functions are used in adminMenu.jsp file
+	@RequestMapping(value = "/adminHome", method = RequestMethod.GET)
+	public String adminHomeForm(Model model, LeaveForm form) {
+			return LMSConstants.ADMIN_HOME_SCR;
+	}
 
 	@RequestMapping(value = "/setLeaveType", method = RequestMethod.GET)
 	public String setLeaveTypeForm(Model model, UserForm Userform) {
 		model.addAttribute("UserForm", new UserForm());
 		return LMSConstants.ADMIN_SET_LEAVE_TYPE_SCR;
-	}
-
-	@RequestMapping(value = "/viewLeave", method = RequestMethod.GET)
-	public String viewLeaveForm(Model model, UserForm Userform) {
-		model.addAttribute("UserForm", new UserForm());
-		return LMSConstants.ADMIN_VIEW_LEAVE_SCR;
 	}
 
 }

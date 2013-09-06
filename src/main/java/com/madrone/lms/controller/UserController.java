@@ -50,13 +50,6 @@ public class UserController {
 	private static final Logger logger = LoggerFactory
 			.getLogger(UserController.class);
 
-	// These functions are used in adminMenu.jsp file
-	@RequestMapping(value = "/adminHome", method = RequestMethod.GET)
-	public String adminHomeForm(Model model, UserForm Userform) {
-		model = loadComboValues(model);
-		return LMSConstants.ADMIN_HOME_SCR;
-	}
-	
 	@RequestMapping(value = "/addUser", method = RequestMethod.GET)
 	public String addUserForm(Model model, UserForm Userform) {
 		model = loadComboValues(model);
@@ -97,7 +90,7 @@ public class UserController {
 			BindingResult result, Map<String, Object> map) {
 
 		logger.info("Inside submitChangePassword method");
-		userService.saveUserAndEmployee(userForm, "MODIFY");
+		userService.saveUserAndEmployee(userForm, LMSConstants.UPDATE);
 
 		model.addAttribute("SucessMessage", messageSource.getMessage(
 				"lms.modifyuser_success_message", new Object[] { "" },
@@ -106,15 +99,15 @@ public class UserController {
 		return LMSConstants.ADMIN_MODIFY_USER_SCR;
 
 	}
-	
+
 	@RequestMapping(value = "/submitDeleteUser", method = RequestMethod.POST)
 	public String submitDeleteUser(Model model,
 			@ModelAttribute("UserForm") UserForm userForm,
 			BindingResult result, Map<String, Object> map) {
 
 		logger.info("Inside submitDeleteUser method");
-	    userService.deleteUser(userForm.getEmail());
-	    empService.deleteEmployee(userForm.getNewEmpId());
+		userService.deleteUser(userForm.getEmail());
+		empService.deleteEmployee(userForm.getNewEmpId());
 
 		model.addAttribute("SucessMessage", messageSource.getMessage(
 				"lms.deleteuser_success_message", new Object[] { "" },

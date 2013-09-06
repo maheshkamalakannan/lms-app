@@ -25,7 +25,7 @@ import com.madrone.lms.service.EmployeeLeaveService;
 import com.madrone.lms.utils.JSONUtils;
 
 @Controller
-public class ViewLeaveReqController {
+public class ApproveLeaveController {
 	private static final Logger logger = LoggerFactory
 			.getLogger(CancelLeaveController.class);
 
