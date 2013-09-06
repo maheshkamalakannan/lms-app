@@ -81,7 +81,7 @@ public class UserController {
 			BindingResult result, Map<String, Object> map) {
 
 		logger.info("Inside submitChangePassword method");
-		userService.saveUserAndEmployee(userForm, "ADD");
+		userService.saveUserAndEmployee(userForm, LMSConstants.INSERT);
 
 		model.addAttribute("SucessMessage", messageSource.getMessage(
 				"lms.adduser_success_message", new Object[] { "" },
