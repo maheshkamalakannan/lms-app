@@ -4,6 +4,7 @@ import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,6 @@ import com.madrone.lms.entity.Leave;
 import com.madrone.lms.entity.Role;
 import com.madrone.lms.entity.User;
 import com.madrone.lms.service.DepartmentService;
-import com.madrone.lms.service.EmployeeLeaveService;
 import com.madrone.lms.service.EmployeeService;
 import com.madrone.lms.service.LeaveService;
 import com.madrone.lms.service.RoleService;
@@ -53,15 +53,15 @@ public class NewRecordsTestUtil {
 	
 		
 		public NewRecordsTestUtil() {
-			this.role		= new Role("ADMIN", "ADMIN");
-			this.dept 		= new Department("ADMIN", "ADMINSTRATION");
+			this.role		= new Role("EMPLOYEE", "EMPLOYEE",1);
+			this.dept 		= new Department("DEV", "DEVELOPMENT");
 			this.emp 		= new Employee("001", "adminEmployee", "admin", "test@madronesoft.com", null, 
 									Calendar.getInstance(), DesignationEnum.AD,
 									"#25 Chitrakulam north st", "Mylapore", "Chennai", 
 									"TN", 600004);
 			this.user 	  	= new User("test@madronesoft.com", "password");
 			this.leave 	  	= new Leave("CL", "CASUAL LEAVE",20);
-			//this.empleave 	= new EmployeeLeave(emp, leave, Calendar.getInstance(), Calendar.getInstance());
+			this.empleave 	= new EmployeeLeave(emp,leave,Calendar.getInstance(),Calendar.getInstance(),1,"AM","PM");
 		}
 		
 			
@@ -94,7 +94,7 @@ public class NewRecordsTestUtil {
 			
 			}
 		
-		@Test
+		@After
 		public void testCreateUser() throws Exception {
 			user.setEmployee(emp);
 			userService.saveUser(user);

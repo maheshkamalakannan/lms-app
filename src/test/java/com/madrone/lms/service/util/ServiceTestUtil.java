@@ -120,7 +120,7 @@ public class ServiceTestUtil {
 	public static Role createRole(String roleId, String desc) {
 		Role r = roleService.findById(roleId);
 		if(r == null) {
-			r = new Role(roleId, desc != null ? desc : "test");
+			r = new Role(roleId, desc != null ? desc : "test",1);
 			roleService.saveRole(r);
 		}
 		return r;
@@ -144,8 +144,8 @@ public class ServiceTestUtil {
 		fromDate.add(Calendar.DAY_OF_MONTH, 5);
 		Calendar toDate = Calendar.getInstance();
 		toDate.add(Calendar.DAY_OF_MONTH, 7);
-				
-		EmployeeLeave el = new EmployeeLeave(e, l, fromDate, toDate);
+		EmployeeLeave el = new EmployeeLeave(e, l, fromDate, toDate,5,"AM","PM");
+		
 		employeeLeaveService.saveEmployeeLeave(el);
 		
 		return el;

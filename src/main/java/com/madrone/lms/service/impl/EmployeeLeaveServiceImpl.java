@@ -1,6 +1,7 @@
 package com.madrone.lms.service.impl;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,11 +11,13 @@ import org.springframework.transaction.annotation.Transactional;
 import com.madrone.lms.constants.LMSConstants;
 import com.madrone.lms.dao.EmployeeDao;
 import com.madrone.lms.dao.EmployeeLeaveDao;
+import com.madrone.lms.entity.Department;
 import com.madrone.lms.entity.Employee;
 import com.madrone.lms.entity.EmployeeLeave;
 import com.madrone.lms.entity.Leave;
 import com.madrone.lms.form.LeaveDetailsGrid;
 import com.madrone.lms.form.LeaveForm;
+import com.madrone.lms.form.LeaveTransactionForm;
 import com.madrone.lms.service.EmployeeLeaveService;
 import com.madrone.lms.utils.DateUtils;
 
@@ -42,33 +45,28 @@ public class EmployeeLeaveServiceImpl implements EmployeeLeaveService {
 
 	@Override
 	@Transactional(readOnly = false)
-	public void saveEmployeeLeave(LeaveForm applyLeaveForm) {
-		EmployeeLeave el = setBeanValuesForSave(applyLeaveForm);
+	public void saveEmployeeLeave(EmployeeLeave el) {
 		el.setLeaveStatus(LMSConstants.LEAVE_STATUS_PENDING);
-
 		empLeaveDao.saveOrUpdate(el);
 	}
 
 	@Override
 	@Transactional(readOnly = false)
-	public void cancelEmployeeLeave(LeaveForm applyLeaveForm) {
-		EmployeeLeave el = setBeanValuesForSave(applyLeaveForm);
+	public void cancelEmployeeLeave(EmployeeLeave el) {
 		el.setLeaveStatus(LMSConstants.LEAVE_STATUS_CANCEL);
 		empLeaveDao.update(el);
 	}
 
 	@Override
 	@Transactional(readOnly = false)
-	public void approveEmployeeLeave(LeaveForm approveLeaveForm) {
-		EmployeeLeave el = setBeanValuesForSave(approveLeaveForm);
+	public void approveEmployeeLeave(EmployeeLeave el) {
 		el.setLeaveStatus(LMSConstants.LEAVE_STATUS_APPROVE);
 		empLeaveDao.update(el);
 	}
 
 	@Override
 	@Transactional(readOnly = false)
-	public void rejectEmployeeLeave(LeaveForm approveForm) {
-		EmployeeLeave el = setBeanValuesForSave(approveForm);
+	public void rejectEmployeeLeave(EmployeeLeave el) {
 		el.setLeaveStatus(LMSConstants.LEAVE_STATUS_REJECT);
 		empLeaveDao.update(el);
 	}
@@ -95,11 +93,11 @@ public class EmployeeLeaveServiceImpl implements EmployeeLeaveService {
 		for (Employee emp : teamList) {
 			if ("ALL".equals(filter)) {
 				leaveList = empLeaveDao.getPendingLeaveList(emp);
-			} else if ("A".equals(filter)) {
+			} else if (LMSConstants.LEAVE_STATUS_APPROVE.equals(filter)) {
 				leaveList = empLeaveDao.getApprovalLeaveList(emp);
-			} else if ("R".equals(filter)) {
+			} else if (LMSConstants.LEAVE_STATUS_REJECT.equals(filter)) {
 				leaveList = empLeaveDao.getRejectionLeaveList(emp);
-			} else if ("C".equals(filter)) {
+			} else if (LMSConstants.LEAVE_STATUS_CANCEL.equals(filter)) {
 				leaveList = empLeaveDao.getCancellationLeaveList(emp);
 			}
 
@@ -133,7 +131,8 @@ public class EmployeeLeaveServiceImpl implements EmployeeLeaveService {
 		return returnList;
 	}
 
-	private EmployeeLeave setBeanValuesForSave(LeaveForm leaveForm) {
+	@Override
+	public EmployeeLeave setBeanValuesForSave(LeaveForm leaveForm) {
 
 		EmployeeLeave el = new EmployeeLeave();
 		Employee e = empDao.findById(leaveForm.getEmpId());
@@ -185,6 +184,38 @@ public class EmployeeLeaveServiceImpl implements EmployeeLeaveService {
 	public List<LeaveDetailsGrid> getPendingAndApprovalLeaveList(String userName) {
 		Employee emp = empDao.findByEmailAddress(userName);
 		List<EmployeeLeave> leaveList = empLeaveDao.getPendingAndApprovalList(emp);
+		List<LeaveDetailsGrid> returnList = new ArrayList<LeaveDetailsGrid>();
+		if (leaveList != null) {
+			returnList = setBeanValuesForGrid(leaveList);
+		}
+		return returnList;
+	}
+
+	@Override
+	public List<LeaveDetailsGrid> getLeaveListForAdmin(
+			LeaveTransactionForm leaveFormFilter) {
+		
+		Department dept = null;
+		Leave leave     = null;
+
+		if(!"".equals(leaveFormFilter.getDeptId())) {
+	    	dept = new Department();
+	    	dept.setId(leaveFormFilter.getDeptId());
+	    }
+	    leaveFormFilter.setDept(dept);
+	    
+	    if(!"".equals(leaveFormFilter.getLeaveType())) {
+	    	 if(!"".equals(leaveFormFilter.getToDate())) { 
+	    		 leave = new Leave();
+	    		 leave.setId(leaveFormFilter.getLeaveType());
+	    	 }
+	    } 
+	    leaveFormFilter.setLeaveTypes(leave);
+	    
+		
+		List<Employee> employeeList = empDao.getEmployeeList(leaveFormFilter);
+		List<EmployeeLeave> leaveList = empLeaveDao.getLeaveListForAdmin(employeeList,leaveFormFilter);
+		
 		List<LeaveDetailsGrid> returnList = new ArrayList<LeaveDetailsGrid>();
 		if (leaveList != null) {
 			returnList = setBeanValuesForGrid(leaveList);

@@ -51,7 +51,7 @@ public class RoleServiceTest {
 		ServiceTestUtil.deleteEmployee(EMP_100);
 		ServiceTestUtil.deleteRole(ROLE_R1);
 		
-		Role r = new Role(ROLE_R1, "role-1");
+		Role r = new Role(ROLE_R1, "role-1",1);
 		Employee e = new Employee(EMP_100, "tom", "jerry", USER_NAME, null, 
 				Calendar.getInstance(), DesignationEnum.SSE, 
 				"#25 Chitrakulam north st", "Mylapore", "Chennai", 
