@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.madrone.lms.entity.Employee;
 import com.madrone.lms.entity.Role;
-import com.madrone.lms.entity.User;
+import com.madrone.lms.form.LeaveTransactionForm;
 
 public interface EmployeeDao extends AbstractDao<Employee, String>{
 	
@@ -23,6 +23,8 @@ public interface EmployeeDao extends AbstractDao<Employee, String>{
 	List<Employee> findTeamList(Employee leadEmployee);
 
 	List<Employee> FindHigherRoles(List<Role> roleListHigher);
+
+	List<Employee> getEmployeeList(LeaveTransactionForm leaveFormFilter);
 	
 
 
