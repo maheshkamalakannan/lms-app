@@ -36,7 +36,7 @@ public class ApprovedRejectedListController {
 		String userName = (String) session.getAttribute("sessionUser");
 		List<LeaveDetailsGrid> leaveListOfTeam = empLeaveService
 				.getLeaveListOfTeam(userName, LMSConstants.LEAVE_STATUS_APPROVE);
-		String jsonString = JSONUtils.leaveListGridJSON(leaveListOfTeam);
+		String jsonString = JSONUtils.convertListToJson(leaveListOfTeam);
 		logger.info("ApprovalList-Json" + jsonString);
 		model.addAttribute("jsonString", jsonString);
 		model.addAttribute("ViewLeaveRequestForm", new ViewLeaveRequestForm());
@@ -51,7 +51,7 @@ public class ApprovedRejectedListController {
 		String userName = (String) session.getAttribute("sessionUser");
 		List<LeaveDetailsGrid> leaveListOfTeam = empLeaveService
 				.getLeaveListOfTeam(userName, LMSConstants.LEAVE_STATUS_REJECT);
-		String jsonString = JSONUtils.leaveListGridJSON(leaveListOfTeam);
+		String jsonString = JSONUtils.convertListToJson(leaveListOfTeam);
 		
 		logger.info("RejectedList-Json" + jsonString);
 		model.addAttribute("jsonString", jsonString);
@@ -68,7 +68,7 @@ public class ApprovedRejectedListController {
 				String userName = (String) session.getAttribute("sessionUser");
 				List<LeaveDetailsGrid> leaveListOfTeam = empLeaveService
 						.getLeaveListOfTeam(userName, LMSConstants.LEAVE_STATUS_REJECT);
-				String jsonString = JSONUtils.leaveListGridJSON(leaveListOfTeam);
+				String jsonString = JSONUtils.convertListToJson(leaveListOfTeam);
 				model.addAttribute("jsonString", jsonString);
 				model.addAttribute("ViewLeaveRequestForm", new ViewLeaveRequestForm());
 				return LMSConstants.MANAGER_VIEW_CANCELLED_LEAVES_SCR;

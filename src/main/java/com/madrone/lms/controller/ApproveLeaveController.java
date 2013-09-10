@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import com.madrone.lms.constants.LMSConstants;
+import com.madrone.lms.entity.EmployeeLeave;
 import com.madrone.lms.form.ApprovedLeaveSummaryForm;
 import com.madrone.lms.form.LeaveDetailsGrid;
 import com.madrone.lms.form.LeaveForm;
@@ -44,7 +45,7 @@ public class ApproveLeaveController {
 		String userName = (String) session.getAttribute("sessionUser");
 		List<LeaveDetailsGrid> leaveListOfTeam = empLeaveService
 				.getLeaveListOfTeam(userName,"ALL");
-		String jsonString = JSONUtils.leaveListGridJSON(leaveListOfTeam);
+		String jsonString = JSONUtils.convertListToJson(leaveListOfTeam);
 		model.addAttribute("jsonString", jsonString);
 		model.addAttribute("ViewLeaveRequestForm", new ViewLeaveRequestForm());
 		return LMSConstants.MANAGER_VIEW_LEAVE_REQUEST_SCR;
@@ -63,7 +64,8 @@ public class ApproveLeaveController {
 		LeaveForm approveForm = JSONUtils
 				.convertJsonToObjectToClass(jsonString);
 		if (approveForm != null) {
-			empLeaveService.approveEmployeeLeave(approveForm);
+			EmployeeLeave el = empLeaveService.setBeanValuesForSave(approveForm);
+			empLeaveService.approveEmployeeLeave(el);
 			model.addAttribute("SucessMessage", messageSource.getMessage(
 					"lms.approveLeave_success_message", new Object[] { "" },
 					Locale.getDefault()));
@@ -84,7 +86,8 @@ public class ApproveLeaveController {
 		LeaveForm approveForm = JSONUtils
 				.convertJsonToObjectToClass(jsonString);
 		if (approveForm != null) {
-			empLeaveService.rejectEmployeeLeave(approveForm);
+			EmployeeLeave el = empLeaveService.setBeanValuesForSave(approveForm);
+			empLeaveService.rejectEmployeeLeave(el);
 			model.addAttribute("SucessMessage", messageSource.getMessage(
 					"lms.rejectLeave_success_message", new Object[] { "" },
 					Locale.getDefault()));

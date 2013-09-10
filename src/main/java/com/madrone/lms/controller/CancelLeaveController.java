@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.madrone.lms.constants.LMSConstants;
+import com.madrone.lms.entity.EmployeeLeave;
 import com.madrone.lms.form.LeaveDetailsGrid;
 import com.madrone.lms.form.LeaveForm;
 import com.madrone.lms.service.EmployeeLeaveService;
@@ -42,7 +43,7 @@ public class CancelLeaveController {
 		String userName = (String) session.getAttribute("sessionUser");
 		List<LeaveDetailsGrid> cancelLeaveList = empLeaveService
 				.getPendingAndApprovalLeaveList(userName);
-		String jsonString = JSONUtils.leaveListGridJSON(cancelLeaveList);
+		String jsonString = JSONUtils.convertListToJson(cancelLeaveList);
 		model.addAttribute("jsonString", jsonString);
 		return LMSConstants.CANCEL_LEAVE_SCR + "_"
 				+ session.getAttribute("sessionRole");
@@ -58,7 +59,8 @@ public class CancelLeaveController {
 
 		LeaveForm cancelForm = JSONUtils.convertJsonToObjectToClass(jsonString);
 		if (cancelForm != null) {
-			empLeaveService.cancelEmployeeLeave(cancelForm);
+			EmployeeLeave el  = empLeaveService.setBeanValuesForSave(cancelForm);
+			empLeaveService.cancelEmployeeLeave(el);
 			model.addAttribute("SucessMessage", messageSource.getMessage(
 					"lms.cancelLeave_success_message", new Object[] { "" },
 					Locale.getDefault()));

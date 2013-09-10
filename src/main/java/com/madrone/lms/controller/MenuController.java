@@ -42,10 +42,4 @@ public class MenuController {
 			return LMSConstants.ADMIN_HOME_SCR;
 	}
 
-	@RequestMapping(value = "/setLeaveType", method = RequestMethod.GET)
-	public String setLeaveTypeForm(Model model, UserForm Userform) {
-		model.addAttribute("UserForm", new UserForm());
-		return LMSConstants.ADMIN_SET_LEAVE_TYPE_SCR;
-	}
-
 }

@@ -42,8 +42,8 @@ public class LeaveSummaryController {
 				.getApplyLeaveGridDetails(userName);
 		List<LeaveDetailsGrid> leaveList = empLeaveService.getLeaveList(userName);
 
-		String jsonString1 = JSONUtils.applyLeaveGridJSON(LeaveBalanceList);
-		String jsonString2 = JSONUtils.leaveListGridJSON(leaveList);
+		String jsonString1 = JSONUtils.convertListToJson(LeaveBalanceList);
+		String jsonString2 = JSONUtils.convertListToJson(leaveList);
 		
 		model.addAttribute("jsonString1", jsonString1);
 		model.addAttribute("jsonString2", jsonString2);

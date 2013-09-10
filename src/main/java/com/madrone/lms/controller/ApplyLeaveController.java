@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.madrone.lms.constants.LMSConstants;
+import com.madrone.lms.entity.EmployeeLeave;
 import com.madrone.lms.entity.Leave;
 //import com.madrone.lms.entity.LeaveTypes;
 import com.madrone.lms.form.ApplyLeaveFormGrid;
@@ -53,7 +54,7 @@ public class ApplyLeaveController {
 		// This for to Show Values in Grid.
 		List<ApplyLeaveFormGrid> gridList = leaveService
 				.getApplyLeaveGridDetails(userName);
-		String jsonString= JSONUtils.applyLeaveGridJSON(gridList);
+		String jsonString= JSONUtils.convertListToJson(gridList);
 		model.addAttribute("jsonString", jsonString);
 		model.addAttribute("leaveList", gridList);
 		model.addAttribute("ApplyLeaveForm", new LeaveForm());
@@ -67,8 +68,8 @@ public class ApplyLeaveController {
 			@ModelAttribute("ApplyLeaveForm") LeaveForm applyLeaveForm,
 			BindingResult result, Map<String, Object> map) {
 		logger.info("Inside submitApplyLeave()");
-
-		empLeaveService.saveEmployeeLeave(applyLeaveForm);
+		EmployeeLeave el  = empLeaveService.setBeanValuesForSave(applyLeaveForm);
+		empLeaveService.saveEmployeeLeave(el);
 		model.addAttribute("SucessMessage", messageSource.getMessage(
 				"lms.applyLeave_success_message", new Object[] { "" },
 				Locale.getDefault()));
