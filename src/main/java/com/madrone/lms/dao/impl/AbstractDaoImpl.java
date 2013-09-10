@@ -40,7 +40,6 @@ public abstract class AbstractDaoImpl <E, I extends Serializable>
     
     @Override
     public void update(E e) {
-    	System.out.println("Inside Update......Abstract class");
         getCurrentSession().update(e);
     }
  
