@@ -15,7 +15,7 @@
     <mvc:resources mapping="/jsandcss/**" location="/jsandcss/"/>
 
     <mvc:annotation-driven />
-
+ 
     <bean class="org.springframework.web.servlet.view.UrlBasedViewResolver" id="viewResolver">  
 	    <property name="viewClass">  
 	    <value>  
@@ -24,7 +24,7 @@
 	     </property>  
 	</bean>
     
-     <bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+    <bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
 	    <property name="definitions">
 	        <list>
 	            <value>classpath:/spring/tiles-def.xml</value>
@@ -39,6 +39,21 @@
 	<bean id="messageSource"
 		class="org.springframework.context.support.ResourceBundleMessageSource">
 		<property name="basename" value="message" />
+	</bean>
+	
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com" />
+		<property name="port" value="587" />
+		<property name="username" value="lms@madronesoft.com" />
+		<property name="password" value="password" />
+	 
+		<property name="javaMailProperties">
+			<props>
+	       		<prop key="mail.smtp.auth">true</prop>
+	       	    <prop key="mail.smtp.starttls.enable">true</prop>
+	       	    <prop key="mail.smtp.ssl.trust">smtp.gmail.com</prop>
+	      	</props>
+		</property>
 	</bean>
 
 </beans>
