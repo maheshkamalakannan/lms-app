@@ -131,4 +131,14 @@ public class LeaveServiceImpl implements LeaveService {
 		return l;
 	}
 
+	@Override
+	public List<Leave> getAdminLeaveTypes() {
+		List<Leave> list =  leaveDao.getLeaveTypes();
+		Leave l = new Leave();
+		l.setId(LMSConstants.DEFAULT_COMBO_BOX_VALUE);
+		l.setDescription(LMSConstants.DEFAULT_COMBO_BOX_VALUE);
+		list.add(l);
+		return list;
+	}
+
 }

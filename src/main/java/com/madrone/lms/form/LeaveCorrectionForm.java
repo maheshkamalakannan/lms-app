@@ -1,7 +1,5 @@
 package com.madrone.lms.form;
 
-import java.util.Calendar;
-
 import com.madrone.lms.entity.Department;
 import com.madrone.lms.entity.Leave;
 
@@ -15,8 +13,8 @@ public class LeaveCorrectionForm {
 	private Leave leaveDates;
 	
 	private String leaveType;
-	private Calendar fromDate;
-	private Calendar toDate;
+	private String fromDate;
+	private String toDate;
 	
 	
 	public String getDeptId() {
@@ -55,16 +53,16 @@ public class LeaveCorrectionForm {
 	public void setLeaveType(String leaveType) {
 		this.leaveType = leaveType;
 	}
-	public Calendar getFromDate() {
+	public String getFromDate() {
 		return fromDate;
 	}
-	public void setFromDate(Calendar fromDate) {
+	public void setFromDate(String fromDate) {
 		this.fromDate = fromDate;
 	}
-	public Calendar getToDate() {
+	public String getToDate() {
 		return toDate;
 	}
-	public void setToDate(Calendar toDate) {
+	public void setToDate(String toDate) {
 		this.toDate = toDate;
 	}
 	

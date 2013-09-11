@@ -22,6 +22,8 @@ public interface LeaveService {
 
 	Leave setBeanValuesForSave(LeaveTypeForm form);
 
+	List<Leave> getAdminLeaveTypes();
+
 
 
 }

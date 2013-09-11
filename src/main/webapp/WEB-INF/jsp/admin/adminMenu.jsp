@@ -18,7 +18,7 @@
 	            </ul>
 	        </li>
 			<li>
-	            <a href="/lms-app/viewLeave">View Leave</a>
+	            <a href="/lms-app/viewLeave">Leave Corrections</a>
 	        </li>
 	        <li>
 	            <a href=" ">Sign Out</a>

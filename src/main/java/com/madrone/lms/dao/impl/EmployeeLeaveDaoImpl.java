@@ -95,10 +95,14 @@ public class EmployeeLeaveDaoImpl extends AbstractDaoImpl<EmployeeLeave, Long>
 		for (Employee e : employeeList) {
 			List<Criterion> criterionList = new ArrayList<Criterion>();
 			criterionList.add(Restrictions.eq("employee", e));
+			if(!LMSConstants.DEFAULT_COMBO_BOX_VALUE.equals(leaveForm.getLeaveType())) { 
+				criterionList.add(Restrictions.eq("leave",leaveForm.getLeaveTypes()));
+			 }
+			
+			
 			List<EmployeeLeave> employeeLeaveList = findByCriteria(criterionList);
 			returnList.addAll(employeeLeaveList);
 		}
-		System.out.println("The size---------------------------------------------------------------------->" + returnList.size());
 		return returnList;
 	}
 

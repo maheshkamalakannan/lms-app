@@ -213,12 +213,16 @@ public class EmployeeLeaveServiceImpl implements EmployeeLeaveService {
 	    
 		
 		List<Employee> employeeList = empDao.getEmployeeList(leaveFormFilter);
-		List<EmployeeLeave> leaveList = empLeaveDao.getLeaveListForAdmin(employeeList,leaveFormFilter);
+		List<LeaveDetailsGrid> returnList = null;
 		
-		List<LeaveDetailsGrid> returnList = new ArrayList<LeaveDetailsGrid>();
-		if (leaveList != null) {
-			returnList = setBeanValuesForGrid(leaveList);
+		if(employeeList!=null) {
+			returnList = new ArrayList<LeaveDetailsGrid>();
+			List<EmployeeLeave> leaveList = empLeaveDao.getLeaveListForAdmin(employeeList,leaveFormFilter);
+			if (leaveList != null) {
+				returnList = setBeanValuesForGrid(leaveList);
+			}
 		}
+		
 		return returnList;
 	}
 

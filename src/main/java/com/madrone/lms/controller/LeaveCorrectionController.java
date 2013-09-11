@@ -42,7 +42,7 @@ public class LeaveCorrectionController {
 			.getLogger(ApprovedRejectedListController.class);
 	
 	@RequestMapping(value = "/viewLeave", method = RequestMethod.GET)
-	public String viewLeaveForm(Model model, UserForm Userform) {
+	public String viewLeaveForm(Model model, LeaveCorrectionForm lForm) {
 		loadComboValues(model);
 		return LMSConstants.ADMIN_VIEW_LEAVE_SCR;
 	}
@@ -51,7 +51,7 @@ public class LeaveCorrectionController {
 		List<Department> deptList = depService.getDepartmentList();
 		model.addAttribute("deptList", deptList);
 		
-		List<Leave> ltList = leaveService.getLeaveTypes();
+		List<Leave> ltList = leaveService.getAdminLeaveTypes();
 		model.addAttribute("leaveTypes", ltList);
 		
 		model.addAttribute("LeaveCorrectionForm", new LeaveCorrectionForm());
@@ -60,17 +60,30 @@ public class LeaveCorrectionController {
 
 	@RequestMapping(value = "/searchLeaveCorrection", method = RequestMethod.POST)
 	public @ResponseBody
-	JsonResponse searchUser(Model model,
+	JsonResponse searchLeaveCorrection(Model model,
 			@ModelAttribute("LeaveCorrectionForm") LeaveCorrectionForm lForm, BindingResult result) {
 		JsonResponse res = new JsonResponse();
 		
 		logger.info("Inside submitLeaveTransaction()");
+		System.out.println("DEPArtment------------------------------------------->" + lForm.getDeptId());
+		System.out.println("LeaveType-------------------------------------------->" + lForm.getLeaveType());
+		System.out.println("fromDate-------------------------------------------->" + lForm.getFromDate());
+		System.out.println("toDate-------------------------------------------->" + lForm.getToDate());
+		
 		List<LeaveDetailsGrid> leaveListOfTeam = empLeaveService.getLeaveListForAdmin(lForm);
 		
-		String jsonString = JSONUtils.convertListToJson(leaveListOfTeam);
-		model.addAttribute("jsonString",jsonString);
-		res.setResult(leaveListOfTeam);
-		loadComboValues(model);
+		if(leaveListOfTeam!=null) {
+			String jsonString = JSONUtils.convertListToJson(leaveListOfTeam);
+			System.out.println("JsonString===" + jsonString);
+			model.addAttribute("jsonString",jsonString);
+			res.setResult(leaveListOfTeam);
+			res.setStatus("SUCCESS");
+			loadComboValues(model);
+		}
+		else {
+			res.setStatus("ERROR");
+			loadComboValues(model);
+		}
 
 		return res;
 	}

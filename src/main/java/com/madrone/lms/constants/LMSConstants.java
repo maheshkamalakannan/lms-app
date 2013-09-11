@@ -38,5 +38,7 @@ public class LMSConstants {
 	public static final String UPDATE = "UPDATE";
 	public static final String DELETE = "DELETE";
 	
+	public static final String DEFAULT_COMBO_BOX_VALUE = "ALL";
+	
 	
 }

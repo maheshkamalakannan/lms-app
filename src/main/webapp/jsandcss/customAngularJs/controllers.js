@@ -942,19 +942,40 @@ mycontroller.controller('leaveCorrectionController', function($scope, $window, $
 	$scope.fromdatereq           = false;
 	$scope.todatereq             = false;
 	$scope.todategreaterfromdate = false;
-	$scope.fromdate              = '';
-	$scope.todate                = '';
+	$scope.ngfromdate            = '';
+	$scope.ngtodate              = '';
 	
-	$scope.leaveCorrectionsForm = function(form,event){
-		if(($scope.fromdate > $scope.todate) && ($scope.fromdate != '' && $scope.todate != '')){
+	$scope.leaveCorrectionsSearch = function(form,event){
+	
+	var deptIdValue    = $scope.ngdeptId;
+	var leaveTypeValue = $scope.ngleaveType;
+	var fromDateValue  = $scope.ngfromdate;
+	var toDateValue    = $scope.ngtodate;
+	alert($scope.ngdeptId);
+	
+		$.ajax({
+			        type: "POST",
+			        url: location.protocol + "//" + location.host+"/lms-app/searchLeaveCorrection",
+			        data: {deptId: deptIdValue, leaveType: leaveTypeValue, fromDate: fromDateValue ,toDate: toDateValue},
+			        success: function(response) {
+			        	if(response.status == "SUCCESS") {
+			        		alert(response);
+			             }
+				        },
+			        error: function(e){
+			        	alert('Error: ' + e);
+			        	}
+		       		 });
+		
+		if(($scope.ngfromdate > $scope.ngtodate) && ($scope.ngfromdate != '' && $scope.ngtodate != '')){
 			  $scope.todategreaterfromdate = true;
 			  event.preventDefault();
 		  }
-		else if($scope.todate !='' && $scope.fromdate ==''){
+		else if($scope.ngtodate !='' && $scope.ngfromdate ==''){
 			$scope.fromdatereq           = true;
 			event.preventDefault();
 		}
-		else if($scope.fromdate !='' && $scope.todate ==''){
+		else if($scope.ngfromdate !='' && $scope.ngtodate ==''){
 			$scope.todatereq           = true;
 			event.preventDefault();
 		}
