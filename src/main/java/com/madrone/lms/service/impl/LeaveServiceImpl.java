@@ -42,11 +42,7 @@ public class LeaveServiceImpl implements LeaveService {
 
 	@Override
 	@Transactional(readOnly = false)
-	public void saveLeave(LeaveTypeForm form) {
-		Leave l = new Leave();
-		l.setId(form.getId());
-		l.setDescription(form.getDescription());
-		l.setDays(form.getDays());
+	public void saveLeave(Leave l) {
 		leaveDao.saveOrUpdate(l);
 	}
 
@@ -56,16 +52,12 @@ public class LeaveServiceImpl implements LeaveService {
 		Leave l = leaveDao.findById(id);
 		leaveDao.delete(l);
 	}
-	
+
 	@Override
 	@Transactional(readOnly = false)
-	public void updateLeave(LeaveTypeForm form) {
-		Leave l = new Leave();
-		l.setId(form.getId());
-		l.setDescription(form.getDescription());
-		l.setDays(form.getDays());
+	public void updateLeave(Leave l) {
 		leaveDao.update(l);
-		
+
 	}
 
 	@Override
@@ -76,12 +68,13 @@ public class LeaveServiceImpl implements LeaveService {
 	@Override
 	public List<ApplyLeaveFormGrid> getApplyLeaveGridDetails(String userName) {
 		List<Leave> leaveList = leaveDao.getLeaveTypes();
-		List<ApplyLeaveFormGrid> applyLeaveGrid = new ArrayList<ApplyLeaveFormGrid>();
+		List<ApplyLeaveFormGrid> applyLeaveGrid = 
+				new ArrayList<ApplyLeaveFormGrid>();
 
 		for (Leave l : leaveList) {
 			ApplyLeaveFormGrid gridBean = new ApplyLeaveFormGrid();
 			gridBean.setType(l.getId());
-			
+
 			findEmployeeLeaveBalance(gridBean, userName, l.getDays());
 			applyLeaveGrid.add(gridBean);
 		}
@@ -116,7 +109,8 @@ public class LeaveServiceImpl implements LeaveService {
 		if (empLeaveList.size() > 0) {
 			for (EmployeeLeave el : empLeaveList) {
 				if (el.getLeave().getId().equals(gridBean.getType())) {
-					if (!el.getLeaveStatus().equals(LMSConstants.LEAVE_STATUS_CANCEL)) {
+					if (!el.getLeaveStatus().equals(
+							LMSConstants.LEAVE_STATUS_CANCEL)) {
 						totalLeaveTaken = totalLeaveTaken + el.getNoOfDays();
 					}
 				}
@@ -128,6 +122,13 @@ public class LeaveServiceImpl implements LeaveService {
 
 	}
 
-	
+	@Override
+	public Leave setBeanValuesForSave(LeaveTypeForm form) {
+		Leave l = new Leave();
+		l.setId(form.getId());
+		l.setDescription(form.getDescription());
+		l.setDays(form.getDays());
+		return l;
+	}
 
 }

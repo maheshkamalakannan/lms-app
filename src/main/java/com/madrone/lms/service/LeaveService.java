@@ -10,7 +10,7 @@ public interface LeaveService {
 	
 	Leave findById(String id);
 
-	void saveLeave(LeaveTypeForm leaveTypeForm);
+	void saveLeave(Leave l);
 
 	void deleteLeave(String id);
 
@@ -18,7 +18,9 @@ public interface LeaveService {
 
 	List<ApplyLeaveFormGrid> getApplyLeaveGridDetails(String userName);
 
-	void updateLeave(LeaveTypeForm form);
+	void updateLeave(Leave l);
+
+	Leave setBeanValuesForSave(LeaveTypeForm form);
 
 
 

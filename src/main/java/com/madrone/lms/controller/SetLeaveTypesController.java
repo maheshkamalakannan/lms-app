@@ -47,9 +47,10 @@ public class SetLeaveTypesController {
 			@ModelAttribute("leaveTypeForm") LeaveTypeForm form,
 			BindingResult result, Map<String, Object> map) {
 		
+		Leave l = leaveService.setBeanValuesForSave(form);
 		switch (form.getUserAction()) {
 			case LMSConstants.INSERT: {
-				leaveService.saveLeave(form);
+				leaveService.saveLeave(l);
 				model.addAttribute("SucessMessage", messageSource.getMessage(
 						"lms.setleaveTypes.add.success_message",
 						new Object[] { "" }, Locale.getDefault()));
@@ -63,7 +64,7 @@ public class SetLeaveTypesController {
 				break;
 			}
 			case LMSConstants.UPDATE: {
-				leaveService.updateLeave(form);
+				leaveService.updateLeave(l);
 				model.addAttribute("SucessMessage", messageSource.getMessage(
 						"lms.setleaveTypes.upd.success_message",
 						new Object[] { "" }, Locale.getDefault()));
