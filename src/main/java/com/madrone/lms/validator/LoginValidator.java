@@ -20,7 +20,6 @@ public class LoginValidator implements Validator {
 
 	@Override
 	public void validate(Object object, Errors errors) {
-		System.out.println("Inside Validator....");
 		
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "userName", "lms.login.username.empty");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "lms.login.password.empty");
