@@ -227,6 +227,7 @@ mycontroller.controller('constantsController', function($scope, $window, $locati
     $scope.adminmoduser                  = "Home > Users > Modify User";
     $scope.admindeluser                  = "Home > Users > Delete User";
     $scope.adminsetleavetype             = "Home > Configuration > Set Leave Type";
+    $scope.adminviewleave                = "Home > View Leave";
 });
 
 mycontroller.controller('changePasswordController', function($scope, $window, $location) {
@@ -934,6 +935,40 @@ mycontroller.controller('setLeaveTypeController', function($scope, $window, $loc
 			 event.preventDefault();
 		 }
 	};
+});
+
+mycontroller.controller('leaveCorrectionController', function($scope, $window, $location) {
+	
+	$scope.fromdatereq           = false;
+	$scope.todatereq             = false;
+	$scope.todategreaterfromdate = false;
+	$scope.fromdate              = '';
+	$scope.todate                = '';
+	
+	$scope.leaveCorrectionsForm = function(form,event){
+		if(($scope.fromdate > $scope.todate) && ($scope.fromdate != '' && $scope.todate != '')){
+			  $scope.todategreaterfromdate = true;
+			  event.preventDefault();
+		  }
+		else if($scope.todate !='' && $scope.fromdate ==''){
+			$scope.fromdatereq           = true;
+			event.preventDefault();
+		}
+		else if($scope.fromdate !='' && $scope.todate ==''){
+			$scope.todatereq           = true;
+			event.preventDefault();
+		}
+	};
+	
+	$scope.lcfromdate = function(event){
+		$scope.fromdatereq           = false;
+	};
+	
+	$scope.lctodate   = function(event){
+		$scope.todatereq            = false;
+		$scope.todategreaterfromdate = false;
+	};
+
 });
 
 function welcomeController($scope, $http) {

@@ -680,3 +680,14 @@ h5:first-letter {
       font-size: 13px;
 }
 
+.leavecorrectionleftcontent{
+	float: left;
+	padding-left:15px;
+	width: 490px;
+}
+
+.leavecorrectionrightcontent{
+	float: right;
+	margin-right: 5px;
+    width: 520px;
+}
