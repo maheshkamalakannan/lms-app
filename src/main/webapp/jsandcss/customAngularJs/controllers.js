@@ -875,15 +875,18 @@ mycontroller.controller('setLeaveTypeController', function($scope, $window, $loc
 	
 	$scope.deleterow = function(row){
 		$('.success').css("display","none");
-		$scope.selecteddata = [{"Name": row.entity.Name,"Description": row.entity.Description, "Days": row.entity.Days}];
+		$scope.selecteddata = [{"Name": row.entity.id,"Description": row.entity.description, "Days": row.entity.days}];
+		$scope.userAction = "DELETE";
 	};
 	
 	$scope.modifyrow = function(row){
+		
 		$('.success').css("display","none");
 		$scope.showleavediv = true;
-		$scope.ngleaveName  = row.entity.Name;
-		$scope.ngleavedesc  = row.entity.Description;
-		$scope.ngleavedays  = row.entity.Days;
+		$scope.ngid  = row.entity.id;
+		$scope.ngdescription  = row.entity.description;
+		$scope.ngdays  = row.entity.days;
+		$scope.userAction = "UPDATE";
 	};
 	
 	$scope.createleavetype = function(event){
@@ -902,6 +905,7 @@ mycontroller.controller('setLeaveTypeController', function($scope, $window, $loc
 	};
 	
 	$scope.saveleavetype = function(form,event){
+		$scope.userAction = "INSERT";
 		if(form.$valid){
 				 form.submit();
 			 }

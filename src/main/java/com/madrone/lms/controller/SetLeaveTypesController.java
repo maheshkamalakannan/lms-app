@@ -1,6 +1,7 @@
 package com.madrone.lms.controller;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.madrone.lms.constants.LMSConstants;
 import com.madrone.lms.entity.Leave;
+import com.madrone.lms.form.LeaveTypeForm;
 import com.madrone.lms.form.UserForm;
 import com.madrone.lms.service.LeaveService;
 import com.madrone.lms.utils.JSONUtils;
@@ -36,20 +38,41 @@ public class SetLeaveTypesController {
 		List<Leave> leaveTypes = leaveService.getLeaveTypes();
 		String jsonString = JSONUtils.convertListToJson(leaveTypes);
 		model.addAttribute("jsonString", jsonString);
-		model.addAttribute("leaveTypeForm", new Leave());
+		model.addAttribute("leaveTypeForm", new LeaveTypeForm());
 		return LMSConstants.ADMIN_SET_LEAVE_TYPE_SCR;
 	}
-	
-	
+
 	@RequestMapping(value = "/submitSetLeaveType", method = RequestMethod.POST)
-	public String submitSetLeaveType(
-			Model model,
-			@ModelAttribute("leaveTypeForm") Leave leaveTypeForm,
+	public String submitSetLeaveType(Model model,
+			@ModelAttribute("leaveTypeForm") LeaveTypeForm form,
 			BindingResult result, Map<String, Object> map) {
-		leaveService.saveLeave(leaveTypeForm);
 		
+		switch (form.getUserAction()) {
+			case LMSConstants.INSERT: {
+				leaveService.saveLeave(form);
+				model.addAttribute("SucessMessage", messageSource.getMessage(
+						"lms.setleaveTypes.add.success_message",
+						new Object[] { "" }, Locale.getDefault()));
+				break;
+			}
+			case LMSConstants.DELETE: {
+				leaveService.deleteLeave(form.getId());
+				model.addAttribute("SucessMessage", messageSource.getMessage(
+						"lms.setleaveTypes.del.success_message",
+						new Object[] { "" }, Locale.getDefault()));
+				break;
+			}
+			case LMSConstants.UPDATE: {
+				leaveService.updateLeave(form);
+				model.addAttribute("SucessMessage", messageSource.getMessage(
+						"lms.setleaveTypes.upd.success_message",
+						new Object[] { "" }, Locale.getDefault()));
+				break;
+			}
+		}
+
 		return LMSConstants.ADMIN_SET_LEAVE_TYPE_SCR;
-		
+
 	}
 
 }

@@ -2,35 +2,44 @@ package com.madrone.lms.form;
 
 public class LeaveTypeForm {
 	
-	private String leaveType;
+	private String id;
 	private String description;
 	private float days;
+	private String userAction;
 	
-	private String action;
-	
-	public String getAction() {
-		return action;
+	public String getId() {
+		return id;
 	}
-	public void setAction(String action) {
-		this.action = action;
+
+	public void setId(String id) {
+		this.id = id;
 	}
-	public String getLeaveType() {
-		return leaveType;
-	}
-	public void setLeaveType(String leaveType) {
-		this.leaveType = leaveType;
-	}
+
 	public String getDescription() {
 		return description;
 	}
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
 	public float getDays() {
 		return days;
 	}
+
 	public void setDays(float days) {
 		this.days = days;
 	}
+
+	public String getUserAction() {
+		return userAction;
+	}
+
+	public void setUserAction(String userAction) {
+		this.userAction = userAction;
+	}
+
+	
+	
 
 }

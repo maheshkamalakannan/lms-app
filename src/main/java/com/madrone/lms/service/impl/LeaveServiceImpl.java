@@ -18,6 +18,7 @@ import com.madrone.lms.entity.Employee;
 import com.madrone.lms.entity.EmployeeLeave;
 import com.madrone.lms.entity.Leave;
 import com.madrone.lms.form.ApplyLeaveFormGrid;
+import com.madrone.lms.form.LeaveTypeForm;
 import com.madrone.lms.service.LeaveService;
 import com.madrone.lms.utils.DateUtils;
 
@@ -41,7 +42,11 @@ public class LeaveServiceImpl implements LeaveService {
 
 	@Override
 	@Transactional(readOnly = false)
-	public void saveLeave(Leave l) {
+	public void saveLeave(LeaveTypeForm form) {
+		Leave l = new Leave();
+		l.setId(form.getId());
+		l.setDescription(form.getDescription());
+		l.setDays(form.getDays());
 		leaveDao.saveOrUpdate(l);
 	}
 
@@ -50,6 +55,17 @@ public class LeaveServiceImpl implements LeaveService {
 	public void deleteLeave(String id) {
 		Leave l = leaveDao.findById(id);
 		leaveDao.delete(l);
+	}
+	
+	@Override
+	@Transactional(readOnly = false)
+	public void updateLeave(LeaveTypeForm form) {
+		Leave l = new Leave();
+		l.setId(form.getId());
+		l.setDescription(form.getDescription());
+		l.setDays(form.getDays());
+		leaveDao.update(l);
+		
 	}
 
 	@Override
@@ -111,5 +127,7 @@ public class LeaveServiceImpl implements LeaveService {
 		gridBean.setBalance(gridBean.getTotal() - totalLeaveTaken);
 
 	}
+
+	
 
 }
