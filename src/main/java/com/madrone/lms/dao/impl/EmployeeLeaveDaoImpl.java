@@ -1,6 +1,7 @@
 package com.madrone.lms.dao.impl;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.hibernate.criterion.Criterion;
@@ -11,7 +12,7 @@ import com.madrone.lms.constants.LMSConstants;
 import com.madrone.lms.dao.EmployeeLeaveDao;
 import com.madrone.lms.entity.Employee;
 import com.madrone.lms.entity.EmployeeLeave;
-import com.madrone.lms.form.LeaveTransactionForm;
+import com.madrone.lms.form.LeaveCorrectionForm;
 
 @Repository("employeeLeaveDao")
 public class EmployeeLeaveDaoImpl extends AbstractDaoImpl<EmployeeLeave, Long>
@@ -88,26 +89,17 @@ public class EmployeeLeaveDaoImpl extends AbstractDaoImpl<EmployeeLeave, Long>
 
 	@Override
 	public List<EmployeeLeave> getLeaveListForAdmin(
-			List<Employee> employeeList, LeaveTransactionForm leaveForm) {
-
+			List<Employee> employeeList, LeaveCorrectionForm leaveForm) {
+		
+		List<EmployeeLeave> returnList = new ArrayList<EmployeeLeave>();
 		for (Employee e : employeeList) {
 			List<Criterion> criterionList = new ArrayList<Criterion>();
 			criterionList.add(Restrictions.eq("employee", e));
-			if (leaveForm.getLeaveTypes() != null) {
-				criterionList.add(Restrictions.eq("leave",
-						leaveForm.getLeaveTypes()));
-			}
-
-			if (!("".equals(leaveForm.getFromDate()) && "".equals(leaveForm
-					.getToDate()))) {
-				criterionList.add(Restrictions.between("leave",
-						leaveForm.getFromDate(), leaveForm.getToDate()));
-			}
 			List<EmployeeLeave> employeeLeaveList = findByCriteria(criterionList);
-			return employeeLeaveList;
+			returnList.addAll(employeeLeaveList);
 		}
-
-		return null;
+		System.out.println("The size---------------------------------------------------------------------->" + returnList.size());
+		return returnList;
 	}
 
 }

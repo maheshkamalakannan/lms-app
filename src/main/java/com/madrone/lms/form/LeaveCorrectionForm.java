@@ -5,7 +5,7 @@ import java.util.Calendar;
 import com.madrone.lms.entity.Department;
 import com.madrone.lms.entity.Leave;
 
-public class LeaveTransactionForm {
+public class LeaveCorrectionForm {
 	
 	private String deptId;
 	private String deptDesc;

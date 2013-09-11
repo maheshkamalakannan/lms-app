@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.madrone.lms.dao.EmployeeDao;
 import com.madrone.lms.entity.Employee;
 import com.madrone.lms.entity.Role;
-import com.madrone.lms.form.LeaveTransactionForm;
+import com.madrone.lms.form.LeaveCorrectionForm;
 
 @Repository("employeeDao")
 public class EmployeeDaoImpl extends AbstractDaoImpl<Employee, String>
@@ -97,7 +97,7 @@ public class EmployeeDaoImpl extends AbstractDaoImpl<Employee, String>
 	}
 
 	@Override
-	public List<Employee> getEmployeeList(LeaveTransactionForm form) {
+	public List<Employee> getEmployeeList(LeaveCorrectionForm form) {
 		List<Employee> employees = null;
 		List<Criterion> criterionList = new ArrayList<Criterion>();
 		

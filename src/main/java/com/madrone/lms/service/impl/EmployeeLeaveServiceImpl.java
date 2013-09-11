@@ -14,9 +14,9 @@ import com.madrone.lms.entity.Department;
 import com.madrone.lms.entity.Employee;
 import com.madrone.lms.entity.EmployeeLeave;
 import com.madrone.lms.entity.Leave;
+import com.madrone.lms.form.LeaveCorrectionForm;
 import com.madrone.lms.form.LeaveDetailsGrid;
 import com.madrone.lms.form.LeaveForm;
-import com.madrone.lms.form.LeaveTransactionForm;
 import com.madrone.lms.service.EmployeeLeaveService;
 import com.madrone.lms.utils.DateUtils;
 
@@ -192,7 +192,7 @@ public class EmployeeLeaveServiceImpl implements EmployeeLeaveService {
 
 	@Override
 	public List<LeaveDetailsGrid> getLeaveListForAdmin(
-			LeaveTransactionForm leaveFormFilter) {
+			LeaveCorrectionForm leaveFormFilter) {
 		
 		Department dept = null;
 		Leave leave     = null;

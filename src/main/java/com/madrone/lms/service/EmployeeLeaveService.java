@@ -3,9 +3,9 @@ package com.madrone.lms.service;
 import java.util.List;
 
 import com.madrone.lms.entity.EmployeeLeave;
+import com.madrone.lms.form.LeaveCorrectionForm;
 import com.madrone.lms.form.LeaveDetailsGrid;
 import com.madrone.lms.form.LeaveForm;
-import com.madrone.lms.form.LeaveTransactionForm;
 
 public interface EmployeeLeaveService {
 
@@ -31,7 +31,8 @@ public interface EmployeeLeaveService {
 
 	List<LeaveDetailsGrid> getPendingAndApprovalLeaveList(String userName);
 
-	List<LeaveDetailsGrid> getLeaveListForAdmin(LeaveTransactionForm lForm);
+	List<LeaveDetailsGrid> getLeaveListForAdmin(LeaveCorrectionForm lForm);
+
 
 	
 }

@@ -14,39 +14,63 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.madrone.lms.constants.LMSConstants;
+import com.madrone.lms.entity.Department;
+import com.madrone.lms.entity.Leave;
+import com.madrone.lms.form.LeaveCorrectionForm;
 import com.madrone.lms.form.LeaveDetailsGrid;
-import com.madrone.lms.form.LeaveTransactionForm;
 import com.madrone.lms.form.UserForm;
+import com.madrone.lms.service.DepartmentService;
 import com.madrone.lms.service.EmployeeLeaveService;
+import com.madrone.lms.service.LeaveService;
 import com.madrone.lms.utils.JSONUtils;
 import com.madrone.lms.utils.JsonResponse;
 
 
 //This is for admin users, who can able to view and edit leave records.
 @Controller
-public class LeaveTransactionController {
+public class LeaveCorrectionController {
 	@Autowired
 	private EmployeeLeaveService empLeaveService;
+	
+	@Autowired
+	private DepartmentService depService;
+	
+	@Autowired
+	private LeaveService leaveService;
 	
 	private static final Logger logger = LoggerFactory
 			.getLogger(ApprovedRejectedListController.class);
 	
 	@RequestMapping(value = "/viewLeave", method = RequestMethod.GET)
 	public String viewLeaveForm(Model model, UserForm Userform) {
-		model.addAttribute("LeaveTransactionForm", new LeaveTransactionForm());
+		loadComboValues(model);
 		return LMSConstants.ADMIN_VIEW_LEAVE_SCR;
 	}
 	
-	@RequestMapping(value = "/submitLeaveTransaction", method = RequestMethod.POST)
+	private void loadComboValues(Model model) {
+		List<Department> deptList = depService.getDepartmentList();
+		model.addAttribute("deptList", deptList);
+		
+		List<Leave> ltList = leaveService.getLeaveTypes();
+		model.addAttribute("leaveTypes", ltList);
+		
+		model.addAttribute("LeaveCorrectionForm", new LeaveCorrectionForm());
+		
+	}
+
+	@RequestMapping(value = "/searchLeaveCorrection", method = RequestMethod.POST)
 	public @ResponseBody
 	JsonResponse searchUser(Model model,
-			@ModelAttribute("LeaveTransactionForm") LeaveTransactionForm lForm, BindingResult result) {
+			@ModelAttribute("LeaveCorrectionForm") LeaveCorrectionForm lForm, BindingResult result) {
 		JsonResponse res = new JsonResponse();
 		
 		logger.info("Inside submitLeaveTransaction()");
 		List<LeaveDetailsGrid> leaveListOfTeam = empLeaveService.getLeaveListForAdmin(lForm);
+		
 		String jsonString = JSONUtils.convertListToJson(leaveListOfTeam);
-		logger.info("JSONString" + jsonString); 
+		model.addAttribute("jsonString",jsonString);
+		res.setResult(leaveListOfTeam);
+		loadComboValues(model);
 
 		return res;
 	}

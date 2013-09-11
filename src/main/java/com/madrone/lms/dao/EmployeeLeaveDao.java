@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.madrone.lms.entity.Employee;
 import com.madrone.lms.entity.EmployeeLeave;
-import com.madrone.lms.form.LeaveTransactionForm;
+import com.madrone.lms.form.LeaveCorrectionForm;
 
 
 public interface EmployeeLeaveDao extends AbstractDao<EmployeeLeave, Long> {
@@ -24,7 +24,7 @@ public interface EmployeeLeaveDao extends AbstractDao<EmployeeLeave, Long> {
 	List<EmployeeLeave> getPendingAndApprovalList(Employee emp);
 
 	List<EmployeeLeave> getLeaveListForAdmin
-		(List<Employee> employeeList, LeaveTransactionForm leaveForm);
+		(List<Employee> employeeList, LeaveCorrectionForm leaveForm);
 	
 
 }
