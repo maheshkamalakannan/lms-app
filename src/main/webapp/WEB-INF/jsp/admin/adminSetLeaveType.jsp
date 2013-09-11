@@ -1,6 +1,6 @@
 <%@ include file="../common/commonJs.jsp" %>
 
-<form:form name="setleavetype" id="setleavetype" method="post" novalidate="novalidate" action="/lms-app/cancelLeave" ng-controller="constantsController">
+<form:form name="leaveTypeForm" id="leaveTypeForm" method="post" novalidate="novalidate" action="/lms-app/submitSetLeaveType" ng-controller="constantsController">
 
 	<div id="rightdata" ng-controller="setLeaveTypeController">
 	  <div id="topcontent" style="margin-bottom:2px;">
@@ -16,12 +16,14 @@
 	            <div class="success" style="margin: -40px 5px 5px 23.5em; width:37.5%;">Leave is Deleted Successfully.</div>
 	          </c:if>
 	  </div>
-	  <div class="leavesummaryContent">  
-	       <div>
+	  
+	  <div id="leavesummaryContent">
+	       <div id="setleavetypegrid" ng-init='init(data1=${jsonString})'>
 		      <div class="setleavetypegridStyle" ng-grid="gridOptions"></div>
 	       </div>
 	       <input style="margin-top:5px;" type="button" name="Search" value="Create" ng-click="[createleavetype($event)]"/>
-	  </div>
+	  </div> 
+	  
 	  <div class="setleavetypebottom">
 	  
 	     <c:if test="${SucessMessage != null}">
@@ -32,7 +34,7 @@
 		   <table cellpadding="4">
 		    <tbody>
 		      <tr><td><span class="rc">{{employeeleavetype}}</span></td>
-		          <td><input type="text" name="leaveName" ng-model="ngleaveName" maxlength="10"  required/>
+		          <td><input type="text" name="id" id="id" ng-model="ngid" maxlength="2"  required/>
 		      </tr>
 		      <tr>
 	    	     <td></td>
@@ -41,7 +43,7 @@
 	    	     </td>
 		     </tr>
 		     <tr><td><span class="rc">{{setleavedays}}</span></td>
-		          <td><input type="text" name="leavedays" ng-model="ngleavedays" maxlength="2" num-only required/>
+		          <td><input type="text" name="days" id="days"  ng-model="ngdays" maxlength="2" num-only required/>
 		      </tr>
 		      <tr>
 	    	     <td></td>
@@ -56,7 +58,7 @@
 			   <table cellpadding="4">
 			    <tbody>
 			      <tr><td><span class="rc">{{setleavedesc}}</span></td>
-			          <td><textarea name="leavedesc" ng-model="ngleavedesc" maxlength="30"  required></textarea>
+			          <td><textarea name="description" id="description" ng-model="ngleavedesc" maxlength="30"  required></textarea>
 			      </tr>
 			      <tr>
 		    	     <td></td>

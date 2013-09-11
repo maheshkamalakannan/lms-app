@@ -852,43 +852,27 @@ mycontroller.controller('modifyUserController', function($scope, $window, $locat
 
 mycontroller.controller('setLeaveTypeController', function($scope, $window, $location) {
 	$scope.showleavediv = false;
-	/*$scope.init = function(data1) {
+	$scope.init = function(data1) {
 		$scope.gridData = [];
 		$scope.gridData = data1;
 		$scope.gridOptions = { 
 	    		data: 'gridData',
 	    		multiSelect: false,
 	    		showFooter:true,
-	    		columnDefs: [{field: 'Name', displayName: 'Name',cellClass:'aligncolumn',width:50,},
-	    		             {field: 'Description', displayName: 'Description',cellClass:'aligncolumn',width:90,},
-	    		             {field: 'Days', displayName: 'Days',cellClass:'aligncolumn',width:95,}
-	    		             ]};
+	    		columnDefs: [{displayName: 'Delete', cellClass:'aligncolumn', cellTemplate: '<input type="radio" name="view" id="view"  ng-click="deleterow(row)" value="View">', width:60,},
+    		             {displayName: 'Modify', cellClass:'aligncolumn', cellTemplate: '<input type="radio" name="view" id="view"  ng-click="modifyrow(row)" value="View">', width:60,},
+    		             {field: 'id', displayName: 'Name',cellClass:'aligncolumn', width:60,},
+    		             {field: 'days', displayName: 'Days',cellClass:'aligncolumn', width:60,},
+    		             {field: 'description', displayName: 'Description',cellClass:'aligncolumn'},
+    		             
+    		             ]};
 		
 		 $scope.$on('ngGridEventData', function (e,s) {
 	         $scope.gridOptions.selectItem(0,true);
 	         $(".ngViewport").focus();
 	     });
-	};*/
-	$scope.gridData =[{Name:"CL",Description:"Something",Days:"20"},
-	                  {Name:"EL",Description:"again Something",Days:"10"}];
-	$scope.gridOptions = { 
-    		data: 'gridData',
-    		plugins: [new ngGridCsvExportPlugin()],
-    		multiSelect: false,
-    		showFooter:true,
-    		columnDefs: [{displayName: 'Delete', cellClass:'aligncolumn', cellTemplate: '<input type="radio" name="view" id="view"  ng-click="deleterow(row)" value="View">', width:60,},
-    		             {displayName: 'Modify', cellClass:'aligncolumn', cellTemplate: '<input type="radio" name="view" id="view"  ng-click="modifyrow(row)" value="View">', width:60,},
-    		             {field: 'Name', displayName: 'Name',cellClass:'aligncolumn', width:60,},
-    		             {field: 'Days', displayName: 'Days',cellClass:'aligncolumn', width:60,},
-    		             {field: 'Description', displayName: 'Description',cellClass:'aligncolumn'},
-    		             
-    		             ]};
+	};
 	
-	 $scope.$on('ngGridEventData', function (e,s) {
-         $scope.gridOptions.selectItem(0,true);
-         $(".ngViewport").focus();
-     });
-	 
 	$scope.deleterow = function(row){
 		$('.success').css("display","none");
 		$scope.selecteddata = [{"Name": row.entity.Name,"Description": row.entity.Description, "Days": row.entity.Days}];
