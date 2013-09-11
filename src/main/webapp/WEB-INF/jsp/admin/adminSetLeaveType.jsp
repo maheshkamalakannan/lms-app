@@ -14,7 +14,7 @@
 	            <a href="/lms-app">Sign Out</a>
 	          </div>
 	            <c:if test="${SucessMessage != null}">
-	  		     <div class="success">${SucessMessage}</div>
+	  		     <div class="success" style="margin: -40px 5px 5px 23.5em; width:37.5%;">${SucessMessage}</div>
 			  </c:if>
 	  </div>
 	  
@@ -26,30 +26,25 @@
 	  </div> 
 	  
 	  <div class="setleavetypebottom">
-	  
-	      <%-- <c:if test="${SucessMessage != null}">
-	  		     <div class="success">${SucessMessage}</div>
-			  </c:if> --%>
-		 
 		 <div class="setLeavetypeBottomleftContent" ng-model="showleavediv" ng-show="showleavediv">
 		   <table cellpadding="4">
 		    <tbody>
 		      <tr><td><span class="rc">{{employeeleavetype}}</span></td>
-		          <td><input type="text" name="id" id="id" ng-model="ngid" maxlength="2"  required/>
+		          <td><input type="text" name="id" id="leavetype" ng-model="ngid" maxlength="2" read-only required/>
 		      </tr>
 		      <tr>
 	    	     <td></td>
 	    	     <td> 
-	    	     <span class="error" style="width: 95%; margin-top:-13px; margin-bottom: 5px;" ng-show="submitted && leaveTypeForm.leaveName.$error.required">{{setleavetypereq}}</span>
+	    	     <span class="error" style="width: 95%; margin-top:-13px; margin-bottom: 5px;" ng-show="submitted && leaveTypeForm.id.$error.required">{{setleavetypereq}}</span>
 	    	     </td>
 		     </tr>
 		     <tr><td><span class="rc">{{setleavedays}}</span></td>
-		          <td><input type="text" name="days" id="days"  ng-model="ngdays" maxlength="2" num-only required/>
+		          <td><input type="text" name="days" id="leavedays"  ng-model="ngdays" maxlength="2" num-only required/>
 		      </tr>
 		      <tr>
 	    	     <td></td>
 	    	     <td>
-	    	     <span class="error" style="width: 95%; margin-top:-13px; margin-bottom: 5px;" ng-show="submitted && leaveTypeForm.leavedesc.$error.required">{{setleavedaysreq}}</span>
+	    	     <span class="error" style="width: 95%; margin-top:-13px; margin-bottom: 5px;" ng-show="submitted && leaveTypeForm.days.$error.required">{{setleavedaysreq}}</span>
 	    	     </td>
 		     </tr>
 		    </tbody>
@@ -59,12 +54,12 @@
 			   <table cellpadding="4">
 			    <tbody>
 			      <tr><td><span class="rc">{{setleavedesc}}</span></td>
-			          <td><textarea name="description" id="description" ng-model="ngdescription" maxlength="30"  required></textarea>
+			          <td><textarea name="description" id="leavedescription" ng-model="ngdescription" maxlength="30"  required></textarea>
 			      </tr>
 			      <tr>
 		    	     <td></td>
 		    	     <td>
-		    	     <span class="error" style="width: 95%; margin-top:-13px; margin-bottom: 5px;" ng-show="submitted && leaveTypeForm.leavedesc.$error.required">{{setleavedescreq}}</span>
+		    	     <span class="error" style="width: 95%; margin-top:-13px; margin-bottom: 5px;" ng-show="submitted && leaveTypeForm.description.$error.required">{{setleavedescreq}}</span>
 		    	     </td>
 			     </tr>
 			    </tbody>

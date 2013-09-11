@@ -758,6 +758,7 @@ mycontroller.controller('modifyUserController', function($scope, $window, $locat
 	$scope.ngsearch      = true;
 	$scope.ngsearchemail = '';
 	$scope.searchuser = function(form,data){
+		$('.success').css("display","none");
 		var user = $scope.ngsearchemail;
 		if((user != "") && (!form.$error.email)){
 		 $.ajax({
@@ -875,26 +876,46 @@ mycontroller.controller('setLeaveTypeController', function($scope, $window, $loc
 	
 	$scope.deleterow = function(row){
 		$('.success').css("display","none");
-		$scope.selecteddata = [{"Name": row.entity.id,"Description": row.entity.description, "Days": row.entity.days}];
-		$scope.userAction = "DELETE";
+		$scope.selecteddata   = [{"Name": row.entity.id,"Description": row.entity.description, "Days": row.entity.days}];
+		$scope.showleavediv   = true;
+		$scope.ngid           = row.entity.id;
+		$scope.ngdescription  = row.entity.description;
+		$scope.ngdays         = row.entity.days;
+		$scope.userAction     = "DELETE";
+		$("input[name='submit']").attr({"value":"Delete"});
+		$('#leavetype').attr('readonly','true');
+		$('#leavetype').css('background-color','#fff');
+		$('#leavedays').attr("readonly", "true");
+		$('#leavedays').css('background-color','#fff');
+		$('#leavedescription').attr("readonly","true");
+		$('#leavedescription').css('background-color','#fff');
 	};
 	
 	$scope.modifyrow = function(row){
-		
 		$('.success').css("display","none");
-		$scope.showleavediv = true;
-		$scope.ngid  = row.entity.id;
+		$scope.showleavediv   = true;
+		$scope.ngid           = row.entity.id;
 		$scope.ngdescription  = row.entity.description;
-		$scope.ngdays  = row.entity.days;
-		$scope.userAction = "UPDATE";
+		$scope.ngdays         = row.entity.days;
+		$("input[name='submit']").attr({"value":"Modify"});
+		$('#leavetype').attr('readonly','true');
+		$('#leavetype').css('background-color','#fff');
+		$('#leavedays').removeAttr("readonly");
+		$('#leavedescription').removeAttr("readonly");
+		$scope.userAction     = "UPDATE";
 	};
 	
 	$scope.createleavetype = function(event){
 		$('.success').css("display","none");
 		$scope.showleavediv = true;
-		$scope.ngleaveName  = '';
-		$scope.ngleavedesc  = '';
-		$scope.ngleavedays  = '';
+		$scope.ngid         = '';
+		$scope.ngdescription= '';
+		$scope.ngdays       = '';
+		$("input[name='submit']").attr({"value":"Save"});
+		$('#leavetype').removeAttr('readonly');
+		$('#leavedays').removeAttr("readonly");
+		$('#leavedescription').removeAttr("readonly");
+		$scope.userAction   = "INSERT";
 	};
 	
 	$scope.cancelleavetype = function(){
@@ -905,7 +926,6 @@ mycontroller.controller('setLeaveTypeController', function($scope, $window, $loc
 	};
 	
 	$scope.saveleavetype = function(form,event){
-		$scope.userAction = "INSERT";
 		if(form.$valid){
 				 form.submit();
 			 }
