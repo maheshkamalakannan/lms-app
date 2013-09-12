@@ -20,7 +20,8 @@
     <script type="text/javascript" src="<%=request.getContextPath()%>/jsandcss/Jquery/jquery.maskedinput.js"></script>
 	<script type="text/javascript" src="<%=request.getContextPath()%>/jsandcss/customAngularJs/controllers.js"></script>
 	<script type="text/javascript" src="<%=request.getContextPath()%>/jsandcss/ng-grid/ng-grid-csv-export.js"></script>
-    <script type="text/javascript" src="<%=request.getContextPath()%>/jsandcss/ng-grid/ng-grid-flexible-height.js"></script>	
+    <script type="text/javascript" src="<%=request.getContextPath()%>/jsandcss/ng-grid/ng-grid-flexible-height.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath()%>/jsandcss/angular-dialog/createDialog.js"></script>	
 	
 </head>
 </html>

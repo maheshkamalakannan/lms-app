@@ -1,6 +1,6 @@
 'use strict';
 
-var mycontroller = angular.module('mainController', ['ngGrid','$strap.directives']);
+var mycontroller = angular.module('mainController', ['fundoo.services', 'ngGrid', '$strap.directives']);
 
 /* Directives */
 /* Allowing only number in textbox */
@@ -937,7 +937,8 @@ mycontroller.controller('setLeaveTypeController', function($scope, $window, $loc
 	};
 });
 
-mycontroller.controller('leaveCorrectionController', function($scope, $window, $location,$filter) {
+//mycontroller.controller('leaveCorrectionController', function($scope, $window, $location,$filter) {
+mycontroller.controller('leaveCorrectionController',['$scope', 'createDialog', function($scope, createDialogService, $filter) {
 	
 	$scope.fromdatereq           = false;
 	$scope.todatereq             = false;
@@ -1012,7 +1013,6 @@ mycontroller.controller('leaveCorrectionController', function($scope, $window, $
     		multiSelect: false,
     		showFooter:true,
     		columnDefs: [{displayName: 'Delete', cellClass:'aligncolumn', cellTemplate: '<input type="radio" name="view" id="view"  ng-click="deleterow(row)" value="View">', width:60,},
-			             {displayName: 'Modify', cellClass:'aligncolumn', cellTemplate: '<input type="radio" name="view" id="view"  ng-click="modifyrow(row)" value="View">', width:60,},
 			             {field: 'empId', displayName: 'ID',cellClass:'aligncolumn',},
 			             {field: 'empName', displayName: 'Name',cellClass:'aligncolumn',},
 			             {field: 'leaveType', displayName: 'Leave Type',cellClass:'aligncolumn',},
@@ -1022,8 +1022,22 @@ mycontroller.controller('leaveCorrectionController', function($scope, $window, $
 			             {field: 'reason', displayName: 'Comments',cellClass:'aligncolumn',},
 			             {field: 'status', displayName: 'Status',cellClass:'aligncolumn',},
 			             ]};
+	
+	$scope.deleterow = function(row){
+		createDialogService({
+            id: 'confirmDelete',
+            title: 'Delete Data.',
+            template:'<b><p style="text-align:center;"> Please Confirm to Delete Data.</p></b>',
+            backdrop: true,
+            success: {label: 'Confirm',
+            	      fn: function() {$scope.selecteddata = [{"id": row.entity.id,"empId": row.entity.empId, "empName": row.entity.empName, "leaveType": row.entity.leaveType, "fromDate": row.entity.fromDate, "fromDateSession":row.entity.fromDateSession,
+		                              "toDate": row.entity.toDate ,"toDateSession": row.entity.toDateSession, "noOfDays": row.entity.noOfDays, "status": row.entity.status, "reason": row.entity.reason}];
+            	                     }
+		             }
+          });
+	};
 
-});
+}]);
 
 function welcomeController($scope, $http) {
 	$scope.oldpassword = false;
