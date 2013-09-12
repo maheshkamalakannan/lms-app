@@ -76,7 +76,7 @@ public class LeaveCorrectionController {
 			String jsonString = JSONUtils.convertListToJson(leaveListOfTeam);
 			System.out.println("JsonString===" + jsonString);
 			model.addAttribute("jsonString",jsonString);
-			res.setResult(leaveListOfTeam);
+			res.setResult(jsonString);
 			res.setStatus("SUCCESS");
 			loadComboValues(model);
 		}
