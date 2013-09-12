@@ -13,19 +13,20 @@
 	            <a href="/lms-app">Sign Out</a>
 	          </div>
 	  </div>
+	  
 	  <div class="leavecorrectionleftcontent">
 	       <span class="rc">Department</span>
-				    <select name="deptId" id="deptId" ng-model="ngdeptId">
-		      				<c:forEach items="${deptList}" var="dept">
-			       				<option value="${dept.id}">${dept.description}</option>
-			   				</c:forEach>
-						</select>
-			  		<span class="rc" style="margin-left:10px;">Leave Type</span>
-		      		<select name="leaveType" id="leaveType" ng-model="ngleaveType">
-	  				  	 	<c:forEach items="${leaveTypes}" var="ltype">
-	       				 		<option value="${ltype.id}">${ltype.description}</option>
-	   						</c:forEach>
-					</select>
+			   <select name="deptId" id="deptId" >
+		    		<c:forEach items="${deptList}" var="dept">
+			    		<option value="${dept.id}"  selected='selected'>${dept.description} </option>
+			   		</c:forEach>
+				</select>
+	  		<span class="rc" style="margin-left:10px;">Leave Type</span>
+	  			<select name="leaveType" id="leaveType">
+  					<c:forEach items="${leaveTypes}" var="ltype">
+	       			<option value="${ltype.id}" selected='selected'>${ltype.description}</option>
+	   				</c:forEach>
+			</select>
 	   </div>
 	   <div class="leavecorrectionrightcontent">
 	       <span class="rc">From Date</span>

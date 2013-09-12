@@ -937,13 +937,14 @@ mycontroller.controller('setLeaveTypeController', function($scope, $window, $loc
 	};
 });
 
-mycontroller.controller('leaveCorrectionController', function($scope, $window, $location) {
+mycontroller.controller('leaveCorrectionController', function($scope, $window, $location,$filter) {
 	
 	$scope.fromdatereq           = false;
 	$scope.todatereq             = false;
 	$scope.todategreaterfromdate = false;
 	$scope.ngfromdate            = '';
 	$scope.ngtodate              = '';
+	
 	
 	$scope.leaveCorrectionsSearch = function(form,event){
 		if(($scope.ngfromdate > $scope.ngtodate) && ($scope.ngfromdate != '' && $scope.ngtodate != '')){
@@ -959,10 +960,28 @@ mycontroller.controller('leaveCorrectionController', function($scope, $window, $
 			event.preventDefault();
 		}
 		else{
+			
+			var ngdeptId    = $('#deptId').val();
+			var ngLeaveType = $('#leaveType').val();
+			
+			var ngfromDate;
+			if(""==$scope.ngfromdate) {
+				ngfromDate = "";
+			} else {
+				ngfromDate = $filter('date')(new Date($scope.ngfromdate), 'dd/MM/yyyy');
+			}
+			
+			var ngtoDate;
+			if(""==$scope.ngtodate) {
+				ngtoDate = "";
+			} else {
+				ngtoDate = $filter('date')(new Date($scope.ngtodate), 'dd/MM/yyyy');
+			}
+			
 			$.ajax({
 		        type: "POST",
 		        url: location.protocol + "//" + location.host+"/lms-app/searchLeaveCorrection",
-		        data: {deptId: $scope.ngdeptId, leaveType: $scope.ngleaveType, fromDate: $scope.ngfromdate ,toDate: $scope.ngtodate},
+		        data: {deptId: ngdeptId, leaveType: ngLeaveType, fromDate: ngfromDate ,toDate: ngtoDate},
 		        success: function(response) {
 		        	if(response.status == "SUCCESS") {
 		        		if (!$scope.$$phase) {

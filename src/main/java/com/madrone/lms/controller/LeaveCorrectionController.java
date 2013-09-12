@@ -18,7 +18,6 @@ import com.madrone.lms.entity.Department;
 import com.madrone.lms.entity.Leave;
 import com.madrone.lms.form.LeaveCorrectionForm;
 import com.madrone.lms.form.LeaveDetailsGrid;
-import com.madrone.lms.form.UserForm;
 import com.madrone.lms.service.DepartmentService;
 import com.madrone.lms.service.EmployeeLeaveService;
 import com.madrone.lms.service.LeaveService;
@@ -58,23 +57,21 @@ public class LeaveCorrectionController {
 		
 	}
 
-	@RequestMapping(value = "/searchLeaveCorrection", method = RequestMethod.POST)
+	@RequestMapping(value = "/searchLeaveCorrection", 
+			method = RequestMethod.POST)
 	public @ResponseBody
 	JsonResponse searchLeaveCorrection(Model model,
-			@ModelAttribute("LeaveCorrectionForm") LeaveCorrectionForm lForm, BindingResult result) {
+			@ModelAttribute("LeaveCorrectionForm") LeaveCorrectionForm lForm, 
+			BindingResult result) {
 		JsonResponse res = new JsonResponse();
 		
 		logger.info("Inside submitLeaveTransaction()");
-		System.out.println("DEPArtment------------------------------------------->" + lForm.getDeptId());
-		System.out.println("LeaveType-------------------------------------------->" + lForm.getLeaveType());
-		System.out.println("fromDate-------------------------------------------->" + lForm.getFromDate());
-		System.out.println("toDate-------------------------------------------->" + lForm.getToDate());
 		
-		List<LeaveDetailsGrid> leaveListOfTeam = empLeaveService.getLeaveListForAdmin(lForm);
+		List<LeaveDetailsGrid> leaveListOfTeam = empLeaveService.
+				getLeaveListForAdmin(lForm);
 		
 		if(leaveListOfTeam!=null) {
 			String jsonString = JSONUtils.convertListToJson(leaveListOfTeam);
-			System.out.println("JsonString===" + jsonString);
 			model.addAttribute("jsonString",jsonString);
 			res.setResult(jsonString);
 			res.setStatus("SUCCESS");

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.madrone.lms.constants.LMSConstants;
 import com.madrone.lms.dao.DepartmentDao;
 import com.madrone.lms.entity.Department;
 import com.madrone.lms.service.DepartmentService;
@@ -43,6 +44,16 @@ public class DepartmentServiceImpl implements DepartmentService {
 	@Override
 	public List<Department> getDepartmentList() {
 		return departmentDao.getDepartmentList();
+	}
+
+	@Override
+	public List<Department> getAdminDepartmentList() {
+		List<Department> deptList = departmentDao.getDepartmentList();
+		Department d = new Department();
+		d.setId(LMSConstants.DEFAULT_COMBO_BOX_VALUE);
+		d.setDescription(LMSConstants.DEFAULT_COMBO_BOX_VALUE);
+		deptList.add(d);
+		return deptList;
 	}
 
 }

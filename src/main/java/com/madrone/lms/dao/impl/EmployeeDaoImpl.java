@@ -8,6 +8,7 @@ import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
+import com.madrone.lms.constants.LMSConstants;
 import com.madrone.lms.dao.EmployeeDao;
 import com.madrone.lms.entity.Employee;
 import com.madrone.lms.entity.Role;
@@ -100,11 +101,10 @@ public class EmployeeDaoImpl extends AbstractDaoImpl<Employee, String>
 	public List<Employee> getEmployeeList(LeaveCorrectionForm form) {
 		List<Employee> employees = null;
 		List<Criterion> criterionList = new ArrayList<Criterion>();
-		
-		if(! (form.getDeptId()==null)) {
-			criterionList.add(Restrictions.eq("department", form.getDept()));
-			employees = findByCriteria(criterionList);
+		if(!LMSConstants.DEFAULT_COMBO_BOX_VALUE.equals(form.getDeptId())) { 
+				criterionList.add(Restrictions.eq("department", form.getDept()));
 		}
+		employees = findByCriteria(criterionList);
 		
 		return employees;
 		

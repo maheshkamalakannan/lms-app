@@ -16,4 +16,6 @@ public interface DepartmentService {
 
 	List<Department> getDepartmentList();
 
+	List<Department> getAdminDepartmentList();
+
 }
