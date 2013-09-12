@@ -863,7 +863,7 @@ mycontroller.controller('setLeaveTypeController', function($scope, $window, $loc
 	    		showFooter:true,
 	    		columnDefs: [{displayName: 'Delete', cellClass:'aligncolumn', cellTemplate: '<input type="radio" name="view" id="view"  ng-click="deleterow(row)" value="View">', width:60,},
     		             {displayName: 'Modify', cellClass:'aligncolumn', cellTemplate: '<input type="radio" name="view" id="view"  ng-click="modifyrow(row)" value="View">', width:60,},
-    		             {field: 'id', displayName: 'Name',cellClass:'aligncolumn', width:60,},
+    		             {field: 'id', displayName: 'Leave Type',cellClass:'aligncolumn', width:90,},
     		             {field: 'days', displayName: 'Days',cellClass:'aligncolumn', width:60,},
     		             {field: 'description', displayName: 'Description',cellClass:'aligncolumn'},
     		             
@@ -946,27 +946,6 @@ mycontroller.controller('leaveCorrectionController', function($scope, $window, $
 	$scope.ngtodate              = '';
 	
 	$scope.leaveCorrectionsSearch = function(form,event){
-	
-	var deptIdValue    = $scope.ngdeptId;
-	var leaveTypeValue = $scope.ngleaveType;
-	var fromDateValue  = $scope.ngfromdate;
-	var toDateValue    = $scope.ngtodate;
-	alert($scope.ngdeptId);
-	
-		$.ajax({
-			        type: "POST",
-			        url: location.protocol + "//" + location.host+"/lms-app/searchLeaveCorrection",
-			        data: {deptId: deptIdValue, leaveType: leaveTypeValue, fromDate: fromDateValue ,toDate: toDateValue},
-			        success: function(response) {
-			        	if(response.status == "SUCCESS") {
-			        		alert(response);
-			             }
-				        },
-			        error: function(e){
-			        	alert('Error: ' + e);
-			        	}
-		       		 });
-		
 		if(($scope.ngfromdate > $scope.ngtodate) && ($scope.ngfromdate != '' && $scope.ngtodate != '')){
 			  $scope.todategreaterfromdate = true;
 			  event.preventDefault();
@@ -979,6 +958,25 @@ mycontroller.controller('leaveCorrectionController', function($scope, $window, $
 			$scope.todatereq           = true;
 			event.preventDefault();
 		}
+		else{
+			$.ajax({
+		        type: "POST",
+		        url: location.protocol + "//" + location.host+"/lms-app/searchLeaveCorrection",
+		        data: {deptId: $scope.ngdeptId, leaveType: $scope.ngleaveType, fromDate: $scope.ngfromdate ,toDate: $scope.ngtodate},
+		        success: function(response) {
+		        	if(response.status == "SUCCESS") {
+		        		if (!$scope.$$phase) {
+		        			var data = $.parseJSON(response.result);
+		        			$scope.leavecorrectiongridData = data;
+		                    $scope.$apply();
+		                }
+		             }
+			        },
+		        error: function(e){
+		        	alert('Error: ' + e);
+		        	}
+	       		 });
+		}
 	};
 	
 	$scope.lcfromdate = function(event){
@@ -989,6 +987,22 @@ mycontroller.controller('leaveCorrectionController', function($scope, $window, $
 		$scope.todatereq            = false;
 		$scope.todategreaterfromdate = false;
 	};
+	
+	$scope.gridOptions = { 
+    		data: 'leavecorrectiongridData',
+    		multiSelect: false,
+    		showFooter:true,
+    		columnDefs: [{displayName: 'Delete', cellClass:'aligncolumn', cellTemplate: '<input type="radio" name="view" id="view"  ng-click="deleterow(row)" value="View">', width:60,},
+			             {displayName: 'Modify', cellClass:'aligncolumn', cellTemplate: '<input type="radio" name="view" id="view"  ng-click="modifyrow(row)" value="View">', width:60,},
+			             {field: 'empId', displayName: 'ID',cellClass:'aligncolumn',},
+			             {field: 'empName', displayName: 'Name',cellClass:'aligncolumn',},
+			             {field: 'leaveType', displayName: 'Leave Type',cellClass:'aligncolumn',},
+			             {field: 'fromDate', displayName: 'From Date',cellClass:'aligncolumn', },
+			             {field: 'toDate', displayName: 'To Date',cellClass:'aligncolumn', },
+			             {field: 'noOfDays', displayName: 'Days',cellClass:'aligncolumn', },
+			             {field: 'reason', displayName: 'Comments',cellClass:'aligncolumn',},
+			             {field: 'status', displayName: 'Status',cellClass:'aligncolumn',},
+			             ]};
 
 });
 

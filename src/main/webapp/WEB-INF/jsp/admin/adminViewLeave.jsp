@@ -43,10 +43,16 @@
             	<button type="button" class="btn" data-toggle="datepicker"><i class="icon-calendar"></i></button>
             </div>
             <input type="button" name="search" value="search" ng-click="[submitted=true,leaveCorrectionsSearch(adduser,$event)]"/>
-            
-            <span class="error" style="width: 33%;" ng-model="fromdatereq" ng-show="fromdatereq">{{fromdaterequired}}</span>
-            <span class="error" style="width: 33%; margin-left: 225px;" ng-model="todatereq" ng-show="todatereq">{{todaterequired}}</span> 
-            <span class="error" style="width: 33%; margin-left: 225px;" ng-model="todategreaterfromdate" ng-show="todategreaterfromdate">{{todategreater}}</span> 
+            ${jsonString}
+            <span class="error" style="width: 30%; margin-left: 70px;" ng-model="fromdatereq" ng-show="fromdatereq">{{fromdaterequired}}</span>
+            <span class="error" style="width: 30%; margin-left: 275px;" ng-model="todatereq" ng-show="todatereq">{{todaterequired}}</span> 
+            <span class="error" style="width: 30%; margin-left: 275px;" ng-model="todategreaterfromdate" ng-show="todategreaterfromdate">{{todategreater}}</span> 
+	  </div>
+	  
+	  <div class="leaveCorrectionContent">
+	       <div>
+		      <div class="leaveCorrectiongridStyle" ng-grid="gridOptions"></div>
+	       </div>
 	  </div>
 	</div>
 </form:form>
