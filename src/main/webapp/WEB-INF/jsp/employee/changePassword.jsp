@@ -19,11 +19,11 @@
 					<input  type="hidden" name="userName" id="userName" value = "${userName}"/>
 					<input  type="hidden" name="empName" id="empName" value = "${empName}"/>
 					       
-					<input  type="password" name="oldPassword" placeholder="Current Password" style="margin-left: 2px; width: 35%;" ng-model="passwordcurrent" required/><br>
+					<input  type="password" name="oldPassword" placeholder="Current Password" style="margin-left: 2px; width: 35%;" ng-model="passwordcurrent" maxlength="10" required/><br>
 				      <div>
 				        <span class="error" style="width: 35%;" ng-show="submitted && changepassword.oldPassword.$error.required">{{passwordrequired}}</span>
 				      </div>
-					    <input  type="password" name="newPassword" placeholder="New Password" style="margin-left: 2px; width: 35%;" ng-model="passwordnew" ng-change="hidemeter()" password-meter required/>
+					    <input  type="password" name="newPassword" placeholder="New Password" style="margin-left: 2px; width: 35%;" ng-model="passwordnew" ng-change="hidemeter()" maxlength="10" password-meter required/>
 					  <div style="float: right; margin-right: 26.5em; margin-top: 7px;">
 					    <span id="metererror">{{error}}</span>
 				     </div><br>
@@ -33,7 +33,7 @@
 				        <span class="error" ng-model="confirmerror" ng-show="confirmerror">{{confirmationpassword}}</span>
 				      </div>
 						      
-				     <input  type="password" name="confirmNewPasswod" placeholder="Confirm Password" style="margin-left: 2px; width: 35%;" ng-model="passwordconfirm" ng-change="clearerror()" required/><br>
+				     <input  type="password" name="confirmNewPasswod" placeholder="Confirm Password" style="margin-left: 2px; width: 35%;" ng-model="passwordconfirm" ng-change="clearerror()" maxlength="10" required/><br>
 				       <div>
 				         <span class="error" style="width: 35%;" ng-show="submitted && changepassword.confirmNewPasswod.$error.required">{{confirmationpasswordrequired}}</span>
 				         <span class="error" ng-model="showerror" ng-show="showerror">{{passwordmismatch}}</span>
