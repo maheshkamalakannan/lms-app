@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+import org.springframework.context.NoSuchMessageException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -57,10 +58,19 @@ public class SetLeaveTypesController {
 				break;
 			}
 			case LMSConstants.DELETE: {
-				leaveService.deleteLeave(form.getId());
-				model.addAttribute("SucessMessage", messageSource.getMessage(
-						"lms.setleaveTypes.del.success_message",
-						new Object[] { "" }, Locale.getDefault()));
+				/*LMS-087 Adding try/catch to display failuremessage to user if Leave type cannot be deleted Starts */
+				try {
+					leaveService.deleteLeave(form.getId());
+					model.addAttribute("SucessMessage", messageSource.getMessage(
+							"lms.setleaveTypes.del.success_message",
+							new Object[] { "" }, Locale.getDefault()));
+				} catch (Exception e) {
+					model.addAttribute("FailureMessage", messageSource.getMessage(
+							"lms.setleaveTypes.del.failure_message",
+							new Object[] { "" }, Locale.getDefault()));
+					e.printStackTrace();
+				}
+				/*LMS-087 Adding try/catch to display failuremessage to user if Leave type cannot be deleted Ends */
 				break;
 			}
 			case LMSConstants.UPDATE: {
