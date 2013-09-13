@@ -1,10 +1,13 @@
 package com.madrone.lms.controller;
 
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,6 +21,7 @@ import com.madrone.lms.entity.Department;
 import com.madrone.lms.entity.Leave;
 import com.madrone.lms.form.LeaveCorrectionForm;
 import com.madrone.lms.form.LeaveDetailsGrid;
+import com.madrone.lms.form.LeaveForm;
 import com.madrone.lms.service.DepartmentService;
 import com.madrone.lms.service.EmployeeLeaveService;
 import com.madrone.lms.service.LeaveService;
@@ -36,6 +40,9 @@ public class LeaveCorrectionController {
 	
 	@Autowired
 	private LeaveService leaveService;
+	
+	@Autowired
+	private MessageSource messageSource;
 	
 	private static final Logger logger = LoggerFactory
 			.getLogger(ApprovedRejectedListController.class);
@@ -85,5 +92,29 @@ public class LeaveCorrectionController {
 		return res;
 	}
 	
+
+	@RequestMapping(value = "/submitDeleteInLeaveCorrection", 
+			method = RequestMethod.POST)
+	public String submitDeleteInLeaveCorrection(
+			Model model,
+			@ModelAttribute("LeaveCorrectionForm") LeaveCorrectionForm leform,
+			BindingResult result, Map<String, Object> map) { 
+		
+		String jsonString = leform.getSelecteddata();
+
+		if(!"".equals(jsonString)) {
+			LeaveForm leaveForm = JSONUtils
+					.convertJsonToObjectToClass(jsonString);
+			if (leaveForm != null) {
+				empLeaveService.deleteEmployeeLeave(leaveForm.getId());
+				model.addAttribute("SucessMessage", messageSource.getMessage(
+					"lms.leaveCorrection.delete_message", new Object[] { "" },
+					Locale.getDefault()));
+			}
+		}
+		
+		return LMSConstants.ADMIN_VIEW_LEAVE_SCR;
+	}
+
 
 }

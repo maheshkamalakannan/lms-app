@@ -1,6 +1,6 @@
 <%@ include file="../common/commonJs.jsp" %>
 
-<form:form name="LeaveCorrectionForm" id="LeaveCorrectionForm" method="post" novalidate="novalidate" action="/lms-app/cancelLeave" ng-controller="constantsController">
+<form:form name="LeaveCorrectionForm" id="LeaveCorrectionForm" method="post" novalidate="novalidate" action="" ng-controller="constantsController">
 
 	<div id="rightdata" ng-controller="leaveCorrectionController">
 	  <div id="topcontent" style="margin-bottom:2px;">

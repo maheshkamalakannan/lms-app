@@ -1034,14 +1034,18 @@ mycontroller.controller('leaveCorrectionController',['$scope','$filter','createD
 			             ]};
 	
 	$scope.deleterow = function(row){
+		$scope.selecteddata = [{"id": row.entity.id,"empId": row.entity.empId, "empName": row.entity.empName, "leaveType": row.entity.leaveType,
+            					"fromDate": row.entity.fromDate, "fromDateSession":row.entity.fromDateSession,"toDate": row.entity.toDate ,
+            					"toDateSession": row.entity.toDateSession, "noOfDays": row.entity.noOfDays, "status": row.entity.status, 
+            					"reason": row.entity.reason}];
 		createDialogService({
             id: 'confirmDelete',
             title: 'Delete Data.',
             template:'<b><p style="text-align:center;"> Please Confirm to Delete Data.</p></b>',
             backdrop: true,
             success: {label: 'Confirm',
-            	      fn: function() {$scope.selecteddata = [{"id": row.entity.id,"empId": row.entity.empId, "empName": row.entity.empName, "leaveType": row.entity.leaveType, "fromDate": row.entity.fromDate, "fromDateSession":row.entity.fromDateSession,
-		                              "toDate": row.entity.toDate ,"toDateSession": row.entity.toDateSession, "noOfDays": row.entity.noOfDays, "status": row.entity.status, "reason": row.entity.reason}];
+            	      fn: function() { $('form').attr("action","/lms-app/submitDeleteInLeaveCorrection");
+            	      				   $('form').submit();
             	                     }
 		             }
           });
