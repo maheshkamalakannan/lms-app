@@ -271,6 +271,7 @@ mycontroller.controller('changePasswordController', function($scope, $window, $l
 		$scope.passwordnew = '';
 		$scope.passwordconfirm = '';
 		$('.error').css("display","none");
+		$('#metererror').css("display","none");
 	};
 	
 	$scope.hidemeter = function(){
