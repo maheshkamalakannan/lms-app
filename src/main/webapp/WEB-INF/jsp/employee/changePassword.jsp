@@ -23,13 +23,13 @@
 				      <div>
 				        <span class="error" style="width: 35%;" ng-show="submitted && changepassword.oldPassword.$error.required">{{passwordrequired}}</span>
 				      </div>
-					    <input  type="password" name="newPassword" placeholder="New Password" style="margin-left: 2px; width: 35%;" ng-model="passwordnew" ng-minlength="7" password-meter required/>
+					    <input  type="password" name="newPassword" placeholder="New Password" style="margin-left: 2px; width: 35%;" ng-model="passwordnew" ng-change="hidemeter()" password-meter required/>
 					  <div style="float: right; margin-right: 26.5em; margin-top: 7px;">
 					    <span id="metererror">{{error}}</span>
 				     </div><br>
 				      <div>
 				        <span class="error" style="width: 35%;" ng-show="submitted && changepassword.newPassword.$error.required">{{newpasswordrequired}}</span>
-				        <span class="error" style="width: 35%;" ng-show="submitted && changepassword.newPassword.$error.minlength">{{newpasswordminlength}}</span>
+				        <span class="error" style="width: 35%;" ng-model="newpasswordlength" ng-show="newpasswordlength">{{newpasswordminlength}}</span>
 				        <span class="error" ng-model="confirmerror" ng-show="confirmerror">{{confirmationpassword}}</span>
 				      </div>
 						      

@@ -231,8 +231,10 @@ mycontroller.controller('constantsController', function($scope, $window, $locati
 });
 
 mycontroller.controller('changePasswordController', function($scope, $window, $location) {
-	$scope.showerror = false;
-	$scope.confirmerror = false;
+	$scope.showerror            = false;
+	$scope.confirmerror         = false;
+	$scope.newpasswordlength    = false;
+	
 	$scope.savepassword = function(form,event){
 		if(form.$valid){
 			if($scope.passwordconfirm !=  $scope.passwordnew){
@@ -241,6 +243,13 @@ mycontroller.controller('changePasswordController', function($scope, $window, $l
 			}
 			else if($scope.passwordcurrent ==  $scope.passwordnew){
 				$scope.confirmerror=true;
+				event.preventDefault();
+			}
+			else if($scope.passwordnew.length < 7){
+				$scope.newpasswordlength = true;
+				event.preventDefault();
+			}
+			else if($('#metererror').text() == 'Weak'){
 				event.preventDefault();
 			}
 			else{
@@ -264,16 +273,16 @@ mycontroller.controller('changePasswordController', function($scope, $window, $l
 		$('.error').css("display","none");
 	};
 	
-/*	$scope.hidemeter = function(){
-		if($scope.passwordnew.length > 6){
-			alert("hi");
-			$('#metererror').css("display","block");
-		}
-		else if($scope.passwordnew.length < 6){
-			alert("bye");
-			$('#metererror').css("display","none");
-		}
-	};*/
+	$scope.hidemeter = function(){
+        if($scope.passwordnew.length >= 7){
+        	$scope.newpasswordlength = false;
+        	$('#metererror').css("display","block");
+        }
+        else{
+        	$scope.newpasswordlength = false;
+        	$('#metererror').css("display","none");
+        }
+	};
 });
 
 mycontroller.controller('employeehomeController', function($scope, $window, $location) {
