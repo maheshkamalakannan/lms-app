@@ -932,14 +932,14 @@ mycontroller.controller('setLeaveTypeController', function($scope, $window, $loc
 		$('#leavedescription').removeAttr("readonly");
 		$scope.userAction   = "INSERT";
 	};
-	
+	/*LMS-084 Adding data back after hiding the div  Starts*/
 	$scope.cancelleavetype = function(){
 		$scope.showleavediv = false;
-		$scope.ngleaveName  = '';
-		$scope.ngleavedesc  = '';
-		$scope.ngleavedays  = '';
+		$scope.ngid         = '';
+		$scope.ngdescription= '';
+		$scope.ngdays       = '';
 	};
-	
+	/*LMS-084 Adding data back after hiding the div  Ends*/
 	$scope.saveleavetype = function(form,event){
 		if(form.$valid){
 				 form.submit();
