@@ -12,16 +12,19 @@
 	            <input type = "hidden" name = "selecteddata" value ={{selecteddata}} />
 	            <a href="/lms-app">Sign Out</a>
 	          </div>
+	          <c:if test="${SucessMessage != null}">
+	  		     <div class="success" style="margin: -45px 5px 5px 23.5em; width:37.5%;">${SucessMessage}</div>
+			  </c:if>
 	  </div>
 	  
 	  <div class="leavecorrectionleftcontent">
-	       <span class="rc">Department</span>
-			   <select name="deptId" id="deptId" >
+	       <span class="rc">{{department}}</span>
+			   <select name="deptId" id="deptId">
 		    		<c:forEach items="${deptList}" var="dept">
 			    		<option value="${dept.id}"  selected='selected'>${dept.description} </option>
 			   		</c:forEach>
 				</select>
-	  		<span class="rc" style="margin-left:10px;">Leave Type</span>
+	  		<span class="rc" style="margin-left:10px;">{{employeeleavetype}}</span>
 	  			<select name="leaveType" id="leaveType">
   					<c:forEach items="${leaveTypes}" var="ltype">
 	       			<option value="${ltype.id}" selected='selected'>${ltype.description}</option>
@@ -29,14 +32,14 @@
 			</select>
 	   </div>
 	   <div class="leavecorrectionrightcontent">
-	       <span class="rc">From Date</span>
+	       <span class="rc">{{alfromdate}}</span>
 			<div class="control-group input-append">
 				<input name="fromDate" id="fromDate" style="background-color: #FFFFFF;" class="input-small" type="text" ng-model="ngfromdate" 
 				       data-date-format="dd/mm/yyyy" data-date-days-Of-Week-Disabled =[0,6]
 				       data-date-today-Highlight='true' bs-datepicker readonly ng-change="lcfromdate($event)" required/>
 	           	<button type="button" class="btn" data-toggle="datepicker"><i class="icon-calendar"></i></button>
 	        </div>
-	        <span class="rc" style="margin-left:10px;">To Date</span>
+	        <span class="rc" style="margin-left:10px;">{{altodate}}</span>
 	        <div class="control-group input-append">	
 				<input name="toDate" id="toDate" style="background-color: #FFFFFF;" class="input-small" type="text" ng-model="ngtodate" 
 				       data-date-format="dd/mm/yyyy" data-date-days-Of-Week-Disabled =[0,6]
@@ -44,13 +47,13 @@
             	<button type="button" class="btn" data-toggle="datepicker"><i class="icon-calendar"></i></button>
             </div>
             <input type="button" name="search" value="search" ng-click="[submitted=true,leaveCorrectionsSearch(adduser,$event)]"/>
-            ${jsonString}
             <span class="error" style="width: 30%; margin-left: 70px;" ng-model="fromdatereq" ng-show="fromdatereq">{{fromdaterequired}}</span>
             <span class="error" style="width: 30%; margin-left: 275px;" ng-model="todatereq" ng-show="todatereq">{{todaterequired}}</span> 
-            <span class="error" style="width: 30%; margin-left: 275px;" ng-model="todategreaterfromdate" ng-show="todategreaterfromdate">{{todategreater}}</span> 
+            <span class="error" style="width: 30%; margin-left: 275px;" ng-model="todategreaterfromdate" ng-show="todategreaterfromdate">{{todategreater}}</span>
 	  </div>
 	  
 	  <div class="leaveCorrectionContent">
+	        <span class="error" style="width: 30%; margin-left: 300px; margin-top: -40px; margin-bottom: 6px;" ng-model="nodata" ng-show="nodata">No Data To Display.</span> 
 	       <div>
 		      <div class="leaveCorrectiongridStyle" ng-grid="gridOptions"></div>
 	       </div>

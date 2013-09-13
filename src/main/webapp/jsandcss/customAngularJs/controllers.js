@@ -937,14 +937,14 @@ mycontroller.controller('setLeaveTypeController', function($scope, $window, $loc
 	};
 });
 
-//mycontroller.controller('leaveCorrectionController', function($scope,$filter) {
 mycontroller.controller('leaveCorrectionController',['$scope','$filter','createDialog', function($scope,$filter,createDialogService) {
 	
-	$scope.fromdatereq           = false;
-	$scope.todatereq             = false;
-	$scope.todategreaterfromdate = false;
-	$scope.ngfromdate            = '';
-	$scope.ngtodate              = '';
+	$scope.fromdatereq             = false;
+	$scope.todatereq               = false;
+	$scope.todategreaterfromdate   = false;
+	$scope.nodata                  = false;
+	$scope.ngfromdate              = '';
+	$scope.ngtodate                = '';
 	
 	
 	$scope.leaveCorrectionsSearch = function(form,event){
@@ -976,10 +976,19 @@ mycontroller.controller('leaveCorrectionController',['$scope','$filter','createD
 		        	if(response.status == "SUCCESS") {
 		        		if (!$scope.$$phase) {
 		        			var data = $.parseJSON(response.result);
-		        			$scope.leavecorrectiongridData = data;
-		                    $scope.$apply();
+		        			if(data.length > 0){
+		        				$scope.leavecorrectiongridData = data;
+		        				$scope.nodata                  = false;
+			                    $scope.$apply();
+		        			}
+		                    else{
+		                    	$scope.leavecorrectiongridData = '';
+				        		$scope.nodata = true;
+				        		$scope.$apply();
+				        	}
 		                }
 		             }
+		        	
 			        },
 		        error: function(e){
 		        	alert('Error: ' + e);
@@ -990,11 +999,13 @@ mycontroller.controller('leaveCorrectionController',['$scope','$filter','createD
 	
 	$scope.lcfromdate = function(event){
 		$scope.fromdatereq           = false;
+		$scope.nodata                = false;
 	};
-	
+
 	$scope.lctodate   = function(event){
-		$scope.todatereq            = false;
+		$scope.todatereq             = false;
 		$scope.todategreaterfromdate = false;
+		$scope.nodata                = false;
 	};
 	
 	$scope.gridOptions = { 
@@ -1002,14 +1013,14 @@ mycontroller.controller('leaveCorrectionController',['$scope','$filter','createD
     		multiSelect: false,
     		showFooter:true,
     		columnDefs: [{displayName: 'Delete', cellClass:'aligncolumn', cellTemplate: '<input type="radio" name="view" id="view"  ng-click="deleterow(row)" value="View">', width:60,},
-			             {field: 'empId', displayName: 'ID',cellClass:'aligncolumn',},
-			             {field: 'empName', displayName: 'Name',cellClass:'aligncolumn',},
-			             {field: 'leaveType', displayName: 'Leave Type',cellClass:'aligncolumn',},
-			             {field: 'fromDate', displayName: 'From Date',cellClass:'aligncolumn', },
-			             {field: 'toDate', displayName: 'To Date',cellClass:'aligncolumn', },
-			             {field: 'noOfDays', displayName: 'Days',cellClass:'aligncolumn', },
+			             {field: 'empId', displayName: 'ID',cellClass:'aligncolumn',width:60,},
+			             {field: 'empName', displayName: 'Name',cellClass:'aligncolumn',width:90,},
+			             {field: 'leaveType', displayName: 'Leave Type',cellClass:'aligncolumn',width:90,},
+			             {field: 'fromDate', displayName: 'From Date',cellClass:'aligncolumn',width:90, },
+			             {field: 'toDate', displayName: 'To Date',cellClass:'aligncolumn',width:90, },
+			             {field: 'noOfDays', displayName: 'Days',cellClass:'aligncolumn',width:60, },
+			             {field: 'status', displayName: 'Status',cellClass:'aligncolumn',width:60,},
 			             {field: 'reason', displayName: 'Comments',cellClass:'aligncolumn',},
-			             {field: 'status', displayName: 'Status',cellClass:'aligncolumn',},
 			             ]};
 	
 	$scope.deleterow = function(row){
