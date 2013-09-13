@@ -21,7 +21,7 @@
 					       
 					<input  type="password" name="oldPassword" placeholder="Current Password" style="margin-left: 2px; width: 35%;" ng-model="passwordcurrent" maxlength="10" required/><br>
 				      <div>
-				        <span class="error" style="width: 35%;" ng-show="submitted && changepassword.oldPassword.$error.required">{{passwordrequired}}</span>
+				        <span class="error" style="width: 35%;" ng-show="submitted && changepassword.oldPassword.$error.required">{{currentpasswordrequired}}</span> <!-- LMS-014 -->
 				      </div>
 					    <input  type="password" name="newPassword" placeholder="New Password" style="margin-left: 2px; width: 35%;" ng-model="passwordnew" ng-change="hidemeter()" maxlength="10" password-meter required/>
 					  <div style="float: right; margin-right: 26.5em; margin-top: 7px;">
