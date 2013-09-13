@@ -236,6 +236,7 @@ mycontroller.controller('changePasswordController', function($scope, $window, $l
 	$scope.newpasswordlength    = false;
 	
 	$scope.savepassword = function(form,event){
+		$('.success').css("display","none");
 		if(form.$valid){
 			if($scope.passwordconfirm !=  $scope.passwordnew){
 				$scope.showerror=true;
@@ -272,9 +273,11 @@ mycontroller.controller('changePasswordController', function($scope, $window, $l
 		$scope.passwordconfirm = '';
 		$('.error').css("display","none");
 		$('#metererror').css("display","none");
+		$('.success').css("display","none");
 	};
 	
 	$scope.hidemeter = function(){
+		$scope.confirmerror         = false;
         if($scope.passwordnew.length >= 7){
         	$scope.newpasswordlength = false;
         	$('#metererror').css("display","block");
