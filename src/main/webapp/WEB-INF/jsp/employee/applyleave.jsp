@@ -113,7 +113,7 @@
 				<tr>
 					<td class="rc">{{joiningdate}}</td>
 					
-					<td>${EmpForm.dateOfJoin.time}</td>
+					<td><fmt:formatDate type="date" value="${EmpForm.dateOfJoin.time}"/></td> <!-- LMS-023 -->
 				</tr>
 		        </tbody>
 		      </table>
