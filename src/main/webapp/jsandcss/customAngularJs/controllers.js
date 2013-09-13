@@ -157,7 +157,7 @@ mycontroller.controller('constantsController', function($scope, $window, $locati
     $scope.currentpasswordrequired       = "Current Password is required."; //LMS-014
     $scope.newpasswordminlength          = "Password must be 7 characters.";
     $scope.confirmationpasswordrequired  = "Confirm Password is required.";
-    $scope.confirmationpassword          = "Current password and New Password are same.";
+    $scope.confirmationpassword          = "Current Password and New Password are same."; //LMS-015
     $scope.passwordmismatch              = "Passwords do not match.";
     
     $scope.employeeleavetype             = "Leave Type";
