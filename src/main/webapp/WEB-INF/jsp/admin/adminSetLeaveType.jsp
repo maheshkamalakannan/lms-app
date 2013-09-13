@@ -59,7 +59,7 @@
 			   <table cellpadding="4">
 			    <tbody>
 			      <tr><td><span class="rc">{{setleavedesc}}</span></td>
-			          <td><textarea name="description" id="leavedescription" ng-model="ngdescription" maxlength="30"  required></textarea>
+			          <td><textarea name="description" id="leavedescription" ng-model="ngdescription" maxlength="100"  required></textarea><!-- LMS-083 Adding maxlength 100 from 30 -->
 			      </tr>
 			      <tr>
 		    	     <td></td>
