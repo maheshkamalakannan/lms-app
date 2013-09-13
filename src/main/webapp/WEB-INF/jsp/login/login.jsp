@@ -30,6 +30,7 @@
 								  name="password" 
 								  style="margin-left: 2px;" 
 								  placeholder="Password"
+								  maxlength="10"
 								  ng-model="password" 
 								  required/><br>
 							      <div>
