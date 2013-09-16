@@ -102,9 +102,11 @@
      	<put-attribute name="menu" value="/WEB-INF/jsp/employee/employeemenu.jsp"></put-attribute>
     </definition>
       <definition extends="changePasswordScreen" name="changePasswordScreen_manager">
+        <put-attribute name="title" value="LMS-Manager-Change Password"></put-attribute>
       	<put-attribute name="menu" value="/WEB-INF/jsp/projectmanager/projectManagerMenu.jsp"></put-attribute>
     </definition>
     <definition extends="changePasswordScreen" name="changePasswordScreen_admin">
+        <put-attribute name="title" value="LMS-Admin-Change Password"></put-attribute>
    		<put-attribute name="menu" value="/WEB-INF/jsp/admin/adminMenu.jsp"></put-attribute>
     </definition>
   <!-- Tiles Definition for Employee Menu Screen Ends .........................................................................................................--> 
