@@ -45,7 +45,7 @@ public class ChangePasswordController {
 	public String submitChangePassword(
 			Model model,
 			@ModelAttribute("ChangePasswordForm") ChangePasswordForm changePassword,
-			BindingResult result, Map<String, Object> map) {
+			BindingResult result, Map<String, Object> map, HttpSession session) {
 
 		logger.info("Inside submitChangePassword method");
 
@@ -65,7 +65,8 @@ public class ChangePasswordController {
 
 		model.addAttribute("userName", changePassword.getUserName());
 		model.addAttribute("empName", changePassword.getEmpName());
-		return LMSConstants.CHANGE_PASSWORD_SCR;
+		return LMSConstants.CHANGE_PASSWORD_SCR + "_"
+		+ session.getAttribute("sessionRole");
 
 	}
 
