@@ -64,7 +64,7 @@
 			      <tr>
 		    	     <td></td>
 		    	     <td>
-		    	     <span class="error" style="width: 95%; margin-top:-13px; margin-bottom: 5px;" ng-show="submitted && leaveTypeForm.description.$error.required">{{setleavedescreq}}</span>
+		    	     <span class="error" style="width: 95%; margin-top:-13px; margin-bottom: -40px;" ng-show="submitted && leaveTypeForm.description.$error.required">{{setleavedescreq}}</span>
 		    	     </td>
 			     </tr>
 			    </tbody>

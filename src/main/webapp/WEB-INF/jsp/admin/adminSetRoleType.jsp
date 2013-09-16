@@ -64,7 +64,7 @@
 			      <tr>
 		    	     <td></td>
 		    	     <td>
-		    	     <span class="error" style="width: 95%; margin-top:-13px; margin-bottom: 5px;" ng-show="submitted && roleTypeForm.description.$error.required">{{roledecsreq}}</span>
+		    	     <span class="error" style="width: 95%; margin-top:-13px; margin-bottom: -40px;" ng-show="submitted && roleTypeForm.description.$error.required">{{roledecsreq}}</span>
 		    	     </td>
 			     </tr>
 			    </tbody>

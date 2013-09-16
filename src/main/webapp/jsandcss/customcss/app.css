@@ -575,12 +575,19 @@ textarea {
     height:315px;
     padding:5px;
 }
-.setleavetypebottom{
+/* .setleavetypebottom{
     height: 165px;
     margin-left: 69px;
     margin-top: -15px;
     padding: 5px;
     width: 70em;
+} */
+.setleavetypebottom{
+    height: 195px;
+    margin-left: 199px;
+    margin-top: -45px;
+    padding: 5px;
+    width: 50em;
 }
 
 .viewleaverequestgridStyle1{
@@ -662,23 +669,18 @@ h5:first-letter {
 
 .setLeavetypeBottomleftContent{
 	float: left;
-    padding: 7px 7px 7px 95px;
-    width: 350px;
+    width: 25em;
 }
 
 .setLeavetypeBottommiddelContent{
-    display: inline-block;
-    height: 120px;
-    left: 15em;
-    margin: 7px 0 0 50%;
-    position: absolute;
-    width: 340px;
+    float: right;
+    width: 20em;
+    margin-right: 50px;
 }
 .setleavetypebutton{
 	float: right;
-    margin-right: 40px;
-    padding: 10px 15px 15px;
-    width: 200px;
+    width: 175px;
+    margin-top: 40px;
 }
 
 .csv-data-link-span{
