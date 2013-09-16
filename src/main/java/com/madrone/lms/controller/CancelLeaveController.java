@@ -73,10 +73,8 @@ public class CancelLeaveController {
 					"lms.cancelLeave_success_message", new Object[] { "" },
 					Locale.getDefault()));
 		}
-
 		return LMSConstants.CANCEL_LEAVE_SCR + "_"
 		+ session.getAttribute("sessionRole");
-
 	}
 
 }

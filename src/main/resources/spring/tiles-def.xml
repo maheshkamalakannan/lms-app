@@ -84,9 +84,11 @@
      	<put-attribute name="menu" value="/WEB-INF/jsp/employee/employeemenu.jsp"></put-attribute>
     </definition>
       <definition extends="leaveSummaryScreen" name="leaveSummaryScreen_manager">
+        <put-attribute name="title" value="LMS-Manager-LeaveSummary"></put-attribute>
       	<put-attribute name="menu" value="/WEB-INF/jsp/projectmanager/projectManagerMenu.jsp"></put-attribute>
     </definition>
     <definition extends="leaveSummaryScreen" name="leaveSummaryScreen_admin">
+        <put-attribute name="title" value="LMS-Admin-LeaveSummary"></put-attribute>
    		<put-attribute name="menu" value="/WEB-INF/jsp/admin/adminMenu.jsp"></put-attribute>
     </definition> 
     
