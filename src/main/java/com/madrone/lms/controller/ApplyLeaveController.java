@@ -66,10 +66,18 @@ public class ApplyLeaveController {
 	@RequestMapping(value = "/submitApplyLeave", method = RequestMethod.POST)
 	public String submitApplyLeave(Model model,
 			@ModelAttribute("ApplyLeaveForm") LeaveForm applyLeaveForm,
-			BindingResult result, Map<String, Object> map) {
+			BindingResult result, Map<String, Object> map, HttpSession session) {
 		logger.info("Inside submitApplyLeave()");
 		EmployeeLeave el  = empLeaveService.setBeanValuesForSave(applyLeaveForm);
 		empLeaveService.saveEmployeeLeave(el);
+		String userName = (String) session.getAttribute("sessionUser");
+
+		// This for to Show Values in Grid.
+		List<ApplyLeaveFormGrid> gridList = leaveService
+				.getApplyLeaveGridDetails(userName);
+		String jsonString= JSONUtils.convertListToJson(gridList);
+		model.addAttribute("jsonString", jsonString);
+		model.addAttribute("leaveList", gridList);
 		model.addAttribute("SucessMessage", messageSource.getMessage(
 				"lms.applyLeave_success_message", new Object[] { "" },
 				Locale.getDefault()));
