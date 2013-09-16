@@ -21,6 +21,7 @@ import com.madrone.lms.constants.LMSConstants;
 import com.madrone.lms.entity.Department;
 import com.madrone.lms.entity.Role;
 import com.madrone.lms.form.ReportingPerson;
+import com.madrone.lms.form.RoleTypeForm;
 import com.madrone.lms.form.UserForm;
 import com.madrone.lms.service.DepartmentService;
 import com.madrone.lms.service.EmployeeService;
@@ -159,7 +160,7 @@ public class UserController {
 	}
 
 	private Model loadComboValues(Model model) {
-		List<Role> roleList = roleService.getRoleList();
+		List<RoleTypeForm> roleList = roleService.getRoleList();
 		List<Role> reportingToList = roleService.getRoleListHigher(1);
 		List<ReportingPerson> repList = empService
 				.FindHigherRoles(reportingToList);

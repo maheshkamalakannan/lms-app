@@ -176,6 +176,12 @@
         <put-attribute name="menu" value="/WEB-INF/jsp/admin/adminMenu.jsp"></put-attribute>
     </definition>
     
+    <definition extends="base.definition" name="setRoleTypeScreen">  
+        <put-attribute name="title" value="LMS-Admin-Set Role Type"></put-attribute>  
+        <put-attribute name="body" value="/WEB-INF/jsp/admin/adminSetRoleType.jsp"></put-attribute> 
+        <put-attribute name="menu" value="/WEB-INF/jsp/admin/adminMenu.jsp"></put-attribute>
+    </definition>
+    
     <definition extends="base.definition" name="viewLeaveScreen">  
         <put-attribute name="title" value="LMS-Admin-View Leave"></put-attribute>  
         <put-attribute name="body" value="/WEB-INF/jsp/admin/adminViewLeave.jsp"></put-attribute> 

@@ -18,7 +18,7 @@
 			  </c:if>
 			  <!-- LMS-087 Starts-->
 			  <c:if test="${FailureMessage != null}">
-	  		     <div class="success" style="margin: -40px 5px 5px 23.5em; width:37.5%;">${FailureMessage}</div>
+	  		     <div class="error" style="margin: -40px 5px 5px 23.5em; width:37.5%;">${FailureMessage}</div>
 			  </c:if>
 			  <!-- LMS-087 Ends-->
 	  </div>
@@ -35,7 +35,7 @@
 		   <table cellpadding="4">
 		    <tbody>
 		      <tr><td><span class="rc">{{employeeleavetype}}</span></td>
-		          <td><input type="text" name="id" id="leavetype" ng-model="ngid" maxlength="2" read-only required/>
+		          <td><input type="text" name="id" id="leavetype" ng-model="ngid" maxlength="2" read-only width-reducer required/>
 		      </tr>
 		      <tr>
 	    	     <td></td>
@@ -44,7 +44,7 @@
 	    	     </td>
 		     </tr>
 		     <tr><td><span class="rc">{{setleavedays}}</span></td>
-		          <td><input type="text" name="days" id="leavedays"  ng-model="ngdays" maxlength="2" num-only required/>
+		          <td><input type="text" name="days" id="leavedays"  ng-model="ngdays" maxlength="2" num-only  width-reducer required/>
 		      </tr>
 		      <tr>
 	    	     <td></td>

@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.madrone.lms.dao.RoleDao;
+import com.madrone.lms.entity.Leave;
 import com.madrone.lms.entity.Role;
+import com.madrone.lms.form.RoleTypeForm;
 import com.madrone.lms.service.RoleService;
 
 @Service("roleService")
@@ -40,10 +42,26 @@ public class RoleServiceImpl implements RoleService {
 		Role r = roleDao.findById(id);
 		roleDao.delete(r);
 	}
+	
+	@Override
+	@Transactional(readOnly = false)
+	public void updateLeave(Role d) {
+		roleDao.update(d);
+
+	}
 
 	@Override
-	public List<Role> getRoleList() {
-		return roleDao.getRoleTypes();
+	public List<RoleTypeForm> getRoleList() {
+		List<Role> roles = roleDao.getRoleTypes();
+		List<RoleTypeForm> returnList = new ArrayList<RoleTypeForm>();
+		for (Role r : roles) {
+			RoleTypeForm form = new RoleTypeForm();
+			form.setId(r.getId());
+			form.setDescription(r.getDescription());
+			form.setLevel(r.getLevel());
+			returnList.add(form);
+		}
+		return returnList;
 	}
 
 	@Override
@@ -56,6 +74,15 @@ public class RoleServiceImpl implements RoleService {
 			}
 		}
 		return returnList;
+	}
+	
+	@Override
+	public Role setBeanValuesForSave(RoleTypeForm form) {
+		Role r = new Role();
+		r.setId(form.getId());
+		r.setDescription(form.getDescription());
+		r.setLevel(form.getLevel());
+		return r;
 	}
 
 

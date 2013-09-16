@@ -15,6 +15,7 @@
 	            <a href="#">Configuration  >></a>
 	            <ul class="sub-level">
 	                <li><a href="/lms-app/setLeaveType" ng-model="showleavesummarydiv" >Set Leave Type</a></li>
+	                <li><a href="/lms-app/setRoleType" ng-model="showleavesummarydiv" >Set Role Type</a></li>
 	            </ul>
 	        </li>
 			<li>

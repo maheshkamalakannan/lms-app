@@ -213,6 +213,12 @@ mycontroller.controller('constantsController', function($scope, $window, $locati
     $scope.setleavedaysreq                   = "Leave Days are Required.";
     $scope.setleavetypereq                   = "Leave Type is Required.";
     
+    $scope.setrole                           = "Role";
+    $scope.setlevel                          = "Level";
+    $scope.Rolereq                           = "Role is Required.";
+    $scope.Levelreq                          = "Level is Required.";
+    $scope.roledecsreq                       = "Role Description is required.";
+    
     $scope.hometab                       = "Home";
     $scope.changepasswordtabs            = "Home > Settings > Change Password";
     $scope.applyleavetab                 = "Home > Leaves > Apply Leave";
@@ -228,6 +234,7 @@ mycontroller.controller('constantsController', function($scope, $window, $locati
     $scope.adminmoduser                  = "Home > Users > Modify User";
     $scope.admindeluser                  = "Home > Users > Delete User";
     $scope.adminsetleavetype             = "Home > Configuration > Set Leave Type";
+    $scope.adminsetroletype              = "Home > Configuration > Set Role Type";
     $scope.adminviewleave                = "Home > View Leave";
 });
 
@@ -949,6 +956,89 @@ mycontroller.controller('setLeaveTypeController', function($scope, $window, $loc
 			 event.preventDefault();
 		 }
 	};
+});
+
+mycontroller.controller('setRoleTypeController', function($scope, $window, $location) {
+	$scope.showleavediv = false;
+	$scope.init = function(data1) {
+		$scope.gridData = [];
+		$scope.gridData = data1;
+		$scope.gridOptions = { 
+	    		data: 'gridData',
+	    		multiSelect: false,
+	    		showFooter:true,
+	    		columnDefs: [{displayName: 'Delete', cellClass:'aligncolumn', cellTemplate: '<input type="radio" name="view" id="view"  ng-click="deleterow(row)" value="View">', width:60,},
+	    		             {displayName: 'Modify', cellClass:'aligncolumn', cellTemplate: '<input type="radio" name="view" id="view"  ng-click="modifyrow(row)" value="View">', width:60,},
+	    		             {field: 'level', displayName: 'Level',cellClass:'aligncolumn', width:60,},
+	    		             {field: 'id', displayName: 'Role',cellClass:'aligncolumn', width:90,},
+	    		             {field: 'description', displayName: 'Description',cellClass:'aligncolumn'},
+    		             ]};
+		
+		 $scope.$on('ngGridEventData', function (e,s) {
+	         $scope.gridOptions.selectItem(0,true);
+	         $(".ngViewport").focus();
+	     });
+	};
+	
+	$scope.deleterow = function(row){
+		$('.success').css("display","none");
+		$scope.selecteddata   = [{"Name": row.entity.id,"Description": row.entity.description, "Days": row.entity.days}];
+		$scope.showleavediv   = true;
+		$scope.ngid           = row.entity.id;
+		$scope.ngdescription  = row.entity.description;
+		$scope.nglevel        = row.entity.level;
+		$scope.userAction     = "DELETE";
+		$("input[name='submit']").attr({"value":"Delete"});
+		$('#role').attr('readonly','true');
+		$('#role').css('background-color','#fff');
+		$('#level').attr("readonly", "true");
+		$('#level').css('background-color','#fff');
+		$('#description').attr("readonly","true");
+		$('#description').css('background-color','#fff');
+	};
+	
+	$scope.modifyrow = function(row){
+		$('.success').css("display","none");
+		$scope.showleavediv   = true;
+		$scope.ngid           = row.entity.id;
+		$scope.ngdescription  = row.entity.description;
+		$scope.nglevel        = row.entity.level;
+		$("input[name='submit']").attr({"value":"Modify"});
+		$('#role').attr('readonly','true');
+		$('#role').css('background-color','#fff');
+		$('#level').removeAttr("readonly");
+		$('#description').removeAttr("readonly");
+		$scope.userAction     = "UPDATE";
+	};
+	
+	$scope.createleavetype = function(event){
+		$('.success').css("display","none");
+		$scope.showleavediv = true;
+		$scope.ngid         = '';
+		$scope.ngdescription= '';
+		$scope.nglevel      = '';
+		$("input[name='submit']").attr({"value":"Save"});
+		$('#role').removeAttr('readonly');
+		$('#level').removeAttr("readonly");
+		$('#description').removeAttr("readonly");
+		$scope.userAction   = "INSERT";
+	};
+	$scope.cancelroletype = function(){
+		$scope.showleavediv = false;
+		$scope.ngid         = '';
+		$scope.ngdescription= '';
+		$scope.nglevel      = '';
+	};
+	$scope.saveroletype = function(form,event){
+		if(form.$valid){
+				 form.submit();
+			 }
+		 else{
+			 $('.success').css("display","none");
+			 event.preventDefault();
+		 }
+	};
+	
 });
 
 mycontroller.controller('leaveCorrectionController',['$scope','$filter','createDialog', function($scope,$filter,createDialogService) {
