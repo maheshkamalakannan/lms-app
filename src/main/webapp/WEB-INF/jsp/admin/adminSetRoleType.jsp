@@ -1,6 +1,6 @@
 <%@ include file="../common/commonJs.jsp" %>
 
-<form:form name="roleTypeForm" id="roleTypeForm" method="post" novalidate="novalidate" action="/lms-app/submitSetRoleType" ng-controller="constantsController">
+<form:form name="roleTypeForm" id="roleTypeForm" method="post" novalidate="novalidate" action="/lms-app/submitRole" ng-controller="constantsController">
 
 	<div id="rightdata" ng-controller="setRoleTypeController">
 	  <div id="topcontent" style="margin-bottom:2px;">

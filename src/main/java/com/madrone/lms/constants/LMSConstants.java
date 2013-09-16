@@ -27,7 +27,7 @@ public class LMSConstants {
 	public static final String ADMIN_DELETE_USER_SCR   = "deleteUserScreen";
 	public static final String ADMIN_MODIFY_USER_SCR   = "modifyUserScreen";
 	public static final String ADMIN_SET_LEAVE_TYPE_SCR= "setLeaveTypeScreen";
-	public static final String ADMIN_SET_ROLE_TYPE_SCR = "setRoleTypeScreen";
+	public static final String ADMIN_SET_ROLE_SCR = "setRoleScreen";
 	public static final String ADMIN_VIEW_LEAVE_SCR    = "viewLeaveScreen";
 	
 	public static final String LEAVE_STATUS_PENDING = "P";

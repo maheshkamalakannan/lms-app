@@ -31,15 +31,15 @@ public class SetRoleTypesController {
 	private static final Logger logger = LoggerFactory
 			.getLogger(ChangePasswordController.class);
 
-	@RequestMapping(value = "/setRoleType", method = RequestMethod.GET)
+	@RequestMapping(value = "/setRole", method = RequestMethod.GET)
 	public String setRoleTypeForm(Model model, UserForm Userform) {
 		createJason(model);
 		model.addAttribute("roleTypeForm", new RoleTypeForm());
-		return LMSConstants.ADMIN_SET_ROLE_TYPE_SCR;
+		return LMSConstants.ADMIN_SET_ROLE_SCR;
 	}
 	
-	@RequestMapping(value = "/submitSetRoleType", method = RequestMethod.POST)
-	public String submitSetRoleType(Model model,
+	@RequestMapping(value = "/submitRole", method = RequestMethod.POST)
+	public String submitRole(Model model,
 			@ModelAttribute("RoleTypeForm") RoleTypeForm form,
 			BindingResult result, Map<String, Object> map) {
 		
@@ -78,7 +78,7 @@ public class SetRoleTypesController {
 				break;
 			}
 		}
-		return LMSConstants.ADMIN_SET_ROLE_TYPE_SCR;
+		return LMSConstants.ADMIN_SET_ROLE_SCR;
 	}
 	
 	private void createJason(Model model){
