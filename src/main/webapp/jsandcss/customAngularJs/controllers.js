@@ -898,6 +898,7 @@ mycontroller.controller('setLeaveTypeController', function($scope, $window, $loc
 	
 	$scope.deleterow = function(row){
 		$('.success').css("display","none");
+		$('.error').css("display","none");
 		$scope.selecteddata   = [{"Name": row.entity.id,"Description": row.entity.description, "Days": row.entity.days}];
 		$scope.showleavediv   = true;
 		$scope.ngid           = row.entity.id;
@@ -915,6 +916,7 @@ mycontroller.controller('setLeaveTypeController', function($scope, $window, $loc
 	
 	$scope.modifyrow = function(row){
 		$('.success').css("display","none");
+		$('.error').css("display","none");
 		$scope.showleavediv   = true;
 		$scope.ngid           = row.entity.id;
 		$scope.ngdescription  = row.entity.description;
@@ -929,6 +931,7 @@ mycontroller.controller('setLeaveTypeController', function($scope, $window, $loc
 	
 	$scope.createleavetype = function(event){
 		$('.success').css("display","none");
+		$('.error').css("display","none");
 		$scope.showleavediv = true;
 		$scope.ngid         = '';
 		$scope.ngdescription= '';
@@ -953,6 +956,7 @@ mycontroller.controller('setLeaveTypeController', function($scope, $window, $loc
 			 }
 		 else{
 			 $('.success').css("display","none");
+			 $('.error').css("display","none");
 			 event.preventDefault();
 		 }
 	};
@@ -982,6 +986,7 @@ mycontroller.controller('setRoleTypeController', function($scope, $window, $loca
 	
 	$scope.deleterow = function(row){
 		$('.success').css("display","none");
+		$('.error').css("display","none");
 		$scope.selecteddata   = [{"Name": row.entity.id,"Description": row.entity.description, "Days": row.entity.days}];
 		$scope.showleavediv   = true;
 		$scope.ngid           = row.entity.id;
@@ -999,6 +1004,7 @@ mycontroller.controller('setRoleTypeController', function($scope, $window, $loca
 	
 	$scope.modifyrow = function(row){
 		$('.success').css("display","none");
+		$('.error').css("display","none");
 		$scope.showleavediv   = true;
 		$scope.ngid           = row.entity.id;
 		$scope.ngdescription  = row.entity.description;
@@ -1013,6 +1019,7 @@ mycontroller.controller('setRoleTypeController', function($scope, $window, $loca
 	
 	$scope.createleavetype = function(event){
 		$('.success').css("display","none");
+		$('.error').css("display","none");
 		$scope.showleavediv = true;
 		$scope.ngid         = '';
 		$scope.ngdescription= '';
@@ -1035,6 +1042,7 @@ mycontroller.controller('setRoleTypeController', function($scope, $window, $loca
 			 }
 		 else{
 			 $('.success').css("display","none");
+			 $('.error').css("display","none");
 			 event.preventDefault();
 		 }
 	};

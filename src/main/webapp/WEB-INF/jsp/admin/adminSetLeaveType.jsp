@@ -14,11 +14,11 @@
 	            <a href="/lms-app">Sign Out</a>
 	          </div>
 	            <c:if test="${SucessMessage != null}">
-	  		     <div class="success" style="margin: -40px 5px 5px 23.5em; width:37.5%;">${SucessMessage}</div>
+	  		     <div class="success" style="margin: -45px 5px 0px 23.5em; width:37.5%;">${SucessMessage}</div>
 			  </c:if>
 			  <!-- LMS-087 Starts-->
 			  <c:if test="${FailureMessage != null}">
-	  		     <div class="error" style="margin: -40px 5px 5px 23.5em; width:37.5%;">${FailureMessage}</div>
+	  		     <div class="error" style="margin: -37px 5px 5px 23.5em; width:37.5%;">${FailureMessage}</div>
 			  </c:if>
 			  <!-- LMS-087 Ends-->
 	  </div>
