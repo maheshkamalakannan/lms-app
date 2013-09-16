@@ -76,7 +76,7 @@ public class UserController {
 
 		logger.info("Inside submitChangePassword method");
 		userService.saveUserAndEmployee(userForm, LMSConstants.INSERT);
-
+		model = loadComboValues(model);
 		model.addAttribute("SucessMessage", messageSource.getMessage(
 				"lms.adduser_success_message", new Object[] { "" },
 				Locale.getDefault()));
