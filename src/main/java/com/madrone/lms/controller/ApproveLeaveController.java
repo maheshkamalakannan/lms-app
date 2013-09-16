@@ -55,17 +55,23 @@ public class ApproveLeaveController {
 	@RequestMapping(value = "/submitViewLeaveRequest1", method = RequestMethod.POST)
 	public String submitForApprove(Model model,
 			@ModelAttribute("viewleavereq") ViewLeaveRequestForm form,
-			BindingResult result, Map<String, Object> map) {
+			BindingResult result, Map<String, Object> map, HttpSession session) {
 		logger.info("inside submitViewLeaveRequest()");
 
-		String jsonString = form.getSelecteddata();
-		System.out.println("SubmitApproval--Screen" + jsonString);
+		String jsonString1 = form.getSelecteddata();
+		System.out.println("SubmitApproval--Screen" + jsonString1);
 
 		LeaveForm approveForm = JSONUtils
-				.convertJsonToObjectToClass(jsonString);
+				.convertJsonToObjectToClass(jsonString1);
 		if (approveForm != null) {
 			EmployeeLeave el = empLeaveService.setBeanValuesForSave(approveForm);
 			empLeaveService.approveEmployeeLeave(el);
+			String userName = (String) session.getAttribute("sessionUser");
+			List<LeaveDetailsGrid> leaveListOfTeam = empLeaveService
+					.getLeaveListOfTeam(userName,"ALL");
+			String jsonString = JSONUtils.convertListToJson(leaveListOfTeam);
+			System.out.println("Json String "+jsonString);
+			model.addAttribute("jsonString", jsonString);
 			model.addAttribute("SucessMessage", messageSource.getMessage(
 					"lms.approveLeave_success_message", new Object[] { "" },
 					Locale.getDefault()));
@@ -78,16 +84,22 @@ public class ApproveLeaveController {
 	@RequestMapping(value = "/submitViewLeaveRequest2", method = RequestMethod.POST)
 	public String submitForReject(Model model,
 			@ModelAttribute("viewleavereq") ViewLeaveRequestForm form,
-			BindingResult result, Map<String, Object> map) {
+			BindingResult result, Map<String, Object> map, HttpSession session) {
 		logger.info("inside submitViewLeaveRequest()");
 
-		String jsonString = form.getSelecteddata();
+		String jsonString1 = form.getSelecteddata();
 
 		LeaveForm approveForm = JSONUtils
-				.convertJsonToObjectToClass(jsonString);
+				.convertJsonToObjectToClass(jsonString1);
 		if (approveForm != null) {
 			EmployeeLeave el = empLeaveService.setBeanValuesForSave(approveForm);
 			empLeaveService.rejectEmployeeLeave(el);
+			String userName = (String) session.getAttribute("sessionUser");
+			List<LeaveDetailsGrid> leaveListOfTeam = empLeaveService
+					.getLeaveListOfTeam(userName,"ALL");
+			String jsonString = JSONUtils.convertListToJson(leaveListOfTeam);
+			System.out.println("Json String "+jsonString);
+			model.addAttribute("jsonString", jsonString);
 			model.addAttribute("SucessMessage", messageSource.getMessage(
 					"lms.rejectLeave_success_message", new Object[] { "" },
 					Locale.getDefault()));
