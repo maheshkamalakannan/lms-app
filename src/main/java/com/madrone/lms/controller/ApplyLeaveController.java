@@ -48,6 +48,7 @@ public class ApplyLeaveController {
 
 		//To Show the Leave-Type combo box in Jsp Page
 		List<Leave> ltList = leaveService.getLeaveTypes();
+		session.setAttribute("leavetypes", ltList);
 		model.addAttribute("leaveTypes", ltList);
 		String userName = (String) session.getAttribute("sessionUser");
 
@@ -78,11 +79,13 @@ public class ApplyLeaveController {
 		String jsonString= JSONUtils.convertListToJson(gridList);
 		model.addAttribute("jsonString", jsonString);
 		model.addAttribute("leaveList", gridList);
+		model.addAttribute("leaveTypes", session.getAttribute("leavetypes"));
 		model.addAttribute("SucessMessage", messageSource.getMessage(
 				"lms.applyLeave_success_message", new Object[] { "" },
 				Locale.getDefault()));
 
-		return LMSConstants.APPLY_LEAVE_SCR;
+		return LMSConstants.APPLY_LEAVE_SCR+"_" +  
+   		session.getAttribute("sessionRole");
 
 	}
 
