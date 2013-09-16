@@ -52,21 +52,30 @@ public class CancelLeaveController {
 	@RequestMapping(value = "/submitCancelLeave", method = RequestMethod.POST)
 	public String submitCancelLeave(Model model,
 			@ModelAttribute("cancelLeaveForm") LeaveForm form,
-			BindingResult result, Map<String, Object> map) {
+			BindingResult result, Map<String, Object> map, HttpSession session) {
 
 		logger.info("submitCancelLeave");
-		String jsonString = form.getSelecteddata();
+		String jsonString1 = form.getSelecteddata();
 
-		LeaveForm cancelForm = JSONUtils.convertJsonToObjectToClass(jsonString);
+		LeaveForm cancelForm = JSONUtils.convertJsonToObjectToClass(jsonString1);
 		if (cancelForm != null) {
 			EmployeeLeave el  = empLeaveService.setBeanValuesForSave(cancelForm);
 			empLeaveService.cancelEmployeeLeave(el);
+			
+			/* Creating jason string after leave has been cancelled Starts */ 
+			List<LeaveDetailsGrid> cancelLeaveList = empLeaveService
+					.getPendingAndApprovalLeaveList((String)session.getAttribute("sessionUser"));
+			String jsonString = JSONUtils.convertListToJson(cancelLeaveList);
+			model.addAttribute("jsonString", jsonString);
+			/* Creating jason string after leave has been cancelled Ends */ 
+			
 			model.addAttribute("SucessMessage", messageSource.getMessage(
 					"lms.cancelLeave_success_message", new Object[] { "" },
 					Locale.getDefault()));
 		}
 
-		return LMSConstants.CANCEL_LEAVE_SCR;
+		return LMSConstants.CANCEL_LEAVE_SCR + "_"
+		+ session.getAttribute("sessionRole");
 
 	}
 
