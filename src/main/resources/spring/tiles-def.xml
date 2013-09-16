@@ -51,9 +51,11 @@
      	<put-attribute name="menu" value="/WEB-INF/jsp/employee/employeemenu.jsp"></put-attribute>
     </definition>
     <definition extends="applyLeaveScreen" name="applyLeaveScreen_manager">
+        <put-attribute name="title" value="LMS-Manager-Apply Leave"></put-attribute>  
       	<put-attribute name="menu" value="/WEB-INF/jsp/projectmanager/projectManagerMenu.jsp"></put-attribute>
     </definition>
     <definition extends="applyLeaveScreen" name="applyLeaveScreen_admin">
+        <put-attribute name="title" value="LMS-Admin-Apply Leave"></put-attribute> 
    		<put-attribute name="menu" value="/WEB-INF/jsp/admin/adminMenu.jsp"></put-attribute>
     </definition>
     
