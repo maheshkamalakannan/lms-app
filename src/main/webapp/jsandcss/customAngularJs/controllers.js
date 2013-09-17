@@ -492,19 +492,20 @@ mycontroller.controller('cancelleaveController', function($scope, $window, $loca
 	  $scope.submitcancelleave = function(form,event){
 		  $scope.selectleavetocancel = false;
 		  $scope.afterleave          = false;
-		  $scope.output = $filter('date')(new Date($scope.selectedtodate), 'dd/MM/yyyy');
-		  var todate    = new Date($scope.output);
+		  $scope.formtodate = Date.parse($scope.selectedtodate);
 		 if(form.$valid){
 			 if($scope.selecteddata == ''){
 				 $scope.selectleavetocancel = true;
 				 event.preventDefault();
 			 }
-			 else if((todate.getTime() <= new Date().getTime()) && ($scope.status =='A')){
+			 else if(($scope.formtodate <= Date.today()) && ($scope.status =='A') && (new Date().getHours() > 9)){
 				 $scope.afterleave          = true;
 				 event.preventDefault();
 			 }
-			 else{form.submit();}
-			 }
+			 else{
+				 form.submit();
+			}
+		}
 		 else{
 			 $('.success').css("display","none");
 			 event.preventDefault();
