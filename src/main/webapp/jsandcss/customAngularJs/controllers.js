@@ -134,6 +134,25 @@ mycontroller.directive('passwordMeter', function(){
 	   };
 	});
 
+mycontroller.directive('charOnly', function(){
+	   return {
+	     require: 'ngModel',
+	     link: function(scope, element, attrs, modelCtrl, event) {
+	         modelCtrl.$parsers.push(function (inputValue) {
+	           if (inputValue == undefined){
+	        	   return '' ;
+	           }
+	           var transformedInput = inputValue.replace(/[^a-zA-Z]/g, ''); 
+	           if (transformedInput!=inputValue) {
+	              modelCtrl.$setViewValue(transformedInput);
+	              modelCtrl.$render();
+	           }         
+	           return transformedInput;         
+	       });
+	     }
+	   };
+	});
+
 /* Controllers */
 mycontroller.controller('loginController', function($scope, $window, $location) {
   $scope.loginSubmit = function(form,event){

@@ -46,7 +46,7 @@
 	   <table>
 	    <tbody>
 	      <tr><td><span class="rc">{{firstname}}</span></td>
-	          <td><input type="text" name="firstname" ng-model="ngfirstname" maxlength="20" width-reducer required/>
+	          <td><input type="text" name="firstname" ng-model="ngfirstname" maxlength="20" width-reducer char-only required/>
 	      </tr>
 	      <tr>
     	     <td></td>
@@ -54,7 +54,7 @@
     	     </td>
 	     </tr>
 	      <tr><td><span class="rc">{{lasttname}}</span></td>
-	          <td><input type="text" name="lastname" ng-model="nglastname" maxlength="20" width-reducer required/>
+	          <td><input type="text" name="lastname" ng-model="nglastname" maxlength="20" width-reducer char-only required/>
 	      </tr>
 	      <tr>
     	     <td></td>
@@ -189,7 +189,7 @@
 		<table>
 			<tbody>
 				<tr><td><span class="rc">{{city}}</span></td>
-		            <td><input type="text" name="city" ng-model="ngcity" maxlength="20" width-reducer required/>
+		            <td><input type="text" name="city" ng-model="ngcity" maxlength="20" width-reducer char-only required/>
 			    </tr>
 			    <tr>
 		    	    <td></td>
@@ -197,7 +197,7 @@
 		    	    </td>
 			    </tr>
 			    <tr><td><span class="rc">{{state}}</span></td>
-			        <td><input type="text" name="state" ng-model="ngstate" width-reducer required/>
+			        <td><input type="text" name="state" ng-model="ngstate" width-reducer char-only required/>
 			    </tr>
 			    <tr>
 		    	    <td></td>
