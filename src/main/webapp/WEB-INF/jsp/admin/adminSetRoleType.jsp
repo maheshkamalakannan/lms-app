@@ -35,7 +35,7 @@
 		   <table cellpadding="4">
 		    <tbody>
 		      <tr><td><span class="rc">{{setrole}}</span></td>
-		          <td><input type="text" name="id" id="role" ng-model="ngid" maxlength="2" read-only width-reducer required/>
+		          <td><input type="text" name="id" id="role" ng-model="ngid" maxlength="10" char-only read-only width-reducer required/>
 		      </tr>
 		      <tr>
 	    	     <td></td>
