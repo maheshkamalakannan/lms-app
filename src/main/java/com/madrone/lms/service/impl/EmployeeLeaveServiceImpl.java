@@ -154,6 +154,7 @@ public class EmployeeLeaveServiceImpl implements EmployeeLeaveService {
 		el.setToDateSession(leaveForm.getToDateSession());
 		el.setNoOfDays(leaveForm.getNoOfDays());
 		el.setCancellationComments(leaveForm.getReason());
+		el.setReasonForLeave(leaveForm.getReason()); //LMS-040
 		el.setEmergencyPhoneNumber(leaveForm.getEmergencyPhone());
 		return el;
 
