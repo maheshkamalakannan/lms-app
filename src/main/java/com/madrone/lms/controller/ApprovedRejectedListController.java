@@ -67,7 +67,7 @@ public class ApprovedRejectedListController {
 				logger.info("Inside CancelledLeaveSummary()");
 				String userName = (String) session.getAttribute("sessionUser");
 				List<LeaveDetailsGrid> leaveListOfTeam = empLeaveService
-						.getLeaveListOfTeam(userName, LMSConstants.LEAVE_STATUS_REJECT);
+						.getLeaveListOfTeam(userName, LMSConstants.LEAVE_STATUS_CANCEL);
 				String jsonString = JSONUtils.convertListToJson(leaveListOfTeam);
 				model.addAttribute("jsonString", jsonString);
 				model.addAttribute("ViewLeaveRequestForm", new ViewLeaveRequestForm());
