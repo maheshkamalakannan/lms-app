@@ -1164,7 +1164,7 @@ mycontroller.controller('leaveCorrectionController',['$scope','$filter','createD
 		createDialogService({
             id: 'confirmDelete',
             title: 'Delete Data.',
-            template:'<b><p style="text-align:center;"> Please Confirm to Delete Data.</p></b>',
+            template:'<b><p style="text-align:center;"> Are you sure you want to delete a leave transaction.</p></b>',
             backdrop: true,
             success: {label: 'Confirm',
             	      fn: function() { $('form').attr("action","/lms-app/submitDeleteInLeaveCorrection");
