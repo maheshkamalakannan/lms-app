@@ -756,7 +756,8 @@ mycontroller.controller('viewLeavesController', function($scope, $window, $locat
 });*/
 
 mycontroller.controller('adduserController', function($scope, $window, $location) {
-	$scope.pinminlen = false;
+	$scope.pinminlen             = false;
+	$scope.phoneminlen           = false;
 	
 	$scope.olddate = function($event){
 		$scope.dateishigher = false;
@@ -770,7 +771,8 @@ mycontroller.controller('adduserController', function($scope, $window, $location
 	};
 	
 	$scope.hideerror = function(){
-		$scope.pinminlen = false;
+		$scope.pinminlen   = false;
+		$scope.phoneminlen = false;
 	};
 	
 	 $scope.saveuser = function(form,event){
@@ -781,6 +783,10 @@ mycontroller.controller('adduserController', function($scope, $window, $location
 			 }
 			 else if($scope.ngpincode.length < 6){
 				 $scope.pinminlen = true;
+				 event.preventDefault();
+			 }
+			 else if($scope.ngphone.length < 8){
+				 $scope.phoneminlen = true;
 				 event.preventDefault();
 			 }
 			 else{

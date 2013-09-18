@@ -79,11 +79,12 @@
     	     </td>
 	     </tr>
 	      <tr><td><span class="rc">{{contact}}</span></td>
-	          <td><input type="text" name="phone" ng-model="ngphone" maxlength="10" width-reducer num-only required/>
+	          <td><input type="text" name="phone" ng-model="ngphone" ng-change="hideerror()" maxlength="12" width-reducer num-only required/>
 	      </tr>
 	      <tr>
     	     <td></td>
     	     <td>
+    	       <span class="error" style="margin-bottom: 4px; margin-top: -5px; width: 85%;"  ng-model="phoneminlen" ng-show="phoneminlen">{{phonenumberminlength}}</span></td>
     	     </td>
 	     </tr>
 	      <tr><td><span class="rc">{{admpassword}}</span></td>
