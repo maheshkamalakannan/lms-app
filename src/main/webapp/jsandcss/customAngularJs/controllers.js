@@ -235,7 +235,7 @@ mycontroller.controller('constantsController', function($scope, $window, $locati
     $scope.admindeluser                  = "Home > Users > Delete User";
     $scope.adminsetleavetype             = "Home > Configuration > Set Leave Type";
     $scope.adminsetroletype              = "Home > Configuration > Set Role";
-    $scope.adminviewleave                = "Home > View Leave";
+    $scope.adminviewleave                = "Home > Leave Corrections";
 });
 
 mycontroller.controller('changePasswordController', function($scope, $window, $location) {
