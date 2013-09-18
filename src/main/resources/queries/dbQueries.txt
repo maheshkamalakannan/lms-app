@@ -95,7 +95,7 @@ CREATE TABLE employeeleave_
   to_date_session character varying(2) NOT NULL,
   
   no_of_days smallint NOT NULL,
-  reason_for_leave character varying(45),
+  reason_for_leave character varying(100),
 
   emergeny_phone character varying(12),
   leave_status character varying(1),
