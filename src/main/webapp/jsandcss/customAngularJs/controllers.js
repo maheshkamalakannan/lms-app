@@ -148,15 +148,15 @@ mycontroller.controller('loginController', function($scope, $window, $location) 
 });
 
 mycontroller.controller('constantsController', function($scope, $window, $location) {
-	$scope.emailrequired     = "Email address is required.";
+	$scope.emailrequired     = "Email address is Required.";
 	$scope.invalidemail      = "Invalid Email address.";
-	$scope.passwordrequired  = "Password is required.";
+	$scope.passwordrequired  = "Password is Required.";
     $scope.signin            = "Sign In";
     
-    $scope.newpasswordrequired           = "New Password is required.";
-    $scope.currentpasswordrequired       = "Current Password is required."; //LMS-014
+    $scope.newpasswordrequired           = "New Password is Required.";
+    $scope.currentpasswordrequired       = "Current Password is Required."; //LMS-014
     $scope.newpasswordminlength          = "Password must be 7 characters.";
-    $scope.confirmationpasswordrequired  = "Confirm Password is required.";
+    $scope.confirmationpasswordrequired  = "Confirm Password is Required.";
     $scope.confirmationpassword          = "Current Password and New Password are same."; //LMS-015
     $scope.passwordmismatch              = "Passwords do not match.";
     
@@ -182,8 +182,8 @@ mycontroller.controller('constantsController', function($scope, $window, $locati
     $scope.daygreeting2                  = "PM";
     
     $scope.cancelreasonrequired          = "Reason for Cancellation is Required.";
-    $scope.selectleavetocncl             = "Select Leave to cancel.";
-    $scope.leavetocncl                   = "Leave cannot be cancelled.";
+    $scope.selectleavetocncl             = "Select Leave to Cancel.";
+    $scope.leavetocncl                   = "Leave cannot be Cancelled.";
     
     $scope.viewleaverequestcomment           = "Comments :";
     $scope.viewleaverequestcommentrequired   = "Comment is Required.";
@@ -217,7 +217,7 @@ mycontroller.controller('constantsController', function($scope, $window, $locati
     $scope.setlevel                          = "Level";
     $scope.Rolereq                           = "Role is Required.";
     $scope.Levelreq                          = "Level is Required.";
-    $scope.roledecsreq                       = "Role Description is required.";
+    $scope.roledecsreq                       = "Role Description is Required.";
     
     $scope.hometab                       = "Home";
     $scope.changepasswordtabs            = "Home > Settings > Change Password";
@@ -592,16 +592,36 @@ mycontroller.controller('ViewLeaveRequestsController', function($scope, $window,
 			                    "toDate": row.entity.toDate ,"toDateSession": row.entity.toDateSession, "noOfDays": row.entity.noOfDays, "status": row.entity.status, "approvalComment": row.entity.approvalComment}];
 		$scope.selectleavetoapprove = false;
 		$scope.selectleavetoreject  = false;
-		
-		$scope.myData1 = [{Type: row.entity.leaveType, Total: '30', Consumed: '20', Balance: '10'}];
+		$scope.selectedleavetype    = row.entity.leaveType;
+		$.ajax({
+            type: "POST",
+            url:  location.protocol + "//" + location.host+"/lms-app/getLeaveTypeData",
+            data: "empPrimaryEmail=" + row.entity.empPrimaryEmail,
+            async: false,
+            success: function(response) {
+           	 if(response.status == "SUCCESS") {
+        			var data = $.parseJSON(response.result);
+        			if(data.length > 0){
+        				$scope.myData1 = data;
+        				$scope.$apply();
+        			}
+                    else{
+                    	$scope.myData1 = '';
+                    	$scope.$apply();
+		        	}
+           	  }
+
+            },
+            error: function(e){
+                    alert('no party');
+                    }
+        });
 	};
-	/*$scope.assign = function(row){
-		$scope.myData1 = [{Type: row.entity.leaveType, Total: '30', Consumed: '20', Balance: '10'}];
-	};*/
 
 	$scope.gridOptions1 = {
 	        data: 'myData1',
-	        plugins: [new ngGridCsvExportPlugin()],
+	        showFooter:true,
+	        multiSelect: false,
 	        columnDefs: [{ field: "Type",displayName : "Type",cellClass:'aligncolumn' },
 	                     { field: "Total", displayName : "Total",cellClass:'aligncolumn'},
 	                     { field: "Consumed", displayName : "Consumed",cellClass:'aligncolumn'},

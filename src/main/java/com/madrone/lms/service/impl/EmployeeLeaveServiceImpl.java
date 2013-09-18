@@ -115,6 +115,7 @@ public class EmployeeLeaveServiceImpl implements EmployeeLeaveService {
 				bean.setLeaveType(el.getLeave().getId());
 				bean.setNoOfDays(el.getNoOfDays());
 				bean.setStatus(el.getLeaveStatus());
+				bean.setEmpPrimaryEmail(el.getEmployee().getPrimaryEmail());
 				teamLeaveList.add(bean);
 			}
 		}

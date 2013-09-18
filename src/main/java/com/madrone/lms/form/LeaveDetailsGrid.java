@@ -16,6 +16,7 @@ public class LeaveDetailsGrid {
 	
 	private String empId;
 	private String empName;
+	private String empPrimaryEmail;
 	
 	
 	public String getEmpId() {
@@ -89,6 +90,12 @@ public class LeaveDetailsGrid {
 	}
 	public void setAction(boolean action) {
 		this.action = action;
+	}
+	public String getEmpPrimaryEmail() {
+		return empPrimaryEmail;
+	}
+	public void setEmpPrimaryEmail(String empPrimaryEmail) {
+		this.empPrimaryEmail = empPrimaryEmail;
 	}
 	
 

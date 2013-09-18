@@ -428,13 +428,11 @@ li:hover .sub-level .sub-level {
 #viewleaverequestrightcontent{
 	float: right;
     margin-left: 65px;
-    margin-top: -90px;
-    width: 450px;
+    width: 420px;
 }
 #viewleaverequestleftcontent{
 	float:left;
 	width:420px;
-	margin-top:20px;
 	margin-left: 67px;
 }
 
@@ -593,8 +591,8 @@ textarea {
 .viewleaverequestgridStyle1{
 	border: 1px solid rgb(212,212,212);
     width: 400px; 
-    height:62px;
-    padding:5px;
+    height: 155px;
+    padding: 5px;
 }
 
 .leavesummaryContent{

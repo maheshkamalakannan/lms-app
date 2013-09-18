@@ -16,6 +16,7 @@ public class ViewLeaveRequestForm {
 	private String leaveType;
 	private String leaveReason;
 	private String approvalComment;
+	private String empPrimaryEmail;
 	
 	
 	public String getSelecteddata() {
@@ -89,6 +90,12 @@ public class ViewLeaveRequestForm {
 	}
 	public void setApprovalComment(String approvalComment) {
 		this.approvalComment = approvalComment;
+	}
+	public String getEmpPrimaryEmail() {
+		return empPrimaryEmail;
+	}
+	public void setEmpPrimaryEmail(String empPrimaryEmail) {
+		this.empPrimaryEmail = empPrimaryEmail;
 	}
 	
 	

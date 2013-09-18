@@ -66,7 +66,7 @@ public class LeaveServiceImpl implements LeaveService {
 	}
 
 	@Override
-	public List<ApplyLeaveFormGrid> getApplyLeaveGridDetails(String userName) {
+	public List<ApplyLeaveFormGrid> getApplyLeaveGridDetails(String primaryemailaddress) {
 		List<Leave> leaveList = leaveDao.getLeaveTypes();
 		List<ApplyLeaveFormGrid> applyLeaveGrid = 
 				new ArrayList<ApplyLeaveFormGrid>();
@@ -75,7 +75,7 @@ public class LeaveServiceImpl implements LeaveService {
 			ApplyLeaveFormGrid gridBean = new ApplyLeaveFormGrid();
 			gridBean.setType(l.getId());
 
-			findEmployeeLeaveBalance(gridBean, userName, l.getDays());
+			findEmployeeLeaveBalance(gridBean, primaryemailaddress, l.getDays());
 			applyLeaveGrid.add(gridBean);
 		}
 		return applyLeaveGrid;
