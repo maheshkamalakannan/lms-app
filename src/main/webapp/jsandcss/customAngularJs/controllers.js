@@ -337,7 +337,7 @@ mycontroller.controller('applyLeaveController', function($scope, $window, $locat
 			$scope.gridData = data1;
 			$scope.gridOptions = { 
 		    		data: 'gridData',
-		    		plugins: [new ngGridCsvExportPlugin()],
+		    		//plugins: [new ngGridCsvExportPlugin()],
 		    		multiSelect: false,
 		    		showFooter:true,
 		    		columnDefs: [{field: 'Type', displayName: 'Type', cellClass:'aligncolumn'},
@@ -488,7 +488,7 @@ mycontroller.controller('cancelleaveController', function($scope, $window, $loca
 			$scope.gridOptions = { 
 		    		data: 'gridData',
 		    		//plugins: [new ngGridCsvExportPlugin(),new ngGridFlexibleHeightPlugin()],
-		    		plugins: [new ngGridCsvExportPlugin()],
+		    		//plugins: [new ngGridCsvExportPlugin()],
 		    		multiSelect: false,
 		    		showFooter:true,
 		    		columnDefs: [{displayName: '', cellClass:'aligncolumn', cellTemplate: '<input type="radio" name="cancel" id="cancel" ng-model="ngcancel" ng-click="assign(row)" value="cancel">', width:20,},
@@ -547,7 +547,7 @@ mycontroller.controller('leavesummaryController', function($scope, $window, $loc
 			$scope.gridData2 = data2;
 			$scope.gridOptions2 = { 
 		    		data: 'gridData2',
-		    		plugins: [new ngGridCsvExportPlugin()],
+		    		//plugins: [new ngGridCsvExportPlugin()],
 		    		selectedItems: $scope.mySelections,
 		    		multiSelect: false,
 		    		showFooter:true,
@@ -561,7 +561,7 @@ mycontroller.controller('leavesummaryController', function($scope, $window, $loc
 			       };
 			$scope.gridOptions1 = { 
 					data: 'gridData1',
-					plugins: [new ngGridCsvExportPlugin()],
+					//plugins: [new ngGridCsvExportPlugin()],
 		    		multiSelect: false,
 		    		showFooter:true,
 		    		columnDefs: [{field: 'Type', displayName: 'Leave Type', cellClass:'aligncolumn'},
@@ -584,7 +584,7 @@ mycontroller.controller('ViewLeaveRequestsController', function($scope, $window,
 		$scope.gridData = data1;
 		$scope.gridOptions = { 
 	    		data: 'gridData',
-	    		plugins: [new ngGridCsvExportPlugin()],
+	    		//plugins: [new ngGridCsvExportPlugin()],
 	    		multiSelect: false,
 	    		showFooter:true,
 	    		columnDefs: [{displayName: '', cellClass:'aligncolumn', cellTemplate: '<input type="radio" name="view" id="view"  ng-click="assign(row)" value="View">', width:20,},
@@ -705,7 +705,7 @@ mycontroller.controller('viewLeavesController', function($scope, $window, $locat
 		$scope.gridData = data1;
 		$scope.gridOptions = { 
 	    		data: 'gridData',
-	    		plugins: [new ngGridCsvExportPlugin()],
+	    		//plugins: [new ngGridCsvExportPlugin()],
 	    		multiSelect: false,
 	    		showFooter:true,
 	    		columnDefs: [{field: 'empId', displayName: 'ID',cellClass:'aligncolumn',width:50,},
