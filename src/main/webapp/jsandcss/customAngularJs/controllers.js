@@ -142,7 +142,7 @@ mycontroller.directive('charOnly', function(){
 	           if (inputValue == undefined){
 	        	   return '' ;
 	           }
-	           var transformedInput = inputValue.replace(/[^a-zA-Z]/g, ''); 
+	           var transformedInput = inputValue.replace(/[^a-zA-Z ]/g, ''); 
 	           if (transformedInput!=inputValue) {
 	              modelCtrl.$setViewValue(transformedInput);
 	              modelCtrl.$render();
