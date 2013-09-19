@@ -1178,7 +1178,7 @@ mycontroller.controller('leaveCorrectionController',['$scope','$filter','createD
 			             {field: 'toDate', displayName: 'To Date',cellClass:'aligncolumn',width:90, },
 			             {field: 'noOfDays', displayName: 'Days',cellClass:'aligncolumn',width:60, },
 			             {field: 'status', displayName: 'Status',cellClass:'aligncolumn',width:60,},
-			             {field: 'reason', displayName: 'Comments',cellClass:'aligncolumn',},
+			             {field: 'reason', displayName: 'Reason',cellClass:'aligncolumn',},
 			             ]};
 	
 	$scope.deleterow = function(row){
