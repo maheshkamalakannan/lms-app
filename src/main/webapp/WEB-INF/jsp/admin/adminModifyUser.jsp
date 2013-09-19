@@ -112,7 +112,7 @@
 				     </tr>
 		   	         <tr>
 		   	         <td><span class="rc">{{employeedesignation}}</span></td>
-	          			<td><select name="desig">
+	          			<td><select name="desig" style="width: 165px;">
       						<c:forEach items="${desiglist}" var="desig">
 	       						<option value="${desig.id}">${desig.description}</option>
 	   						</c:forEach>
@@ -126,7 +126,7 @@
 	     			 </tr>
 				   	 <tr>
 					   <td><span class="rc">{{department}}</span></td>
-				       <td><select name="dept">
+				       <td><select name="dept" style="width: 165px;">
 	      					<c:forEach items="${deptlist}" var="dept">
 		       					<option value="${dept.id}">${dept.description}</option>
 		   					</c:forEach>
@@ -134,7 +134,7 @@
 						</td>
 				      </tr>
 				     <tr><td><span class="rc">{{role}}</span></td>
-				            <td><select name="role" id="role" onchange="doAjaxPost()">
+				            <td><select name="role" id="role" onchange="doAjaxPost()" style="width: 165px;">
   				  	 		<c:forEach items="${rolelist}" var="role">
        				 			<option value="${role.id}">${role.description}</option>
    							</c:forEach>
@@ -146,7 +146,7 @@
 			    	     </td>
 				     </tr>
 				     <tr><td><span class="rc">{{reportingto}}</span></td>
-				            <td><select name="reportingto" id="reportingto">
+				            <td><select name="reportingto" id="reportingto" style="width: 165px;">
   				  	 		<c:forEach items="${repolist}" var="report">
        				 			<option value="${report.empId}">${report.empName}</option>
    							</c:forEach>
