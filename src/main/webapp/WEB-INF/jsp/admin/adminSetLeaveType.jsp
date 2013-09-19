@@ -35,7 +35,7 @@
 		   <table cellpadding="4">
 		    <tbody>
 		      <tr><td><span class="rc">{{employeeleavetype}}</span></td>
-		          <td><input type="text" name="id" id="leavetype" ng-model="ngid" maxlength="2" read-only width-reducer required/>
+		          <td><input type="text" name="id" id="leavetype" ng-model="ngid" maxlength="2" style="width:100px;" read-only  char-only required/>
 		      </tr>
 		      <tr>
 	    	     <td></td>
@@ -44,7 +44,7 @@
 	    	     </td>
 		     </tr>
 		     <tr><td><span class="rc">{{setleavedays}}</span></td>
-		          <td><input type="text" name="days" id="leavedays"  ng-model="ngdays" maxlength="2" num-only  width-reducer required/>
+		          <td><input type="text" name="days" id="leavedays"  ng-model="ngdays" maxlength="2" style="width:100px;" num-only  required/>
 		      </tr>
 		      <tr>
 	    	     <td></td>
@@ -59,7 +59,7 @@
 			   <table cellpadding="4">
 			    <tbody>
 			      <tr><td><span class="rc">{{setleavedesc}}</span></td>
-			          <td><textarea name="description" id="leavedescription" ng-model="ngdescription" maxlength="100"  required></textarea><!-- LMS-083 Adding maxlength 100 from 30 -->
+			          <td><textarea name="description" id="leavedescription" ng-model="ngdescription" maxlength="50"  required></textarea><!-- LMS-083 Adding maxlength 100 from 50 -->
 			      </tr>
 			      <tr>
 		    	     <td></td>
