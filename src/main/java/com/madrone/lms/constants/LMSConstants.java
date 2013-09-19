@@ -27,13 +27,19 @@ public class LMSConstants {
 	public static final String ADMIN_DELETE_USER_SCR   = "deleteUserScreen";
 	public static final String ADMIN_MODIFY_USER_SCR   = "modifyUserScreen";
 	public static final String ADMIN_SET_LEAVE_TYPE_SCR= "setLeaveTypeScreen";
-	public static final String ADMIN_SET_ROLE_SCR = "setRoleScreen";
+	public static final String ADMIN_SET_ROLE_SCR      = "setRoleScreen";
 	public static final String ADMIN_VIEW_LEAVE_SCR    = "viewLeaveScreen";
 	
 	public static final String LEAVE_STATUS_PENDING = "P";
 	public static final String LEAVE_STATUS_CANCEL  = "C";
 	public static final String LEAVE_STATUS_APPROVE = "A";
 	public static final String LEAVE_STATUS_REJECT  = "R";
+	
+	public static final String LEAVE_PENDING = "PENDING";
+	public static final String LEAVE_APPLY   = "APPLY";
+	public static final String LEAVE_CANCEL  = "CANCEL";
+	public static final String LEAVE_APPROVE = "APPROVE";
+	public static final String LEAVE_REJECT  = "REJECT";
 	
 	public static final String INSERT = "INSERT";
 	public static final String UPDATE = "UPDATE";

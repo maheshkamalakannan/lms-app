@@ -17,8 +17,15 @@ public class ViewLeaveRequestForm {
 	private String leaveReason;
 	private String approvalComment;
 	private String empPrimaryEmail;
+	private String reason;
 	
 	
+	public String getReason() {
+		return reason;
+	}
+	public void setReason(String reason) {
+		this.reason = reason;
+	}
 	public String getSelecteddata() {
 		return selecteddata;
 	}

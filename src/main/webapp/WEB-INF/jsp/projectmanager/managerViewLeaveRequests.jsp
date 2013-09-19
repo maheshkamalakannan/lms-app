@@ -27,8 +27,8 @@
 	       </div> 
 	       <div id="viewleaverequestrightcontent">
 		      <div class="rc">{{viewleaverequestcomment}}</div>
-		      <textarea style="margin-left:5px; width:300px; height:60px;" ng-model="ngcomments" name="comments" required maxlength="100"></textarea>
-		      <span class="error" style="width: 65%; margin-left:5px;" ng-show="submitted && viewleavereq.comments.$error.required">{{viewleaverequestcommentrequired}}</span>
+		      <textarea style="margin-left:5px; width:300px; height:60px;" ng-model="ngcomments" name="reason" required maxlength="100"></textarea>
+		      <span class="error" style="width: 65%; margin-left:5px;" ng-show="submitted && viewleavereq.reason.$error.required">{{viewleaverequestcommentrequired}}</span>
 		      <span class="error" style="width: 65%; margin-left:5px;" ng-model="selectleavetoapprove" ng-show="selectleavetoapprove">{{viewleaverequestapprove}}</span>
 		      <span class="error" style="width: 65%; margin-left:5px;" ng-model="selectleavetoreject" ng-show="selectleavetoreject">{{viewleaverequestreject}}</span>
 			 <div style="margin-top:7px; margin-left:5px;">

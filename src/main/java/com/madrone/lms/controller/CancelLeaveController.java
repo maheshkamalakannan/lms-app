@@ -58,8 +58,9 @@ public class CancelLeaveController {
 		String jsonString1 = form.getSelecteddata();
 
 		LeaveForm cancelForm = JSONUtils.convertJsonToObjectToClass(jsonString1);
+		cancelForm.setReason(form.getReason());
 		if (cancelForm != null) {
-			String operation="Cancel";
+			String operation = LMSConstants.LEAVE_CANCEL;
 			EmployeeLeave el  = empLeaveService.setBeanValuesForSave(cancelForm,operation);
 			empLeaveService.cancelEmployeeLeave(el);
 			

@@ -116,12 +116,12 @@ public class EmployeeLeaveServiceImpl implements EmployeeLeaveService {
 				bean.setLeaveType(el.getLeave().getId());
 				bean.setNoOfDays(el.getNoOfDays());
 				bean.setStatus(el.getLeaveStatus());
-				if(bean.getStatus().equals("P")) {
+				if(bean.getStatus().equals(LMSConstants.LEAVE_STATUS_PENDING)) {
 					bean.setReason(el.getReasonForLeave());
 				}
-				else if(bean.getStatus().equals("C")) {
+				else if(bean.getStatus().equals(LMSConstants.LEAVE_STATUS_CANCEL)) {
 					bean.setReason(el.getCancellationComments());
-				}else if(bean.getStatus().equals("A") || bean.getStatus().equals("R")) {
+				}else if(bean.getStatus().equals(LMSConstants.LEAVE_STATUS_APPROVE) || bean.getStatus().equals(LMSConstants.LEAVE_STATUS_REJECT)) {
 					bean.setReason(el.getApprovalComments());
 				}
 				bean.setEmpPrimaryEmail(el.getEmployee().getPrimaryEmail());
@@ -145,7 +145,6 @@ public class EmployeeLeaveServiceImpl implements EmployeeLeaveService {
 
 	@Override
 	public EmployeeLeave setBeanValuesForSave(LeaveForm leaveForm,String operation) {
-
 		EmployeeLeave el = new EmployeeLeave();
 		Employee e = empDao.findById(leaveForm.getEmpId());
 		el.setEmployee(e);
@@ -163,16 +162,21 @@ public class EmployeeLeaveServiceImpl implements EmployeeLeaveService {
 		el.setToDateSession(leaveForm.getToDateSession());
 		el.setNoOfDays(leaveForm.getNoOfDays());
 		switch(operation) {
-		case  "APPLY": {
+		case  LMSConstants.LEAVE_APPLY : {
 			el.setReasonForLeave(leaveForm.getReason());
+			break;
 		}
-		case "CANCEL" :{
+		case LMSConstants.LEAVE_CANCEL :{
 			el.setCancellationComments(leaveForm.getReason());
+			break;
 		}
-		case "APPROVE" :{}
+		case LMSConstants.LEAVE_APPROVE :{
 			el.setApprovalComments(leaveForm.getReason());
 			el.setApprovalDate(Calendar.getInstance());
+			break;
 		}
+			
+	}
 		el.setEmergencyPhoneNumber(leaveForm.getEmergencyPhone());
 		return el;
 
@@ -193,7 +197,14 @@ public class EmployeeLeaveServiceImpl implements EmployeeLeaveService {
 					(el.getFromDate()));
 			bean.setToDate(DateUtils.convertCalendarToString(el.getToDate()));
 			bean.setToDateSession(el.getToDateSession());
-			bean.setReason(el.getReasonForLeave());
+			if(el.getLeaveStatus().equals(LMSConstants.LEAVE_STATUS_PENDING)) {
+				bean.setReason(el.getReasonForLeave());
+			}
+			else if(el.getLeaveStatus().equals(LMSConstants.LEAVE_STATUS_CANCEL)) {
+				bean.setReason(el.getCancellationComments());
+			}else if(el.getLeaveStatus().equals(LMSConstants.LEAVE_STATUS_APPROVE) || el.getLeaveStatus().equals(LMSConstants.LEAVE_STATUS_REJECT)) {
+				bean.setReason(el.getApprovalComments());
+			}
 			bean.setLeaveType(el.getLeave().getId());
 			bean.setNoOfDays(el.getNoOfDays());
 			bean.setStatus(el.getLeaveStatus());

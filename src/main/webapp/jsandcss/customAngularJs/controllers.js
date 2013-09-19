@@ -503,7 +503,7 @@ mycontroller.controller('cancelleaveController', function($scope, $window, $loca
 				$scope.myData1 = row.entity;
 				$scope.selectedtodate = row.entity.toDate;
 				$scope.status         = row.entity.status;
-				$scope.selecteddata = [{"id":row.entity.id,"fromDate": row.entity.fromDate,"fromDateSession":row.entity.fromDateSession,"toDate": row.entity.toDate,"toDateSession":row.entity.toDateSession,"noOfDays": row.entity.noOfDays,"leaveType": row.entity.leaveType,"action":row.entity.action,"status": row.entity.status,"reason":row.entity.reason,"empId":row.entity.empId,"empName":row.entity.empName}];
+				$scope.selecteddata = [{"id":row.entity.id,"fromDate": row.entity.fromDate,"fromDateSession":row.entity.fromDateSession,"toDate": row.entity.toDate,"toDateSession":row.entity.toDateSession,"noOfDays": row.entity.noOfDays,"leaveType": row.entity.leaveType,"action":row.entity.action,"status": row.entity.status,"empId":row.entity.empId,"empName":row.entity.empName}];
 				$scope.selectleavetocancel = false;
 			};
 	  };
@@ -608,7 +608,7 @@ mycontroller.controller('ViewLeaveRequestsController', function($scope, $window,
 	$scope.assign = function(row){
 		$scope.myData1 = row.entity;
 		$scope.selecteddata = [{"id": row.entity.id,"empId": row.entity.empId, "empName": row.entity.empName, "leaveType": row.entity.leaveType, "fromDate": row.entity.fromDate, "fromDateSession":row.entity.fromDateSession,
-			                    "toDate": row.entity.toDate ,"toDateSession": row.entity.toDateSession, "noOfDays": row.entity.noOfDays, "status": row.entity.status, "approvalComment": row.entity.approvalComment}];
+			                    "toDate": row.entity.toDate ,"toDateSession": row.entity.toDateSession, "noOfDays": row.entity.noOfDays, "status": row.entity.status}];
 		$scope.selectleavetoapprove = false;
 		$scope.selectleavetoreject  = false;
 		$scope.selectedleavetype    = row.entity.leaveType;
