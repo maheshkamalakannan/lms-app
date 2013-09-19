@@ -32,6 +32,11 @@ public abstract class AbstractDaoImpl <E, I extends Serializable>
     public void saveOrUpdate(E e) {
         getCurrentSession().saveOrUpdate(e);
     }
+    
+    @Override
+    public void save(E e) {
+    	getCurrentSession().save(e);
+    }
   
     @Override
     public void delete(E e) {

@@ -48,11 +48,20 @@ public class SetLeaveTypesController {
 		Leave l = leaveService.setBeanValuesForSave(form);
 		switch (form.getUserAction()) {
 			case LMSConstants.INSERT: {
+				try{
 				leaveService.saveLeave(l);
 				createJason(model);
 				model.addAttribute("SucessMessage", messageSource.getMessage(
 						"lms.setleaveTypes.add.success_message",
 						new Object[] { "" }, Locale.getDefault()));
+				}
+				catch (Exception e) {
+					createJason(model);
+					model.addAttribute("FailureMessage", messageSource.getMessage(
+							"lms.setleaveTypes.mod.failure_message",
+							new Object[] { "" }, Locale.getDefault()));
+					e.printStackTrace();
+				}
 				break;
 			}
 			case LMSConstants.DELETE: {

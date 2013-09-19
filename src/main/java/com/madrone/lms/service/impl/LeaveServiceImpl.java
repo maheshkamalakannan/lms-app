@@ -43,7 +43,7 @@ public class LeaveServiceImpl implements LeaveService {
 	@Override
 	@Transactional(readOnly = false)
 	public void saveLeave(Leave l) {
-		leaveDao.saveOrUpdate(l);
+		leaveDao.save(l);
 	}
 
 	@Override
@@ -125,7 +125,7 @@ public class LeaveServiceImpl implements LeaveService {
 	@Override
 	public Leave setBeanValuesForSave(LeaveTypeForm form) {
 		Leave l = new Leave();
-		l.setId(form.getId());
+		l.setId(form.getId().toUpperCase());
 		l.setDescription(form.getDescription());
 		l.setDays(form.getDays());
 		return l;
