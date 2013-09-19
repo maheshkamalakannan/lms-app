@@ -92,7 +92,7 @@ public class LeaveServiceImpl implements LeaveService {
 		Calendar doj = employee.getDateOfJoin();
 		Date dateOfJoin = doj.getTime();
 
-		int year = doj.get(Calendar.YEAR);
+		int year = now.get(Calendar.YEAR);
 		String firstDay = "01/01/" + String.valueOf(year);
 		Date fistDayOfThisYear = DateUtils.convertStringToCalendar(firstDay)
 				.getTime();
