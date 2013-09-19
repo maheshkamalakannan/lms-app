@@ -461,9 +461,11 @@ select {
 a, label{
 	color: #666666;
 }
-a:link{color: #EF7822;};
-a:visited {color: #EF7822;}
-a:hover {color: #EF7822; cursor:pointer}
+a, a:link, a:visited {
+	color: #EF7822;
+	text-decoration: none;
+}
+a:hover {text-decoration:underline; cursor:pointer}
 a:focus {color: #EF7822;}
 a:active {color: #EF7822;}
 
