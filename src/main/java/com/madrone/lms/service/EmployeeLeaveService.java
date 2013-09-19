@@ -11,7 +11,7 @@ public interface EmployeeLeaveService {
 
 	EmployeeLeave findById(long id);
 	
-	public EmployeeLeave setBeanValuesForSave(LeaveForm leaveForm);
+	public EmployeeLeave setBeanValuesForSave(LeaveForm leaveForm,String operation);
 	
 	void saveEmployeeLeave(EmployeeLeave el);
 

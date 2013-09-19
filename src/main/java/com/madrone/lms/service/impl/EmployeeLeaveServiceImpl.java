@@ -1,6 +1,7 @@
 package com.madrone.lms.service.impl;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -115,6 +116,14 @@ public class EmployeeLeaveServiceImpl implements EmployeeLeaveService {
 				bean.setLeaveType(el.getLeave().getId());
 				bean.setNoOfDays(el.getNoOfDays());
 				bean.setStatus(el.getLeaveStatus());
+				if(bean.getStatus().equals("P")) {
+					bean.setReason(el.getReasonForLeave());
+				}
+				else if(bean.getStatus().equals("C")) {
+					bean.setReason(el.getCancellationComments());
+				}else if(bean.getStatus().equals("A") || bean.getStatus().equals("R")) {
+					bean.setReason(el.getApprovalComments());
+				}
 				bean.setEmpPrimaryEmail(el.getEmployee().getPrimaryEmail());
 				teamLeaveList.add(bean);
 			}
@@ -135,7 +144,7 @@ public class EmployeeLeaveServiceImpl implements EmployeeLeaveService {
 	}
 
 	@Override
-	public EmployeeLeave setBeanValuesForSave(LeaveForm leaveForm) {
+	public EmployeeLeave setBeanValuesForSave(LeaveForm leaveForm,String operation) {
 
 		EmployeeLeave el = new EmployeeLeave();
 		Employee e = empDao.findById(leaveForm.getEmpId());
@@ -153,8 +162,17 @@ public class EmployeeLeaveServiceImpl implements EmployeeLeaveService {
 		el.setFromDateSession(leaveForm.getFromDateSession());
 		el.setToDateSession(leaveForm.getToDateSession());
 		el.setNoOfDays(leaveForm.getNoOfDays());
-		el.setCancellationComments(leaveForm.getReason());
-		el.setReasonForLeave(leaveForm.getReason()); //LMS-040
+		switch(operation) {
+		case  "APPLY": {
+			el.setReasonForLeave(leaveForm.getReason());
+		}
+		case "CANCEL" :{
+			el.setCancellationComments(leaveForm.getReason());
+		}
+		case "APPROVE" :{}
+			el.setApprovalComments(leaveForm.getReason());
+			el.setApprovalDate(Calendar.getInstance());
+		}
 		el.setEmergencyPhoneNumber(leaveForm.getEmergencyPhone());
 		return el;
 

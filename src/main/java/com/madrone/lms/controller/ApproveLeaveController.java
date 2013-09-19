@@ -87,7 +87,8 @@ public class ApproveLeaveController {
 		LeaveForm approveForm = JSONUtils
 				.convertJsonToObjectToClass(jsonString1);
 		if (approveForm != null) {
-			EmployeeLeave el = empLeaveService.setBeanValuesForSave(approveForm);
+			String operation = "APPROVE";
+			EmployeeLeave el = empLeaveService.setBeanValuesForSave(approveForm,operation);
 			empLeaveService.approveEmployeeLeave(el);
 			String userName = (String) session.getAttribute("sessionUser");
 			List<LeaveDetailsGrid> leaveListOfTeam = empLeaveService
@@ -115,7 +116,8 @@ public class ApproveLeaveController {
 		LeaveForm approveForm = JSONUtils
 				.convertJsonToObjectToClass(jsonString1);
 		if (approveForm != null) {
-			EmployeeLeave el = empLeaveService.setBeanValuesForSave(approveForm);
+			String operation = "APPROVE";
+			EmployeeLeave el = empLeaveService.setBeanValuesForSave(approveForm,operation);
 			empLeaveService.rejectEmployeeLeave(el);
 			String userName = (String) session.getAttribute("sessionUser");
 			List<LeaveDetailsGrid> leaveListOfTeam = empLeaveService

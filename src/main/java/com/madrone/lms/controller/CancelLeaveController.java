@@ -59,7 +59,8 @@ public class CancelLeaveController {
 
 		LeaveForm cancelForm = JSONUtils.convertJsonToObjectToClass(jsonString1);
 		if (cancelForm != null) {
-			EmployeeLeave el  = empLeaveService.setBeanValuesForSave(cancelForm);
+			String operation="Cancel";
+			EmployeeLeave el  = empLeaveService.setBeanValuesForSave(cancelForm,operation);
 			empLeaveService.cancelEmployeeLeave(el);
 			
 			/* Creating jason string after leave has been cancelled Starts */ 

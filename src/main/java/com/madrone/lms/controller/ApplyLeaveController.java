@@ -69,7 +69,8 @@ public class ApplyLeaveController {
 			@ModelAttribute("ApplyLeaveForm") LeaveForm applyLeaveForm,
 			BindingResult result, Map<String, Object> map, HttpSession session) {
 		logger.info("Inside submitApplyLeave()");
-		EmployeeLeave el  = empLeaveService.setBeanValuesForSave(applyLeaveForm);
+		String operation = "APPLY";
+		EmployeeLeave el  = empLeaveService.setBeanValuesForSave(applyLeaveForm,operation);
 		empLeaveService.saveEmployeeLeave(el);
 		String userName = (String) session.getAttribute("sessionUser");
 
