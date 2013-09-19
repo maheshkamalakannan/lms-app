@@ -596,8 +596,8 @@ mycontroller.controller('ViewLeaveRequestsController', function($scope, $window,
 	    		             {field: 'toDate', displayName: 'To Date',cellClass:'aligncolumn', width:90,},
 	    		             {field: 'toDateSession', displayName: 'Session',cellClass:'aligncolumn',width:70,},
 	    		             {field: 'noOfDays', displayName: 'Days',cellClass:'aligncolumn',width:40,},
-	    		             {field: '', displayName: 'Contact',cellClass:'aligncolumn',width:90,},
-	    		             {field: 'leaveReason', displayName: 'Reason',cellClass:'aligncolumn'},
+	    		             {field: 'contact', displayName: 'Contact',cellClass:'aligncolumn',width:90,},
+	    		             {field: 'reason', displayName: 'Reason',cellClass:'aligncolumn'},
 	    		             ]};
 		 $scope.$on('ngGridEventData', function (e,s) {
 	         $scope.gridOptions.selectItem(0,true);

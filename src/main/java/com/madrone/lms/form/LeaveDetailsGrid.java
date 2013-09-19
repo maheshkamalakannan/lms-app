@@ -13,6 +13,7 @@ public class LeaveDetailsGrid {
 	private boolean action;
 	private String status;
 	private String reason;
+	private String contact;
 	
 	private String empId;
 	private String empName;
@@ -96,6 +97,12 @@ public class LeaveDetailsGrid {
 	}
 	public void setEmpPrimaryEmail(String empPrimaryEmail) {
 		this.empPrimaryEmail = empPrimaryEmail;
+	}
+	public String getContact() {
+		return contact;
+	}
+	public void setContact(String contact) {
+		this.contact = contact;
 	}
 	
 

@@ -124,6 +124,7 @@ public class EmployeeLeaveServiceImpl implements EmployeeLeaveService {
 				}else if(bean.getStatus().equals(LMSConstants.LEAVE_STATUS_APPROVE) || bean.getStatus().equals(LMSConstants.LEAVE_STATUS_REJECT)) {
 					bean.setReason(el.getApprovalComments());
 				}
+				bean.setContact(el.getEmergencyPhoneNumber());
 				bean.setEmpPrimaryEmail(el.getEmployee().getPrimaryEmail());
 				teamLeaveList.add(bean);
 			}
