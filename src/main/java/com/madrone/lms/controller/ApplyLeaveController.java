@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import javax.servlet.http.HttpSession;
+
+import org.hibernate.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +26,11 @@ import com.madrone.lms.entity.Leave;
 //import com.madrone.lms.entity.LeaveTypes;
 import com.madrone.lms.form.ApplyLeaveFormGrid;
 import com.madrone.lms.form.LeaveForm;
+import com.madrone.lms.service.EmailService;
 import com.madrone.lms.service.EmployeeLeaveService;
 import com.madrone.lms.service.LeaveService;
 import com.madrone.lms.utils.JSONUtils;
+import com.madrone.lms.utils.MailUtils;
 
 @Controller
 public class ApplyLeaveController {
@@ -41,6 +45,9 @@ public class ApplyLeaveController {
 	
 	@Autowired
 	private MessageSource messageSource;
+	
+	@Autowired
+	private EmailService emailService;
 
 
 	@RequestMapping(value = "/applyLeave", method = RequestMethod.GET)
@@ -68,15 +75,32 @@ public class ApplyLeaveController {
 	}
 
 	@RequestMapping(value = "/submitApplyLeave", method = RequestMethod.POST)
-	public ModelAndView submitApplyLeave(@ModelAttribute("ApplyLeaveForm") LeaveForm applyLeaveForm,BindingResult result, Map<String, Object> map, HttpSession session, RedirectAttributes ra) {
-		
-		ModelAndView modelView = new ModelAndView(new RedirectView(LMSConstants.APPLY_LEAVE_URL));
+	public ModelAndView submitApplyLeave(
+			@ModelAttribute("ApplyLeaveForm") LeaveForm applyLeaveForm,
+			BindingResult result, Map<String, Object> map, HttpSession session,
+			RedirectAttributes ra) {
+
+		ModelAndView modelView = new ModelAndView(new RedirectView(
+				LMSConstants.APPLY_LEAVE_URL));
 		String operation = "APPLY";
-		EmployeeLeave el  = empLeaveService.setBeanValuesForSave(applyLeaveForm,operation);
+		EmployeeLeave el = empLeaveService.setBeanValuesForSave(applyLeaveForm,
+				operation);
 		empLeaveService.saveEmployeeLeave(el);
-		ra. addFlashAttribute("SucessMessage", messageSource.getMessage(
+		
+		String URL			 = "http://localhost:8080/lms-app";
+		String mailSubject 	 = MailUtils.composeApplyLeaveSubject(applyLeaveForm,URL);
+		String from 		 = (String) session.getAttribute("sessionUser");
+		emailService.sendMail(from, LMSConstants.mailTo,
+				"Employee Leave request email", mailSubject);
+		
+		ra.addFlashAttribute("SucessMessage", messageSource.getMessage(
 				"lms.applyLeave_success_message", new Object[] { "" },
 				Locale.getDefault()));
 		return modelView;
+	}
+
+	private void sendmail(LeaveForm applyLeaveForm,Session session) {
+		
+		
 	}
 }

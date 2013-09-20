@@ -58,4 +58,6 @@ public class LMSConstants {
 	public static final String ADMIN_SET_ROLE_URL     = "/lms-app/setRole";
 	public static final String ADMIN_LEAVE_CORRECTIONS_URL     = "/lms-app/leaveCorrections";
 	
+	public static final String mailTo = "manager.madrone@gmail.com";
+	
 }
