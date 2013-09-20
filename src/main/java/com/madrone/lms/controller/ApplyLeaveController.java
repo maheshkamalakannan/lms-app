@@ -14,6 +14,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.madrone.lms.constants.LMSConstants;
 import com.madrone.lms.entity.EmployeeLeave;
@@ -65,30 +68,15 @@ public class ApplyLeaveController {
 	}
 
 	@RequestMapping(value = "/submitApplyLeave", method = RequestMethod.POST)
-	public String submitApplyLeave(Model model,
-			@ModelAttribute("ApplyLeaveForm") LeaveForm applyLeaveForm,
-			BindingResult result, Map<String, Object> map, HttpSession session) {
-		logger.info("Inside submitApplyLeave()");
+	public ModelAndView submitApplyLeave(@ModelAttribute("ApplyLeaveForm") LeaveForm applyLeaveForm,BindingResult result, Map<String, Object> map, HttpSession session, RedirectAttributes ra) {
+		
+		ModelAndView modelView = new ModelAndView(new RedirectView(LMSConstants.APPLY_LEAVE_URL));
 		String operation = "APPLY";
 		EmployeeLeave el  = empLeaveService.setBeanValuesForSave(applyLeaveForm,operation);
 		empLeaveService.saveEmployeeLeave(el);
-		String userName = (String) session.getAttribute("sessionUser");
-
-		// This for to Show Values in Grid.
-		List<ApplyLeaveFormGrid> gridList = leaveService
-				.getApplyLeaveGridDetails(userName);
-		String jsonString= JSONUtils.convertListToJson(gridList);
-		model.addAttribute("jsonString", jsonString);
-		model.addAttribute("leaveList", gridList);
-		model.addAttribute("leaveTypes", session.getAttribute("leavetypes"));
-		model.addAttribute("SucessMessage", messageSource.getMessage(
+		ra. addFlashAttribute("SucessMessage", messageSource.getMessage(
 				"lms.applyLeave_success_message", new Object[] { "" },
 				Locale.getDefault()));
-
-		return LMSConstants.APPLY_LEAVE_SCR+"_" +  
-   		session.getAttribute("sessionRole");
-
+		return modelView;
 	}
-
-
 }
