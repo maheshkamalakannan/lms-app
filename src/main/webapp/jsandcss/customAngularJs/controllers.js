@@ -825,10 +825,13 @@ mycontroller.controller('modifyUserController', function($scope, $window, $locat
 	$scope.userexistence = false;
 	$scope.ngsearch      = true;
 	$scope.ngsearchemail = '';
-	$scope.searchuser = function(form,data){
+	$scope.searchuser = function(form,data,event){
 		$('.success').css("display","none");
 		var user = $scope.ngsearchemail;
-		if((user != "") && (!form.$error.email)){
+		if(user === undefined){
+			event.preventDefault();
+		}
+		else if((user != "") && (!form.$error.email)){
 		 $.ajax({
              type: "POST",
              url:  location.protocol + "//" + location.host+"/lms-app/submitSearchUser",
