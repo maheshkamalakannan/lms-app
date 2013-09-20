@@ -15,6 +15,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.madrone.lms.constants.LMSConstants;
 import com.madrone.lms.entity.User;
@@ -42,12 +45,12 @@ public class ChangePasswordController {
 	}
 
 	@RequestMapping(value = "/submitChangePassword", method = RequestMethod.POST)
-	public String submitChangePassword(
-			Model model,
-			@ModelAttribute("ChangePasswordForm") ChangePasswordForm changePassword,
-			BindingResult result, Map<String, Object> map, HttpSession session) {
+	public ModelAndView submitChangePassword(@ModelAttribute("ChangePasswordForm") ChangePasswordForm changePassword,
+			                           BindingResult result, Map<String, Object> map, HttpSession session,
+			                           RedirectAttributes ra) {
 
 		logger.info("Inside submitChangePassword method");
+		ModelAndView modelView = new ModelAndView(new RedirectView(LMSConstants.CHANGE_PASSWORD_URL));
 
 		if (!userService.authenticateUser(changePassword.getUserName(),
 				changePassword.getOldPassword())) {
@@ -58,16 +61,14 @@ public class ChangePasswordController {
 					.findByUserName(changePassword.getUserName());
 			user.setPassword(changePassword.getNewPassword());
 			userService.saveUser(user);
-			model.addAttribute("SucessMessage", messageSource.getMessage(
+			ra. addFlashAttribute("SucessMessage", messageSource.getMessage(
 					"lms.password_changed_successfully", new Object[] { "" },
 					Locale.getDefault()));
 		}
 
-		model.addAttribute("userName", changePassword.getUserName());
-		model.addAttribute("empName", changePassword.getEmpName());
-		return LMSConstants.CHANGE_PASSWORD_SCR + "_"
-		+ session.getAttribute("sessionRole");
+		ra. addFlashAttribute("userName", changePassword.getUserName());
+		ra. addFlashAttribute("empName", changePassword.getEmpName());
+		return modelView;
 
 	}
-
 }
