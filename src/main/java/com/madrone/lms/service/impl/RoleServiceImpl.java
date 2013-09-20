@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.madrone.lms.dao.RoleDao;
-import com.madrone.lms.entity.Leave;
 import com.madrone.lms.entity.Role;
 import com.madrone.lms.form.RoleTypeForm;
 import com.madrone.lms.service.RoleService;
@@ -79,7 +78,7 @@ public class RoleServiceImpl implements RoleService {
 	@Override
 	public Role setBeanValuesForSave(RoleTypeForm form) {
 		Role r = new Role();
-		r.setId(form.getId());
+		r.setId(form.getId().toUpperCase());
 		r.setDescription(form.getDescription());
 		r.setLevel(form.getLevel());
 		return r;

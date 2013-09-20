@@ -21,7 +21,7 @@ public class RoleDaoImpl extends AbstractDaoImpl<Role, String> implements
 
 	@Override
 	public void saveRole(Role r) {
-		saveOrUpdate(r);
+		save(r);
 	}
 
 	@Override
