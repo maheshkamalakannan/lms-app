@@ -14,6 +14,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.madrone.lms.constants.LMSConstants;
 import com.madrone.lms.entity.Leave;
@@ -35,29 +38,28 @@ public class SetLeaveTypesController {
 
 	@RequestMapping(value = "/setLeaveType", method = RequestMethod.GET)
 	public String setLeaveTypeForm(Model model, UserForm Userform) {
-		createJason(model);
+		List<Leave> leaveTypes = leaveService.getLeaveTypes();
+		String jsonString = JSONUtils.convertListToJson(leaveTypes);
+		model.addAttribute("jsonString", jsonString);
 		model.addAttribute("leaveTypeForm", new LeaveTypeForm());
 		return LMSConstants.ADMIN_SET_LEAVE_TYPE_SCR;
 	}
 
 	@RequestMapping(value = "/submitSetLeaveType", method = RequestMethod.POST)
-	public String submitSetLeaveType(Model model,
-			@ModelAttribute("leaveTypeForm") LeaveTypeForm form,
-			BindingResult result, Map<String, Object> map) {
+	public ModelAndView submitSetLeaveType(@ModelAttribute("leaveTypeForm") LeaveTypeForm form, BindingResult result, Map<String, Object> map, RedirectAttributes ra) {
 		
+		ModelAndView modelView = new ModelAndView(new RedirectView(LMSConstants.ADMIN_SET_LEAVE_URL));
 		Leave l = leaveService.setBeanValuesForSave(form);
 		switch (form.getUserAction()) {
 			case LMSConstants.INSERT: {
 				try{
 				leaveService.saveLeave(l);
-				createJason(model);
-				model.addAttribute("SucessMessage", messageSource.getMessage(
+				ra. addFlashAttribute("SucessMessage", messageSource.getMessage(
 						"lms.setleaveTypes.add.success_message",
 						new Object[] { "" }, Locale.getDefault()));
 				}
 				catch (Exception e) {
-					createJason(model);
-					model.addAttribute("FailureMessage", messageSource.getMessage(
+					ra. addFlashAttribute("FailureMessage", messageSource.getMessage(
 							"lms.setleaveTypes.mod.failure_message",
 							new Object[] { "" }, Locale.getDefault()));
 					e.printStackTrace();
@@ -68,13 +70,11 @@ public class SetLeaveTypesController {
 				/*LMS-087 Adding try/catch to display failuremessage to user if Leave type cannot be deleted Starts */
 				try {
 					leaveService.deleteLeave(form.getId());
-					createJason(model);
-					model.addAttribute("SucessMessage", messageSource.getMessage(
+					ra. addFlashAttribute("SucessMessage", messageSource.getMessage(
 							"lms.setleaveTypes.del.success_message",
 							new Object[] { "" }, Locale.getDefault()));
 				} catch (Exception e) {
-					createJason(model);
-					model.addAttribute("FailureMessage", messageSource.getMessage(
+					ra. addFlashAttribute("FailureMessage", messageSource.getMessage(
 							"lms.setleaveTypes.del.failure_message",
 							new Object[] { "" }, Locale.getDefault()));
 					e.printStackTrace();
@@ -84,20 +84,13 @@ public class SetLeaveTypesController {
 			}
 			case LMSConstants.UPDATE: {
 				leaveService.updateLeave(l);
-				createJason(model);
-				model.addAttribute("SucessMessage", messageSource.getMessage(
+				ra. addFlashAttribute("SucessMessage", messageSource.getMessage(
 						"lms.setleaveTypes.upd.success_message",
 						new Object[] { "" }, Locale.getDefault()));
 				break;
 			}
 		}
-		return LMSConstants.ADMIN_SET_LEAVE_TYPE_SCR;
-	}
-	
-	private void createJason(Model model){
-		List<Leave> leaveTypes = leaveService.getLeaveTypes();
-		String jsonString = JSONUtils.convertListToJson(leaveTypes);
-		model.addAttribute("jsonString", jsonString);
+		return modelView;
 	}
 
 }
