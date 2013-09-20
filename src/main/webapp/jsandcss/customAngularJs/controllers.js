@@ -846,6 +846,7 @@ mycontroller.controller('modifyUserController', function($scope, $window, $locat
             	    	  $scope.ngaddress   = response.result[0].address;    $scope.ngcity        = response.result[0].city;
             	    	  $scope.ngstate	 = response.result[0].state;      $scope.ngpincode     = response.result[0].pincode;
             	    	  $scope.ngdateofjoin= response.result[0].dateofjoin; $scope.nguserId      = response.result[0].userId;
+            	    	  $scope.ngphone     = response.result[0].phone;
             	    	  //combos
             	    	  $('select[name="reportingto"]' ).val(response.result[0].reportingto);      
             	    	  $('select[name="dept"]' ).val(response.result[0].dept);

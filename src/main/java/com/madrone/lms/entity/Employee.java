@@ -38,6 +38,7 @@ public class Employee implements Serializable {
 	private Role role;
 	private Set<EmployeeLeave> employeeLeaves = new HashSet<EmployeeLeave>();
 	private String reporting_to;
+	private String phone;
 		
 	public Employee() {
 	}
@@ -47,7 +48,7 @@ public class Employee implements Serializable {
 			String primaryEmail, String secondaryEmail, 
 			Calendar dateOfJoin, DesignationEnum designation,
 			String addressLine1, String addressLine2, String city,
-			String state, int zipcode) {
+			String state, int zipcode, String phone) {
 		this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -57,6 +58,7 @@ public class Employee implements Serializable {
         this.designation = designation;
         this.address = new Address(addressLine1, addressLine2, city, state, 
         		zipcode);
+        this.phone = phone;
     }
 
 	@Id
@@ -112,6 +114,15 @@ public class Employee implements Serializable {
 
 	public void setDateOfJoin(Calendar dateOfJoin) {
 		this.dateOfJoin = dateOfJoin;
+	}
+	
+	@Column(name = "contact_number", nullable = false)
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 	@Column(name = "designation", nullable = false)
@@ -222,6 +233,5 @@ public class Employee implements Serializable {
 				designation,
 				address
 				);
-	}	
+	}
 }
-

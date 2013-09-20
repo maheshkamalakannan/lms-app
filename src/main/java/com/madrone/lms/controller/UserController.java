@@ -92,7 +92,7 @@ public class UserController {
 
 		logger.info("Inside submitChangePassword method");
 		userService.saveUserAndEmployee(userForm, LMSConstants.UPDATE);
-
+		model = loadComboValues(model);
 		model.addAttribute("SucessMessage", messageSource.getMessage(
 				"lms.modifyuser_success_message", new Object[] { "" },
 				Locale.getDefault()));
@@ -109,7 +109,7 @@ public class UserController {
 		logger.info("Inside submitDeleteUser method");
 		userService.deleteUser(userForm.getEmail());
 		empService.deleteEmployee(userForm.getNewEmpId());
-
+		model = loadComboValues(model);
 		model.addAttribute("SucessMessage", messageSource.getMessage(
 				"lms.deleteuser_success_message", new Object[] { "" },
 				Locale.getDefault()));

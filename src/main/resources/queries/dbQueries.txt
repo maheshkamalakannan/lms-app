@@ -39,6 +39,7 @@ CREATE TABLE employee_
   dept_id character varying(20) NOT NULL,
   role_id character varying(20) NOT NULL,
   reporting_to character varying(10) NOT NULL,
+  contact_number character varying(12) NOT NULL,
   CONSTRAINT employee_pkey PRIMARY KEY (id ),
   
   CONSTRAINT employee_primary_email_key UNIQUE (primary_email ),

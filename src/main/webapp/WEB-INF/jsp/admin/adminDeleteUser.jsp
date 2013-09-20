@@ -44,7 +44,7 @@
     	     </td>
 	     </tr>
 	     <tr><td><span class="rc">{{empid}}</span></td>
-	          <td><input type="text" name=newEmpId ng-model="ngnewEmpId" width-reducer readonly required/>
+	          <td><input type="text" name=newEmpId ng-model="ngnewEmpId" width-reducer readonly style="background-color:#FFFFFF;" required/>
 	      </tr>
 	      <tr>
     	     <td></td>
@@ -52,7 +52,7 @@
     	     </td>
 	     </tr>
 	      <tr><td><span class="rc">{{employeeemail}}</span></td>
-	          <td><input type="email" name="email" ng-model="ngemail" width-reducer readonly required/>
+	          <td><input type="email" name="email" ng-model="ngemail" width-reducer readonly style="background-color:#FFFFFF;" required/>
 	      </tr>
 	      <tr><td><span class="rc">{{contact}}</span></td>
 	          <td><input type="text" name="phone" ng-model="ngphone" maxlength="10" width-reducer make-readonly required/>
@@ -89,23 +89,26 @@
 	      			 </tr>
 				   	 <tr>
 					   <td><span class="rc">{{department}}</span></td>
-				       <td><select name="leaveType" width-reducer make-readonly >
-			      				   <option value="admin">ADMIN</option>
-			      				   <option value="admin">DEVELOPMENT</option>
+				       <td><select name="dept" width-reducer make-readonly>
+			      			<c:forEach items="${deptlist}" var="dept">
+		       					<option value="${dept.id}">${dept.description}</option>
+		   					</c:forEach>
 							</select>
 						</td>
 				      </tr>
 				     <tr><td><span class="rc">{{role}}</span></td>
-				           <td><select name="level" width-reducer make-readonly >
-				      				   <option value="admin">Amin</option>
-				      				   <option value="admin">Employee</option>
+				           <td><select name="role" width-reducer make-readonly>
+				      		    	 <c:forEach items="${rolelist}" var="role">
+       				 					<option value="${role.id}">${role.description}</option>
+   									 </c:forEach>
 								</select>
 							</td>
 				      </tr>
 				     <tr><td><span class="rc">{{reportingto}}</span></td>
-				           <td><select name="level" width-reducer make-readonly >
-				      				   <option value="admin">Manager</option>
-				      				   <option value="admin">Admin</option>
+				           <td><select name="reportingto" width-reducer make-readonly>
+				      				  <c:forEach items="${repolist}" var="report">
+       				 					<option value="${report.empId}">${report.empName}</option>
+   									  </c:forEach>
 								</select>
 							</td>
 				      </tr>

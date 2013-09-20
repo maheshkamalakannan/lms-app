@@ -45,7 +45,7 @@
     	     </td>
 	     </tr>
 	     <tr><td><span class="rc">{{empid}}</span></td>
-	          <td><input type="text" readonly="readonly" name=newEmpId ng-model="ngnewEmpId" width-reducer required/>
+	          <td><input type="text" readonly="readonly" name=newEmpId ng-model="ngnewEmpId" width-reducer style="background-color: #FFFFFF;" required/>
 	      </tr>
 	      <tr>
     	     <td></td>
@@ -126,7 +126,7 @@
 	     			 </tr>
 				   	 <tr>
 					   <td><span class="rc">{{department}}</span></td>
-				       <td><select name="dept" style="width: 165px;">
+				       <td><select name="dept" width-reducer>
 	      					<c:forEach items="${deptlist}" var="dept">
 		       					<option value="${dept.id}">${dept.description}</option>
 		   					</c:forEach>
@@ -134,7 +134,7 @@
 						</td>
 				      </tr>
 				     <tr><td><span class="rc">{{role}}</span></td>
-				            <td><select name="role" id="role" onchange="doAjaxPost()" style="width: 165px;">
+				            <td><select name="role" id="role" onchange="doAjaxPost()" width-reducer>
   				  	 		<c:forEach items="${rolelist}" var="role">
        				 			<option value="${role.id}">${role.description}</option>
    							</c:forEach>
@@ -146,7 +146,7 @@
 			    	     </td>
 				     </tr>
 				     <tr><td><span class="rc">{{reportingto}}</span></td>
-				            <td><select name="reportingto" id="reportingto" style="width: 165px;">
+				            <td><select name="reportingto" id="reportingto" width-reducer>
   				  	 		<c:forEach items="${repolist}" var="report">
        				 			<option value="${report.empId}">${report.empName}</option>
    							</c:forEach>

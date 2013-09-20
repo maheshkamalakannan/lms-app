@@ -24,6 +24,7 @@ public class UserForm {
 	private String secemail;
 	private String newEmpId;
 	private String searchEmail; // used in Modify and Delete user screens
+	private String phone;
 	
 	
 	public String getSecemail() {
@@ -202,6 +203,14 @@ public class UserForm {
 		result = prime * result
 				+ ((userName == null) ? 0 : userName.hashCode());
 		return result;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 }

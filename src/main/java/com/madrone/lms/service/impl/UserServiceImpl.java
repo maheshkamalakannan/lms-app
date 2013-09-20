@@ -82,7 +82,7 @@ public class UserServiceImpl implements UserService {
 				DateUtils.convertStringToCalendar(userForm.getDateofjoin()),
 				EnumUtils.getDesignation(userForm.getDesig()),
 				userForm.getAddress(), "", userForm.getCity(),
-				userForm.getState(), userForm.getPincode());
+				userForm.getState(), userForm.getPincode(), userForm.getPhone());
 
 		Department dept = new Department();
 		dept.setId(userForm.getDept());
@@ -141,6 +141,8 @@ public class UserServiceImpl implements UserService {
 			userform.setPincode(emp.getAddress().getZipcode());
 			userform.setLevel(emp.getRole().getLevel());
 			userform.setRole(emp.getRole().getId());
+			System.out.println("Emp Contact Number "+emp.getPhone());
+			userform.setPhone(emp.getPhone());
 
 			User user = userDao.findByUserName(searchEmail);
 			userform.setPassword(user.getPassword());
