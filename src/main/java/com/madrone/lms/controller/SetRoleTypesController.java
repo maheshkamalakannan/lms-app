@@ -13,6 +13,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
+
 import com.madrone.lms.constants.LMSConstants;
 import com.madrone.lms.entity.Role;
 import com.madrone.lms.form.RoleTypeForm;
@@ -33,28 +37,27 @@ public class SetRoleTypesController {
 
 	@RequestMapping(value = "/setRole", method = RequestMethod.GET)
 	public String setRoleTypeForm(Model model, UserForm Userform) {
-		createJason(model);
+		List<RoleTypeForm> roleTypes = roleService.getRoleList();
+		String jsonString = JSONUtils.convertListToJson(roleTypes);
+		model.addAttribute("jsonString", jsonString);
 		model.addAttribute("roleTypeForm", new RoleTypeForm());
 		return LMSConstants.ADMIN_SET_ROLE_SCR;
 	}
 	
 	@RequestMapping(value = "/submitRole", method = RequestMethod.POST)
-	public String submitRole(Model model,
-			@ModelAttribute("RoleTypeForm") RoleTypeForm form,
-			BindingResult result, Map<String, Object> map) {
+	public ModelAndView submitRole(@ModelAttribute("RoleTypeForm") RoleTypeForm form, BindingResult result, Map<String, Object> map, RedirectAttributes ra) {
 		
+		ModelAndView modelView = new ModelAndView(new RedirectView(LMSConstants.ADMIN_SET_ROLE_URL));
 		Role r = roleService.setBeanValuesForSave(form);
 		switch (form.getUserAction()) {
 			case LMSConstants.INSERT: {
 				try {
 					roleService.saveRole(r);
-					createJason(model);
-					model.addAttribute("SucessMessage", messageSource.getMessage(
+					ra. addFlashAttribute("SucessMessage", messageSource.getMessage(
 							"lms.setrole.add.success_message",
 							new Object[] { "" }, Locale.getDefault()));
 				} catch (Exception e) {
-					createJason(model);
-					model.addAttribute("FailureMessage", messageSource.getMessage(
+					ra. addFlashAttribute("FailureMessage", messageSource.getMessage(
 							"lms.setroleTypes.mod.failure_message",
 							new Object[] { "" }, Locale.getDefault()));
 				}
@@ -63,13 +66,11 @@ public class SetRoleTypesController {
 			case LMSConstants.DELETE: {
 				try {
 					roleService.deleteRole(form.getId());
-					createJason(model);
-					model.addAttribute("SucessMessage", messageSource.getMessage(
+					ra. addFlashAttribute("SucessMessage", messageSource.getMessage(
 							"lms.setrole.del.success_message",
 							new Object[] { "" }, Locale.getDefault()));
 				} catch (Exception e) {
-					createJason(model);
-					model.addAttribute("FailureMessage", messageSource.getMessage(
+					ra. addFlashAttribute("FailureMessage", messageSource.getMessage(
 							"lms.setrole.del.failure_message",
 							new Object[] { "" }, Locale.getDefault()));
 					e.printStackTrace();
@@ -78,20 +79,13 @@ public class SetRoleTypesController {
 			}
 			case LMSConstants.UPDATE: {
 				roleService.updateLeave(r);
-				createJason(model);
-				model.addAttribute("SucessMessage", messageSource.getMessage(
+				ra. addFlashAttribute("SucessMessage", messageSource.getMessage(
 						"lms.setrole.upd.success_message",
 						new Object[] { "" }, Locale.getDefault()));
 				break;
 			}
 		}
-		return LMSConstants.ADMIN_SET_ROLE_SCR;
-	}
-	
-	private void createJason(Model model){
-		List<RoleTypeForm> roleTypes = roleService.getRoleList();
-		String jsonString = JSONUtils.convertListToJson(roleTypes);
-		model.addAttribute("jsonString", jsonString);
+		return modelView;
 	}
 
 }
