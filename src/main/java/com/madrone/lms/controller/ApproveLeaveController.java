@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.madrone.lms.constants.LMSConstants;
 import com.madrone.lms.entity.EmployeeLeave;
@@ -74,13 +77,12 @@ public class ApproveLeaveController {
 	
 	//Submit method for Leave - Approval.
 	@RequestMapping(value = "/submitViewLeaveRequest1", method = RequestMethod.POST)
-	public String submitForApprove(Model model,
-			@ModelAttribute("viewleavereq") ViewLeaveRequestForm form,
-			BindingResult result, Map<String, Object> map, HttpSession session) {
+	public ModelAndView submitForApprove(@ModelAttribute("viewleavereq") ViewLeaveRequestForm form,
+			                        BindingResult result, Map<String, Object> map, HttpSession session,  RedirectAttributes ra) {
+		
 		logger.info("inside submitViewLeaveRequest()");
-
+		ModelAndView modelView = new ModelAndView(new RedirectView(LMSConstants.APPROVE_LEAVE_URL));
 		String jsonString1 = form.getSelecteddata();
-
 		LeaveForm approveForm = JSONUtils
 				.convertJsonToObjectToClass(jsonString1);
 		approveForm.setReason(form.getReason());
@@ -88,26 +90,21 @@ public class ApproveLeaveController {
 			String operation = LMSConstants.LEAVE_APPROVE;
 			EmployeeLeave el = empLeaveService.setBeanValuesForSave(approveForm,operation);
 			empLeaveService.approveEmployeeLeave(el);
-			String userName = (String) session.getAttribute("sessionUser");
-			List<LeaveDetailsGrid> leaveListOfTeam = empLeaveService
-					.getLeaveListOfTeam(userName,"ALL");
-			String jsonString = JSONUtils.convertListToJson(leaveListOfTeam);
-			model.addAttribute("jsonString", jsonString);
-			model.addAttribute("SucessMessage", messageSource.getMessage(
+			ra. addFlashAttribute("SucessMessage", messageSource.getMessage(
 					"lms.approveLeave_success_message", new Object[] { "" },
 					Locale.getDefault()));
 		}
 
-		return LMSConstants.MANAGER_VIEW_LEAVE_REQUEST_SCR;
+		return modelView;
 	}
 
 	// Submit method for Leave - Rejection
 	@RequestMapping(value = "/submitViewLeaveRequest2", method = RequestMethod.POST)
-	public String submitForReject(Model model,
-			@ModelAttribute("viewleavereq") ViewLeaveRequestForm form,
-			BindingResult result, Map<String, Object> map, HttpSession session) {
+	public ModelAndView submitForReject(@ModelAttribute("viewleavereq") ViewLeaveRequestForm form,
+			                      BindingResult result, Map<String, Object> map, HttpSession session,
+			                      RedirectAttributes ra) {
 		logger.info("inside submitViewLeaveRequest()");
-
+		ModelAndView modelView = new ModelAndView(new RedirectView(LMSConstants.APPROVE_LEAVE_URL));
 		String jsonString1 = form.getSelecteddata();
 
 		LeaveForm approveForm = JSONUtils
@@ -117,17 +114,11 @@ public class ApproveLeaveController {
 			String operation = LMSConstants.LEAVE_APPROVE;
 			EmployeeLeave el = empLeaveService.setBeanValuesForSave(approveForm,operation);
 			empLeaveService.rejectEmployeeLeave(el);
-			String userName = (String) session.getAttribute("sessionUser");
-			List<LeaveDetailsGrid> leaveListOfTeam = empLeaveService
-					.getLeaveListOfTeam(userName,"ALL");
-			String jsonString = JSONUtils.convertListToJson(leaveListOfTeam);
-			model.addAttribute("jsonString", jsonString);
-			model.addAttribute("SucessMessage", messageSource.getMessage(
+			ra. addFlashAttribute("SucessMessage", messageSource.getMessage(
 					"lms.rejectLeave_success_message", new Object[] { "" },
 					Locale.getDefault()));
 		}
 
-		return LMSConstants.MANAGER_VIEW_LEAVE_REQUEST_SCR;
+		return modelView;
 	}
-
 }

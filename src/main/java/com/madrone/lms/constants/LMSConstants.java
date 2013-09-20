@@ -50,6 +50,7 @@ public class LMSConstants {
 	public static final String APPLY_LEAVE_URL     = "/lms-app/applyLeave";
 	public static final String CANCEL_LEAVE_URL    = "/lms-app/cancelLeave";
 	public static final String CHANGE_PASSWORD_URL = "/lms-app/changePassword";
+	public static final String APPROVE_LEAVE_URL   = "/lms-app/approveLeave";
 	
 	
 }
