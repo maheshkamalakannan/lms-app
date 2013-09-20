@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.madrone.lms.constants.LMSConstants;
 import com.madrone.lms.entity.Department;
@@ -47,7 +50,7 @@ public class LeaveCorrectionController {
 	private static final Logger logger = LoggerFactory
 			.getLogger(ApprovedRejectedListController.class);
 	
-	@RequestMapping(value = "/viewLeave", method = RequestMethod.GET)
+	@RequestMapping(value = "/leaveCorrections", method = RequestMethod.GET)
 	public String viewLeaveForm(Model model, LeaveCorrectionForm lForm) {
 		loadComboValues(model);
 		return LMSConstants.ADMIN_VIEW_LEAVE_SCR;
@@ -95,11 +98,10 @@ public class LeaveCorrectionController {
 
 	@RequestMapping(value = "/submitDeleteInLeaveCorrection", 
 			method = RequestMethod.POST)
-	public String submitDeleteInLeaveCorrection(
-			Model model,
-			@ModelAttribute("LeaveCorrectionForm") LeaveCorrectionForm leform,
-			BindingResult result, Map<String, Object> map) { 
+	public ModelAndView submitDeleteInLeaveCorrection(@ModelAttribute("LeaveCorrectionForm") LeaveCorrectionForm leform,
+			                                    BindingResult result, Map<String, Object> map, RedirectAttributes ra) { 
 		
+		ModelAndView modelView = new ModelAndView(new RedirectView(LMSConstants.ADMIN_LEAVE_CORRECTIONS_URL));
 		String jsonString = leform.getSelecteddata();
 
 		if(!"".equals(jsonString)) {
@@ -107,13 +109,13 @@ public class LeaveCorrectionController {
 					.convertJsonToObjectToClass(jsonString);
 			if (leaveForm != null) {
 				empLeaveService.deleteEmployeeLeave(leaveForm.getId());
-				model.addAttribute("SucessMessage", messageSource.getMessage(
+				ra. addFlashAttribute("SucessMessage", messageSource.getMessage(
 					"lms.leaveCorrection.delete_message", new Object[] { "" },
 					Locale.getDefault()));
 			}
 		}
 		
-		return LMSConstants.ADMIN_VIEW_LEAVE_SCR;
+		return modelView;
 	}
 
 

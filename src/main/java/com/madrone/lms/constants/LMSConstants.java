@@ -56,5 +56,6 @@ public class LMSConstants {
 	public static final String ADMIN_DELETE_USER_URL  = "/lms-app/deleteUser";
 	public static final String ADMIN_SET_LEAVE_URL    = "/lms-app/setLeaveType";
 	public static final String ADMIN_SET_ROLE_URL     = "/lms-app/setRole";
+	public static final String ADMIN_LEAVE_CORRECTIONS_URL     = "/lms-app/leaveCorrections";
 	
 }

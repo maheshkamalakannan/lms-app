@@ -19,7 +19,7 @@
 	            </ul>
 	        </li>
 			<li>
-	            <a href="/lms-app/viewLeave">Leave Corrections</a>
+	            <a href="/lms-app/leaveCorrections">Leave Corrections</a>
 	        </li>
 	         <li>
 	            <a href="#">Employee Credentials  >></a>
