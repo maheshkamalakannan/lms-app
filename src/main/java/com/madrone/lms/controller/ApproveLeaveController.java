@@ -112,6 +112,7 @@ public class ApproveLeaveController {
 
 		LeaveForm approveForm = JSONUtils
 				.convertJsonToObjectToClass(jsonString1);
+		approveForm.setReason(form.getReason());
 		if (approveForm != null) {
 			String operation = LMSConstants.LEAVE_APPROVE;
 			EmployeeLeave el = empLeaveService.setBeanValuesForSave(approveForm,operation);
