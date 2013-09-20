@@ -171,7 +171,8 @@ public class EmployeeLeaveServiceImpl implements EmployeeLeaveService {
 			el.setCancellationComments(leaveForm.getReason());
 			break;
 		}
-		case LMSConstants.LEAVE_APPROVE :{
+		case LMSConstants.LEAVE_APPROVE :
+		case LMSConstants.LEAVE_REJECT :{
 			el.setApprovalComments(leaveForm.getReason());
 			el.setApprovalDate(Calendar.getInstance());
 			break;
