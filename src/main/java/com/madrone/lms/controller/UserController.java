@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.madrone.lms.constants.LMSConstants;
 import com.madrone.lms.entity.Department;
@@ -70,51 +73,45 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/submitAdduser", method = RequestMethod.POST)
-	public String submitAdduser(Model model,
-			@ModelAttribute("UserForm") UserForm userForm,
-			BindingResult result, Map<String, Object> map) {
+	public ModelAndView submitAdduser(@ModelAttribute("UserForm") UserForm userForm, BindingResult result, Map<String, Object> map, RedirectAttributes ra) {
 
 		logger.info("Inside submitChangePassword method");
+		ModelAndView modelView = new ModelAndView(new RedirectView(LMSConstants.ADMIN_ADD_USER_URL));
 		userService.saveUserAndEmployee(userForm, LMSConstants.INSERT);
-		model = loadComboValues(model);
-		model.addAttribute("SucessMessage", messageSource.getMessage(
+		ra. addFlashAttribute("SucessMessage", messageSource.getMessage(
 				"lms.adduser_success_message", new Object[] { "" },
 				Locale.getDefault()));
 
-		return LMSConstants.ADMIN_ADD_USER_SCR;
+		return modelView;
 
 	}
 
 	@RequestMapping(value = "/submitModifyuser", method = RequestMethod.POST)
-	public String submitModifyuser(Model model,
-			@ModelAttribute("UserForm") UserForm userForm,
-			BindingResult result, Map<String, Object> map) {
+	public ModelAndView submitModifyuser(@ModelAttribute("UserForm") UserForm userForm, BindingResult result, Map<String, Object> map, RedirectAttributes ra) {
 
 		logger.info("Inside submitChangePassword method");
+		ModelAndView modelView = new ModelAndView(new RedirectView(LMSConstants.ADMIN_MODIFY_USER_URL));
 		userService.saveUserAndEmployee(userForm, LMSConstants.UPDATE);
-		model = loadComboValues(model);
-		model.addAttribute("SucessMessage", messageSource.getMessage(
+		ra. addFlashAttribute("SucessMessage", messageSource.getMessage(
 				"lms.modifyuser_success_message", new Object[] { "" },
 				Locale.getDefault()));
 
-		return LMSConstants.ADMIN_MODIFY_USER_SCR;
+		return modelView;
 
 	}
 
 	@RequestMapping(value = "/submitDeleteUser", method = RequestMethod.POST)
-	public String submitDeleteUser(Model model,
-			@ModelAttribute("UserForm") UserForm userForm,
-			BindingResult result, Map<String, Object> map) {
+	public ModelAndView submitDeleteUser(@ModelAttribute("UserForm") UserForm userForm, BindingResult result, Map<String, Object> map, RedirectAttributes ra) {
 
 		logger.info("Inside submitDeleteUser method");
+		ModelAndView modelView = new ModelAndView(new RedirectView(LMSConstants.ADMIN_DELETE_USER_URL));
 		userService.deleteUser(userForm.getEmail());
 		empService.deleteEmployee(userForm.getNewEmpId());
-		model = loadComboValues(model);
-		model.addAttribute("SucessMessage", messageSource.getMessage(
+		ra. addFlashAttribute("SucessMessage", messageSource.getMessage(
 				"lms.deleteuser_success_message", new Object[] { "" },
 				Locale.getDefault()));
 
-		return LMSConstants.ADMIN_DELETE_USER_SCR;
+		return modelView;
 
 	}
 
