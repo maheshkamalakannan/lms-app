@@ -715,8 +715,8 @@ mycontroller.controller('viewLeavesController', function($scope, $window, $locat
 	    		             {field: 'fromDateSession', displayName: 'Session',cellClass:'aligncolumn',width:70,},
 	    		             {field: 'toDate', displayName: 'To Date',cellClass:'aligncolumn', width:90,},
 	    		             {field: 'toDateSession', displayName: 'Session',cellClass:'aligncolumn',width:70,},
-	    		             {field: 'noOfDays', displayName: 'Days',cellClass:'aligncolumn',width:40,},
-	    		             {field: 'leaveReason', displayName: 'Reason',cellClass:'aligncolumn'},
+	    		             {field: 'noOfDays', displayName: 'Days',cellClass:'aligncolumn',width:60,},
+	    		             {field: 'reason', displayName: 'Reason',cellClass:'aligncolumn'},
 	    		             ]};
 		
 		 $scope.$on('ngGridEventData', function (e,s) {
