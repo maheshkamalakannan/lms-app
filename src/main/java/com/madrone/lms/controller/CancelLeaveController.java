@@ -14,6 +14,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.madrone.lms.constants.LMSConstants;
 import com.madrone.lms.entity.EmployeeLeave;
@@ -50,11 +53,12 @@ public class CancelLeaveController {
 	}
 
 	@RequestMapping(value = "/submitCancelLeave", method = RequestMethod.POST)
-	public String submitCancelLeave(Model model,
-			@ModelAttribute("cancelLeaveForm") LeaveForm form,
-			BindingResult result, Map<String, Object> map, HttpSession session) {
+	public ModelAndView submitCancelLeave(@ModelAttribute("cancelLeaveForm") LeaveForm form,
+			                        BindingResult result, Map<String, Object> map, HttpSession session,
+			                        RedirectAttributes ra) {
 
 		logger.info("submitCancelLeave");
+		ModelAndView modelView = new ModelAndView(new RedirectView(LMSConstants.CANCEL_LEAVE_URL));
 		String jsonString1 = form.getSelecteddata();
 
 		LeaveForm cancelForm = JSONUtils.convertJsonToObjectToClass(jsonString1);
@@ -63,20 +67,10 @@ public class CancelLeaveController {
 			String operation = LMSConstants.LEAVE_CANCEL;
 			EmployeeLeave el  = empLeaveService.setBeanValuesForSave(cancelForm,operation);
 			empLeaveService.cancelEmployeeLeave(el);
-			
-			/* Creating jason string after leave has been cancelled Starts */ 
-			List<LeaveDetailsGrid> cancelLeaveList = empLeaveService
-					.getPendingAndApprovalLeaveList((String)session.getAttribute("sessionUser"));
-			String jsonString = JSONUtils.convertListToJson(cancelLeaveList);
-			model.addAttribute("jsonString", jsonString);
-			/* Creating jason string after leave has been cancelled Ends */ 
-			
-			model.addAttribute("SucessMessage", messageSource.getMessage(
+			ra. addFlashAttribute("SucessMessage", messageSource.getMessage(
 					"lms.cancelLeave_success_message", new Object[] { "" },
 					Locale.getDefault()));
 		}
-		return LMSConstants.CANCEL_LEAVE_SCR + "_"
-		+ session.getAttribute("sessionRole");
+		return modelView;
 	}
-
 }

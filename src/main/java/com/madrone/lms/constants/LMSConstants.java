@@ -48,6 +48,7 @@ public class LMSConstants {
 	public static final String DEFAULT_COMBO_BOX_VALUE = "ALL";
 	
 	public static final String APPLY_LEAVE_URL = "/lms-app/applyLeave";
+	public static final String CANCEL_LEAVE_URL = "/lms-app/cancelLeave";
 	
 	
 }
