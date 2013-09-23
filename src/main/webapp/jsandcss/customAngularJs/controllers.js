@@ -331,6 +331,21 @@ mycontroller.controller('applyLeaveController', function($scope, $window, $locat
 	  $scope.leavetype        = 'CL';
 	  $scope.fromdaygreeting  = 'am';
 	  $scope.todaygreeting    = 'pm';
+	  
+	  $('#fromDate').datepicker({
+	    	format:"dd/mm/yyyy",
+	    	autoclose: true,
+	    	startDate: Date.parse('today - 1 month'),
+	    	endDate: Date.parse('today + 1 month'),
+	    });
+	  
+	  $('#toDate').datepicker({
+	    	format:"dd/mm/yyyy",
+	    	autoclose: true,
+	    	startDate: Date.parse('today + 1 month'),
+	    	endDate: Date.parse('today - 1 month'),
+	    });
+	  //$('#fromDate').datepicker('setStartDate', '06/05/2013');
 
 	  /*Grid and grid data for Apply Leave*/
 	  $scope.init = function(data1) {
@@ -1006,7 +1021,6 @@ mycontroller.controller('setLeaveTypeController', function($scope, $window, $loc
 			 }
 		 else{
 			 $('.success').css("display","none");
-			 $('.error').css("display","none");
 			 event.preventDefault();
 		 }
 	};
@@ -1092,7 +1106,6 @@ mycontroller.controller('setRoleTypeController', function($scope, $window, $loca
 			 }
 		 else{
 			 $('.success').css("display","none");
-			 $('.error').css("display","none");
 			 event.preventDefault();
 		 }
 	};

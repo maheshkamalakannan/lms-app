@@ -28,8 +28,7 @@
 				<td>
 					<div class="control-group input-append">
 						<input name="fromDate" id="fromDate" style="background-color: #FFFFFF;" class="input-small" type="text" ng-model="fromdate" 
-						       data-date-format="dd/mm/yyyy" data-date-days-Of-Week-Disabled =[0,6]
-						       data-date-today-Highlight='true' bs-datepicker readonly ng-change="todaysdate($event)" required/>
+						       data-date-days-Of-Week-Disabled =[0,6] data-date-today-Highlight='true' bs-datepicker readonly ng-change="todaysdate($event)" required/>
 		            	<button type="button" class="btn" data-toggle="datepicker"><i class="icon-calendar"></i></button>
 	               	 </div>
 	               	 <input type="radio" ng-disabled="applyleave.toDate.$invalid" ng-model="fromdaygreeting" name="fromDateSession" id="fromDateSession" value="am" ng-change="selectfromGreeting($event)" checked> {{daygreeting1}} 
@@ -45,8 +44,7 @@
 				  <td>
 				  	<div class="control-group input-append">
 					    <input name="toDate" id="toDate" style="background-color: #FFFFFF;" class="input-small" type="text" ng-model="todate"
-					           data-date-format="dd/mm/yyyy" data-date-days-Of-Week-Disabled =[0,6]
-						       data-date-today-Highlight='true'  ng-disabled="applyleave.fromDate.$invalid" 
+					           data-date-days-Of-Week-Disabled =[0,6] data-date-today-Highlight='true' ng-disabled="applyleave.fromDate.$invalid" 
 						       ng-change="[todaysdate($event)]"bs-datepicker readonly required/>
 		        	    <button type="button" ng-disabled="applyleave.fromDate.$invalid" class="btn" data-toggle="datepicker"><i class="icon-calendar"></i></button>
 	               	 </div>
