@@ -2,7 +2,7 @@
 
 <form:form name="viewleavereq" ng-model="ngviewleavereq" id="viewleavereq" method="post" novalidate="novalidate"  ng-controller="constantsController">
 
-	<div id="rightdata" ng-controller="ViewLeaveRequestsController">
+	<div id="rightdata" ng-controller="ViewLeaveRequestsController" ng-cloak>
 	  <div id="topcontent" style="margin-bottom:2px;">
 	     	<h5>{{viewleaverequest}}</h5>
 	         <div class="signout">

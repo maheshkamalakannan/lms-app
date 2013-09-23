@@ -2,7 +2,7 @@
 
 <form:form name="cancelleave" id="cancelleave" method="post" novalidate="novalidate" action="/lms-app/cancelLeave" ng-controller="constantsController">
 
-	<div id="rightdata" ng-controller="cancelleaveController">
+	<div id="rightdata" ng-controller="cancelleaveController" ng-cloak>
 	  <div id="topcontent" style="margin-bottom:2px;">
 	     	<h5>{{hometab}}</h5>
 	         <div class="signout">

@@ -2,7 +2,7 @@
 
 <form:form name="viewrejectedleave" id="viewrejectedleave" method="post" novalidate="novalidate" action="" ng-controller="constantsController">
 
-	<div id="rightdata" ng-controller="viewLeavesController">
+	<div id="rightdata" ng-controller="viewLeavesController" ng-cloak>
 	  <div id="topcontent" style="margin-bottom:2px;">
 	     	<h5>{{viewcancelledleaves}}</h5>
 	         <div class="signout">
