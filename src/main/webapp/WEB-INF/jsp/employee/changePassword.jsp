@@ -14,7 +14,9 @@
 	          <c:if test="${SucessMessage != null}">
 	  		     <div class="success">${SucessMessage}</div>
 			  </c:if>
-	  		 <form:errors path="oldPassword" cssClass="alert-error" />
+	  		 <c:if test="${FailureMessage != null}">
+	  		     <div class="alert-error">${FailureMessage}</div>
+			  </c:if>
     		 <div class="changepasswordele"> 
 					<input  type="hidden" name="userName" id="userName" value = "${userName}"/>
 					<input  type="hidden" name="empName" id="empName" value = "${empName}"/>

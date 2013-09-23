@@ -54,8 +54,9 @@ public class ChangePasswordController {
 
 		if (!userService.authenticateUser(changePassword.getUserName(),
 				changePassword.getOldPassword())) {
-			result.rejectValue("oldPassword",
-					"lms.password.oldPassword.notvalid");
+			ra. addFlashAttribute("FailureMessage", messageSource.getMessage(
+					"lms.password.oldPassword.notvalid", new Object[] { "" },
+					Locale.getDefault()));
 		} else {
 			User user = userService
 					.findByUserName(changePassword.getUserName());
