@@ -3,6 +3,8 @@ package com.madrone.lms.controller;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,8 +24,10 @@ import com.madrone.lms.constants.LMSConstants;
 import com.madrone.lms.entity.EmployeeLeave;
 import com.madrone.lms.form.LeaveDetailsGrid;
 import com.madrone.lms.form.LeaveForm;
+import com.madrone.lms.service.EmailService;
 import com.madrone.lms.service.EmployeeLeaveService;
 import com.madrone.lms.utils.JSONUtils;
+import com.madrone.lms.utils.MailUtils;
 
 @Controller
 public class CancelLeaveController {
@@ -36,6 +40,9 @@ public class CancelLeaveController {
 
 	@Autowired
 	private MessageSource messageSource;
+	
+	@Autowired
+	private EmailService emailService;
 
 	@RequestMapping(value = "/cancelLeave", method = RequestMethod.GET)
 	public String cancelLeave(Model model, LeaveForm form, HttpSession session) {
@@ -55,7 +62,7 @@ public class CancelLeaveController {
 	@RequestMapping(value = "/submitCancelLeave", method = RequestMethod.POST)
 	public ModelAndView submitCancelLeave(@ModelAttribute("cancelLeaveForm") LeaveForm form,
 			                        BindingResult result, Map<String, Object> map, HttpSession session,
-			                        RedirectAttributes ra) {
+			                        RedirectAttributes ra, HttpServletRequest request) {
 
 		logger.info("submitCancelLeave");
 		ModelAndView modelView = new ModelAndView(new RedirectView(LMSConstants.CANCEL_LEAVE_URL));
@@ -67,6 +74,9 @@ public class CancelLeaveController {
 			String operation = LMSConstants.LEAVE_CANCEL;
 			EmployeeLeave el  = empLeaveService.setBeanValuesForSave(cancelForm,operation);
 			empLeaveService.cancelEmployeeLeave(el);
+			String mailSubject 	 = MailUtils.composeEmailSubject(cancelForm,request,LMSConstants.LEAVE_CANCEL);
+			String from 		 = (String) session.getAttribute("sessionUser");
+			emailService.sendMail(from, LMSConstants.mailTo,"Employee Leave Cancellation email", mailSubject);
 			ra. addFlashAttribute("SucessMessage", messageSource.getMessage(
 					"lms.cancelLeave_success_message", new Object[] { "" },
 					Locale.getDefault()));

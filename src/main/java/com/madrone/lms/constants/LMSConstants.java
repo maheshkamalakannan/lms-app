@@ -47,16 +47,17 @@ public class LMSConstants {
 	
 	public static final String DEFAULT_COMBO_BOX_VALUE = "ALL";
 	
-	public static final String APPLY_LEAVE_URL        = "/lms-app/applyLeave";
-	public static final String CANCEL_LEAVE_URL       = "/lms-app/cancelLeave";
-	public static final String CHANGE_PASSWORD_URL    = "/lms-app/changePassword";
-	public static final String APPROVE_LEAVE_URL      = "/lms-app/approveLeave";
-	public static final String ADMIN_ADD_USER_URL     = "/lms-app/addUser";
-	public static final String ADMIN_MODIFY_USER_URL  = "/lms-app/modifyUser";
-	public static final String ADMIN_DELETE_USER_URL  = "/lms-app/deleteUser";
-	public static final String ADMIN_SET_LEAVE_URL    = "/lms-app/setLeaveType";
-	public static final String ADMIN_SET_ROLE_URL     = "/lms-app/setRole";
-	public static final String ADMIN_LEAVE_CORRECTIONS_URL     = "/lms-app/leaveCorrections";
+	public static final String APPLY_LEAVE_URL                = "/lms-app/applyLeave";
+	public static final String CANCEL_LEAVE_URL               = "/lms-app/cancelLeave";
+	public static final String CHANGE_PASSWORD_URL            = "/lms-app/changePassword";
+	public static final String APPROVE_LEAVE_URL              = "/lms-app/approveLeave";
+	public static final String VIEW_CANCELLED_LEAVES_URL      = "/lms-app/cancellationList";
+	public static final String ADMIN_ADD_USER_URL             = "/lms-app/addUser";
+	public static final String ADMIN_MODIFY_USER_URL          = "/lms-app/modifyUser";
+	public static final String ADMIN_DELETE_USER_URL          = "/lms-app/deleteUser";
+	public static final String ADMIN_SET_LEAVE_URL            = "/lms-app/setLeaveType";
+	public static final String ADMIN_SET_ROLE_URL             = "/lms-app/setRole";
+	public static final String ADMIN_LEAVE_CORRECTIONS_URL    = "/lms-app/leaveCorrections";
 	
 	public static final String mailTo = "manager.madrone@gmail.com";
 	

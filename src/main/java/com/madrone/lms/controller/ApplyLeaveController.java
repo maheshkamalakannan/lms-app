@@ -97,12 +97,11 @@ public class ApplyLeaveController {
 		EmployeeLeave el = empLeaveService.setBeanValuesForSave(applyLeaveForm,
 				operation);
 		empLeaveService.saveEmployeeLeave(el);
-		//String baseUrl = String.format("%s://%s:%d/tasks/",request.getScheme(),  request.getServerName(), request.getServerPort());
-		String baseUrl = String.format("%s://%s:%d/lms-app",request.getScheme(),  request.getServerName(), request.getServerPort());
-		String mailSubject 	 = MailUtils.composeApplyLeaveSubject(applyLeaveForm,baseUrl);
+		
+		String mailSubject 	 = MailUtils.composeEmailSubject(applyLeaveForm,request,LMSConstants.LEAVE_APPLY);
 		String from 		 = (String) session.getAttribute("sessionUser");
-		emailService.sendMail(from, LMSConstants.mailTo,
-				"Employee Leave request email", mailSubject);
+		System.out.println("from "+from);
+		emailService.sendMail(from, LMSConstants.mailTo,"Employee Leave request email", mailSubject);
 		
 		ra.addFlashAttribute("SucessMessage", messageSource.getMessage(
 				"lms.applyLeave_success_message", new Object[] { "" },
