@@ -3,6 +3,8 @@ package com.madrone.lms.controller;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.hibernate.Session;
@@ -78,7 +80,7 @@ public class ApplyLeaveController {
 	public ModelAndView submitApplyLeave(
 			@ModelAttribute("ApplyLeaveForm") LeaveForm applyLeaveForm,
 			BindingResult result, Map<String, Object> map, HttpSession session,
-			RedirectAttributes ra) {
+			RedirectAttributes ra, HttpServletRequest request) {
 
 		ModelAndView modelView = new ModelAndView(new RedirectView(
 				LMSConstants.APPLY_LEAVE_URL));
@@ -86,9 +88,9 @@ public class ApplyLeaveController {
 		EmployeeLeave el = empLeaveService.setBeanValuesForSave(applyLeaveForm,
 				operation);
 		empLeaveService.saveEmployeeLeave(el);
-		
-		String URL			 = "http://localhost:8080/lms-app";
-		String mailSubject 	 = MailUtils.composeApplyLeaveSubject(applyLeaveForm,URL);
+		//String baseUrl = String.format("%s://%s:%d/tasks/",request.getScheme(),  request.getServerName(), request.getServerPort());
+		String baseUrl = String.format("%s://%s:%d/lms-app",request.getScheme(),  request.getServerName(), request.getServerPort());
+		String mailSubject 	 = MailUtils.composeApplyLeaveSubject(applyLeaveForm,baseUrl);
 		String from 		 = (String) session.getAttribute("sessionUser");
 		emailService.sendMail(from, LMSConstants.mailTo,
 				"Employee Leave request email", mailSubject);
