@@ -2,7 +2,7 @@
 
 <form:form name="applyleave" id="applyleave" method="post" novalidate="novalidate" action="/lms-app/submitApplyLeave" ng-controller="constantsController">
 
-	<div id="rightdata" ng-controller="applyLeaveController">
+	<div id="rightdata" ng-controller="applyLeaveController" ng-cloak>
 	  <div id="topcontent" style="margin-bottom:2px;">
       	<h5>{{applyleavetab}}</h5>
           <div class="signout">

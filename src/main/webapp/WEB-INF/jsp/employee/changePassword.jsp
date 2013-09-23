@@ -3,7 +3,7 @@
 <form:form modelAttribute="ChangePasswordForm" name="changepassword" id="changepassword" method="post"  
            action="/lms-app/submitChangePassword" novalidate="novalidate" ng-controller="constantsController">
 
-	<div id="rightdata" ng-controller="changePasswordController">
+	<div id="rightdata" ng-controller="changePasswordController" ng-cloak>
 		<div id="rightcontent">
 		  <h5>{{changepasswordtabs}}</h5>
 		  	<div class="signout">

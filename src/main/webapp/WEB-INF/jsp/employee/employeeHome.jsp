@@ -2,7 +2,7 @@
 
 <form:form name="employeehome" id="employeehome" method="post" novalidate="novalidate" action="" ng-controller="constantsController">
 
-<div id="rightdata" ng-controller="employeehomeController">
+<div id="rightdata" ng-controller="employeehomeController" ng-cloak>
   <div id="topcontent" style="margin-bottom:2px;">
      	<h5>{{hometab}}</h5>
          <div class="signout">

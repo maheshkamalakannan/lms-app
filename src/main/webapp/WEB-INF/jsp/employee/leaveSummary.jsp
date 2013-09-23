@@ -2,7 +2,7 @@
 
 <form:form name="leavesummary" id="leavesummary" method="post" novalidate="novalidate" action="" ng-controller="constantsController">
 
-<div id="rightdata" ng-controller="leavesummaryController">
+<div id="rightdata" ng-controller="leavesummaryController" ng-cloak>
   <div id="topcontent" style="margin-bottom:2px;">
      	<h5>{{leavesummarytab}}</h5>
          <div class="signout">
