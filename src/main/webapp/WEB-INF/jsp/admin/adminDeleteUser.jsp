@@ -2,7 +2,7 @@
 
 <form:form name="deleteuser"  id="deleteuser" method="post" novalidate="novalidate" action="submitDeleteUser" ng-controller="constantsController">
 
-	<div id="rightdata" ng-controller="modifyUserController">
+	<div id="rightdata" ng-controller="modifyUserController" ng-cloak>
 	  <div id="topcontent" style="margin-bottom:2px;">
 	     	<h5>{{admindeluser}}</h5>
 	         <div class="signout">

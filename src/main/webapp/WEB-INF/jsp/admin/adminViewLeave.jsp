@@ -2,7 +2,7 @@
 
 <form:form name="LeaveCorrectionForm" id="LeaveCorrectionForm" method="post" novalidate="novalidate" action="" ng-controller="constantsController">
 
-	<div id="rightdata" ng-controller="leaveCorrectionController">
+	<div id="rightdata" ng-controller="leaveCorrectionController" ng-cloak>
 	  <div id="topcontent" style="margin-bottom:2px;">
 	     	<h5>{{adminviewleave}}</h5>
 	         <div class="signout">

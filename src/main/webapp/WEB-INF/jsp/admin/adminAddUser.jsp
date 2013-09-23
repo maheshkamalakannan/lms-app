@@ -28,7 +28,7 @@
 
 <form:form name="adduser" id="adduser" method="post" novalidate="novalidate" action="/lms-app/submitAdduser" ng-controller="constantsController">
 
-	<div id="rightdata" ng-controller="adduserController">
+	<div id="rightdata" ng-controller="adduserController" ng-cloak>
 	  <div id="topcontent" style="margin-bottom:2px;">
 	     	<h5>{{adminadduser}}</h5>
 	         <div class="signout">

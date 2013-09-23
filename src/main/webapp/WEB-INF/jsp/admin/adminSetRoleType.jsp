@@ -2,7 +2,7 @@
 
 <form:form name="roleTypeForm" id="roleTypeForm" method="post" novalidate="novalidate" action="/lms-app/submitRole" ng-controller="constantsController">
 
-	<div id="rightdata" ng-controller="setRoleTypeController">
+	<div id="rightdata" ng-controller="setRoleTypeController" ng-cloak>
 	  <div id="topcontent" style="margin-bottom:2px;">
 	     	<h5>{{adminsetroletype}}</h5>
 	         <div class="signout">

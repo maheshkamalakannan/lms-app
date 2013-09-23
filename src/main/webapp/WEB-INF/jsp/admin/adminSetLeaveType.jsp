@@ -2,7 +2,7 @@
 
 <form:form name="leaveTypeForm" id="leaveTypeForm" method="post" novalidate="novalidate" action="/lms-app/submitSetLeaveType" ng-controller="constantsController">
 
-	<div id="rightdata" ng-controller="setLeaveTypeController">
+	<div id="rightdata" ng-controller="setLeaveTypeController" ng-cloak>
 	  <div id="topcontent" style="margin-bottom:2px;">
 	     	<h5>{{adminsetleavetype}}</h5>
 	         <div class="signout">
