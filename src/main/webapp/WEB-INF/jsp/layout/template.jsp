@@ -8,7 +8,7 @@
 		</title>
 		<%@ include file="../common/commonCss.jsp"%>
 	</head>
-	<body ng-cloak>
+	<body>
 	    <tiles:insertAttribute name="header"></tiles:insertAttribute>
 
 		<div class="left_block logo_desc" style="width:290px;">
@@ -21,10 +21,13 @@
                <tiles:insertAttribute name="body"></tiles:insertAttribute>
         </div>
         
-        <div class="bottom_block footer footerbackground">
+        <%-- <div class="bottom_block footer footerbackground">
 			<div class="content">
                <tiles:insertAttribute name="footer"></tiles:insertAttribute>
             </div>
+        </div> --%>
+        <div class="footer">
+               <tiles:insertAttribute name="footer"></tiles:insertAttribute>
         </div>
 	</body>  
 </html>
