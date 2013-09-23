@@ -324,7 +324,8 @@ mycontroller.controller('applyLeaveController', function($scope, $window, $locat
 	  $scope.todategreaterfromdate = false;
 	  $scope.phoneminlen           = false;
 	  $scope.tofromgreeting        = false;
-	  var countwithoutweekend      = ""; 
+	  var countwithoutweekend      = "";
+	  
 	  $scope.leaves = [
 	                     {LeaveCode : 'CL', LeaveName : 'Casual Leave' },       
 	                     {LeaveCode : 'EL', LeaveName : 'Earned Leave' }];
@@ -342,14 +343,15 @@ mycontroller.controller('applyLeaveController', function($scope, $window, $locat
 	  $('#toDate').datepicker({
 	    	format:"dd/mm/yyyy",
 	    	autoclose: true,
-	    	startDate: Date.parse('today + 1 month'),
-	    	endDate: Date.parse('today - 1 month'),
+	    	startDate: Date.parse('today - 1 month'),
+	    	endDate: Date.parse('today + 1 month'),
 	    });
 	  //$('#fromDate').datepicker('setStartDate', '06/05/2013');
 
 	  /*Grid and grid data for Apply Leave*/
-	  $scope.init = function(data1) {
+	  $scope.init = function(data1,data2) {
 			$scope.gridData = data1;
+			$scope.ephone   = data2;
 			$scope.gridOptions = { 
 		    		data: 'gridData',
 		    		//plugins: [new ngGridCsvExportPlugin()],

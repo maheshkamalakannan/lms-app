@@ -18,11 +18,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.madrone.lms.constants.LMSConstants;
+import com.madrone.lms.entity.Employee;
 import com.madrone.lms.entity.EmployeeLeave;
 import com.madrone.lms.entity.Leave;
 //import com.madrone.lms.entity.LeaveTypes;
@@ -30,11 +32,13 @@ import com.madrone.lms.form.ApplyLeaveFormGrid;
 import com.madrone.lms.form.LeaveForm;
 import com.madrone.lms.service.EmailService;
 import com.madrone.lms.service.EmployeeLeaveService;
+import com.madrone.lms.service.EmployeeService;
 import com.madrone.lms.service.LeaveService;
 import com.madrone.lms.utils.JSONUtils;
 import com.madrone.lms.utils.MailUtils;
 
 @Controller
+@SessionAttributes("empObj")
 public class ApplyLeaveController {
 	private static final Logger logger = LoggerFactory
 			.getLogger(ApplyLeaveController.class);
@@ -50,6 +54,9 @@ public class ApplyLeaveController {
 	
 	@Autowired
 	private EmailService emailService;
+	
+	@Autowired
+	private EmployeeService empService;
 
 
 	@RequestMapping(value = "/applyLeave", method = RequestMethod.GET)
@@ -63,6 +70,8 @@ public class ApplyLeaveController {
 		session.setAttribute("leavetypes", ltList);
 		model.addAttribute("leaveTypes", ltList);
 		String userName = (String) session.getAttribute("sessionUser");
+		Employee e = empService.findByEmailAddress(userName);
+		model.addAttribute("emergencyPhone",e.getPhone());
 
 		// This for to Show Values in Grid.
 		List<ApplyLeaveFormGrid> gridList = leaveService
