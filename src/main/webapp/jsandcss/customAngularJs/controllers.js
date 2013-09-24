@@ -101,6 +101,25 @@ mycontroller.directive('numOnly', function(){
 	   };
 	});
 
+mycontroller.directive('onlyDecimal', function(){
+	   return {
+	     require: 'ngModel',
+	     link: function(scope, element, attrs, modelCtrl, event) {
+	    	  modelCtrl.$parsers.push(function (inputValue) {
+		           if (inputValue == undefined){
+		        	   return '' ;
+		           }
+		           var transformedInput = inputValue.replace(/[^0-9\.]/g, ''); 
+		           if (transformedInput!=inputValue) {
+		              modelCtrl.$setViewValue(transformedInput);
+		              modelCtrl.$render();
+		           }         
+		           return transformedInput;         
+		       });
+	     }
+	   };
+	});
+
 mycontroller.directive('passwordMeter', function(){
 	   return {
 	     require: 'ngModel',
@@ -1123,7 +1142,20 @@ mycontroller.controller('leaveCorrectionController',['$scope','$filter','createD
 	$scope.ngfromdate              = '';
 	$scope.ngtodate                = '';
 	
-	
+	 $('#fromDate').datepicker({
+	    	format:"dd/mm/yyyy",
+	    	autoclose: true,
+	    	startDate: Date.parse('today - 1 month'),
+	    	endDate: Date.parse('today + 1 month'),
+	    });
+	  
+	  $('#toDate').datepicker({
+	    	format:"dd/mm/yyyy",
+	    	autoclose: true,
+	    	startDate: Date.parse('today - 1 month'),
+	    	endDate: Date.parse('today + 1 month'),
+	    });
+	  
 	$scope.leaveCorrectionsSearch = function(form,event){
 		if(($scope.ngfromdate > $scope.ngtodate) && ($scope.ngfromdate != '' && $scope.ngtodate != '')){
 			  $scope.todategreaterfromdate = true;
