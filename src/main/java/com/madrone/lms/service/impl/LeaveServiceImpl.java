@@ -109,8 +109,10 @@ public class LeaveServiceImpl implements LeaveService {
 		if (empLeaveList.size() > 0) {
 			for (EmployeeLeave el : empLeaveList) {
 				if (el.getLeave().getId().equals(gridBean.getType())) {
-					if (!el.getLeaveStatus().equals(
-							LMSConstants.LEAVE_STATUS_CANCEL)) {
+					if (!(el.getLeaveStatus().equals(
+							LMSConstants.LEAVE_STATUS_CANCEL) || el
+							.getLeaveStatus().equals(
+									LMSConstants.LEAVE_STATUS_REJECT))) {
 						totalLeaveTaken = totalLeaveTaken + el.getNoOfDays();
 					}
 				}
