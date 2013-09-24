@@ -80,4 +80,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 		
 		return reportingList;
 	}
+
+	@Override
+	public String findMaxEmpId() {
+		Employee emp= empDao.FindMaxEmployeeNumber();
+		return emp.getId();
+	}
 }

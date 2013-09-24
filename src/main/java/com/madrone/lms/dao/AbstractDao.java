@@ -20,4 +20,6 @@ public interface AbstractDao<E, I> {
 	
 	public List<E> findByCriteria(List<Criterion> criterions);
 	
+	public List<E> getOrderList(List<Criterion> criterions,String field);
+	
 }

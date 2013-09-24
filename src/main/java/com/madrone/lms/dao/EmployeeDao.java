@@ -25,8 +25,8 @@ public interface EmployeeDao extends AbstractDao<Employee, String>{
 	List<Employee> FindHigherRoles(List<Role> roleListHigher);
 
 	List<Employee> getEmployeeList(LeaveCorrectionForm leaveFormFilter);
+
+	Employee FindMaxEmployeeNumber();
 	
-
-
 
 }

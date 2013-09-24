@@ -76,18 +76,11 @@ public class UserController {
 	public ModelAndView submitAdduser(@ModelAttribute("UserForm") UserForm userForm, BindingResult result, Map<String, Object> map, RedirectAttributes ra) {
 
 		logger.info("Inside submitChangePassword method");
-		ModelAndView modelView;
-		modelView = new ModelAndView(new RedirectView(LMSConstants.ADMIN_ADD_USER_URL));
-		try {
-			userService.saveUserAndEmployee(userForm, LMSConstants.INSERT);
-			ra. addFlashAttribute("SucessMessage", messageSource.getMessage(
-					"lms.adduser_success_message", new Object[] { "" },
-					Locale.getDefault()));
-		} catch (Exception e) {
-			ra. addFlashAttribute("FailureMessage", messageSource.getMessage(
-					"lms.adduser_failure_message", new Object[] { "" },
-					Locale.getDefault()));
-		}
+		ModelAndView modelView = new ModelAndView(new RedirectView(LMSConstants.ADMIN_ADD_USER_URL));
+		userService.saveUserAndEmployee(userForm, LMSConstants.INSERT);
+		ra. addFlashAttribute("SucessMessage", messageSource.getMessage(
+				"lms.adduser_success_message", new Object[] { "" },
+				Locale.getDefault()));
 
 		return modelView;
 
@@ -168,10 +161,13 @@ public class UserController {
 		List<Role> reportingToList = roleService.getRoleListHigher(1);
 		List<ReportingPerson> repList = empService
 				.FindHigherRoles(reportingToList);
+		String maxEmpId = empService.findMaxEmpId();
+		maxEmpId =String.valueOf(Long.valueOf(maxEmpId)+1);
 
 		List<Department> deptList = deptService.getDepartmentList();
 		List<Department> desigList = EnumUtils.getDesigList();
 
+		model.addAttribute("maxEmpId",maxEmpId);
 		model.addAttribute("rolelist", roleList);
 		model.addAttribute("repolist", repList);
 		model.addAttribute("deptlist", deptList);

@@ -7,6 +7,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.madrone.lms.dao.AbstractDao;
@@ -60,5 +61,17 @@ public abstract class AbstractDaoImpl <E, I extends Serializable>
     
     private Session getCurrentSession() {
         return sessionFactory.getCurrentSession();
+    }
+    
+   //Getting desending Order Lists.
+    @SuppressWarnings("unchecked")
+	public List<E> getOrderList(List<Criterion> criterions,String field) {
+    	
+    	Criteria criteria = getCurrentSession().createCriteria(entityClass);
+	    for(Criterion c : criterions) {
+	            criteria.add(c);
+	            criteria.addOrder(Order.desc(field));
+	    }
+	    return criteria.list();
     }
 }

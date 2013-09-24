@@ -96,6 +96,7 @@ public class EmployeeDaoImpl extends AbstractDaoImpl<Employee, String>
 
 		return employees;
 	}
+	
 
 	@Override
 	public List<Employee> getEmployeeList(LeaveCorrectionForm form) {
@@ -107,6 +108,14 @@ public class EmployeeDaoImpl extends AbstractDaoImpl<Employee, String>
 		employees = findByCriteria(criterionList);
 		
 		return employees;
+		
+	}
+
+	@Override
+	public Employee FindMaxEmployeeNumber() {
+		List<Criterion> criterions = new ArrayList<Criterion>();
+		List<Employee> empList = getOrderList(criterions, "id");
+		return empList.get(0);
 		
 	}
 
