@@ -59,7 +59,7 @@
 			   <table cellpadding="4">
 			    <tbody>
 			      <tr><td><span class="rc">{{setleavedesc}}</span></td>
-			          <td><textarea name="description" id="description" ng-model="ngdescription" maxlength="100"  required></textarea>
+			          <td><textarea name="description" id="description" ng-model="ngdescription" maxlength="50"  required></textarea>
 			      </tr>
 			      <tr>
 		    	     <td></td>
