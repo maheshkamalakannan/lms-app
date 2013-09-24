@@ -41,6 +41,9 @@
 	          <c:if test="${SucessMessage != null}">
 		        <div class="success" style="margin: -27px 5px 5px 250px; width:42%;">${SucessMessage}</div>
 		      </c:if>
+		      <c:if test="${FailureMessage != null}">
+		        <div class="error" style="margin: -27px 5px 5px 250px; width:32%;">${FailureMessage}</div>
+		      </c:if>
 	  </div>
 	  <div id="adminleftcontent">
 	   <table>
