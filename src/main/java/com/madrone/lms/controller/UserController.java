@@ -76,11 +76,18 @@ public class UserController {
 	public ModelAndView submitAdduser(@ModelAttribute("UserForm") UserForm userForm, BindingResult result, Map<String, Object> map, RedirectAttributes ra) {
 
 		logger.info("Inside submitChangePassword method");
-		ModelAndView modelView = new ModelAndView(new RedirectView(LMSConstants.ADMIN_ADD_USER_URL));
-		userService.saveUserAndEmployee(userForm, LMSConstants.INSERT);
-		ra. addFlashAttribute("SucessMessage", messageSource.getMessage(
-				"lms.adduser_success_message", new Object[] { "" },
-				Locale.getDefault()));
+		ModelAndView modelView;
+		modelView = new ModelAndView(new RedirectView(LMSConstants.ADMIN_ADD_USER_URL));
+		try {
+			userService.saveUserAndEmployee(userForm, LMSConstants.INSERT);
+			ra. addFlashAttribute("SucessMessage", messageSource.getMessage(
+					"lms.adduser_success_message", new Object[] { "" },
+					Locale.getDefault()));
+		} catch (Exception e) {
+			ra. addFlashAttribute("FailureMessage", messageSource.getMessage(
+					"lms.adduser_failure_message", new Object[] { "" },
+					Locale.getDefault()));
+		}
 
 		return modelView;
 
