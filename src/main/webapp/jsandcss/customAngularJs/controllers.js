@@ -537,7 +537,7 @@ mycontroller.controller('cancelleaveController', function($scope, $window, $loca
 			       };
 			$scope.assign = function(row){
 				$scope.myData1 = row.entity;
-				$scope.selectedtodate = row.entity.toDate;
+				$scope.selectedtodate = row.entity.fromDate;
 				$scope.status         = row.entity.status;
 				$scope.selecteddata = [{"id":row.entity.id,"fromDate": row.entity.fromDate,"fromDateSession":row.entity.fromDateSession,"toDate": row.entity.toDate,"toDateSession":row.entity.toDateSession,"noOfDays": row.entity.noOfDays,"leaveType": row.entity.leaveType,"action":row.entity.action,"status": row.entity.status,"empId":row.entity.empId,"empName":row.entity.empName}];
 				$scope.selectleavetocancel = false;
@@ -547,13 +547,17 @@ mycontroller.controller('cancelleaveController', function($scope, $window, $loca
 	  $scope.submitcancelleave = function(form,event){
 		  $scope.selectleavetocancel = false;
 		  $scope.afterleave          = false;
-		  $scope.formtodate = Date.parse($scope.selectedtodate);
+		  
+		  var date = $scope.selectedtodate;
+		  $scope.formfromdate = ($.datepicker.parseDate('dd/mm/yy',date));
+		 
 		 if(form.$valid){
 			 if($scope.selecteddata == ''){
 				 $scope.selectleavetocancel = true;
 				 event.preventDefault();
 			 }
-			 else if(($scope.formtodate <= Date.today()) && ($scope.status =='A') && (new Date().getHours() > 9)){
+			 else if((($scope.formfromdate.setHours(0,0,0,0) == Date.today().setHours(0,0,0,0)) && ($scope.status =='A') && (new Date().getHours() >= 9)) ||
+					 ($scope.formfromdate.setHours(0,0,0,0) < Date.today().setHours(0,0,0,0)) && ($scope.status =='A')){
 				 $scope.afterleave          = true;
 				 event.preventDefault();
 			 }
