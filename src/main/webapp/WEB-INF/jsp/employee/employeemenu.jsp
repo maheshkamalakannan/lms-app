@@ -11,10 +11,7 @@
 	            </ul>
 	        </li>
 	        <li>
-	            <a href="#">Leave Summary  >></a>
-	            <ul class="sub-level">
-	                <li><a href="/lms-app/leaveSummary" ng-model="showleavesummarydiv" ng-click="leaveSummary()">Leave Summary</a></li>
-	            </ul>
+	            <a href="/lms-app/leaveSummary">Leave Summary</a>
 	        </li>
 			<li>
 	            <a href="#">Settings  >></a>
