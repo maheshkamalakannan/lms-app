@@ -44,12 +44,13 @@
 	    	     </td>
 		     </tr>
 		     <tr><td><span class="rc">{{setleavedays}}</span></td>
-		          <td><input type="text" name="days" id="leavedays"  ng-model="ngdays" maxlength="2" style="width:100px;" num-only  required/>
+		          <td><input type="text" name="days" id="leavedays"  ng-model="ngdays" ng-pattern='/^[0-9]+\.?[0-9]*$/' maxlength="3" style="width:100px;" only-decimal required/>
 		      </tr>
 		      <tr>
 	    	     <td></td>
 	    	     <td>
 	    	     <span class="error" style="width: 95%; margin-top:-13px; margin-bottom: 5px;" ng-show="submitted && leaveTypeForm.days.$error.required">{{setleavedaysreq}}</span>
+	    	     <span class="error" style="width: 95%; margin-top:-13px; margin-bottom: 5px;" ng-show="submitted && leaveTypeForm.days.$error.pattern">{{setleavedaysformat}}</span>
 	    	     </td>
 		     </tr>
 		    </tbody>

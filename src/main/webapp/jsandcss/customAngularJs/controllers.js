@@ -250,6 +250,7 @@ mycontroller.controller('constantsController', function($scope, $window, $locati
     $scope.setleavedescreq                   = "Leave Description is Required.";
     $scope.setleavedaysreq                   = "Leave Days are Required.";
     $scope.setleavetypereq                   = "Leave Type is Required.";
+    $scope.setleavedaysformat                = "Enter decimal Format. ex:0.0";
     
     $scope.setrole                           = "Role";
     $scope.setlevel                          = "Level";
@@ -357,6 +358,7 @@ mycontroller.controller('applyLeaveController', function($scope, $window, $locat
 	    	autoclose: true,
 	    	startDate: Date.parse('today - 1 month'),
 	    	endDate: Date.parse('today + 1 month'),
+	    	autoSize: true,
 	    });
 	  
 	  $('#toDate').datepicker({
@@ -364,6 +366,7 @@ mycontroller.controller('applyLeaveController', function($scope, $window, $locat
 	    	autoclose: true,
 	    	startDate: Date.parse('today - 1 month'),
 	    	endDate: Date.parse('today + 1 month'),
+	    	autoSize: true,
 	    });
 	  //$('#fromDate').datepicker('setStartDate', '06/05/2013');
 
