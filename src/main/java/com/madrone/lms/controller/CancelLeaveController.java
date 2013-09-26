@@ -74,7 +74,8 @@ public class CancelLeaveController {
 			String operation = LMSConstants.LEAVE_CANCEL;
 			EmployeeLeave el  = empLeaveService.setBeanValuesForSave(cancelForm,operation);
 			empLeaveService.cancelEmployeeLeave(el);
-			String mailSubject 	 = MailUtils.composeEmailSubject(cancelForm,request,LMSConstants.LEAVE_CANCEL);
+			request.setAttribute("LeaveForm", cancelForm);
+			String mailSubject 	 = MailUtils.composeEmailSubject(request,LMSConstants.LEAVE_CANCEL);
 			String from 		 = (String) session.getAttribute("sessionUser");
 			emailService.sendMail(from, LMSConstants.mailTo,"Employee Leave Cancellation email", mailSubject);
 			ra. addFlashAttribute("SucessMessage", messageSource.getMessage(

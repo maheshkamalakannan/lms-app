@@ -65,7 +65,7 @@
     	     </td>
 	     </tr>
 	     <tr><td><span class="rc">{{empid}}</span></td>
-	          <td><input type="text" name="newEmpId" ng-model="ngempid" maxlength="5" num-only width-reducer required/>
+	          <td><input type="text" name="newEmpId" ng-model="ngempid" maxlength="5" ng-init="ngempid=${maxEmpId}" num-only width-reducer required/>
 	      </tr>
 	      <tr>
     	     <td></td>

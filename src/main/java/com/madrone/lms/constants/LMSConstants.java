@@ -9,6 +9,7 @@ public class LMSConstants {
 
 	
 	public static final String LOGIN_MENU 			= "login";
+	public static final String FORGOT_PASSWORD_SCR  = "forgotpasswordscreen";
 	
 	public static final String CHANGE_PASSWORD_SCR 	=  "changePasswordScreen";
 	public static final String EMPLOYEE_HOME_SCR    =  "employeeHomeScreen";
@@ -40,6 +41,8 @@ public class LMSConstants {
 	public static final String LEAVE_CANCEL  = "CANCEL";
 	public static final String LEAVE_APPROVE = "APPROVE";
 	public static final String LEAVE_REJECT  = "REJECT";
+	public static final String FORGOT_PASSWORD  = "FORGOTPASSWORD";
+	public static final String CHANGE_PASSWORD  = "CHANGEPASSWORD";
 	
 	public static final String INSERT = "INSERT";
 	public static final String UPDATE = "UPDATE";
@@ -47,9 +50,12 @@ public class LMSConstants {
 	
 	public static final String DEFAULT_COMBO_BOX_VALUE = "ALL";
 	
+	public static final String LMS_URL                        = "/lms-app";
 	public static final String APPLY_LEAVE_URL                = "/lms-app/applyLeave";
 	public static final String CANCEL_LEAVE_URL               = "/lms-app/cancelLeave";
 	public static final String CHANGE_PASSWORD_URL            = "/lms-app/changePassword";
+	public static final String RESET_PASSWORD_URL             = "/lms-app/resetPassword";
+	public static final String FORGOT_PASSWORD_URL            = "/lms-app/forgotPassword";
 	public static final String APPROVE_LEAVE_URL              = "/lms-app/approveLeave";
 	public static final String VIEW_CANCELLED_LEAVES_URL      = "/lms-app/cancellationList";
 	public static final String ADMIN_ADD_USER_URL             = "/lms-app/addUser";

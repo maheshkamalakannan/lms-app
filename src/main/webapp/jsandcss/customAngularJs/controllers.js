@@ -336,6 +336,19 @@ mycontroller.controller('changePasswordController', function($scope, $window, $l
 	};
 });
 
+mycontroller.controller('forgotPasswordController', function($scope, $window, $location) {
+	
+	$scope.forgotPasswordSubmit = function(form,event){
+		if(form.$valid){
+		       form.submit();
+		}
+		else{
+		 event.preventDefault();
+		}
+	};
+	
+});
+
 mycontroller.controller('employeehomeController', function($scope, $window, $location) {
 	 /*JS for employee home page*/
 });
