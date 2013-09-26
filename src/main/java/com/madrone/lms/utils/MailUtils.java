@@ -58,6 +58,22 @@ public class MailUtils {
 			subject.append(baseUrl+LMSConstants.LMS_URL);
 			break;
 		}
+		case LMSConstants.LEAVE_APPROVE:{
+			LeaveForm approveForm    = (LeaveForm) request.getAttribute("ApproveForm");
+			Employee emp    = (Employee) request.getAttribute("Employee");
+			subject = subject.append("Hi "+approveForm.getEmpName()+ ",\n\n");
+			subject.append("Manager: " + emp.getFirstName() + " " +emp.getId()+" has Approved your leave request for the period From:"+approveForm.getFromDate()+" To:"+approveForm.getToDate()+"\n\n");
+			subject.append(baseUrl+LMSConstants.LEAVE_SUMMARY_URL);
+			break;
+		}
+		case LMSConstants.LEAVE_REJECT:{
+			LeaveForm approveForm    = (LeaveForm) request.getAttribute("ApproveForm");
+			Employee emp    = (Employee) request.getAttribute("Employee");
+			subject = subject.append("Hi "+approveForm.getEmpName()+ ",\n\n");
+			subject.append("Manager: " +  emp.getFirstName() + " " +emp.getId()+" has Rejected your leave request for the period From:"+approveForm.getFromDate()+" To:"+approveForm.getToDate()+" due to "+approveForm.getReason()+"\n\n");
+			subject.append(baseUrl+LMSConstants.LEAVE_SUMMARY_URL);
+			break;
+		}
 	  }
 		subject.append("\n\nThanks\n");
 		subject.append("The LMS Team");
