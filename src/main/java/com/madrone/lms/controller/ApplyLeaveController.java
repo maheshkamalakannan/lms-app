@@ -97,19 +97,16 @@ public class ApplyLeaveController {
 		EmployeeLeave el = empLeaveService.setBeanValuesForSave(applyLeaveForm,
 				operation);
 		empLeaveService.saveEmployeeLeave(el);
+		Employee emp = empService.findByEmailAddress(el.getEmployee().getPrimaryEmail());
+		System.out.println("empService.reportingPersonEmail(emp.getId()) "+empService.reportingPersonEmail(emp.getId()));
 		request.setAttribute("LeaveForm", applyLeaveForm);
 		String mailSubject 	 = MailUtils.composeEmailSubject(request,LMSConstants.LEAVE_APPLY);
 		String from 		 = (String) session.getAttribute("sessionUser");
-		emailService.sendMail("",LMSConstants.mailTo,"Employee Leave Request", mailSubject);
+		emailService.sendMail(from,empService.reportingPersonEmail(emp.getId()),"Employee Leave Request", mailSubject);
 		
 		ra.addFlashAttribute("SucessMessage", messageSource.getMessage(
 				"lms.applyLeave_success_message", new Object[] { "" },
 				Locale.getDefault()));
 		return modelView;
-	}
-
-	private void sendmail(LeaveForm applyLeaveForm,Session session) {
-		
-		
 	}
 }

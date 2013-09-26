@@ -25,5 +25,7 @@ public interface EmployeeService {
 	List<ReportingPerson> FindHigherRoles(List<Role> roleListHigher);
 
 	String findMaxEmpId();
+	
+	String reportingPersonEmail(String id);
 
 }

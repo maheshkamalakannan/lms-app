@@ -65,6 +65,16 @@ public class EmployeeServiceImpl implements EmployeeService {
         emp.setReporting_to(manager.getFirstName()+ " " + manager.getLastName());
         return emp;
     }
+	
+	public String reportingPersonEmail(String empid){
+        Employee emp = empDao.findById(empid);
+        return getReportingEmail(emp.getReporting_to());
+    }
+	
+	private String getReportingEmail(String empId) {
+        Employee manager = empDao.findById(empId);
+        return manager.getPrimaryEmail();
+   }
 
 	@Override
 	public List<ReportingPerson> FindHigherRoles(List<Role> roleListHigher) {

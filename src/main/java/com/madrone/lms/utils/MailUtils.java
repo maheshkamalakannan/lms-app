@@ -23,12 +23,11 @@ public class MailUtils {
 		switch(operation){
 		
 		case LMSConstants.LEAVE_APPLY:{
-			LeaveForm form = (LeaveForm) request.getAttribute("LoginForm");
+			LeaveForm form = (LeaveForm) request.getAttribute("LeaveForm");
 			subject = subject.append("Hi Kumaravel,\n\n");
 			subject.append("Employee: " + form.getEmpName() + " " + form.getEmpId());
-			subject.append(" has requested for " + form.getLeaveType()+ " for a Period of "+form.getNoOfDays()+" day/s. ");
-			subject.append(" From :" + form.getFromDate() +" "+ form.getFromDateSession() +" To:"+ form.getToDate() +" "+form.getToDateSession());
-			subject.append("\n\nPlease click the link below to Approve/Reject Leave.\n\n");
+			subject.append(" has requested " + form.getLeaveType()+ " for a Period of "+form.getNoOfDays()+" day/s. ");
+			subject.append(" From :" + form.getFromDate() +" "+ form.getFromDateSession() +" To:"+ form.getToDate() +" "+form.getToDateSession()+"\n\n");
 			subject.append(baseUrl+LMSConstants.APPROVE_LEAVE_URL);
 			break;
 		}
