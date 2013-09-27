@@ -107,18 +107,24 @@ public class ChangePasswordController {
 		ModelAndView modelView = new ModelAndView(new RedirectView(LMSConstants.FORGOT_PASSWORD_URL));
 		try {
 			Employee employee = employeeService.findByEmailAddress(loginForm.getUserName());
-			System.out.println("Email "+employee.getPrimaryEmail());
 			if(employee != null){
 				request.setAttribute("LoginForm", loginForm);
 				request.setAttribute("Employee", employee);
 				String mailSubject 	 = MailUtils.composeEmailSubject(request,LMSConstants.FORGOT_PASSWORD);
-				String from 		 = (String) session.getAttribute("sessionUser");
-				emailService.sendMail(from,employee.getPrimaryEmail(),"Forgot Password", mailSubject);
+				emailService.sendMail(LMSConstants.mailTo,employee.getPrimaryEmail(),"Forgot Password", mailSubject);
 				ra.addFlashAttribute("SucessMessage", messageSource.getMessage("lms.forgotpassword.success_message", new Object[] { "" },Locale.getDefault()));
 			}
 		} catch (Exception e) {
 			ra.addFlashAttribute("FailureMessage", messageSource.getMessage("lms.forgotpassword.failue_message", new Object[] { "" },Locale.getDefault()));
 		}
 		return modelView;
+	}
+	
+	@RequestMapping(value = "/resetPassword", method = RequestMethod.GET)
+	public String resetPassword(Model model,
+			@ModelAttribute("ResetPasswordForm") ChangePasswordForm changepasswordForm,
+			BindingResult result, Map<String, Object> map, 
+			HttpSession session) {
+		return LMSConstants.RESET_PASSWORD_SCR;
 	}
 }

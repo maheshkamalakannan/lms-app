@@ -9,6 +9,9 @@ import com.madrone.lms.entity.Employee;
 import com.madrone.lms.form.LeaveForm;
 import com.madrone.lms.form.LoginForm;
 import com.madrone.lms.service.EmailService;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 
 public class MailUtils {
 
@@ -48,7 +51,11 @@ public class MailUtils {
 			subject = subject.append("Hi "+username+ ",\n");
 			subject.append("\nYou recently asked to reset your LMS password. Please use the link below to create a new password.\n\n");
 			subject.append("If the button or link above does not automatically hyperlink, just copy and paste the link text into your browser bar. This link will expire in five hours.\n\n");
-			subject.append(baseUrl+LMSConstants.RESET_PASSWORD_URL+"?"+loginform.getUserName());
+			try {
+				subject.append(baseUrl+LMSConstants.RESET_PASSWORD_URL+"?"+URLEncoder.encode("username="+loginform.getUserName(),"UTF-8"));
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
 			break;
 		}
 		case LMSConstants.CHANGE_PASSWORD:{

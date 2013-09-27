@@ -10,6 +10,7 @@ public class LMSConstants {
 	
 	public static final String LOGIN_MENU 			= "login";
 	public static final String FORGOT_PASSWORD_SCR  = "forgotpasswordscreen";
+	public static final String RESET_PASSWORD_SCR   = "resetpasswordscreen";
 	
 	public static final String CHANGE_PASSWORD_SCR 	=  "changePasswordScreen";
 	public static final String EMPLOYEE_HOME_SCR    =  "employeeHomeScreen";

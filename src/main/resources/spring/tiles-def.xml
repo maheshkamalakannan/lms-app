@@ -17,6 +17,20 @@
         <put-attribute name="header" value="/WEB-INF/jsp/layout/header.jsp"></put-attribute>  
         <put-attribute name="body" value="/WEB-INF/jsp/login/login.jsp"></put-attribute>  
         <put-attribute name="footer" value="/WEB-INF/jsp/layout/footer.jsp"></put-attribute>  
+    </definition>
+    
+    <definition extends="login.definition" name="forgotpasswordscreen">  
+        <put-attribute name="title" value="LMS-Forgot Password"></put-attribute> 
+        <put-attribute name="header" value="/WEB-INF/jsp/layout/header.jsp"></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/jsp/login/forgotPassword.jsp"></put-attribute> 
+        <put-attribute name="footer" value="/WEB-INF/jsp/layout/footer.jsp"></put-attribute>  
+    </definition>
+    
+    <definition extends="login.definition" name="resetpasswordscreen">  
+        <put-attribute name="title" value="LMS-Reset Password"></put-attribute> 
+        <put-attribute name="header" value="/WEB-INF/jsp/layout/header.jsp"></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/jsp/login/resetPassword.jsp"></put-attribute> 
+        <put-attribute name="footer" value="/WEB-INF/jsp/layout/footer.jsp"></put-attribute>  
     </definition>  
     
    

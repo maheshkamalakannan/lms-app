@@ -349,6 +349,25 @@ mycontroller.controller('forgotPasswordController', function($scope, $window, $l
 	
 });
 
+mycontroller.controller('resetPasswordController', function($scope, $window, $location) {
+	$scope.savepassword = function(form,event){
+		if(form.$valid){
+		       form.submit();
+		}
+		else{
+		 event.preventDefault();
+		}
+	};
+	
+	$scope.reset = function(){
+		$scope.passwordnew = '';
+		$scope.passwordconfirm = '';
+		$('.error').css("display","none");
+		$('#metererror').css("display","none");
+		$('.success').css("display","none");
+	};
+});
+
 mycontroller.controller('employeehomeController', function($scope, $window, $location) {
 	 /*JS for employee home page*/
 });
