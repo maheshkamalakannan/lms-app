@@ -19,7 +19,8 @@ CREATE TABLE role_
 (
   id character varying(20) NOT NULL,
   description character varying(45) NOT NULL,
-  CONSTRAINT role_pkey PRIMARY KEY (id )
+  CONSTRAINT role_pkey PRIMARY KEY (id ),
+  level smallint
 );
 ----------------------------------------------
 CREATE TABLE employee_
