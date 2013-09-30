@@ -52,8 +52,9 @@ public class MailUtils {
 			subject.append("\nYou recently asked to reset your LMS password. Please use the link below to create a new password.\n\n");
 			subject.append("If the button or link above does not automatically hyperlink, just copy and paste the link text into your browser bar. This link will expire in five hours.\n\n");
 			try {
-				subject.append(baseUrl+LMSConstants.RESET_PASSWORD_URL+"?"+URLEncoder.encode("username="+loginform.getUserName(),"UTF-8"));
-			} catch (UnsupportedEncodingException e) {
+				subject.append(baseUrl+LMSConstants.RESET_PASSWORD_URL+"?username="+URLEncoder.encode(loginform.getUserName(),"UTF-8"));
+				//subject.append(baseUrl+LMSConstants.RESET_PASSWORD_URL+"?username="+loginform.getUserName());
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 			break;

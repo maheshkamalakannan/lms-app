@@ -16,6 +16,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
@@ -121,10 +122,39 @@ public class ChangePasswordController {
 	}
 	
 	@RequestMapping(value = "/resetPassword", method = RequestMethod.GET)
-	public String resetPassword(Model model,
-			@ModelAttribute("ResetPasswordForm") ChangePasswordForm changepasswordForm,
-			BindingResult result, Map<String, Object> map, 
-			HttpSession session) {
+	public String resetPassword(@RequestParam(value="username", required=false) String username, Model model, HttpSession session) {
+		session.setAttribute("Username", username);
 		return LMSConstants.RESET_PASSWORD_SCR;
+	}
+	
+	@RequestMapping(value = "/submitResetPassword", method = RequestMethod.POST)
+	public ModelAndView submitResetPassword(
+			@ModelAttribute("ChangePasswordForm") ChangePasswordForm changePassword,
+			BindingResult result, Map<String, Object> map, HttpSession session,
+			RedirectAttributes ra, HttpServletRequest request) {
+
+		ModelAndView modelView = new ModelAndView(new RedirectView(LMSConstants.RESET_PASSWORD_URL));
+		try {
+			if((String) session.getAttribute("Username") != null){
+			User user = userService.findByUserName((String) session.getAttribute("Username"));
+			user.setPassword(changePassword.getNewPassword());
+			userService.saveUser(user);
+			Employee employee = employeeService.findByEmailAddress((String) session.getAttribute("Username"));
+			request.setAttribute("Employee", employee);
+			String mailSubject 	 = MailUtils.composeEmailSubject(request,LMSConstants.CHANGE_PASSWORD);
+			emailService.sendMail(LMSConstants.mailTo,(String) session.getAttribute("Username"),"Change Password success ", mailSubject);
+			ra. addFlashAttribute("SucessMessage", messageSource.getMessage(
+					"lms.password_changed_successfully", new Object[] { "" },
+					Locale.getDefault()));
+		    }
+			else{
+				ra. addFlashAttribute("FailureMessage", messageSource.getMessage(
+						"lms.reset_password_changed_failed", new Object[] { "" },
+						Locale.getDefault()));
+			}
+		} catch (Exception e) {
+			
+		}
+		return modelView;
 	}
 }

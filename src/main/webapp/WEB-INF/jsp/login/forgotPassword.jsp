@@ -14,6 +14,7 @@
 									 placeholder="Email Address" 
 									 ng-model="email"
 									 maxlength="30" 
+									 ng-change="hideerror()"
 									 required/>
 									 <input type="submit" name="submit" value="Send" ng-click="[submitted=true,forgotPasswordSubmit(forgotpasswordform,$event)]"/>
 									 <div>
@@ -23,10 +24,10 @@
 				 </div> 
 				 
 				 <c:if test="${SucessMessage != null}">
-	  		        <div><h4 style="text-align:center; padding:70px; color:green;"><img style="padding-right: 3px;" src="<%=request.getContextPath()%>/jsandcss/images/check.png" alt="emailpresent"/>${SucessMessage}</h4></div>
+	  		        <div id="success-pubilc"><h4 style="text-align:center; padding:50px; color:green;"><img style="padding-right: 3px;" src="<%=request.getContextPath()%>/jsandcss/images/check.png" alt="emailpresent"/>${SucessMessage}</h4></div>
 			     </c:if>
 	  		     <c:if test="${FailureMessage != null}">
-	  		        <div><h4 style="text-align:center; padding:70px; color:red"><img style="padding-right: 3px;" src="<%=request.getContextPath()%>/jsandcss/images/button_cancel.png" alt="emailpresent"/>${FailureMessage}</h4></div>
+	  		        <div id="error-public"><h4 style="text-align:center; padding:50px; color:red"><img style="padding-right: 3px;" src="<%=request.getContextPath()%>/jsandcss/images/button_cancel.png" alt="emailpresent"/>${FailureMessage}</h4></div>
 			     </c:if>				 
 		    </div>
 		</div>

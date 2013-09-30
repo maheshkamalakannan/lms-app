@@ -337,22 +337,42 @@ mycontroller.controller('changePasswordController', function($scope, $window, $l
 });
 
 mycontroller.controller('forgotPasswordController', function($scope, $window, $location) {
-	
 	$scope.forgotPasswordSubmit = function(form,event){
 		if(form.$valid){
 		       form.submit();
 		}
 		else{
-		 event.preventDefault();
+			$('#success-pubilc').css("display","none");
+			$('#error-public').css("display","none");
+		    event.preventDefault();
 		}
+	};
+	
+	$scope.hideerror = function(){
+		$('#success-pubilc').css("display","none");
+		$('#error-public').css("display","none");
 	};
 	
 });
 
 mycontroller.controller('resetPasswordController', function($scope, $window, $location) {
-	$scope.savepassword = function(form,event){
+	$scope.passwordnew = '';
+	$scope.resetpassword = function(form,event){
 		if(form.$valid){
-		       form.submit();
+			if($scope.passwordnew.length < 7){
+				$scope.newpasswordlength = true;
+				event.preventDefault();
+			}
+			else if($('#metererror').text() == 'Weak'){
+				event.preventDefault();
+			}
+			else if($scope.passwordconfirm !=  $scope.passwordnew){
+				$scope.showerror=true;
+				event.preventDefault();
+			}
+			else{
+				form.submit();
+			}
 		}
 		else{
 		 event.preventDefault();
@@ -362,9 +382,21 @@ mycontroller.controller('resetPasswordController', function($scope, $window, $lo
 	$scope.reset = function(){
 		$scope.passwordnew = '';
 		$scope.passwordconfirm = '';
-		$('.error').css("display","none");
+		$('#success-pubilc').css("display","none");
 		$('#metererror').css("display","none");
-		$('.success').css("display","none");
+		$('#error-public').css("display","none");
+	};
+	
+	$scope.hidemeter = function(){
+		$scope.confirmerror         = false;
+        if($scope.passwordnew.length >= 7){
+        	$scope.newpasswordlength = false;
+        	$('#metererror').css("display","block");
+        }
+        else{
+        	$scope.newpasswordlength = false;
+        	$('#metererror').css("display","none");
+        }
 	};
 });
 
