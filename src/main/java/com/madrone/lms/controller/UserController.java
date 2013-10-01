@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,11 +30,13 @@ import com.madrone.lms.form.ReportingPerson;
 import com.madrone.lms.form.RoleTypeForm;
 import com.madrone.lms.form.UserForm;
 import com.madrone.lms.service.DepartmentService;
+import com.madrone.lms.service.EmailService;
 import com.madrone.lms.service.EmployeeService;
 import com.madrone.lms.service.RoleService;
 import com.madrone.lms.service.UserService;
 import com.madrone.lms.utils.EnumUtils;
 import com.madrone.lms.utils.JsonResponse;
+import com.madrone.lms.utils.MailUtils;
 
 @Controller
 public class UserController {
@@ -50,6 +55,9 @@ public class UserController {
 
 	@Autowired
 	private MessageSource messageSource;
+	
+	@Autowired
+	private EmailService emailService;
 
 	private static final Logger logger = LoggerFactory
 			.getLogger(UserController.class);
@@ -73,11 +81,16 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/submitAdduser", method = RequestMethod.POST)
-	public ModelAndView submitAdduser(@ModelAttribute("UserForm") UserForm userForm, BindingResult result, Map<String, Object> map, RedirectAttributes ra) {
+	public ModelAndView submitAdduser(@ModelAttribute("UserForm") UserForm userForm, BindingResult result, 
+			                          Map<String, Object> map, HttpSession session, RedirectAttributes ra, HttpServletRequest request) {
 
 		logger.info("Inside submitChangePassword method");
 		ModelAndView modelView = new ModelAndView(new RedirectView(LMSConstants.ADMIN_ADD_USER_URL));
 		userService.saveUserAndEmployee(userForm, LMSConstants.INSERT);
+		request.setAttribute("UserForm", userForm);
+		String mailSubject 	 = MailUtils.composeEmailSubject(request,LMSConstants.ADD_USER);
+		String from 		 = (String) session.getAttribute("sessionUser");
+		emailService.sendMail(from,userForm.getEmail(),"Employee Update Temporary Password  ", mailSubject);
 		ra. addFlashAttribute("SucessMessage", messageSource.getMessage(
 				"lms.adduser_success_message", new Object[] { "" },
 				Locale.getDefault()));

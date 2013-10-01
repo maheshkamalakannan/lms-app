@@ -44,6 +44,7 @@ public class LMSConstants {
 	public static final String LEAVE_REJECT  = "REJECT";
 	public static final String FORGOT_PASSWORD  = "FORGOTPASSWORD";
 	public static final String CHANGE_PASSWORD  = "CHANGEPASSWORD";
+	public static final String ADD_USER         = "ADDUSER";
 	
 	public static final String INSERT = "INSERT";
 	public static final String UPDATE = "UPDATE";

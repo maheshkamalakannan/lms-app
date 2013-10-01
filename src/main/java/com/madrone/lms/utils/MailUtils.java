@@ -8,6 +8,7 @@ import com.madrone.lms.constants.LMSConstants;
 import com.madrone.lms.entity.Employee;
 import com.madrone.lms.form.LeaveForm;
 import com.madrone.lms.form.LoginForm;
+import com.madrone.lms.form.UserForm;
 import com.madrone.lms.service.EmailService;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
@@ -80,6 +81,18 @@ public class MailUtils {
 			subject = subject.append("Hi "+approveForm.getEmpName()+ ",\n\n");
 			subject.append("Manager: " +  emp.getFirstName() + " " +emp.getId()+" has Rejected your leave request for the period From:"+approveForm.getFromDate()+" To:"+approveForm.getToDate()+" due to "+approveForm.getReason()+"\n\n");
 			subject.append(baseUrl+LMSConstants.LEAVE_SUMMARY_URL);
+			break;
+		}
+		case LMSConstants.ADD_USER:{
+			UserForm userForm    = (UserForm) request.getAttribute("UserForm");
+			subject = subject.append("Hi "+userForm.getFirstname()+ ",\n\n");
+			subject.append("We have recently created your LMS credentials. Please update the temporary password, use the below link to create a new password.\n\n");
+			try {
+				subject.append(baseUrl+LMSConstants.RESET_PASSWORD_URL+"?username="+URLEncoder.encode(userForm.getEmail(),"UTF-8"));
+				//subject.append(baseUrl+LMSConstants.RESET_PASSWORD_URL+"?username="+loginform.getUserName());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			break;
 		}
 	  }
