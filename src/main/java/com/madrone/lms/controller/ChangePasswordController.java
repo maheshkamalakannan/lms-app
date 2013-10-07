@@ -1,11 +1,13 @@
 package com.madrone.lms.controller;
 
+import java.io.IOException;
 import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.codec.binary.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
+
+import sun.misc.BASE64Decoder;
 
 import com.madrone.lms.constants.LMSConstants;
 import com.madrone.lms.entity.Employee;
@@ -122,8 +126,13 @@ public class ChangePasswordController {
 	}
 	
 	@RequestMapping(value = "/resetPassword", method = RequestMethod.GET)
-	public String resetPassword(@RequestParam(value="username", required=false) String username, Model model, HttpSession session) {
-		session.setAttribute("Username", username);
+	public String resetPassword(@RequestParam(value="username", required=false)  String username, Model model, HttpSession session) throws IOException {
+		System.out.println("username "+username);
+		if((username != null)){
+			
+			String paramusername = new String(new BASE64Decoder().decodeBuffer(username));
+			session.setAttribute("Username", paramusername);
+		}
 		return LMSConstants.RESET_PASSWORD_SCR;
 	}
 	
@@ -143,6 +152,7 @@ public class ChangePasswordController {
 			request.setAttribute("Employee", employee);
 			String mailSubject 	 = MailUtils.composeEmailSubject(request,LMSConstants.CHANGE_PASSWORD);
 			emailService.sendMail(LMSConstants.mailTo,(String) session.getAttribute("Username"),"Change Password success ", mailSubject);
+			session.invalidate();
 			ra. addFlashAttribute("SucessMessage", messageSource.getMessage(
 					"lms.password_changed_successfully", new Object[] { "" },
 					Locale.getDefault()));

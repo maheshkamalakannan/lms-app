@@ -375,7 +375,9 @@ mycontroller.controller('resetPasswordController', function($scope, $window, $lo
 			}
 		}
 		else{
-		 event.preventDefault();
+			$('#success-pubilc').css("display","none");
+			$('#error-public').css("display","none");
+		    event.preventDefault();
 		}
 	};
 	

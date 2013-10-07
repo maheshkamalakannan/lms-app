@@ -2,7 +2,11 @@ package com.madrone.lms.utils;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import sun.misc.BASE64Decoder;
+import sun.misc.BASE64Encoder;
 
 import com.madrone.lms.constants.LMSConstants;
 import com.madrone.lms.entity.Employee;
@@ -10,8 +14,6 @@ import com.madrone.lms.form.LeaveForm;
 import com.madrone.lms.form.LoginForm;
 import com.madrone.lms.form.UserForm;
 import com.madrone.lms.service.EmailService;
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
 import java.net.URLEncoder;
 
 public class MailUtils {
@@ -53,7 +55,7 @@ public class MailUtils {
 			subject.append("\nYou recently asked to reset your LMS password. Please use the link below to create a new password.\n\n");
 			subject.append("If the button or link above does not automatically hyperlink, just copy and paste the link text into your browser bar. This link will expire in five hours.\n\n");
 			try {
-				subject.append(baseUrl+LMSConstants.RESET_PASSWORD_URL+"?username="+URLEncoder.encode(loginform.getUserName(),"UTF-8"));
+				subject.append(baseUrl+LMSConstants.RESET_PASSWORD_URL+"?username="+new BASE64Encoder().encodeBuffer(loginform.getUserName().getBytes()));
 				//subject.append(baseUrl+LMSConstants.RESET_PASSWORD_URL+"?username="+loginform.getUserName());
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -88,7 +90,8 @@ public class MailUtils {
 			subject = subject.append("Hi "+userForm.getFirstname()+ ",\n\n");
 			subject.append("We have recently created your LMS credentials. Please update the temporary password, use the below link to create a new password.\n\n");
 			try {
-				subject.append(baseUrl+LMSConstants.RESET_PASSWORD_URL+"?username="+URLEncoder.encode(userForm.getEmail(),"UTF-8"));
+				subject.append(baseUrl+LMSConstants.RESET_PASSWORD_URL+"?username="+new BASE64Encoder().encodeBuffer(userForm.getEmail().getBytes()));
+				//subject.append(baseUrl+LMSConstants.RESET_PASSWORD_URL+"?username="+URLEncoder.encode(userForm.getEmail(),"UTF-8"));
 				//subject.append(baseUrl+LMSConstants.RESET_PASSWORD_URL+"?username="+loginform.getUserName());
 			} catch (Exception e) {
 				e.printStackTrace();
