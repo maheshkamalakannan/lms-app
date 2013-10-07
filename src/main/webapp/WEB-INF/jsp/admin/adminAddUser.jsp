@@ -37,13 +37,13 @@
 	            <input type = "hidden" name = "empId" value="${EmpForm.id}" />
 	            <input type = "hidden" name = "selecteddata" value ={{mySelections}} />
 	            <a href="/lms-app">Sign Out</a>
+	            <c:if test="${SucessMessage != null}">
+			       <div class="success" style="margin:-45px 0 0 300px;"><h4 class="textfont">${SucessMessage}</h4></div>
+			    </c:if>
+			    <c:if test="${FailureMessage != null}">
+			       <div class="alert-error" style="margin:-45px 0 0 300px;"><h4 class="textfont">${FailureMessage}</h4></div>
+			    </c:if>
 	          </div>
-	          <c:if test="${SucessMessage != null}">
-		        <div class="success" style="margin: -27px 5px 5px 250px; width:42%;">${SucessMessage}</div>
-		      </c:if>
-		      <c:if test="${FailureMessage != null}">
-		        <div class="error" style="margin: -27px 5px 5px 250px; width:32%;">${FailureMessage}</div>
-		      </c:if>
 	  </div>
 	  <div id="adminleftcontent">
 	   <table>

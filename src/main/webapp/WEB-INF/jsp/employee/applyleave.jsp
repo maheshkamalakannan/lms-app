@@ -11,6 +11,9 @@
              <input type = "hidden" name = "empId" value="${EmpForm.id}" />
              <input type = "hidden" name = "empName" value="${EmpForm.firstName} ${EmpForm.lastName}" />
              <a href="/lms-app">Sign Out</a>
+              <c:if test="${SucessMessage != null}">
+		        <div class="success" style="margin:-45px 0 0 300px;"><h4 class="textfont">${SucessMessage}</h4></div>
+		      </c:if>
            </div>
        </div>
        <div id="applyleaveleftcontent" style="margin-top:2px;">  
@@ -87,9 +90,6 @@
 		</div>
 	  
 	  <div id="applyleaverightcontent" style="margin-top:2px;">
-		  <c:if test="${SucessMessage != null}">
-		      <div class="success" style="margin: -10px 5px 5px 0px; width:57%;">${SucessMessage}</div>
-		   </c:if>
 		  <div>
 			  <table cellpadding="4">
 		        <tbody>

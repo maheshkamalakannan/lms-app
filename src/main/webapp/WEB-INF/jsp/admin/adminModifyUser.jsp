@@ -11,10 +11,10 @@
 	            <input type = "hidden" name = "empId" value="${EmpForm.id}" />
 	            <input type = "hidden" name = "selecteddata" value ={{mySelections}} />
 	            <a href="/lms-app">Sign Out</a>
+	            <c:if test="${SucessMessage != null}">
+		          <div class="success" style="margin:-45px 0 0 300px;"><h4 class="textfont">${SucessMessage}</h4></div>
+		        </c:if>
 	          </div>
-	          <c:if test="${SucessMessage != null}">
-		        <div class="success" style="margin: -27px 5px 5px 250px; width:42%;">${SucessMessage}</div>
-		      </c:if>
 	          <div id="search" ng-model="ngsearch" ng-show="ngsearch">
 	            <span class="rc">{{employeeemail}}</span> 
 	            <input style="margin-left:17px" type="email" name="emailSearch" id="searchEmail" ng-model="ngsearchemail" ng-change="changeEmail()" width-reducer required/>

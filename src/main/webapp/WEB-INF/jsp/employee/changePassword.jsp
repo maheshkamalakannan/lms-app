@@ -9,14 +9,13 @@
 		  	<div class="signout">
    			    <h5>${EmpForm.firstName} ${EmpForm.lastName}</h5>
 			    <a href="/lms-app">Sign Out</a>
+			     <c:if test="${SucessMessage != null}">
+		  		    <div class="success" style="margin:-45px 0 0 278px;"><h4 class="textfont">${SucessMessage}</h4></div>
+				 </c:if>
+		  		 <c:if test="${FailureMessage != null}">
+		  		    <div class="alert-error" style="margin:-45px 0 0 278px;"><h4 class="textfont">${FailureMessage}</h4></div>
+				 </c:if>
 	        </div>
-	       
-	          <c:if test="${SucessMessage != null}">
-	  		     <div class="success">${SucessMessage}</div>
-			  </c:if>
-	  		 <c:if test="${FailureMessage != null}">
-	  		     <div class="alert-error">${FailureMessage}</div>
-			  </c:if>
     		 <div class="changepasswordele"> 
 					<input  type="hidden" name="userName" id="userName" value = "${userName}"/>
 					<input  type="hidden" name="empName" id="empName" value = "${empName}"/>

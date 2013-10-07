@@ -11,6 +11,9 @@
 	            <input type = "hidden" name = "empId" value="${EmpForm.id}" />
 	            <input type = "hidden" name = "selecteddata" value ={{selecteddata}} />
 	            <a href="/lms-app">Sign Out</a>
+	            <c:if test="${SucessMessage != null}">
+			      <div class="success" style="margin:-45px 0 0 300px;"><h4 class="textfont">${SucessMessage}</h4></div>
+			   </c:if>
 	          </div>
 	  </div>
 	  <div id="cancelleaveleftcontent">
@@ -19,9 +22,6 @@
 	       </div>
 	  </div> 
 	  <div id="cancelleaverightcontent">
-	       <c:if test="${SucessMessage != null}">
-		      <div class="success" style="margin: 5px 5px 5px 0px; width:72%;">${SucessMessage}</div>
-		   </c:if>
 		  <table cellpadding="4">
 	        <tbody>
 	          <tr>

@@ -11,12 +11,12 @@
 	            <input type = "hidden" name = "empId" value="${EmpForm.id}" />
 	            <input type = "hidden" name = "selecteddata" value ={{selecteddata}} />
 	            <a href="/lms-app">Sign Out</a>
+	            <c:if test="${SucessMessage != null}">
+			      <div class="success" style="margin:-45px 0 0 300px;"><h4 class="textfont">${SucessMessage}</h4></div>
+			   </c:if>
 	          </div>
 	  </div>
 	    <div id="viewleaverequestcontent">
-	       <c:if test="${SucessMessage != null}">
-		      <div class="success" style="margin: -40px 5px 5px 250px; width:42%;">${SucessMessage}</div>
-		   </c:if>
 		 <div class="leavesummaryContent">  
 	       <div ng-init='init(data1=${jsonString})'>
 		      <div class="viewleaverequestgridStyle" ng-grid="gridOptions"></div>
