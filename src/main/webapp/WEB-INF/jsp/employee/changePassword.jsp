@@ -10,10 +10,10 @@
    			    <h5>${EmpForm.firstName} ${EmpForm.lastName}</h5>
 			    <a href="/lms-app">Sign Out</a>
 			     <c:if test="${SucessMessage != null}">
-		  		    <div class="success" style="margin:-45px 0 0 278px;"><h4 class="textfont">${SucessMessage}</h4></div>
+		  		    <div class="success success-align" style="margin-left:310px;"><h4 class="textfont">${SucessMessage}</h4></div>
 				 </c:if>
 		  		 <c:if test="${FailureMessage != null}">
-		  		    <div class="alert-error" style="margin:-45px 0 0 278px;"><h4 class="textfont">${FailureMessage}</h4></div>
+		  		    <div class="alert-error alert-error-align"><h4 class="textfont">${FailureMessage}</h4></div>
 				 </c:if>
 	        </div>
     		 <div class="changepasswordele"> 
@@ -25,7 +25,7 @@
 				        <span class="error" style="width: 35%;" ng-show="submitted && changepassword.oldPassword.$error.required">{{currentpasswordrequired}}</span> <!-- LMS-014 -->
 				      </div>
 					    <input  type="password" name="newPassword" placeholder="New Password" style="margin-left: 2px; width: 35%;" ng-model="passwordnew" ng-change="hidemeter()" maxlength="10" password-meter required/>
-					  <div style="float: right; margin-right: 26.5em; margin-top: 7px;">
+					  <div style="float: right; margin-right: 24.5em; margin-top: 7px;">
 					    <span id="metererror">{{error}}</span>
 				     </div><br>
 				      <div>
