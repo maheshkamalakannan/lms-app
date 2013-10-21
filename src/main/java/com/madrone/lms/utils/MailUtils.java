@@ -2,10 +2,8 @@ package com.madrone.lms.utils;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
 import com.madrone.lms.constants.LMSConstants;
@@ -14,7 +12,6 @@ import com.madrone.lms.form.LeaveForm;
 import com.madrone.lms.form.LoginForm;
 import com.madrone.lms.form.UserForm;
 import com.madrone.lms.service.EmailService;
-import java.net.URLEncoder;
 
 public class MailUtils {
 
@@ -57,6 +54,8 @@ public class MailUtils {
 			try {
 				subject.append(baseUrl+LMSConstants.RESET_PASSWORD_URL+"?username="+new BASE64Encoder().encodeBuffer(loginform.getUserName().getBytes()));
 				//subject.append(baseUrl+LMSConstants.RESET_PASSWORD_URL+"?username="+loginform.getUserName());
+				request.getSession().setMaxInactiveInterval(1);
+				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
