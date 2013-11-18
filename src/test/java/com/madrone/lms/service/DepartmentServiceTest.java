@@ -52,10 +52,7 @@ public class DepartmentServiceTest {
 		ServiceTestUtil.deleteDepartment(DEPT_D1);
 		
 		Department d = new Department(DEPT_D1, "department-1");
-		Employee e = new Employee(EMP_100, "tom", "jerry", USER_NAME, null, 
-				Calendar.getInstance(), DesignationEnum.SSE, 
-				"#25 Chitrakulam north st", "Mylapore", "Chennai", 
-				"TN", 600004);
+		Employee e = new Employee(EMP_100, "tom", "jerry", USER_NAME, null,Calendar.getInstance(), DesignationEnum.SSE,"#25 Chitrakulam north st", "Mylapore", "Chennai","TN", 600004,"000000000");
 		Set<Employee> eSet = new HashSet<Employee>();
 		eSet.add(e);
 		d.setEmployees(eSet);

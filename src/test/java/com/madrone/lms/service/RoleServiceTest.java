@@ -55,7 +55,7 @@ public class RoleServiceTest {
 		Employee e = new Employee(EMP_100, "tom", "jerry", USER_NAME, null, 
 				Calendar.getInstance(), DesignationEnum.SSE, 
 				"#25 Chitrakulam north st", "Mylapore", "Chennai", 
-				"TN", 600004);
+				"TN", 600004,"0000000000");
 		Set<Employee> eSet = new HashSet<Employee>();
 		eSet.add(e);
 		r.setEmployees(eSet);

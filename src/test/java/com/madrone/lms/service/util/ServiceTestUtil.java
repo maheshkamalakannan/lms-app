@@ -96,7 +96,7 @@ public class ServiceTestUtil {
 			e = new Employee(empId, "tom", "jerry", primaryEmail, null, 
 					Calendar.getInstance(), DesignationEnum.SSE, 
 					"#25 Chitrakulam north st", "Mylapore", "Chennai", 
-					"TN", 600004);
+					"TN", 600004,"0000000000");
 			Department d = createDepartment(deptId, null);
 			e.setDepartment(d);
 			

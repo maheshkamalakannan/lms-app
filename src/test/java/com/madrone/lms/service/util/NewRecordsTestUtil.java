@@ -58,7 +58,7 @@ public class NewRecordsTestUtil {
 			this.emp 		= new Employee("001", "adminEmployee", "admin", "test@madronesoft.com", null, 
 									Calendar.getInstance(), DesignationEnum.AD,
 									"#25 Chitrakulam north st", "Mylapore", "Chennai", 
-									"TN", 600004);
+									"TN", 600004, "0000000000");
 			this.user 	  	= new User("test@madronesoft.com", "password");
 			this.leave 	  	= new Leave("CL", "CASUAL LEAVE",20);
 			this.empleave 	= new EmployeeLeave(emp,leave,Calendar.getInstance(),Calendar.getInstance(),1,"AM","PM");

@@ -13,11 +13,11 @@ public class EmployeeTest {
 		Employee e1 = new Employee("100", "tom", "jerry", "t@j.com", null, 
     			Calendar.getInstance(), DesignationEnum.SSE, 
     			"#25 Chitrakulam north st", "Mylapore", "Chennai", 
-    			"TN", 600004);
+    			"TN", 600004,"000000000");
 		Employee e2 = new Employee("100", "tom", "jerry", "t@j.com", null, 
     			Calendar.getInstance(), DesignationEnum.SSE, 
     			"#25 Chitrakulam north st", "Mylapore", "Chennai", 
-    			"TN", 600004);
+    			"TN", 600004,"0000000000");
 		
 		assertEquals(e1, e2);
 		assertEquals(e2, e1);
@@ -29,7 +29,7 @@ public class EmployeeTest {
 		Calendar doj = Calendar.getInstance();
 		Employee e = new Employee("100", "tom", "jerry", "t@j.com", null, 
 				doj, DesignationEnum.SSE, "#25 Chitrakulam north st", 
-				"Mylapore", "Chennai", "TN", 600004);
+				"Mylapore", "Chennai", "TN", 600004, "0000000000");
 		
 		StringBuilder expected = new StringBuilder("Employee {")
 		.append("id=100, ")
