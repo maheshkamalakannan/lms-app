@@ -12,7 +12,7 @@
 	            <input type = "hidden" name = "selecteddata" value ={{selecteddata}} />
 	            <a href="/lms-app">Sign Out</a>
 	            <c:if test="${SucessMessage != null}">
-			      <div class="success" style="margin:-45px 0 0 300px;"><h4 class="textfont">${SucessMessage}</h4></div>
+			      <div class="success success-align"><h4 class="textfont">${SucessMessage}</h4></div>
 			   </c:if>
 	          </div>
 	  </div>
