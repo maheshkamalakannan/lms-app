@@ -682,7 +682,7 @@ mycontroller.controller('leavesummaryController', function($scope, $window, $loc
 	  };
 });
 
-mycontroller.controller('ViewLeaveRequestsController', function($scope, $window, $location, $http) {
+mycontroller.controller('ViewLeaveRequestsController', function($scope, $window, $location) {
 	    $scope.selectleavetoapprove = false;
 	    $scope.selectleavetoreject  = false;
 	    $scope.myData1              = '';
@@ -744,27 +744,6 @@ mycontroller.controller('ViewLeaveRequestsController', function($scope, $window,
                     alert('no party');
                     }
         });
-		/*$http({
-		    method: 'POST',
-		    url: location.protocol + "//" + location.host+"/lms-app/getLeaveTypeData",
-		    data: "empPrimaryEmail=" + row.entity.empPrimaryEmail,
-		    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-		}).success(function (response) {
-			if(response.status == "SUCCESS") {
-    			var data = $.parseJSON(response.result);
-    			if(data.length > 0){
-    				$scope.myData1 = data;
-    				//$scope.$apply();
-    			}
-                else{
-                	$scope.myData1 = '';
-                	//$scope.$apply();
-	        	}
-       	  }
-		})
-		  .error(function() {
-			alert("failure");
-		});*/
 	};
 
 	$scope.gridOptions1 = {
@@ -950,7 +929,7 @@ mycontroller.controller('adduserController', function($scope, $window, $location
 	
 });
 
-mycontroller.controller('modifyUserController', function($scope, $window, $location, $http) {
+mycontroller.controller('modifyUserController', function($scope, $window, $location) {
 	$scope.showdiv       = false;
 	$scope.userexistence = false;
 	$scope.ngsearch      = true;
@@ -962,7 +941,7 @@ mycontroller.controller('modifyUserController', function($scope, $window, $locat
 			event.preventDefault();
 		}
 		else if((user != "") && (!form.$error.email)){
-		 /*$.ajax({
+		 $.ajax({
              type: "POST",
              url:  location.protocol + "//" + location.host+"/lms-app/submitSearchUser",
              data: "searchEmail=" + user,
@@ -995,40 +974,7 @@ mycontroller.controller('modifyUserController', function($scope, $window, $locat
              error: function(e){
                      alert('no party');
                      }
-             });*/
-			$http({
-			    method: 'POST',
-			    url   : location.protocol + "//" + location.host+"/lms-app/submitSearchUser",
-			    data  : "searchEmail=" + user,
-			    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-			}).success(function (response) {
-				if(response.status == "SUCCESS") {
-      	    	  $scope.showdiv = true;
-      	    	  $scope.ngsearch= false;
-      	    	  $('.error').css("display","none");
-      	    	  
-      	    	  $scope.ngfirstname = response.result[0].firstname;  $scope.nglastname    = response.result[0].lastname;
-      	          $scope.ngnewEmpId  = response.result[0].newEmpId;   $scope.ngemail       = response.result[0].email;  
-      	    	  $scope.ngpassword  = response.result[0].password;   $scope.ngsecemail    = response.result[0].secemail;   
-      	    	  $scope.ngaddress   = response.result[0].address;    $scope.ngcity        = response.result[0].city;
-      	    	  $scope.ngstate	 = response.result[0].state;      $scope.ngpincode     = response.result[0].pincode;
-      	    	  $scope.ngdateofjoin= response.result[0].dateofjoin; $scope.nguserId      = response.result[0].userId;
-      	    	  $scope.ngphone     = response.result[0].phone;
-      	    	  //combos
-      	    	  $('select[name="reportingto"]' ).val(response.result[0].reportingto);      
-      	    	  $('select[name="dept"]' ).val(response.result[0].dept);
-      	    	  $('select[name="desig"]' ).val(response.result[0].desig);
-      	    	  $('select[name="role"]' ).val(response.result[0].role);
-      	    	  $('input[name="userId"]' ).val(response.result[0].userId); 
-      	      }
-      	      else{
-      	    	  $scope.userexistence = true;
-      	    	  $scope.showdiv = false;
-      	      }
-			})
-			  .error(function() {
-				alert("failure");
-			});
+             });
 		}
 		else{
 			event.preventDefault();

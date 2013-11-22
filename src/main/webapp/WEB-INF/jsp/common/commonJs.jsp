@@ -8,7 +8,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link rel="shortcut icon" href="<%=request.getContextPath()%>/jsandcss/images/check.png" type="image/png"/>
 	<!--  Jquery Js Files -->
 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
@@ -24,8 +23,7 @@
 	<script type="text/javascript" src="<%=request.getContextPath()%>/jsandcss/customAngularJs/controllers.js"></script>
 	<script type="text/javascript" src="<%=request.getContextPath()%>/jsandcss/ng-grid/ng-grid-csv-export.js"></script>
     <script type="text/javascript" src="<%=request.getContextPath()%>/jsandcss/ng-grid/ng-grid-flexible-height.js"></script>
-    <script type="text/javascript" src="<%=request.getContextPath()%>/jsandcss/angular-dialog/createDialog.js"></script>
-    <script type="text/javascript" src="<%=request.getContextPath()%>/jsandcss/Jquery/menu_jquery.js"></script>	
+    <script type="text/javascript" src="<%=request.getContextPath()%>/jsandcss/angular-dialog/createDialog.js"></script>	
 	
 </head>
 </html>
