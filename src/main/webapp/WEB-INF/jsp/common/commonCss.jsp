@@ -16,5 +16,6 @@
     <link rel="stylesheet" href="https://mgcrea.github.com/angular-strap/vendor/bootstrap-datepicker.css"/>
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/jsandcss/angular-1.0.7/docs/css/bootstrap.min.css" />
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/jsandcss/customcss/app.css" />
+	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/jsandcss/customcss/styles.css" />
 </head>
 </html>
