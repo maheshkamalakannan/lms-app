@@ -289,7 +289,7 @@ mycontroller.controller('changePasswordController', function($scope, $window, $l
 				$scope.showerror=true;
 				event.preventDefault();
 			}
-			else if($scope.passwordcurrent ==  $scope.passwordnew){
+			else if(angular.equals($scope.passwordcurrent, $scope.passwordnew)){
 				$scope.confirmerror=true;
 				event.preventDefault();
 			}
@@ -551,7 +551,7 @@ mycontroller.controller('applyLeaveController', function($scope, $window, $locat
   
   $scope.saveleave = function(form,event){
 		 if(form.$valid){
-			 if($scope.tofromgreeting == true || $scope.todategreaterfromdate == true){
+			 if(angular.equals($scope.tofromgreeting, true) || angular.equals($scope.todategreaterfromdate, true)){
 				 event.preventDefault();
 			 }
 			 else if($scope.ephone.length < 8){
