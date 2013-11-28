@@ -80,9 +80,7 @@ html, body {
 }
 
 .bottom_block {
-	width: 100%;
 	display: block;
-	bottom: 0; 
 }
 
 .left_block {
@@ -141,7 +139,7 @@ html, body {
     border-top: 1px solid #EBEBEB;
 	left: 0;
     bottom: 0;
-    height: 65px;
+    height: 68px;
     width: 100%;
     overflow:hidden;
 	background-color: #FFFFFF;
@@ -289,7 +287,7 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
     border-radius: 5px 5px 5px 5px;
     box-shadow: 7px 7px 7px #888888;
     height: 476px;
-    margin-bottom: 15px;
+    margin-bottom: 27px;
     margin-left: 10px;
     margin-top: 10px;
     width: 250px;
