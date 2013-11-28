@@ -586,6 +586,7 @@ mycontroller.controller('cancelleaveController', function($scope, $window, $loca
 	  $scope.ngweak = false;
 	  $scope.nggood = false;
 	  $scope.ngexcellent = false;
+	  var date           = '';
 	/*Grid and grid data for cancel Leave*/
 	  $scope.init = function(data1) {
 		    $scope.selecteddata  = '';
@@ -613,31 +614,28 @@ mycontroller.controller('cancelleaveController', function($scope, $window, $loca
 			};
 	  };
 	  
-	  $scope.submitcancelleave = function(form,event){
-		  $scope.selectleavetocancel = false;
-		  $scope.afterleave          = false;
-		  
-		  var date = $scope.selectedtodate;
-		  $scope.formfromdate = ($.datepicker.parseDate('dd/mm/yy',date));
-		 
-		 if(form.$valid){
-			 if($scope.selecteddata == ''){
-				 $scope.selectleavetocancel = true;
-				 event.preventDefault();
-			 }
-			 else if((($scope.formfromdate.setHours(0,0,0,0) == Date.today().setHours(0,0,0,0)) && ($scope.status =='A') && (new Date().getHours() >= 9)) ||
-					 ($scope.formfromdate.setHours(0,0,0,0) < Date.today().setHours(0,0,0,0)) && ($scope.status =='A')){
-				 $scope.afterleave          = true;
-				 event.preventDefault();
-			 }
-			 else{
-				 form.submit();
-			}
-		}
-		 else{
-			 $('.success').css("display","none");
-			 event.preventDefault();
-		 }
+	  $scope.submitcancelleave = function(form,event){ 
+
+		  if(form.$valid){
+			  if(angular.equals($scope.selecteddata,'')){
+				  $scope.selectleavetocancel = true;
+				  event.preventDefault();
+			  }
+			  else if(!angular.equals($scope.selecteddata,'')){
+				  var date = $scope.selectedtodate;
+				  $scope.formfromdate = ($.datepicker.parseDate('dd/mm/yy',date));
+				  
+				  if((($scope.formfromdate.setHours(0,0,0,0) == Date.today().setHours(0,0,0,0)) && ($scope.status =='A') && (new Date().getHours() >= 9)) ||
+							 ($scope.formfromdate.setHours(0,0,0,0) < Date.today().setHours(0,0,0,0)) && ($scope.status =='A')){
+
+						 $scope.afterleave          = true;
+						 event.preventDefault();
+			      }
+			  }
+		  }
+		  else{
+			  event.preventDefault();
+		  }
 	};
 	
 	$scope.resetcancelleave = function(){
@@ -646,6 +644,8 @@ mycontroller.controller('cancelleaveController', function($scope, $window, $loca
 		$scope.mySelections = '';
         $scope.cnclreason   = '';
         $scope.selecteddata = '';
+        $scope.selectedtodate = '';
+        $scope.afterleave     = false;
 	};
 });
 
