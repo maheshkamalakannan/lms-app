@@ -1168,7 +1168,7 @@ mycontroller.controller('setLeaveTypeController', function($scope, $window, $loc
 				 form.submit();
 			 }
 		 else{
-			 $('.success').css("display","none");
+			 $scope.successmsg     = "none";
 			 event.preventDefault();
 		 }
 	};
