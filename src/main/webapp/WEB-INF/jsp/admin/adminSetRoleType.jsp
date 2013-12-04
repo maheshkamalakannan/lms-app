@@ -13,7 +13,7 @@
 	            <input type = "hidden" name = "userAction" value={{userAction}} ng-model="nguserAction" />
 	            <a href="/">Sign Out</a>
 	            <c:if test="${SucessMessage != null}">
-	  		     <div class="success" style="margin:-45px 0 0 300px;"><h4 class="textfont">${SucessMessage}</h4></div>
+	  		     <div class="success success-align"><h4 class="textfont">${SucessMessage}</h4></div>
 			    </c:if>
 			  <!-- LMS-087 Starts-->
 			    <c:if test="${FailureMessage != null}">
