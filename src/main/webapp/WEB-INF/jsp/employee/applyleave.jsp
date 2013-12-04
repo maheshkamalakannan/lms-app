@@ -10,7 +10,7 @@
              <input type = "hidden" name = "userName" value="${userName}" />
              <input type = "hidden" name = "empId" value="${EmpForm.id}" />
              <input type = "hidden" name = "empName" value="${EmpForm.firstName} ${EmpForm.lastName}" />
-             <a href="/lms-app">Sign Out</a>
+             <a href="/">Sign Out</a>
               <c:if test="${SucessMessage != null}">
 		        <div class="success success-align"><h4 class="textfont">${SucessMessage}</h4></div>
 		      </c:if>

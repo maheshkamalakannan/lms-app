@@ -44,7 +44,7 @@ public class CancelLeaveController {
 	@Autowired
 	private EmailService emailService;
 
-	@RequestMapping(value = "/cancelLeave", method = RequestMethod.GET)
+	@RequestMapping(value = "/lms-app/cancelLeave", method = RequestMethod.GET)
 	public String cancelLeave(Model model, LeaveForm form, HttpSession session) {
 		logger.info("Inside cancelLeave()");
 		model.addAttribute("CancelLeaveForm", new LeaveForm());
@@ -59,7 +59,7 @@ public class CancelLeaveController {
 				+ session.getAttribute("sessionRole");
 	}
 
-	@RequestMapping(value = "/submitCancelLeave", method = RequestMethod.POST)
+	@RequestMapping(value = "/lms-app/submitCancelLeave", method = RequestMethod.POST)
 	public ModelAndView submitCancelLeave(@ModelAttribute("cancelLeaveForm") LeaveForm form,
 			                        BindingResult result, Map<String, Object> map, HttpSession session,
 			                        RedirectAttributes ra, HttpServletRequest request) {

@@ -36,7 +36,7 @@ public class SetLeaveTypesController {
 	private static final Logger logger = LoggerFactory
 			.getLogger(ChangePasswordController.class);
 
-	@RequestMapping(value = "/setLeaveType", method = RequestMethod.GET)
+	@RequestMapping(value = "/lms-app/setLeaveType", method = RequestMethod.GET)
 	public String setLeaveTypeForm(Model model, UserForm Userform) {
 		List<Leave> leaveTypes = leaveService.getLeaveTypes();
 		String jsonString = JSONUtils.convertListToJson(leaveTypes);
@@ -45,7 +45,7 @@ public class SetLeaveTypesController {
 		return LMSConstants.ADMIN_SET_LEAVE_TYPE_SCR;
 	}
 
-	@RequestMapping(value = "/submitSetLeaveType", method = RequestMethod.POST)
+	@RequestMapping(value = "/lms-app/submitSetLeaveType", method = RequestMethod.POST)
 	public ModelAndView submitSetLeaveType(@ModelAttribute("leaveTypeForm") LeaveTypeForm form, BindingResult result, Map<String, Object> map, RedirectAttributes ra) {
 		
 		ModelAndView modelView = new ModelAndView(new RedirectView(LMSConstants.ADMIN_SET_LEAVE_URL));

@@ -33,7 +33,7 @@ public class LeaveSummaryController {
 	@Autowired
 	private MessageSource messageSource;
 
-	@RequestMapping(value = "/leaveSummary", method = RequestMethod.GET)
+	@RequestMapping(value = "/lms-app/leaveSummary", method = RequestMethod.GET)
 	public String leaveSummary(Model model, LeaveSummaryForm form,
 			HttpSession session) {
 		String userName = (String) session.getAttribute("sessionUser");

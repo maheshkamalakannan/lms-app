@@ -41,7 +41,7 @@ public class LoginController {
 		return LMSConstants.LOGIN_MENU;
 	}
 
-	@RequestMapping(value = "/authenticate", method = RequestMethod.POST)
+	@RequestMapping(value = "/lms-app/authenticate", method = RequestMethod.POST)
 	public String authenticate(Model model,
 			@ModelAttribute("LoginForm") LoginForm loginForm,
 			BindingResult result, Map<String, Object> map, 

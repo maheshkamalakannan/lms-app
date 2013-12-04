@@ -59,7 +59,7 @@ public class ApplyLeaveController {
 	private EmployeeService empService;
 
 
-	@RequestMapping(value = "/applyLeave", method = RequestMethod.GET)
+	@RequestMapping(value = "/lms-app/applyLeave", method = RequestMethod.GET)
 	public String applyLeave(Model model, LeaveForm form,
 			HttpSession session)  {
 		logger.info("Inside applyLeave()");
@@ -85,7 +85,7 @@ public class ApplyLeaveController {
 	   		session.getAttribute("sessionRole");
 	}
 
-	@RequestMapping(value = "/submitApplyLeave", method = RequestMethod.POST)
+	@RequestMapping(value = "/lms-app/submitApplyLeave", method = RequestMethod.POST)
 	public ModelAndView submitApplyLeave(
 			@ModelAttribute("ApplyLeaveForm") LeaveForm applyLeaveForm,
 			BindingResult result, Map<String, Object> map, HttpSession session,

@@ -62,25 +62,25 @@ public class UserController {
 	private static final Logger logger = LoggerFactory
 			.getLogger(UserController.class);
 
-	@RequestMapping(value = "/addUser", method = RequestMethod.GET)
+	@RequestMapping(value = "/lms-app/addUser", method = RequestMethod.GET)
 	public String addUserForm(Model model, UserForm Userform) {
 		model = loadComboValues(model);
 		return LMSConstants.ADMIN_ADD_USER_SCR;
 	}
 
-	@RequestMapping(value = "/deleteUser", method = RequestMethod.GET)
+	@RequestMapping(value = "/lms-app/deleteUser", method = RequestMethod.GET)
 	public String deleteUserForm(Model model, UserForm Userform) {
 		model = loadComboValues(model);
 		return LMSConstants.ADMIN_DELETE_USER_SCR;
 	}
 
-	@RequestMapping(value = "/modifyUser", method = RequestMethod.GET)
+	@RequestMapping(value = "/lms-app/modifyUser", method = RequestMethod.GET)
 	public String modifyUserForm(Model model, UserForm Userform) {
 		model = loadComboValues(model);
 		return LMSConstants.ADMIN_MODIFY_USER_SCR;
 	}
 
-	@RequestMapping(value = "/submitAdduser", method = RequestMethod.POST)
+	@RequestMapping(value = "/lms-app/submitAdduser", method = RequestMethod.POST)
 	public ModelAndView submitAdduser(@ModelAttribute("UserForm") UserForm userForm, BindingResult result, 
 			                          Map<String, Object> map, HttpSession session, RedirectAttributes ra, HttpServletRequest request) {
 
@@ -99,7 +99,7 @@ public class UserController {
 
 	}
 
-	@RequestMapping(value = "/submitModifyuser", method = RequestMethod.POST)
+	@RequestMapping(value = "/lms-app/submitModifyuser", method = RequestMethod.POST)
 	public ModelAndView submitModifyuser(@ModelAttribute("UserForm") UserForm userForm, BindingResult result, Map<String, Object> map, RedirectAttributes ra) {
 
 		logger.info("Inside submitChangePassword method");
@@ -113,7 +113,7 @@ public class UserController {
 
 	}
 
-	@RequestMapping(value = "/submitDeleteUser", method = RequestMethod.POST)
+	@RequestMapping(value = "/lms-app/submitDeleteUser", method = RequestMethod.POST)
 	public ModelAndView submitDeleteUser(@ModelAttribute("UserForm") UserForm userForm, BindingResult result, Map<String, Object> map, RedirectAttributes ra) {
 
 		logger.info("Inside submitDeleteUser method");
@@ -128,7 +128,7 @@ public class UserController {
 
 	}
 
-	@RequestMapping(value = "/submitSearchUser", method = RequestMethod.POST)
+	@RequestMapping(value = "/lms-app/submitSearchUser", method = RequestMethod.POST)
 	public @ResponseBody
 	JsonResponse searchUser(Model model,
 			@ModelAttribute("UserForm") UserForm userForm, BindingResult result) {
@@ -148,7 +148,7 @@ public class UserController {
 		return res;
 	}
 
-	@RequestMapping(value = "/FindReportingPersonList", method = RequestMethod.POST)
+	@RequestMapping(value = "/lms-app/FindReportingPersonList", method = RequestMethod.POST)
 	public @ResponseBody
 	JsonResponse findReportingList(Model model,
 			@ModelAttribute("UserForm") UserForm userForm, BindingResult result) {

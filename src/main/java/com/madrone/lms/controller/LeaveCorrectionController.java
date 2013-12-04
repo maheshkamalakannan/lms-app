@@ -50,7 +50,7 @@ public class LeaveCorrectionController {
 	private static final Logger logger = LoggerFactory
 			.getLogger(ApprovedRejectedListController.class);
 	
-	@RequestMapping(value = "/leaveCorrections", method = RequestMethod.GET)
+	@RequestMapping(value = "/lms-app/leaveCorrections", method = RequestMethod.GET)
 	public String viewLeaveForm(Model model, LeaveCorrectionForm lForm) {
 		loadComboValues(model);
 		return LMSConstants.ADMIN_VIEW_LEAVE_SCR;
@@ -67,7 +67,7 @@ public class LeaveCorrectionController {
 		
 	}
 
-	@RequestMapping(value = "/searchLeaveCorrection", 
+	@RequestMapping(value = "/lms-app/searchLeaveCorrection", 
 			method = RequestMethod.POST)
 	public @ResponseBody
 	JsonResponse searchLeaveCorrection(Model model,
@@ -96,7 +96,7 @@ public class LeaveCorrectionController {
 	}
 	
 
-	@RequestMapping(value = "/submitDeleteInLeaveCorrection", 
+	@RequestMapping(value = "/lms-app/submitDeleteInLeaveCorrection", 
 			method = RequestMethod.POST)
 	public ModelAndView submitDeleteInLeaveCorrection(@ModelAttribute("LeaveCorrectionForm") LeaveCorrectionForm leform,
 			                                    BindingResult result, Map<String, Object> map, RedirectAttributes ra) { 

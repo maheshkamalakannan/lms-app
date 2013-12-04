@@ -15,7 +15,7 @@
 		         <li class='last'><a href="/lms-app/changePassword" ><span>Change Password</span></a></li>
 		      </ul>
 		   </li>
-		   <li class='last'><a href='/lms-app'><span>Sign Out</span></a></li>
+		   <li class='last'><a href='/'><span>Sign Out</span></a></li>
 		</ul>
 	</div>
  </div>

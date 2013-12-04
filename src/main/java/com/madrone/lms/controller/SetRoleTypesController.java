@@ -35,7 +35,7 @@ public class SetRoleTypesController {
 	private static final Logger logger = LoggerFactory
 			.getLogger(ChangePasswordController.class);
 
-	@RequestMapping(value = "/setRole", method = RequestMethod.GET)
+	@RequestMapping(value = "/lms-app/setRole", method = RequestMethod.GET)
 	public String setRoleTypeForm(Model model, UserForm Userform) {
 		List<RoleTypeForm> roleTypes = roleService.getRoleList();
 		String jsonString = JSONUtils.convertListToJson(roleTypes);
@@ -44,7 +44,7 @@ public class SetRoleTypesController {
 		return LMSConstants.ADMIN_SET_ROLE_SCR;
 	}
 	
-	@RequestMapping(value = "/submitRole", method = RequestMethod.POST)
+	@RequestMapping(value = "/lms-app/submitRole", method = RequestMethod.POST)
 	public ModelAndView submitRole(@ModelAttribute("RoleTypeForm") RoleTypeForm form, BindingResult result, Map<String, Object> map, RedirectAttributes ra) {
 		
 		ModelAndView modelView = new ModelAndView(new RedirectView(LMSConstants.ADMIN_SET_ROLE_URL));

@@ -23,21 +23,21 @@ public class MenuController {
 	@Autowired
 	private EmployeeLeaveService empLeaveService;
 
-	@RequestMapping(value = "/employeeHome", method = RequestMethod.GET)
+	@RequestMapping(value = "/lms-app/employeeHome", method = RequestMethod.GET)
 	public String employeeHome(Model model, LeaveForm form) {
 		model.addAttribute("EmployeeHomeForm", new EmployeeHomeForm());
 		return LMSConstants.EMPLOYEE_HOME_SCR;
 	}
 
 	// These functions are used in managerMenu.jsp file
-	@RequestMapping(value = "/managerHome", method = RequestMethod.GET)
+	@RequestMapping(value = "/lms-app/managerHome", method = RequestMethod.GET)
 	public String managerHome(Model model, LeaveForm form) {
 		model.addAttribute("ManagerHomeForm", new ManagerHomeForm());
 		return LMSConstants.MANAGER_HOME_SCR;
 	}
 	
 	// These functions are used in adminMenu.jsp file
-	@RequestMapping(value = "/adminHome", method = RequestMethod.GET)
+	@RequestMapping(value = "/lms-app/adminHome", method = RequestMethod.GET)
 	public String adminHomeForm(Model model, LeaveForm form) {
 			return LMSConstants.ADMIN_HOME_SCR;
 	}

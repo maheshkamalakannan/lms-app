@@ -1,6 +1,6 @@
 <%@ include file="../common/commonJs.jsp" %>
 
-<form:form modelAttribute="ResetPasswordForm" name="resetpasswordform" method="post"  action="/lms-app/submitResetPassword" 
+<form:form modelAttribute="ResetPasswordForm" name="resetpasswordform" method="post"  action="/lms-app/public/submitResetPassword" 
            ng-controller="constantsController" novalidate="novalidate" >
 	<div class="content" ng-controller="resetPasswordController" ng-cloak>
 		<div class="">

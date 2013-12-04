@@ -28,7 +28,7 @@ public class ApprovedRejectedListController {
 			.getLogger(ApprovedRejectedListController.class);
 	
 	// Show Form for Summary : Approval List
-	@RequestMapping(value = "/approvalList", method = RequestMethod.GET)
+	@RequestMapping(value = "/lms-app/approvalList", method = RequestMethod.GET)
 	public String viewApprovedleaves(Model model, LeaveForm form,
 			HttpSession session) {
 
@@ -44,7 +44,7 @@ public class ApprovedRejectedListController {
 	}
 
 	// Show Form for Summary : Rejection List
-	@RequestMapping(value = "/rejetionList", method = RequestMethod.GET)
+	@RequestMapping(value = "/lms-app/rejetionList", method = RequestMethod.GET)
 	public String viewRejectedleaves(Model model, LeaveForm form,
 			HttpSession session) {
 		logger.info("Inside RejectLeaveSummary()");
@@ -60,7 +60,7 @@ public class ApprovedRejectedListController {
 	}
 	
 	// Show Form for Summary : Cancelled List
-			@RequestMapping(value = "/cancellationList", method = RequestMethod.GET)
+			@RequestMapping(value = "/lms-app/cancellationList", method = RequestMethod.GET)
 			public String viewCancelledleaves(Model model, LeaveForm form,
 					HttpSession session) {
 

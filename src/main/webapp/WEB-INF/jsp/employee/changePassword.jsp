@@ -8,7 +8,7 @@
 		  <h5>{{changepasswordtabs}}</h5>
 		  	<div class="signout">
    			    <h5>${EmpForm.firstName} ${EmpForm.lastName}</h5>
-			    <a href="/lms-app">Sign Out</a>
+			    <a href="/">Sign Out</a>
 			     <c:if test="${SucessMessage != null}">
 		  		    <div class="success success-align" style="margin-left:310px;"><h4 class="textfont">${SucessMessage}</h4></div>
 				 </c:if>

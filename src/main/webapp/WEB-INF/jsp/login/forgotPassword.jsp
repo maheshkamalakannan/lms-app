@@ -1,6 +1,6 @@
 <%@ include file="../common/commonJs.jsp" %>
 
-<form:form modelAttribute="ForgotPasswordForm" name="forgotpasswordform" method="post"  action="/lms-app/submitForgotPassword" ng-controller="forgotPasswordController" novalidate="novalidate" >
+<form:form modelAttribute="ForgotPasswordForm" name="forgotpasswordform" method="post"  action="/lms-app/public/submitForgotPassword" ng-controller="forgotPasswordController" novalidate="novalidate" >
 	<div class="content" ng-controller="constantsController">
 		<div class="">
 		  <!-- <div class="forgotshadow">  -->

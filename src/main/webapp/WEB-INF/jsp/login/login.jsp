@@ -14,7 +14,7 @@
             <div id="loginform" ng-class="{true: 'error'}[submitted && loginForm.email.$invalid,submitted && loginForm.password.$invalid ]">
 			         <h2 style="margin-left:73px;">{{signin}}</h2>
 			         <div style="float:right; margin-top: -29px;">
-			              <p><a href="/lms-app/forgotPassword">Forgot Password ?</a></p>
+			              <p><a href="/lms-app/public/forgotPassword">Forgot Password ?</a></p>
 			         </div>
 					 <div id="loginelements">
 					      <!--<form:errors style="width: 80%;" path="password" cssClass="error" />-->

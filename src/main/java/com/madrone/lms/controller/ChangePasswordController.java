@@ -51,7 +51,7 @@ public class ChangePasswordController {
 	@Autowired
 	private EmailService emailService;
 
-	@RequestMapping(value = "/changePassword", method = RequestMethod.GET)
+	@RequestMapping(value = "/lms-app/changePassword", method = RequestMethod.GET)
 	public String changePassword(Model model, ChangePasswordForm form,
 			HttpSession session) {
 		model.addAttribute("ChangePasswordForm", new ChangePasswordForm());
@@ -60,7 +60,7 @@ public class ChangePasswordController {
 
 	}
 
-	@RequestMapping(value = "/submitChangePassword", method = RequestMethod.POST)
+	@RequestMapping(value = "/lms-app/submitChangePassword", method = RequestMethod.POST)
 	public ModelAndView submitChangePassword(@ModelAttribute("ChangePasswordForm") ChangePasswordForm changePassword,
 			                           BindingResult result, Map<String, Object> map, HttpSession session,
 			                           RedirectAttributes ra, HttpServletRequest request) {
@@ -94,7 +94,7 @@ public class ChangePasswordController {
 
 	}
 	
-	@RequestMapping(value = "/forgotPassword", method = RequestMethod.GET)
+	@RequestMapping(value = "/lms-app/public/forgotPassword", method = RequestMethod.GET)
 	public String forgotPassword(Model model,
 			@ModelAttribute("ForgotPasswordForm") LoginForm loginForm,
 			BindingResult result, Map<String, Object> map, 
@@ -102,7 +102,7 @@ public class ChangePasswordController {
 		return LMSConstants.FORGOT_PASSWORD_SCR;
 	}
 	
-	@RequestMapping(value = "/submitForgotPassword", method = RequestMethod.POST)
+	@RequestMapping(value = "/lms-app/public/submitForgotPassword", method = RequestMethod.POST)
 	public ModelAndView submitApplyLeave(
 			@ModelAttribute("ForgotPasswordForm") LoginForm loginForm,
 			BindingResult result, Map<String, Object> map, HttpSession session,
@@ -124,7 +124,7 @@ public class ChangePasswordController {
 		return modelView;
 	}
 	
-	@RequestMapping(value = "/resetPassword", method = RequestMethod.GET)
+	@RequestMapping(value = "/lms-app/public/resetPassword", method = RequestMethod.GET)
 	public String resetPassword(@RequestParam(value="username", required=false)  String username, Model model, HttpSession session) throws IOException {
 		System.out.println("username "+username);
 		if((username != null)){
@@ -135,7 +135,7 @@ public class ChangePasswordController {
 		return LMSConstants.RESET_PASSWORD_SCR;
 	}
 	
-	@RequestMapping(value = "/submitResetPassword", method = RequestMethod.POST)
+	@RequestMapping(value = "/lms-app/public/submitResetPassword", method = RequestMethod.POST)
 	public ModelAndView submitResetPassword(
 			@ModelAttribute("ChangePasswordForm") ChangePasswordForm changePassword,
 			BindingResult result, Map<String, Object> map, HttpSession session,

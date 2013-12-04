@@ -59,7 +59,7 @@ public class ApproveLeaveController {
 	private EmployeeService empService;
 	
 	//Show Form for Leave - Approval & Rejection.
-	@RequestMapping(value = "/approveLeave", method = RequestMethod.GET)
+	@RequestMapping(value = "/lms-app/approveLeave", method = RequestMethod.GET)
 	public String viewApproveLeave(Model model, ViewLeaveRequestForm form,
 			HttpSession session) {
 		
@@ -74,7 +74,7 @@ public class ApproveLeaveController {
 	}
 	
 	/*Adding this method to show LeaveType grid in ViewLeaveRequest Screen*/
-	@RequestMapping(value = "/getLeaveTypeData", method = RequestMethod.POST)
+	@RequestMapping(value = "/lms-app/getLeaveTypeData", method = RequestMethod.POST)
 	public @ResponseBody JsonResponse getLeaveTypeData(Model model, ViewLeaveRequestForm form,HttpSession session)  {
 		
 		 JsonResponse res = new JsonResponse();
@@ -87,7 +87,7 @@ public class ApproveLeaveController {
 	}
 	
 	//Submit method for Leave - Approval.
-	@RequestMapping(value = "/submitViewLeaveRequest1", method = RequestMethod.POST)
+	@RequestMapping(value = "/lms-app/submitViewLeaveRequest1", method = RequestMethod.POST)
 	public ModelAndView submitForApprove(@ModelAttribute("viewleavereq") ViewLeaveRequestForm form,
 			                        BindingResult result, Map<String, Object> map, HttpSession session,  
 			                        RedirectAttributes ra, HttpServletRequest request) {
@@ -117,7 +117,7 @@ public class ApproveLeaveController {
 	}
 
 	// Submit method for Leave - Rejection
-	@RequestMapping(value = "/submitViewLeaveRequest2", method = RequestMethod.POST)
+	@RequestMapping(value = "/lms-app/submitViewLeaveRequest2", method = RequestMethod.POST)
 	public ModelAndView submitForReject(@ModelAttribute("viewleavereq") ViewLeaveRequestForm form,
 			                      BindingResult result, Map<String, Object> map, HttpSession session,
 			                      RedirectAttributes ra, HttpServletRequest request) {

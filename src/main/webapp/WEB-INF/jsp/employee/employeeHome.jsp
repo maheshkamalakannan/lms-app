@@ -9,7 +9,7 @@
              <h5>${EmpForm.firstName} ${EmpForm.lastName}</h5>
             <input type = "hidden" name = "userName" value="${userName}" />
             <input type = "hidden" name = "empId" value="${EmpForm.id}" />
-            <a href="/lms-app">Sign Out</a>
+            <a href="/">Sign Out</a>
           </div>
       </div>
 </div>

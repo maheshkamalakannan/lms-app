@@ -36,12 +36,12 @@
 	            <input type = "hidden" name = "userName" value="${userName}" />
 	            <input type = "hidden" name = "empId" value="${EmpForm.id}" />
 	            <input type = "hidden" name = "selecteddata" value ={{mySelections}} />
-	            <a href="/lms-app">Sign Out</a>
+	            <a href="/">Sign Out</a>
 	            <c:if test="${SucessMessage != null}">
 			       <div class="success" style="margin:-45px 0 0 300px;"><h4 class="textfont">${SucessMessage}</h4></div>
 			    </c:if>
 			    <c:if test="${FailureMessage != null}">
-			       <div class="alert-error" style="margin:-45px 0 0 300px;"><h4 class="textfont">${FailureMessage}</h4></div>
+			       <div class="alert-error alert-error-align"><h4 class="textfont">${FailureMessage}</h4></div>
 			    </c:if>
 	          </div>
 	  </div>

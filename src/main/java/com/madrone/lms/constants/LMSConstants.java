@@ -57,8 +57,8 @@ public class LMSConstants {
 	public static final String CANCEL_LEAVE_URL               = "/lms-app/cancelLeave";
 	public static final String LEAVE_SUMMARY_URL              = "/lms-app/leaveSummary";
 	public static final String CHANGE_PASSWORD_URL            = "/lms-app/changePassword";
-	public static final String RESET_PASSWORD_URL             = "/lms-app/resetPassword";
-	public static final String FORGOT_PASSWORD_URL            = "/lms-app/forgotPassword";
+	public static final String RESET_PASSWORD_URL             = "/lms-app/public/resetPassword";
+	public static final String FORGOT_PASSWORD_URL            = "/lms-app/public/forgotPassword";
 	public static final String APPROVE_LEAVE_URL              = "/lms-app/approveLeave";
 	public static final String VIEW_CANCELLED_LEAVES_URL      = "/lms-app/cancellationList";
 	public static final String ADMIN_ADD_USER_URL             = "/lms-app/addUser";
@@ -69,5 +69,11 @@ public class LMSConstants {
 	public static final String ADMIN_LEAVE_CORRECTIONS_URL    = "/lms-app/leaveCorrections";
 	
 	public static final String mailTo = "manager.madrone@gmail.com";
+	
+	/*Private URL for LMS application*/
+	public static final String AUTHENTICATE                   = "/lms-app/authenticate";
+	public static final String EMPHOME                        = "/lms-app/employeeHome";
+	public static final String MANAGERHOME                    = "/lms-app/managerHome";
+	public static final String ADMINHOME                      = "/lms-app/adminHome";
 	
 }
