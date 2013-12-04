@@ -13,11 +13,11 @@
 	            <input type = "hidden" name = "userAction" value={{userAction}} ng-model="nguserAction" />
 	            <a href="/">Sign Out</a>
 	            <c:if test="${SucessMessage != null}">
-	  		      <div class="success success-align"><h4 class="textfont">${SucessMessage}</h4></div>
+	  		      <div class="success success-align" ng-style="{display: successmsg}"><h4 class="textfont" ng-model="successmsg">${SucessMessage}</h4></div>
 			    </c:if>
 			    <!-- LMS-087 Starts-->
 			    <c:if test="${FailureMessage != null}">
-	  		     <div class="alert-error alert-error-align"><h4 class="textfont">${FailureMessage}</h4></div>
+	  		     <div class="alert-error alert-error-align" ng-style="{display: errormsg}"><h4 class="textfont" ng-model="errormsg">${FailureMessage}</h4></div>
 			    </c:if>
 			    <!-- LMS-087 Ends-->
 	          </div>
@@ -71,7 +71,7 @@
 			    </tbody>
 			   </table>
 			 <div class="setleavetypebutton" ng-model="showleavediv" ng-show="showleavediv">
-				 <input type="submit" name="submit" value="Save" ng-click="[submitted=true,saveleavetype(leaveTypeForm,$event)]"/> 
+				 <input type="submit" ng-model="btnsubmit" name="submit" value={{btnsubmit}} ng-click="[submitted=true,saveleavetype(leaveTypeForm,$event)]"/> 
 				 <input type="reset"  style="margin-left:10px;" name="reset"   value="Cancel" ng-click="[submitted=false,cancelleavetype()]"/>
 			</div>
 		</div>

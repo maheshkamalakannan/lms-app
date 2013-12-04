@@ -1110,15 +1110,15 @@ mycontroller.controller('setLeaveTypeController', function($scope, $window, $loc
 	};
 	
 	$scope.deleterow = function(row){
-		$('.success').css("display","none");
-		$('.error').css("display","none");
+		$scope.successmsg     = "none";
+		$scope.errormsg       = "none";
 		$scope.selecteddata   = [{"Name": row.entity.id,"Description": row.entity.description, "Days": row.entity.days}];
 		$scope.showleavediv   = true;
 		$scope.ngid           = row.entity.id;
 		$scope.ngdescription  = row.entity.description;
 		$scope.ngdays         = row.entity.days;
 		$scope.userAction     = "DELETE";
-		$("input[name='submit']").attr({"value":"Delete"});
+		$scope.btnsubmit      = 'Delete';
 		$('#leavetype').attr('readonly','true');
 		$('#leavetype').css('background-color','#fff');
 		$('#leavedays').attr("readonly", "true");
@@ -1128,13 +1128,13 @@ mycontroller.controller('setLeaveTypeController', function($scope, $window, $loc
 	};
 	
 	$scope.modifyrow = function(row){
-		$('.success').css("display","none");
-		$('.error').css("display","none");
+		$scope.successmsg     = "none";
+		$scope.errormsg       = "none";
 		$scope.showleavediv   = true;
 		$scope.ngid           = row.entity.id;
 		$scope.ngdescription  = row.entity.description;
 		$scope.ngdays         = row.entity.days;
-		$("input[name='submit']").attr({"value":"Modify"});
+		$scope.btnsubmit      = 'Modify';
 		$('#leavetype').attr('readonly','true');
 		$('#leavetype').css('background-color','#fff');
 		$('#leavedays').removeAttr("readonly");
@@ -1143,13 +1143,13 @@ mycontroller.controller('setLeaveTypeController', function($scope, $window, $loc
 	};
 	
 	$scope.createleavetype = function(event){
-		$('.success').css("display","none");
-		$('.error').css("display","none");
+		$scope.successmsg     = "none";
+		$scope.errormsg       = "none";
 		$scope.showleavediv = true;
 		$scope.ngid         = '';
 		$scope.ngdescription= '';
-		$scope.ngdays       = '';
-		$("input[name='submit']").attr({"value":"Save"});
+		$scope.ngdays       = '';  
+		$scope.btnsubmit    = 'Save';
 		$('#leavetype').removeAttr('readonly');
 		$('#leavedays').removeAttr("readonly");
 		$('#leavedescription').removeAttr("readonly");
