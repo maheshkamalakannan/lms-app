@@ -36,7 +36,7 @@
 	            </ul>
 	        </li>
 	        <li>
-	            <a href=" ">Sign Out</a>
+	            <a href="/">Sign Out</a>
 	        </li>
 	    </ul>
 	</div>
