@@ -662,9 +662,7 @@ h5:first-letter {
 
 #adminmiddlecontent{
     display: inline-block;
-    left: 10px;
-    margin: 17px 0 0 50%;
-    position: absolute;
+    margin-top: 15px;
     width: 340px;
 }
 
@@ -672,6 +670,7 @@ h5:first-letter {
 	float:right;
 	width:300px;
 	padding:15px;
+	margin-top: -310px;
 }
 
 .admincentercontent{
