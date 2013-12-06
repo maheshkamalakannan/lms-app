@@ -52,7 +52,7 @@ public class LMSConstants {
 	
 	public static final String DEFAULT_COMBO_BOX_VALUE = "ALL";
 	
-	public static final String LMS_URL                        = "/lms-app";
+	public static final String LMS_URL                        = "/";
 	public static final String APPLY_LEAVE_URL                = "/lms-app/applyLeave";
 	public static final String CANCEL_LEAVE_URL               = "/lms-app/cancelLeave";
 	public static final String LEAVE_SUMMARY_URL              = "/lms-app/leaveSummary";
