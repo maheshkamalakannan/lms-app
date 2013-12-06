@@ -65,7 +65,7 @@ public class MailUtils {
 			Employee emp    = (Employee) request.getAttribute("Employee");
 			subject = subject.append("Hi "+emp.getFirstName()+ ",\n");
 			subject.append("\nYou've successfully created a new password for your LMS account. You can visit your LMS account here: \n\n");
-			subject.append(baseUrl+LMSConstants.LMS_URL);
+			subject.append(baseUrl);
 			break;
 		}
 		case LMSConstants.LEAVE_APPROVE:{
